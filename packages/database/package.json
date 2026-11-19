@@ -6,11 +6,9 @@
   "types": "./src/index.ts",
   "scripts": {
     "typecheck": "tsc --noEmit",
+    "test": "vitest run",
     "prisma:validate": "prisma validate",
     "prisma:generate": "prisma generate",
-    "seed": "tsx prisma/seed.ts"
-  },
-  "prisma": {
     "seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
@@ -22,6 +20,7 @@
     "@types/node": "^22.13.5",
     "prisma": "^6.4.1",
     "tsx": "^4.19.3",
-    "typescript": "^5.8.2"
+    "typescript": "^5.8.2",
+    "vitest": "^3.0.7"
   }
 }

@@ -4,11 +4,13 @@
 --   1. Universal UUID identifiers (gen_random_uuid())
 --   2. UTC timestamps (TIMESTAMPTZ)
 --   3. Partial Unique Index: At most one primary department per procedure
---   4. Trigger: Exactly one primary department invariant during publication
---   5. Append-only triggers: Prohibits UPDATE and DELETE on ProcedureRevision, ProcedureApproval, ProcedureApprovalRevocation
---   6. Prevent author self-approval trigger
---   7. Stale outbox worker completion fencing guard
---   8. Composite foreign key relationships
+--   4. Bidirectional Trigger Invariant: Exactly one primary department for any PUBLISHED procedure
+--   5. Session succession and family boundary integrity trigger
+--   6. Strict Revocation Target Foreign Key Integrity
+--   7. Stale outbox worker completion fencing guard trigger
+--   8. Append-only triggers: Prohibits UPDATE and DELETE on ProcedureRevision, ProcedureApproval, ProcedureApprovalRevocation
+--   9. Prevent author self-approval trigger
+--  10. Composite foreign key relationships
 
 -- ======================================================================
 -- 1. EXTENSIONS & ENUMS
@@ -148,14 +150,23 @@ CREATE INDEX "idx_user_session_family_status" ON "UserSession" ("sessionFamilyId
 CREATE INDEX "idx_user_session_user_status" ON "UserSession" ("userId", "status");
 CREATE INDEX "idx_user_session_recovery_exp" ON "UserSession" ("recoveryExpiresAt");
 
+-- Revocation Events Table with Strict Foreign-Key Bound Targets
 CREATE TABLE "RevocationEvent" (
     "id" UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     "type" "RevocationType" NOT NULL,
     "targetType" "RevocationTargetType" NOT NULL,
     "targetId" UUID NOT NULL,
+    "targetSessionId" UUID REFERENCES "UserSession"("id") ON DELETE CASCADE,
+    "targetFamilyId" UUID REFERENCES "SessionFamily"("id") ON DELETE CASCADE,
+    "targetUserId" UUID REFERENCES "User"("id") ON DELETE CASCADE,
     "reason" VARCHAR(255) NOT NULL,
     "occurredAt" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "createdAt" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
+    "createdAt" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT "chk_revocation_target_fk_match" CHECK (
+        ("targetType" = 'SESSION' AND "targetSessionId" IS NOT NULL AND "targetSessionId" = "targetId" AND "targetFamilyId" IS NULL AND "targetUserId" IS NULL) OR
+        ("targetType" = 'FAMILY' AND "targetFamilyId" IS NOT NULL AND "targetFamilyId" = "targetId" AND "targetSessionId" IS NULL AND "targetUserId" IS NULL) OR
+        ("targetType" = 'USER' AND "targetUserId" IS NOT NULL AND "targetUserId" = "targetId" AND "targetSessionId" IS NULL AND "targetFamilyId" IS NULL)
+    )
 );
 
 CREATE INDEX "idx_revocation_event_target" ON "RevocationEvent" ("targetId", "type");
@@ -348,7 +359,7 @@ CREATE INDEX "idx_department_archived" ON "Department" ("isArchived");
 
 CREATE TABLE "ProcedureDepartment" (
     "procedureId" UUID NOT NULL REFERENCES "Procedure"("id") ON DELETE CASCADE,
-    "departmentId" UUID NOT NULL REFERENCES "Department"("id") ON DELETE CASCADE,
+    "departmentId" UUID NOT NULL REFERENCES "Department"("id") ON DELETE RESTRICT,
     "isPrimary" BOOLEAN NOT NULL DEFAULT false,
     "assignedAt" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT "pk_procedure_department" PRIMARY KEY ("procedureId", "departmentId")
@@ -453,10 +464,12 @@ CREATE INDEX "idx_audit_target" ON "AdminAuditLog" ("targetType", "targetId");
 CREATE INDEX "idx_audit_created" ON "AdminAuditLog" ("createdAt");
 
 -- ======================================================================
--- 7. DATABASE INTEGRITY FUNCTIONS & STRICT APPEND-ONLY TRIGGERS
+-- 7. DATABASE INTEGRITY FUNCTIONS & STRICT ENFORCEMENT TRIGGERS
 -- ======================================================================
 
--- 1. Strict Immutability Enforcement Function
+-- ----------------------------------------------------------------------
+-- 7.1 Strict Immutability Enforcement Function
+-- ----------------------------------------------------------------------
 CREATE OR REPLACE FUNCTION enforce_append_only()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -476,35 +489,102 @@ CREATE TRIGGER "trg_procedure_approval_revocation_immutable"
     BEFORE UPDATE OR DELETE ON "ProcedureApprovalRevocation"
     FOR EACH ROW EXECUTE FUNCTION enforce_append_only();
 
--- 2. Prevent Author Self-Approval Trigger
-CREATE OR REPLACE FUNCTION check_no_author_self_approval()
+-- ----------------------------------------------------------------------
+-- 7.2 Prevent Author Self-Approval & Verify Reviewer Role/Active Status
+-- ----------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION check_procedure_approval_governance()
 RETURNS TRIGGER AS $$
 DECLARE
     v_author_id UUID;
+    v_reviewer_role "UserRole";
+    v_reviewer_active BOOLEAN;
 BEGIN
+    -- 1. Fetch Author of Revision
     SELECT "authorId" INTO v_author_id
     FROM "ProcedureRevision"
     WHERE "id" = NEW."revisionId";
 
+    -- 2. Reject Author Self-Approval
     IF v_author_id = NEW."reviewerId" THEN
         RAISE EXCEPTION 'CLINICAL GOVERNANCE VIOLATION: Clinical author (%) cannot approve their own content revision (%).', NEW."reviewerId", NEW."revisionId";
+    END IF;
+
+    -- 3. Verify Reviewer Role & Active Status
+    SELECT "role", "isActive" INTO v_reviewer_role, v_reviewer_active
+    FROM "User"
+    WHERE "id" = NEW."reviewerId";
+
+    IF v_reviewer_active IS NOT TRUE THEN
+        RAISE EXCEPTION 'CLINICAL GOVERNANCE VIOLATION: Reviewer (%) is inactive/deactivated and cannot certify approvals.', NEW."reviewerId";
+    END IF;
+
+    IF v_reviewer_role NOT IN ('CLINICAL_REVIEWER', 'CHIEF_EDITOR', 'SYSTEM_ADMIN') THEN
+        RAISE EXCEPTION 'CLINICAL GOVERNANCE VIOLATION: User (%) has role % and lacks certified reviewer privileges.', NEW."reviewerId", v_reviewer_role;
     END IF;
 
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER "trg_check_author_self_approval"
+CREATE TRIGGER "trg_check_procedure_approval_governance"
     BEFORE INSERT ON "ProcedureApproval"
-    FOR EACH ROW EXECUTE FUNCTION check_no_author_self_approval();
+    FOR EACH ROW EXECUTE FUNCTION check_procedure_approval_governance();
 
--- 3. Exact-One Primary Department Invariant on Publication
+-- ----------------------------------------------------------------------
+-- 7.3 Session Succession, Family Boundary & Cyclic Prevention Trigger
+-- ----------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION check_session_succession_integrity()
+RETURNS TRIGGER AS $$
+DECLARE
+    v_pred_user UUID;
+    v_pred_family UUID;
+    v_family_status "FamilyStatus";
+BEGIN
+    -- 1. Verify Session Family is not REVOKED or EXPIRED
+    SELECT "status" INTO v_family_status
+    FROM "SessionFamily"
+    WHERE "id" = NEW."sessionFamilyId";
+
+    IF v_family_status <> 'ACTIVE' THEN
+        RAISE EXCEPTION 'SESSION SECURITY VIOLATION: Cannot create or update session in inactive/revoked family (%). Current status: %', NEW."sessionFamilyId", v_family_status;
+    END IF;
+
+    -- 2. Verify Predecessor Belongs to Same User and Same Family
+    IF NEW."predecessorSessionId" IS NOT NULL THEN
+        SELECT "userId", "sessionFamilyId" INTO v_pred_user, v_pred_family
+        FROM "UserSession"
+        WHERE "id" = NEW."predecessorSessionId";
+
+        IF v_pred_user IS NULL THEN
+            RAISE EXCEPTION 'SESSION SECURITY VIOLATION: Predecessor session (%) does not exist.', NEW."predecessorSessionId";
+        END IF;
+
+        IF v_pred_user <> NEW."userId" THEN
+            RAISE EXCEPTION 'SESSION SECURITY VIOLATION: Cross-user session succession attempted. Predecessor belongs to user %, but successor belongs to user %.', v_pred_user, NEW."userId";
+        END IF;
+
+        IF v_pred_family <> NEW."sessionFamilyId" THEN
+            RAISE EXCEPTION 'SESSION SECURITY VIOLATION: Cross-family session succession attempted. Predecessor family %, successor family %.', v_pred_family, NEW."sessionFamilyId";
+        END IF;
+    END IF;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER "trg_check_session_succession_integrity"
+    BEFORE INSERT OR UPDATE ON "UserSession"
+    FOR EACH ROW EXECUTE FUNCTION check_session_succession_integrity();
+
+-- ----------------------------------------------------------------------
+-- 7.4 Bidirectional Primary Department Invariant for Published Procedures
+-- ----------------------------------------------------------------------
+-- 7.4a Checked when ProcedureTranslation is inserted or updated
 CREATE OR REPLACE FUNCTION check_publication_has_primary_dept()
 RETURNS TRIGGER AS $$
 DECLARE
     v_primary_count INT;
 BEGIN
-    -- Only evaluate when status transitions to PUBLISHED
     IF NEW."currentStatus" = 'PUBLISHED' THEN
         IF NEW."publishedRevisionId" IS NULL THEN
             RAISE EXCEPTION 'PUBLICATION INVARIANT VIOLATION: Cannot publish Procedure (%) without setting a publishedRevisionId.', NEW."procedureId";
@@ -526,3 +606,77 @@ $$ LANGUAGE plpgsql;
 CREATE TRIGGER "trg_check_publication_primary_dept"
     BEFORE INSERT OR UPDATE ON "ProcedureTranslation"
     FOR EACH ROW EXECUTE FUNCTION check_publication_has_primary_dept();
+
+-- 7.4b Checked when ProcedureDepartment is modified or deleted
+CREATE OR REPLACE FUNCTION check_published_procedure_cannot_lose_primary_dept()
+RETURNS TRIGGER AS $$
+DECLARE
+    v_procedure_id UUID;
+    v_has_published_translations BOOLEAN;
+    v_primary_count INT;
+BEGIN
+    IF TG_OP = 'DELETE' THEN
+        v_procedure_id := OLD."procedureId";
+    ELSE
+        v_procedure_id := NEW."procedureId";
+    END IF;
+
+    -- Check if any translation of this procedure is currently PUBLISHED
+    SELECT EXISTS (
+        SELECT 1 FROM "ProcedureTranslation"
+        WHERE "procedureId" = v_procedure_id AND "currentStatus" = 'PUBLISHED'
+    ) INTO v_has_published_translations;
+
+    IF v_has_published_translations THEN
+        SELECT COUNT(*) INTO v_primary_count
+        FROM "ProcedureDepartment"
+        WHERE "procedureId" = v_procedure_id AND "isPrimary" = true;
+
+        IF v_primary_count <> 1 THEN
+            RAISE EXCEPTION 'TAXONOMY INVARIANT VIOLATION: Cannot remove or demote the primary department for published Procedure (%). Every published procedure must maintain exactly one primary department.', v_procedure_id;
+        END IF;
+    END IF;
+
+    IF TG_OP = 'DELETE' THEN
+        RETURN OLD;
+    ELSE
+        RETURN NEW;
+    END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE CONSTRAINT TRIGGER "trg_check_published_procedure_dept_change"
+    AFTER INSERT OR UPDATE OR DELETE ON "ProcedureDepartment"
+    DEFERRABLE INITIALLY DEFERRED
+    FOR EACH ROW EXECUTE FUNCTION check_published_procedure_cannot_lose_primary_dept();
+
+-- ----------------------------------------------------------------------
+-- 7.5 Outbox Monotonic Fencing Lease Completion Guard
+-- ----------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION check_outbox_fencing_guard()
+RETURNS TRIGGER AS $$
+BEGIN
+    -- When transitioning to COMPLETED, verify fencing generation and lease state
+    IF NEW."status" = 'COMPLETED' AND OLD."status" <> 'COMPLETED' THEN
+        IF OLD."leaseOwner" IS NULL OR NEW."leaseOwner" <> OLD."leaseOwner" THEN
+            RAISE EXCEPTION 'OUTBOX FENCING VIOLATION: Worker (%) cannot complete job (%) assigned to lease owner (%).', NEW."leaseOwner", NEW."id", OLD."leaseOwner";
+        END IF;
+
+        IF NEW."fencingGeneration" <> OLD."fencingGeneration" THEN
+            RAISE EXCEPTION 'OUTBOX FENCING VIOLATION: Stale fencing generation % submitted for job (%). Current generation: %.', NEW."fencingGeneration", NEW."id", OLD."fencingGeneration";
+        END IF;
+
+        IF OLD."leaseExpiresAt" IS NOT NULL AND OLD."leaseExpiresAt" < CURRENT_TIMESTAMP THEN
+            RAISE EXCEPTION 'OUTBOX FENCING VIOLATION: Cannot complete job (%) with an expired lease (expired at %).', NEW."id", OLD."leaseExpiresAt";
+        END IF;
+
+        NEW."completedAt" := CURRENT_TIMESTAMP;
+    END IF;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER "trg_check_outbox_fencing_guard"
+    BEFORE UPDATE ON "CacheRevalidationOutbox"
+    FOR EACH ROW EXECUTE FUNCTION check_outbox_fencing_guard();

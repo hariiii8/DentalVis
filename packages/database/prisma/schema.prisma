@@ -1,6 +1,6 @@
 // packages/database/prisma/schema.prisma
 // DentalVis 2.0 — Production Domain & Database Schema
-// Architecture Baseline v1.9.1 & Phase 2.2 Specification
+// Architecture Baseline v1.9.1 & Phase 2.2 Integrity Audit Revision
 
 generator client {
   provider = "prisma-client-js"
@@ -111,6 +111,7 @@ model User {
   clinicalApprovals  ProcedureApproval[]
   approvalRevocations ProcedureApprovalRevocation[]
   auditLogs          AdminAuditLog[]
+  revocationEventsTargeted RevocationEvent[] @relation("RevokedUserTarget")
 
   @@index([role, isActive])
 }
@@ -130,6 +131,7 @@ model SessionFamily {
 
   user             User         @relation(fields: [userId], references: [id], onDelete: Cascade)
   sessions         UserSession[]
+  revocationEventsTargeted RevocationEvent[] @relation("RevokedFamilyTarget")
 
   @@index([userId, status])
 }
@@ -162,6 +164,7 @@ model UserSession {
 
   predecessor               UserSession?  @relation("SessionSuccession", fields: [predecessorSessionId], references: [id])
   successor                 UserSession?  @relation("SessionSuccession")
+  revocationEventsTargeted  RevocationEvent[] @relation("RevokedSessionTarget")
 
   @@index([sessionFamilyId, status])
   @@index([userId, status])
@@ -169,19 +172,29 @@ model UserSession {
 }
 
 // ----------------------------------------------------------------------
-// 3. DISTRIBUTED REVOCATION ENGINE (DV19-02, DV19-03 / SECTION 5)
+// 3. DISTRIBUTED REVOCATION ENGINE (SECTION 4 AUDIT: FOREIGN-KEY BOUND TARGETS)
 // ----------------------------------------------------------------------
 
 model RevocationEvent {
-  id          String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  type        RevocationType
-  targetType  RevocationTargetType
-  targetId    String               @db.Uuid // Polymorphic target UUID (sessionId, familyId, userId)
-  reason      String               @db.VarChar(255)
-  occurredAt  DateTime             @default(now()) @db.Timestamptz(6)
-  createdAt   DateTime             @default(now()) @db.Timestamptz(6)
+  id            String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  type          RevocationType
+  targetType    RevocationTargetType
+  targetId      String               @db.Uuid // Explicit polymorphic target UUID
+  
+  // Explicit Non-Polymorphic Foreign Keys Enforcing Relational Integrity
+  targetSessionId String?            @db.Uuid
+  targetFamilyId  String?            @db.Uuid
+  targetUserId    String?            @db.Uuid
 
-  acks        RevocationEventAck[]
+  reason        String               @db.VarChar(255)
+  occurredAt    DateTime             @default(now()) @db.Timestamptz(6)
+  createdAt     DateTime             @default(now()) @db.Timestamptz(6)
+
+  targetSession UserSession?         @relation("RevokedSessionTarget", fields: [targetSessionId], references: [id], onDelete: Cascade)
+  targetFamily  SessionFamily?       @relation("RevokedFamilyTarget", fields: [targetFamilyId], references: [id], onDelete: Cascade)
+  targetUser    User?                @relation("RevokedUserTarget", fields: [targetUserId], references: [id], onDelete: Cascade)
+
+  acks          RevocationEventAck[]
 
   @@index([targetId, type])
   @@index([occurredAt])
@@ -369,10 +382,9 @@ model ProcedureDepartment {
   assignedAt   DateTime   @default(now()) @db.Timestamptz(6)
 
   procedure    Procedure  @relation(fields: [procedureId], references: [id], onDelete: Cascade)
-  department   Department @relation(fields: [departmentId], references: [id], onDelete: Cascade)
+  department   Department @relation(fields: [departmentId], references: [id], onDelete: Restrict)
 
   @@id([procedureId, departmentId])
-  // Note: Partial unique index for isPrimary = true and exact-one primary check are enforced in PostgreSQL
 }
 
 // ----------------------------------------------------------------------
