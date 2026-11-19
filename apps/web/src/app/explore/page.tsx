@@ -1,92 +1,87 @@
+'use client';
+
 import React from 'react';
-import Link from 'next/link';
-import { Container, Button, Card, CardHeader, CardTitle, CardDescription, CardContent, Badge } from '@dentalvis/ui';
+import { Container, Badge } from '@dentalvis/ui';
 import { CANONICAL_EXPLORE_CATEGORIES, CANONICAL_PROCEDURES } from '@dentalvis/common';
-import { Compass, ArrowRight, Box, Clock } from 'lucide-react';
+import { Compass, Sparkles } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
+import { CategoryCard } from '@/components/CategoryCard';
+import { ProcedureCard } from '@/components/ProcedureCard';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
 
 export default function ExplorePage() {
+  const { language } = useLanguage();
+  const isTamil = language === 'ta';
+
   return (
     <div className="py-12 space-y-16">
       <Container>
+        {/* Navigation Breadcrumb */}
+        <Breadcrumbs
+          items={[
+            { label: isTamil ? 'பல் சிகிச்சைகள்' : 'Explore Treatments' }
+          ]}
+          homeLabel={isTamil ? 'முகப்பு' : 'Home'}
+        />
+
         {/* Page Header */}
-        <div className="max-w-2xl space-y-4 mb-12">
-          <Badge variant="default" className="gap-1.5">
-            <Compass className="w-3.5 h-3.5" />
-            <span>Patient-Facing Exploration</span>
+        <div className="max-w-3xl space-y-4 mb-12">
+          <Badge variant="mint" className="gap-1.5 text-xs font-semibold">
+            <Compass className="w-3.5 h-3.5 text-[#0D9488]" />
+            <span>{isTamil ? 'பொது நோயாளி வழிகாட்டி' : 'Patient-Facing Exploration'}</span>
           </Badge>
-          <h1 className="text-4xl font-extrabold text-[#134E4A] tracking-tight">
-            Explore Dental Treatments
+          <h1 className="text-4xl sm:text-5xl font-extrabold text-[#134E4A] tracking-tight">
+            {isTamil ? 'பல் மருத்துவ சிகிச்சை வழிகாட்டிகள்' : 'Explore Dental Treatments'}
           </h1>
-          <p className="text-base text-slate-600 leading-relaxed">
-            Select a topic below to discover how specific dental concerns are addressed through modern, comfortable treatment procedures.
+          <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
+            {isTamil
+              ? 'உங்கள் பல் பிரச்சினைகளுக்கு நவீன மருத்துவத்தில் உள்ள எளிய, பாதுகாப்பான மற்றும் வலி குறைவான சிகிச்சைகளை இங்கு கண்டுணருங்கள். ஒவ்வொரு பிரிவும் வரைபடங்களுடன் தெளிவாக விளக்கப்பட்டுள்ளது.'
+              : 'Select a clinical topic below to discover how specific dental concerns are addressed through modern, comfortable treatment procedures. Each section provides clear, patient-tested visual explanations.'}
           </p>
         </div>
 
-        {/* Categories Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          {CANONICAL_EXPLORE_CATEGORIES.map((category) => (
-            <Link key={category.id} href={`/explore/${category.slug}`} className="group block">
-              <Card className="h-full hover:translate-y-[-2px] transition-all">
-                <CardHeader>
-                  <div className="w-10 h-10 rounded-xl bg-[#E6F7F2] text-[#0D9488] flex items-center justify-center mb-3 group-hover:bg-[#0D9488] group-hover:text-white transition-colors">
-                    <Compass className="w-5 h-5" />
-                  </div>
-                  <CardTitle className="group-hover:text-[#0D9488] transition-colors">{category.titleEn}</CardTitle>
-                  <p className="text-xs font-semibold text-[#0D9488]">{category.titleTa}</p>
-                  <CardDescription>{category.descriptionEn}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-xs font-semibold text-[#0D9488] flex items-center gap-1 group-hover:underline">
-                    <span>View category procedures</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </div>
-                </CardContent>
-              </Card>
-            </Link>
-          ))}
-        </div>
-
-        {/* All Available Procedures Directory */}
-        <div className="pt-8 border-t border-teal-100">
-          <div className="mb-8">
-            <h2 className="text-2xl font-bold text-[#134E4A]">Complete Treatment Directory</h2>
-            <p className="text-sm text-slate-600 mt-1">Browse all validated educational visual guides across all dental areas.</p>
+        {/* 6 Patient-Facing Categories Grid */}
+        <div className="space-y-6 mb-20">
+          <div className="flex items-center justify-between border-b border-teal-100 pb-4">
+            <div>
+              <h2 className="text-2xl font-bold text-[#134E4A]">
+                {isTamil ? 'சிகிச்சைப் பிரிவுகள் (6 Categories)' : 'Explore Categories (6 Topics)'}
+              </h2>
+              <p className="text-xs text-slate-500 mt-1">
+                {isTamil
+                  ? 'வலி, உடைந்த பற்கள், ஈறுகள் மற்றும் அழகு சிகிச்சைகளுக்கான பிரிவுகள்.'
+                  : 'Structured patient topics designed around symptoms, conditions, and treatment goals.'}
+              </p>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {CANONICAL_EXPLORE_CATEGORIES.map((category) => (
+              <CategoryCard key={category.id} category={category} lang={language} />
+            ))}
+          </div>
+        </div>
+
+        {/* Complete Available Procedures Directory */}
+        <div className="pt-8 border-t border-teal-100/80 space-y-8">
+          <div>
+            <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#0D9488] mb-1">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>{isTamil ? 'அனைத்து நடைமுறைகள்' : 'Validated Directory'}</span>
+            </div>
+            <h2 className="text-3xl font-extrabold text-[#134E4A] tracking-tight">
+              {isTamil ? 'முழுமையான சிகிச்சை வழிகாட்டி அட்டவணை' : 'Complete Treatment Directory'}
+            </h2>
+            <p className="text-sm text-slate-600 mt-1 max-w-2xl">
+              {isTamil
+                ? 'அனைத்து மருத்துவத் துறைகளின் கீழ் அங்கீகரிக்கப்பட்ட நடைமுறை வழிகாட்டிகள்.'
+                : 'Browse verified educational visual guides across Endodontics, Prosthodontics, Periodontics, and Oral Surgery.'}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {CANONICAL_PROCEDURES.map((proc) => (
-              <Card key={proc.id} className="flex flex-col justify-between">
-                <CardHeader>
-                  <div className="flex items-center justify-between mb-2">
-                    <Badge variant="outline" className="text-[10px] uppercase font-bold text-slate-500">
-                      {proc.primaryDepartmentName}
-                    </Badge>
-                    {proc.has3DModel && (
-                      <Badge variant="default" className="text-[10px] gap-1">
-                        <Box className="w-3 h-3" />
-                        <span>3D View</span>
-                      </Badge>
-                    )}
-                  </div>
-                  <CardTitle className="text-lg">{proc.titleEn}</CardTitle>
-                  <p className="text-xs font-medium text-teal-700/80">{proc.titleTa}</p>
-                  <CardDescription className="line-clamp-2">{proc.summaryEn}</CardDescription>
-                </CardHeader>
-
-                <CardContent className="pt-0">
-                  <div className="flex items-center gap-2 text-xs text-slate-500 mb-4 pt-4 border-t border-slate-100">
-                    <Clock className="w-3.5 h-3.5 text-[#0D9488]" />
-                    <span>~{proc.durationMinutes} minutes duration</span>
-                  </div>
-
-                  <Link href={`/procedures/${proc.slug}`} className="block w-full">
-                    <Button variant="mint" size="sm" className="w-full text-xs font-semibold justify-between">
-                      <span>View Procedure Guide</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
+              <ProcedureCard key={proc.id} procedure={proc} lang={language} />
             ))}
           </div>
         </div>

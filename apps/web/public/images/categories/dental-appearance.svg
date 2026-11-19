@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDF4FF" />
+      <stop offset="50%" stop-color="#E6F7F2" />
+      <stop offset="100%" stop-color="#F0FDF4" />
+    </linearGradient>
+    <linearGradient id="shine" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.1" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0D9488" flood-opacity="0.15" />
+    </filter>
+  </defs>
+
+  <rect width="100%" height="100%" fill="url(#bg)" rx="24" />
+
+  <!-- Radiance Aura -->
+  <circle cx="400" cy="220" r="160" fill="none" stroke="#F59E0B" stroke-width="2" stroke-opacity="0.2" stroke-dasharray="10 6" />
+  <circle cx="400" cy="220" r="120" fill="none" stroke="#0D9488" stroke-width="2" stroke-opacity="0.25" />
+
+  <g filter="url(#shadow)">
+    <!-- Pristine Whitened Incisor -->
+    <path d="M 330 200 
+             C 330 130, 360 120, 400 120 
+             C 440 120, 470 130, 470 200 
+             L 470 270 
+             C 460 330, 430 360, 400 360 
+             C 370 360, 340 330, 330 270 Z" 
+          fill="#FFFFFF" stroke="#0D9488" stroke-width="6" stroke-linejoin="round" />
+
+    <!-- Porcelain Veneer Highlight Reflection Sheen -->
+    <path d="M 350 160 Q 365 140 390 140 L 375 240 Q 355 240 345 200 Z" fill="url(#shine)" />
+  </g>
+
+  <!-- Gleam / Sparkle Stars -->
+  <!-- Sparkle 1 Top Right -->
+  <path d="M 470 140 Q 480 140 480 130 Q 480 140 490 140 Q 480 140 480 150 Q 480 140 470 140 Z" fill="#F59E0B" />
+  <circle cx="480" cy="140" r="2" fill="#FFFFFF" />
+
+  <!-- Sparkle 2 Mid Left -->
+  <path d="M 305 230 Q 320 230 320 215 Q 320 230 335 230 Q 320 230 320 245 Q 320 230 305 230 Z" fill="#0D9488" />
+  <circle cx="320" cy="230" r="2.5" fill="#FFFFFF" />
+
+  <!-- Sparkle 3 Bottom Right -->
+  <path d="M 450 280 Q 460 280 460 270 Q 460 280 470 280 Q 460 280 460 290 Q 460 280 450 280 Z" fill="#0D9488" />
+
+  <!-- Badge Label -->
+  <rect x="260" y="430" width="280" height="42" rx="21" fill="#FFFFFF" stroke="#0D9488" stroke-width="1.5" />
+  <text x="400" y="456" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#134E4A" text-anchor="middle">Dental Appearance &amp; Whitening Guide</text>
+</svg>

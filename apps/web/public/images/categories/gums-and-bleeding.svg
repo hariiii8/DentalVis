@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF1F2" />
+      <stop offset="50%" stop-color="#E6F7F2" />
+      <stop offset="100%" stop-color="#F0FDF4" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0D9488" flood-opacity="0.15" />
+    </filter>
+  </defs>
+
+  <rect width="100%" height="100%" fill="url(#bg)" rx="24" />
+
+  <!-- Gingival Margin Curve -->
+  <path d="M 200 270 Q 280 320 360 270 T 520 270 T 680 270" fill="none" stroke="#F43F5E" stroke-width="6" stroke-linecap="round" opacity="0.4" />
+
+  <g filter="url(#shadow)">
+    <!-- Natural Tooth Row Section -->
+    <!-- Tooth 1 -->
+    <path d="M 320 240 C 320 180, 340 170, 360 175 C 380 170, 400 180, 400 240 L 400 310 C 390 350, 370 350, 360 310 C 350 350, 330 350, 320 310 Z" 
+          fill="#FFFFFF" stroke="#0D9488" stroke-width="5" />
+    
+    <!-- Tooth 2 -->
+    <path d="M 405 240 C 405 180, 425 170, 445 175 C 465 170, 485 180, 485 240 L 485 310 C 475 350, 455 350, 445 310 C 435 350, 415 350, 405 310 Z" 
+          fill="#FFFFFF" stroke="#0D9488" stroke-width="5" />
+
+    <!-- Healthy Pink Gingival Tissue Envelope -->
+    <path d="M 280 290 
+             C 320 270, 350 285, 362 260 
+             C 375 285, 432 285, 445 260 
+             C 458 285, 490 270, 520 290 
+             L 520 370 C 460 390, 340 390, 280 370 Z" 
+          fill="#FDA4AF" fill-opacity="0.75" stroke="#F43F5E" stroke-width="3" />
+  </g>
+
+  <!-- Gentle Periodontal Health Waves (Teal & Rose) -->
+  <path d="M 310 330 Q 362 315 400 330 T 490 330" fill="none" stroke="#0D9488" stroke-width="3" stroke-linecap="round" />
+  <circle cx="445" cy="275" r="5" fill="#F43F5E" />
+  <path d="M 445 270 L 445 280 M 440 275 L 450 275" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" />
+
+  <!-- Badge Label -->
+  <rect x="280" y="420" width="240" height="42" rx="21" fill="#FFFFFF" stroke="#0D9488" stroke-width="1.5" />
+  <text x="400" y="446" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#134E4A" text-anchor="middle">Gums &amp; Periodontal Care Guide</text>
+</svg>

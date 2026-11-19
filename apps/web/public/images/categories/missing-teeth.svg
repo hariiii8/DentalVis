@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F0FDFA" />
+      <stop offset="50%" stop-color="#E6F7F2" />
+      <stop offset="100%" stop-color="#CCFBF1" />
+    </linearGradient>
+    <linearGradient id="titanium" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#64748B" />
+      <stop offset="50%" stop-color="#94A3B8" />
+      <stop offset="100%" stop-color="#475569" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0D9488" flood-opacity="0.15" />
+    </filter>
+  </defs>
+
+  <rect width="100%" height="100%" fill="url(#bg)" rx="24" />
+
+  <!-- Jawbone Trabecular Background Texture Pattern -->
+  <path d="M 220 320 Q 400 300 580 320 L 580 430 L 220 430 Z" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="2" />
+
+  <g filter="url(#shadow)">
+    <!-- Natural Tooth Left -->
+    <path d="M 280 230 C 280 170, 300 160, 315 165 C 330 160, 345 170, 345 230 L 345 330 C 335 360, 320 360, 312 330 C 305 360, 290 360, 280 330 Z" 
+          fill="#FFFFFF" stroke="#0D9488" stroke-width="5" />
+
+    <!-- Natural Tooth Right -->
+    <path d="M 455 230 C 455 170, 475 160, 490 165 C 505 160, 520 170, 520 230 L 520 330 C 510 360, 495 360, 487 330 C 480 360, 465 360, 455 330 Z" 
+          fill="#FFFFFF" stroke="#0D9488" stroke-width="5" />
+
+    <!-- Center: Modern Implant Fixture & Ceramic Crown Replacement -->
+    <!-- Ceramic Crown -->
+    <path d="M 365 220 C 365 160, 385 150, 400 155 C 415 150, 435 160, 435 220 L 435 240 L 365 240 Z" 
+          fill="#FFFFFF" stroke="#0D9488" stroke-width="5" />
+
+    <!-- Abutment Collar -->
+    <polygon points="380,240 420,240 415,260 385,260" fill="url(#titanium)" stroke="#334155" stroke-width="2" />
+
+    <!-- Threaded Titanium Implant Root -->
+    <path d="M 385 260 L 415 260 L 410 360 L 400 375 L 390 360 Z" fill="url(#titanium)" stroke="#334155" stroke-width="2" />
+    <!-- Implant Threads -->
+    <line x1="384" y1="280" x2="416" y2="280" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" />
+    <line x1="385" y1="300" x2="415" y2="300" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" />
+    <line x1="386" y1="320" x2="414" y2="320" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" />
+    <line x1="388" y1="340" x2="412" y2="340" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" />
+  </g>
+
+  <!-- Precision osseointegration markers -->
+  <circle cx="370" cy="300" r="4" fill="#0D9488" />
+  <circle cx="430" cy="300" r="4" fill="#0D9488" />
+
+  <!-- Badge Label -->
+  <rect x="270" y="430" width="260" height="42" rx="21" fill="#FFFFFF" stroke="#0D9488" stroke-width="1.5" />
+  <text x="400" y="456" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#134E4A" text-anchor="middle">Missing Teeth &amp; Implants Guide</text>
+</svg>

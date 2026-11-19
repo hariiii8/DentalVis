@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F8FAFC" />
+      <stop offset="50%" stop-color="#E6F7F2" />
+      <stop offset="100%" stop-color="#EFF6FF" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0D9488" flood-opacity="0.15" />
+    </filter>
+  </defs>
+
+  <rect width="100%" height="100%" fill="url(#bg)" rx="24" />
+
+  <!-- Alignment Symmetry Axis & Guide Curves -->
+  <line x1="400" y1="80" x2="400" y2="400" stroke="#0D9488" stroke-width="2" stroke-dasharray="6 6" opacity="0.3" />
+  <path d="M 220 220 Q 400 170 580 220" fill="none" stroke="#0D9488" stroke-width="3" opacity="0.25" />
+  <path d="M 220 260 Q 400 210 580 260" fill="none" stroke="#0D9488" stroke-width="3" opacity="0.25" />
+
+  <g filter="url(#shadow)">
+    <!-- Harmonious Row of Front Anterior Teeth -->
+    <!-- Lateral Incisor Left -->
+    <path d="M 270 230 C 270 180, 285 170, 305 175 C 325 170, 335 180, 335 230 L 335 270 L 270 270 Z" 
+          fill="#FFFFFF" stroke="#0D9488" stroke-width="4" />
+    
+    <!-- Central Incisor Left -->
+    <path d="M 345 220 C 345 160, 365 150, 395 155 C 400 155, 400 160, 400 220 L 400 275 L 345 275 Z" 
+          fill="#FFFFFF" stroke="#0D9488" stroke-width="5" />
+
+    <!-- Central Incisor Right -->
+    <path d="M 400 220 C 400 160, 400 155, 405 155 C 435 150, 455 160, 455 220 L 455 275 L 400 275 Z" 
+          fill="#FFFFFF" stroke="#0D9488" stroke-width="5" />
+
+    <!-- Lateral Incisor Right -->
+    <path d="M 465 230 C 465 180, 475 170, 495 175 C 515 170, 530 180, 530 230 L 530 270 L 465 270 Z" 
+          fill="#FFFFFF" stroke="#0D9488" stroke-width="4" />
+
+    <!-- Clear Aligner Precision Sheath Overlay (Translucent Wave) -->
+    <path d="M 255 225 Q 400 145 545 225 L 540 280 Q 400 200 260 280 Z" 
+          fill="#0D9488" fill-opacity="0.12" stroke="#0D9488" stroke-width="2.5" stroke-dasharray="4 2" />
+  </g>
+
+  <!-- Alignment Measurement Arrows -->
+  <path d="M 330 330 L 370 330" stroke="#0D9488" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)" />
+  <path d="M 470 330 L 430 330" stroke="#0D9488" stroke-width="3" stroke-linecap="round" />
+  <circle cx="400" cy="330" r="4" fill="#0D9488" />
+
+  <!-- Badge Label -->
+  <rect x="270" y="430" width="260" height="42" rx="21" fill="#FFFFFF" stroke="#0D9488" stroke-width="1.5" />
+  <text x="400" y="456" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#134E4A" text-anchor="middle">Tooth Alignment &amp; Braces Guide</text>
+</svg>

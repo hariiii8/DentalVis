@@ -5,15 +5,14 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Container, Button } from '@dentalvis/ui';
 import { Sparkles, Globe, Menu, X, Compass, AlertTriangle, ShieldCheck } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [lang, setLang] = useState<'en' | 'ta'>('en');
+  const { language, toggleLanguage } = useLanguage();
   const pathname = usePathname();
 
-  const toggleLang = () => {
-    setLang(prev => prev === 'en' ? 'ta' : 'en');
-  };
+  const isTamil = language === 'ta';
 
   const navLinks = [
     { href: '/explore', labelEn: 'Explore Treatments', labelTa: 'சிகிச்சைகள்', icon: Compass },
@@ -22,7 +21,7 @@ export function Navbar() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-[#F8FBFA]/85 backdrop-blur-md border-b border-teal-900/10 transition-all">
+    <header className="sticky top-0 z-50 bg-[#F8FBFA]/90 backdrop-blur-md border-b border-teal-900/10 transition-all">
       <Container>
         <div className="flex items-center justify-between h-20">
           {/* Brand Logo */}
@@ -35,27 +34,29 @@ export function Navbar() {
                 <span className="text-xl font-bold tracking-tight text-[#134E4A]">DentalVis</span>
                 <span className="text-xs bg-teal-100/80 text-[#0D9488] px-1.5 py-0.5 rounded-full font-semibold">2.0</span>
               </div>
-              <p className="text-[11px] text-teal-800/70 font-medium">Clear Dental Education</p>
+              <p className="text-[11px] text-teal-800/70 font-medium">
+                {isTamil ? 'தெளிவான பல் மருத்துவக் கல்வி' : 'Visual Dental Education'}
+              </p>
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation Links */}
           <nav className="hidden md:flex items-center gap-1.5">
             {navLinks.map((link) => {
               const Icon = link.icon;
-              const isActive = pathname.startsWith(link.href);
+              const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
               return (
                 <Link
                   key={link.href}
                   href={link.href}
                   className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all ${
                     isActive
-                      ? 'bg-teal-100/60 text-[#0D9488] font-semibold'
+                      ? 'bg-teal-100/60 text-[#0D9488] font-bold'
                       : 'text-[#173F3B] hover:bg-teal-50/80 hover:text-[#0D9488]'
                   }`}
                 >
                   <Icon className="w-4 h-4" />
-                  <span>{lang === 'ta' ? link.labelTa : link.labelEn}</span>
+                  <span>{isTamil ? link.labelTa : link.labelEn}</span>
                 </Link>
               );
             })}
@@ -66,16 +67,17 @@ export function Navbar() {
             <Button
               variant="outline"
               size="sm"
-              onClick={toggleLang}
-              className="gap-2 border-teal-200/80 hover:bg-teal-50 text-[#134E4A]"
+              onClick={toggleLanguage}
+              aria-label={isTamil ? 'Switch to English' : 'தமிழுக்கு மாறவும்'}
+              className="gap-2 border-teal-200/80 hover:bg-teal-50 text-[#134E4A] font-semibold"
             >
               <Globe className="w-4 h-4 text-[#0D9488]" />
-              <span className="font-semibold">{lang === 'en' ? 'தமிழ்' : 'English'}</span>
+              <span>{isTamil ? 'English' : 'தமிழ்'}</span>
             </Button>
 
             <Link href="/explore">
-              <Button size="sm" className="bg-[#0D9488] hover:bg-[#0f766e] text-white">
-                {lang === 'ta' ? 'ஆரம்பிக்கலாம்' : 'Start Exploring'}
+              <Button size="sm" className="bg-[#0D9488] hover:bg-[#0f766e] text-white shadow-sm">
+                {isTamil ? 'ஆரம்பிக்கலாம்' : 'Start Exploring'}
               </Button>
             </Link>
           </div>
@@ -83,17 +85,20 @@ export function Navbar() {
           {/* Mobile Menu Button */}
           <div className="flex md:hidden items-center gap-2">
             <Button
-              variant="ghost"
+              variant="outline"
               size="sm"
-              onClick={toggleLang}
-              className="text-xs font-semibold px-2"
+              onClick={toggleLanguage}
+              className="px-2.5 py-1 text-xs gap-1 border-teal-200"
             >
-              {lang === 'en' ? 'தமிழ்' : 'EN'}
+              <Globe className="w-3.5 h-3.5 text-[#0D9488]" />
+              <span>{isTamil ? 'EN' : 'தமிழ்'}</span>
             </Button>
+
             <button
+              type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-xl text-[#173F3B] hover:bg-teal-50"
-              aria-label="Toggle Navigation Menu"
+              className="p-2 rounded-lg text-[#134E4A] hover:bg-teal-50"
+              aria-label="Toggle navigation menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -102,25 +107,30 @@ export function Navbar() {
 
         {/* Mobile Navigation Dropdown */}
         {mobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-teal-100 space-y-2">
+          <div className="md:hidden py-4 border-t border-teal-900/10 space-y-2">
             {navLinks.map((link) => {
               const Icon = link.icon;
+              const isActive = pathname.startsWith(link.href);
               return (
                 <Link
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium text-[#173F3B] hover:bg-teal-50"
+                  className={`flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium ${
+                    isActive
+                      ? 'bg-teal-100/60 text-[#0D9488] font-bold'
+                      : 'text-[#173F3B] hover:bg-teal-50'
+                  }`}
                 >
                   <Icon className="w-5 h-5 text-[#0D9488]" />
-                  <span>{lang === 'ta' ? link.labelTa : link.labelEn}</span>
+                  <span>{isTamil ? link.labelTa : link.labelEn}</span>
                 </Link>
               );
             })}
             <div className="pt-2 px-2">
-              <Link href="/explore" onClick={() => setMobileMenuOpen(false)}>
+              <Link href="/explore" onClick={() => setMobileMenuOpen(false)} className="block">
                 <Button className="w-full bg-[#0D9488] text-white">
-                  {lang === 'ta' ? 'சிகிச்சைகளை காண்க' : 'Explore All Procedures'}
+                  {isTamil ? 'சிகிச்சைகளை காண்க' : 'Explore Treatments'}
                 </Button>
               </Link>
             </div>

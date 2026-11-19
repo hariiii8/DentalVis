@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F0FDF4" />
+      <stop offset="50%" stop-color="#E6F7F2" />
+      <stop offset="100%" stop-color="#CCFBF1" />
+    </linearGradient>
+    <linearGradient id="pulseGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0D9488" stop-opacity="0.2" />
+      <stop offset="50%" stop-color="#F43F5E" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#0D9488" stop-opacity="0.2" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0D9488" flood-opacity="0.15" />
+    </filter>
+  </defs>
+
+  <rect width="100%" height="100%" fill="url(#bg)" rx="24" />
+
+  <!-- Ambient rings representing nerve sensitivity -->
+  <circle cx="400" cy="250" r="180" fill="none" stroke="#0D9488" stroke-width="2" stroke-opacity="0.15" stroke-dasharray="8 8" />
+  <circle cx="400" cy="250" r="140" fill="none" stroke="#F43F5E" stroke-width="2" stroke-opacity="0.2" />
+  <circle cx="400" cy="250" r="100" fill="none" stroke="#F43F5E" stroke-width="3" stroke-opacity="0.3" stroke-dasharray="4 4" />
+
+  <!-- Central Molar Silhouette with Nerve Pathway -->
+  <g filter="url(#shadow)">
+    <!-- Tooth Crown and Roots Outline -->
+    <path d="M 330 180 
+             C 330 130, 360 120, 380 130 
+             C 390 135, 410 135, 420 130 
+             C 440 120, 470 130, 470 180 
+             C 470 230, 460 260, 450 310 
+             C 440 360, 435 380, 425 380 
+             C 415 380, 410 330, 400 300 
+             C 390 330, 385 380, 375 380 
+             C 365 380, 360 360, 350 310 
+             C 340 260, 330 230, 330 180 Z" 
+          fill="#FFFFFF" stroke="#0D9488" stroke-width="6" stroke-linejoin="round" />
+
+    <!-- Pulp Chamber & Nerve Canals -->
+    <path d="M 370 200 
+             C 370 180, 385 175, 400 175 
+             C 415 175, 430 180, 430 200 
+             C 430 230, 420 250, 415 290 
+             C 412 315, 412 345, 410 350 
+             C 408 345, 404 315, 400 290 
+             C 396 315, 392 345, 390 350 
+             C 388 345, 388 315, 385 290 
+             C 380 250, 370 230, 370 200 Z" 
+          fill="#FFE4E6" stroke="#F43F5E" stroke-width="3" />
+
+    <!-- Thermal / Sensitivity Indicators -->
+    <circle cx="400" cy="205" r="12" fill="#F43F5E" />
+    <path d="M 400 197 L 400 213 M 392 205 L 408 205" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" />
+  </g>
+
+  <!-- Cold/Hot Waves -->
+  <path d="M 270 200 Q 285 190 300 200 T 330 200" fill="none" stroke="#0284C7" stroke-width="4" stroke-linecap="round" />
+  <path d="M 260 220 Q 275 210 290 220 T 320 220" fill="none" stroke="#0284C7" stroke-width="4" stroke-linecap="round" />
+
+  <path d="M 470 200 Q 485 190 500 200 T 530 200" fill="none" stroke="#EA580C" stroke-width="4" stroke-linecap="round" />
+  <path d="M 480 220 Q 495 210 510 220 T 540 220" fill="none" stroke="#EA580C" stroke-width="4" stroke-linecap="round" />
+
+  <!-- Badge Label -->
+  <rect x="290" y="420" width="220" height="42" rx="21" fill="#FFFFFF" stroke="#0D9488" stroke-width="1.5" />
+  <text x="400" y="446" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#134E4A" text-anchor="middle">Pain &amp; Sensitivity Guide</text>
+</svg>

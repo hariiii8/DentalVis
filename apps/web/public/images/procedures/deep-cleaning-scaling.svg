@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="sclBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF1F2" />
+      <stop offset="50%" stop-color="#E6F7F2" />
+      <stop offset="100%" stop-color="#F0FDF4" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0D9488" flood-opacity="0.15" />
+    </filter>
+  </defs>
+
+  <rect width="100%" height="100%" fill="url(#sclBg)" rx="24" />
+
+  <!-- Ultrasonic Wave Emanations -->
+  <circle cx="430" cy="235" r="40" fill="none" stroke="#0D9488" stroke-width="2" stroke-opacity="0.3" />
+  <circle cx="430" cy="235" r="70" fill="none" stroke="#0D9488" stroke-width="1.5" stroke-opacity="0.2" stroke-dasharray="4 4" />
+
+  <g filter="url(#shadow)">
+    <!-- Natural Molar Tooth Profile -->
+    <path d="M 330 180 
+             C 330 130, 360 120, 380 130 
+             C 390 135, 410 135, 420 130 
+             C 440 120, 470 130, 470 180 
+             C 470 230, 460 260, 450 310 
+             C 440 360, 435 380, 425 380 
+             C 415 380, 410 330, 400 300 
+             C 390 330, 385 380, 375 380 
+             C 365 380, 360 360, 350 310 
+             C 340 260, 330 230, 330 180 Z" 
+          fill="#FFFFFF" stroke="#0D9488" stroke-width="5" stroke-linejoin="round" />
+
+    <!-- Healthy Pink Gingiva Margin (Cutaway) -->
+    <path d="M 280 250 C 330 240, 360 260, 400 250 C 440 260, 470 240, 520 250 L 520 370 C 460 390, 340 390, 280 370 Z" 
+          fill="#FDA4AF" fill-opacity="0.65" stroke="#F43F5E" stroke-width="2.5" />
+
+    <!-- Hardened Subgingival Calculus/Tartar Deposit (Yellow-Amber) -->
+    <path d="M 445 220 C 455 225, 460 245, 450 255 L 442 245 Z" fill="#D97706" stroke="#92400E" stroke-width="1.5" />
+
+    <!-- Ultrasonic Scaling Micro-Instrument (Precision Polished Steel Tip) -->
+    <path d="M 540 160 L 460 225 L 435 235 L 450 220 L 525 150 Z" 
+          fill="#94A3B8" stroke="#475569" stroke-width="2.5" stroke-linejoin="round" />
+  </g>
+
+  <!-- Clean Sparkle Particles (Plaque Removal) -->
+  <circle cx="420" cy="225" r="3" fill="#0D9488" />
+  <circle cx="435" cy="215" r="4" fill="#0D9488" />
+  <circle cx="410" cy="245" r="2.5" fill="#0D9488" />
+
+  <!-- Technical Callouts -->
+  <rect x="180" y="270" width="130" height="32" rx="8" fill="#FFFFFF" stroke="#F43F5E" stroke-width="1.5" />
+  <text x="245" y="291" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#9F1239" text-anchor="middle">Periodontal Pocket</text>
+  <line x1="310" y1="286" x2="350" y2="286" stroke="#F43F5E" stroke-width="1.5" />
+
+  <rect x="520" y="110" width="140" height="32" rx="8" fill="#FFFFFF" stroke="#0D9488" stroke-width="1.5" />
+  <text x="590" y="131" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#134E4A" text-anchor="middle">Ultrasonic Cavitron Tip</text>
+  <line x1="520" y1="126" x2="480" y2="175" stroke="#0D9488" stroke-width="1.5" />
+
+  <!-- Department & Code Pill -->
+  <rect x="260" y="440" width="280" height="36" rx="18" fill="#FFFFFF" stroke="#0D9488" stroke-width="1.5" />
+  <text x="400" y="463" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#134E4A" text-anchor="middle">PERIO-SCL-01 • Periodontal Deep Scaling</text>
+</svg>

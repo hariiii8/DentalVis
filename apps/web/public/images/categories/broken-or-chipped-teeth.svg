@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F8FAFC" />
+      <stop offset="50%" stop-color="#E6F7F2" />
+      <stop offset="100%" stop-color="#E2E8F0" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0D9488" flood-opacity="0.15" />
+    </filter>
+  </defs>
+
+  <rect width="100%" height="100%" fill="url(#bg)" rx="24" />
+
+  <!-- Shield protection outline in background -->
+  <path d="M 400 90 L 530 140 L 530 270 C 530 360, 400 420, 400 420 C 400 420, 270 360, 270 270 L 270 140 Z" 
+        fill="none" stroke="#0D9488" stroke-width="2" stroke-opacity="0.2" stroke-dasharray="6 6" />
+
+  <g filter="url(#shadow)">
+    <!-- Main Tooth with Fractured Enamel Line -->
+    <path d="M 330 190 
+             C 330 140, 360 130, 380 140 
+             C 390 145, 410 145, 420 140 
+             C 440 130, 470 140, 470 190 
+             C 470 240, 460 270, 450 320 
+             C 440 370, 435 390, 425 390 
+             C 415 390, 410 340, 400 310 
+             C 390 340, 385 390, 375 390 
+             C 365 390, 360 370, 350 320 
+             C 340 270, 330 240, 330 190 Z" 
+          fill="#FFFFFF" stroke="#0D9488" stroke-width="6" stroke-linejoin="round" />
+
+    <!-- Crack / Fracture Line -->
+    <path d="M 435 137 L 420 170 L 435 200 L 415 240" 
+          fill="none" stroke="#D97706" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+
+    <!-- Precision Bonding / Crown Restoration Outline (Teal Overlay) -->
+    <path d="M 370 135 C 390 140, 410 140, 430 135 C 455 140, 465 160, 465 190 C 465 210, 455 220, 445 225 L 355 225 C 345 220, 335 210, 335 190 C 335 160, 345 140, 370 135 Z"
+          fill="#0D9488" fill-opacity="0.15" stroke="#0D9488" stroke-width="3" stroke-dasharray="5 5" />
+  </g>
+
+  <!-- Restoration Sparkle Elements -->
+  <circle cx="445" cy="165" r="4" fill="#0D9488" />
+  <circle cx="355" cy="180" r="3" fill="#0D9488" />
+
+  <!-- Badge Label -->
+  <rect x="270" y="430" width="260" height="42" rx="21" fill="#FFFFFF" stroke="#0D9488" stroke-width="1.5" />
+  <text x="400" y="456" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#134E4A" text-anchor="middle">Broken &amp; Chipped Enamel Guide</text>
+</svg>
