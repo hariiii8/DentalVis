@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Container, Button, Badge } from '@dentalvis/ui';
+import { Container, Button, Badge, LiquidGlassSurface } from '@dentalvis/ui';
 import {
   Compass,
   Sparkles,
@@ -27,10 +27,12 @@ export default function MainHomePage() {
       {/* 1. HERO SECTION: Welcoming Liquid Glass Portal Introduction */}
       <section className="relative pt-2 pb-6">
         <Container>
-          <div className="liquid-glass-primary rounded-3xl max-w-4xl mx-auto p-8 sm:p-12 text-center space-y-6 relative shadow-md isolate">
-            <div className="liquid-refractive-rim absolute inset-0 rounded-3xl pointer-events-none" />
-            <div className="liquid-specular-sheen absolute inset-0 rounded-3xl pointer-events-none" />
-
+          <LiquidGlassSurface
+            variant="primary"
+            specular
+            refractiveRim
+            className="max-w-4xl mx-auto p-8 sm:p-12 text-center space-y-6 shadow-md"
+          >
             <div className="relative z-10 space-y-6">
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full liquid-glass-lens text-[#145B59] text-xs font-bold tracking-wide shadow-xs mx-auto">
                 <Sparkles className="w-3.5 h-3.5 text-[#20B2AA]" />
@@ -61,7 +63,7 @@ export default function MainHomePage() {
                   : 'Welcome to your patient learning hub. Choose whether you want to explore specific dental procedures in detail, or identify what common symptoms might indicate.'}
               </p>
 
-              {/* TWO PRIMARY NAVIGATION ACTIONS (Corrected width, internal padding, side-by-side on desktop, stacked on mobile) */}
+              {/* TWO PRIMARY NAVIGATION ACTIONS */}
               <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
                 <Link href="/explore" className="w-full sm:w-auto">
                   <Button
@@ -86,7 +88,7 @@ export default function MainHomePage() {
                 </Link>
               </div>
             </div>
-          </div>
+          </LiquidGlassSurface>
         </Container>
       </section>
 
@@ -95,10 +97,12 @@ export default function MainHomePage() {
         <Container>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* PORTAL CARD 1: EXPLORE PROCEDURES */}
-            <div className="liquid-glass-secondary hover:liquid-glass-interactive rounded-3xl p-8 sm:p-10 flex flex-col justify-between group transition-all duration-300 isolate relative">
-              <div className="liquid-refractive-rim absolute inset-0 rounded-3xl pointer-events-none" />
-              <div className="liquid-specular-sheen absolute inset-0 rounded-3xl pointer-events-none" />
-
+            <LiquidGlassSurface
+              variant="secondary"
+              specular
+              refractiveRim
+              className="hover:liquid-glass-interactive rounded-3xl p-8 sm:p-10 flex flex-col justify-between group transition-all duration-300 isolate"
+            >
               <div className="space-y-6 relative z-10">
                 <div className="flex items-center justify-between">
                   <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#20B2AA] to-[#145B59] text-white flex items-center justify-center shadow-md">
@@ -148,13 +152,15 @@ export default function MainHomePage() {
                   </Button>
                 </Link>
               </div>
-            </div>
+            </LiquidGlassSurface>
 
             {/* PORTAL CARD 2: SYMPTOMS DIRECTORY */}
-            <div className="liquid-glass-secondary hover:liquid-glass-interactive rounded-3xl p-8 sm:p-10 flex flex-col justify-between group transition-all duration-300 isolate relative">
-              <div className="liquid-refractive-rim absolute inset-0 rounded-3xl pointer-events-none" />
-              <div className="liquid-specular-sheen absolute inset-0 rounded-3xl pointer-events-none" />
-
+            <LiquidGlassSurface
+              variant="secondary"
+              specular
+              refractiveRim
+              className="hover:liquid-glass-interactive rounded-3xl p-8 sm:p-10 flex flex-col justify-between group transition-all duration-300 isolate"
+            >
               <div className="space-y-6 relative z-10">
                 <div className="flex items-center justify-between">
                   <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#145B59] to-[#20B2AA] text-white flex items-center justify-center shadow-md">
@@ -204,7 +210,7 @@ export default function MainHomePage() {
                   </Button>
                 </Link>
               </div>
-            </div>
+            </LiquidGlassSurface>
           </div>
         </Container>
       </section>
@@ -212,10 +218,12 @@ export default function MainHomePage() {
       {/* 3. FLOATING EDUCATIONAL HIGHLIGHT FEATURE PANELS IN LIQUID GLASS */}
       <section className="py-6">
         <Container>
-          <div className="liquid-glass-primary rounded-3xl p-8 sm:p-10 space-y-8 isolate relative">
-            <div className="liquid-refractive-rim absolute inset-0 rounded-3xl pointer-events-none" />
-            <div className="liquid-specular-sheen absolute inset-0 rounded-3xl pointer-events-none" />
-
+          <LiquidGlassSurface
+            variant="primary"
+            specular
+            refractiveRim
+            className="p-8 sm:p-10 space-y-8 shadow-md"
+          >
             <div className="max-w-2xl relative z-10">
               <Badge variant="mint" className="text-xs font-bold uppercase tracking-wider mb-2 liquid-glass-lens">
                 {isTamil ? 'கல்வி உத்தரவாதம்' : 'Patient-Centric Standards'}
@@ -268,7 +276,7 @@ export default function MainHomePage() {
                 </p>
               </div>
             </div>
-          </div>
+          </LiquidGlassSurface>
         </Container>
       </section>
     </div>

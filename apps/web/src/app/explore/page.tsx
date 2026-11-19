@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Container, Badge } from '@dentalvis/ui';
+import { Container, Badge, LiquidGlassSurface } from '@dentalvis/ui';
 import { CANONICAL_EXPLORE_CATEGORIES, CANONICAL_PROCEDURES } from '@dentalvis/common';
 import { Compass, Sparkles } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
@@ -21,10 +21,12 @@ export default function ExplorePage() {
 
       <Container>
         {/* Page Header: Liquid Glass Hero Introduction Panel */}
-        <div className="liquid-glass-primary rounded-3xl p-8 sm:p-10 mb-12 space-y-4 isolate relative shadow-md">
-          <div className="liquid-refractive-rim absolute inset-0 rounded-3xl pointer-events-none" />
-          <div className="liquid-specular-sheen absolute inset-0 rounded-3xl pointer-events-none" />
-
+        <LiquidGlassSurface
+          variant="primary"
+          specular
+          refractiveRim
+          className="p-8 sm:p-10 mb-12 space-y-4 shadow-md"
+        >
           <div className="relative z-10 space-y-3">
             <Badge variant="mint" className="gap-1.5 text-xs font-semibold liquid-glass-lens">
               <Compass className="w-3.5 h-3.5 text-[#20B2AA]" />
@@ -39,12 +41,16 @@ export default function ExplorePage() {
                 : 'Select a clinical topic below to discover how specific dental concerns are addressed through modern, comfortable treatment procedures. Each section provides clear, patient-tested visual explanations.'}
             </p>
           </div>
-        </div>
+        </LiquidGlassSurface>
 
         {/* 6 Patient-Facing Categories Grid */}
         <div className="space-y-6 mb-20">
-          <div className="liquid-glass-secondary rounded-2xl px-6 py-4 flex items-center justify-between isolate relative">
-            <div className="liquid-refractive-rim absolute inset-0 rounded-2xl pointer-events-none" />
+          <LiquidGlassSurface
+            variant="secondary"
+            specular={false}
+            refractiveRim
+            className="px-6 py-4 flex items-center justify-between"
+          >
             <div className="relative z-10">
               <h2 className="text-2xl font-bold text-[#145B59]">
                 {isTamil ? 'சிகிச்சைப் பிரிவுகள் (6 Categories)' : 'Explore Categories (6 Topics)'}
@@ -55,7 +61,7 @@ export default function ExplorePage() {
                   : 'Structured patient topics designed around symptoms, conditions, and treatment goals.'}
               </p>
             </div>
-          </div>
+          </LiquidGlassSurface>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {CANONICAL_EXPLORE_CATEGORIES.map((category) => (
@@ -66,8 +72,12 @@ export default function ExplorePage() {
 
         {/* Complete Available Procedures Directory */}
         <div className="pt-8 space-y-8">
-          <div className="liquid-glass-secondary rounded-2xl px-6 py-4 isolate relative">
-            <div className="liquid-refractive-rim absolute inset-0 rounded-2xl pointer-events-none" />
+          <LiquidGlassSurface
+            variant="secondary"
+            specular={false}
+            refractiveRim
+            className="px-6 py-4"
+          >
             <div className="relative z-10">
               <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#20B2AA] mb-1">
                 <Sparkles className="w-3.5 h-3.5" />
@@ -82,7 +92,7 @@ export default function ExplorePage() {
                   : 'Browse our full library of interactive educational guides detailing dental restorations, periodontics, and surgery.'}
               </p>
             </div>
-          </div>
+          </LiquidGlassSurface>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {CANONICAL_PROCEDURES.map((proc) => (

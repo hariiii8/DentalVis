@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Badge } from '@dentalvis/ui';
+import { Badge, LiquidGlassSurface } from '@dentalvis/ui';
 import { ProcedureDetail } from '@dentalvis/common';
 import { ArrowRight, Box, Clock } from 'lucide-react';
 
@@ -19,10 +19,12 @@ export function ProcedureCard({ procedure, lang = 'en', coverImagePath }: Proced
   const imageSrc = coverImagePath || `/images/procedures/${procedure.slug}.svg`;
 
   return (
-    <div className="liquid-glass-secondary hover:liquid-glass-interactive rounded-3xl flex flex-col justify-between overflow-hidden transition-all duration-300 isolate relative group">
-      <div className="liquid-refractive-rim absolute inset-0 rounded-3xl pointer-events-none" />
-      <div className="liquid-specular-sheen absolute inset-0 rounded-3xl pointer-events-none" />
-
+    <LiquidGlassSurface
+      variant="secondary"
+      specular
+      refractiveRim
+      className="hover:liquid-glass-interactive rounded-3xl flex flex-col justify-between overflow-hidden transition-all duration-300 isolate group h-full"
+    >
       {/* Visual Header with Cover Image */}
       <div className="relative aspect-[16/10] w-full overflow-hidden bg-gradient-to-br from-[#F5FAF9] to-[#DDF5F1]/70 border-b border-[#C8E7E3]/60">
         <Image
@@ -76,6 +78,6 @@ export function ProcedureCard({ procedure, lang = 'en', coverImagePath }: Proced
           </Link>
         </div>
       </div>
-    </div>
+    </LiquidGlassSurface>
   );
 }
