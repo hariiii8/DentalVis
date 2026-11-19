@@ -2,29 +2,32 @@
 
 @layer base {
   :root {
-    /* Approved DentalVis Colour Palette */
-    --color-ice-blue: #EAF5F8;
-    --color-pure-white: #FFFFFF;
-    --color-pale-teal: #D9F0ED;
-    --color-medical-teal: #247F83;
-    --color-deep-teal: #164B50;
-    --color-soft-mint: #A4E6D5;
-    --color-slate-grey: #64777C;
-    --color-light-border: #DCEAEC;
+    /* Approved DentalVis Brand Palette */
+    --color-bright-sea-green: #20B2AA;
+    --color-deep-ocean-teal: #145B59;
+    --color-dark-teal: #164B50;
+    --color-pale-seafoam: #DDF5F1;
+    --color-misty-aqua: #E8F7F6;
+    --color-soft-mint: #BFE9E2;
+    --color-powder-blue: #DCEFF5;
+    --color-pearl: #F5FAF9;
+    --color-muted-slate: #587477;
+    --color-seafoam-border: #C8E7E3;
 
-    /* Theme Aliases */
-    --color-background: #EAF5F8;
-    --color-surface: #FFFFFF;
-    --color-primary: #247F83;
-    --color-primary-dark: #164B50;
-    --color-mint: #A4E6D5;
+    /* Theme Aliases - Soft tinted pearl/misty aqua, strictly no pure white dominant backgrounds */
+    --color-background: #F5FAF9;
+    --color-surface: #E8F7F6;
+    --color-primary: #20B2AA;
+    --color-primary-dark: #145B59;
+    --color-accent: #BFE9E2;
     --color-text: #164B50;
-    --color-text-muted: #64777C;
+    --color-text-muted: #587477;
   }
 
   body {
     background-color: var(--color-background);
     color: var(--color-text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans Tamil", sans-serif;
     font-feature-settings: "rlig" 1, "calt" 1;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
@@ -48,46 +51,188 @@
   }
 }
 
-/* Apple-Inspired Glassmorphism Utility Layers */
-.glass-panel {
-  background: rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(28px) saturate(190%);
-  -webkit-backdrop-filter: blur(28px) saturate(190%);
+/* ======================================================================
+   APPLE-INSPIRED LIQUID GLASS DESIGN SYSTEM
+   Real optical materials: refraction, specular highlights, and chromatic edge rims
+   ====================================================================== */
+
+/* 1. Primary Liquid Glass (Hero panels & core optical surfaces) */
+.liquid-glass-primary {
+  background: radial-gradient(
+      120% 120% at 20% 10%,
+      rgba(245, 250, 249, 0.78) 0%,
+      rgba(232, 247, 246, 0.58) 50%,
+      rgba(221, 245, 241, 0.45) 100%
+    );
+  backdrop-filter: blur(32px) saturate(210%) contrast(105%);
+  -webkit-backdrop-filter: blur(32px) saturate(210%) contrast(105%);
   border: 1px solid rgba(255, 255, 255, 0.85);
-  box-shadow: 
-    0 12px 36px -8px rgba(22, 75, 80, 0.08),
-    0 4px 16px -2px rgba(22, 75, 80, 0.04),
-    inset 0 1px 0 rgba(255, 255, 255, 0.95),
-    inset 0 -1px 0 rgba(220, 234, 236, 0.5);
+  box-shadow:
+    0 24px 60px -12px rgba(20, 91, 89, 0.12),
+    0 8px 24px -4px rgba(22, 75, 80, 0.05),
+    inset 0 1.5px 0.5px rgba(255, 255, 255, 0.95),
+    inset 0 -1.5px 1px rgba(191, 233, 226, 0.45);
 }
 
-.glass-panel-subtle {
-  background: rgba(255, 255, 255, 0.45);
-  backdrop-filter: blur(20px) saturate(160%);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  box-shadow: 
-    0 8px 24px -6px rgba(22, 75, 80, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+/* 2. Secondary Liquid Glass (Cards, content units, category blocks) */
+.liquid-glass-secondary {
+  background: linear-gradient(
+      135deg,
+      rgba(245, 250, 249, 0.72) 0%,
+      rgba(232, 247, 246, 0.55) 60%,
+      rgba(220, 239, 245, 0.38) 100%
+    );
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border: 1px solid rgba(200, 231, 227, 0.75);
+  box-shadow:
+    0 16px 40px -10px rgba(20, 91, 89, 0.08),
+    0 4px 12px -2px rgba(22, 75, 80, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -1px 0 rgba(200, 231, 227, 0.4);
 }
 
-.glass-panel-glow {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(217, 240, 237, 0.5) 100%);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  box-shadow: 
-    0 20px 48px -12px rgba(36, 127, 131, 0.15),
-    0 8px 20px -4px rgba(22, 75, 80, 0.06),
-    inset 0 1px 2px rgba(255, 255, 255, 1);
+/* 3. Floating Liquid Glass (Elevated optical surfaces with dramatic refraction) */
+.liquid-glass-floating {
+  background: radial-gradient(
+      100% 100% at 30% 15%,
+      rgba(245, 250, 249, 0.85) 0%,
+      rgba(232, 247, 246, 0.6) 50%,
+      rgba(191, 233, 226, 0.35) 100%
+    );
+  backdrop-filter: blur(36px) saturate(220%);
+  -webkit-backdrop-filter: blur(36px) saturate(220%);
+  border: 1.5px solid rgba(255, 255, 255, 0.92);
+  box-shadow:
+    0 30px 70px -15px rgba(32, 178, 170, 0.22),
+    0 12px 28px -6px rgba(20, 91, 89, 0.08),
+    inset 0 2px 1px rgba(255, 255, 255, 1),
+    inset 0 -1.5px 1px rgba(32, 178, 170, 0.2);
 }
 
+/* 4. Interactive Liquid Glass (Responsive to cursor coordinates & touch) */
+.liquid-glass-interactive {
+  background: radial-gradient(
+      circle at var(--liquid-mouse-x, 50%) var(--liquid-mouse-y, 50%),
+      rgba(245, 250, 249, 0.82) 0%,
+      rgba(232, 247, 246, 0.55) 40%,
+      rgba(220, 239, 245, 0.4) 100%
+    );
+  backdrop-filter: blur(28px) saturate(200%);
+  -webkit-backdrop-filter: blur(28px) saturate(200%);
+  border: 1px solid rgba(200, 231, 227, 0.85);
+  box-shadow:
+    0 18px 48px -10px rgba(20, 91, 89, 0.09),
+    0 6px 18px -3px rgba(22, 75, 80, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  cursor: pointer;
+}
+.liquid-glass-interactive:hover {
+  transform: translateY(-4px) scale(1.008);
+  border-color: rgba(255, 255, 255, 0.98);
+  box-shadow:
+    0 32px 72px -12px rgba(32, 178, 170, 0.25),
+    0 10px 24px -4px rgba(20, 91, 89, 0.08),
+    inset 0 2px 1px rgba(255, 255, 255, 1);
+}
+
+/* 5. Liquid Lens (Pills, badges, floating tags) */
+.liquid-glass-lens {
+  background: linear-gradient(
+      135deg,
+      rgba(245, 250, 249, 0.88) 0%,
+      rgba(232, 247, 246, 0.68) 50%,
+      rgba(191, 233, 226, 0.45) 100%
+    );
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(200, 231, 227, 0.9);
+  box-shadow:
+    0 10px 28px -6px rgba(20, 91, 89, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+/* Optical Refractive Rim (Edge light-catching border) */
+.liquid-refractive-rim {
+  border: 1px solid transparent;
+  background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.9) 0%,
+      rgba(191, 233, 226, 0.45) 40%,
+      rgba(220, 239, 245, 0.3) 70%,
+      rgba(32, 178, 170, 0.35) 100%
+    )
+    border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Specular Reflection Sheen */
+.liquid-specular-sheen {
+  background: radial-gradient(
+    circle 320px at 25% 15%,
+    rgba(255, 255, 255, 0.35) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    transparent 80%
+  );
+  pointer-events: none;
+}
+
+/* Ambient glow accents */
+.liquid-glow-teal {
+  box-shadow:
+    0 24px 60px -12px rgba(32, 178, 170, 0.22),
+    inset 0 1.5px 0.5px rgba(255, 255, 255, 0.95);
+}
+.liquid-glow-mint {
+  box-shadow:
+    0 24px 60px -12px rgba(191, 233, 226, 0.35),
+    inset 0 1.5px 0.5px rgba(255, 255, 255, 0.95);
+}
+.liquid-glow-ice {
+  box-shadow:
+    0 24px 60px -12px rgba(220, 239, 245, 0.5),
+    inset 0 1.5px 0.5px rgba(255, 255, 255, 0.95);
+}
+
+/* Apple-Inspired Liquid Navigation Bar */
 .glass-nav {
-  background: rgba(234, 245, 248, 0.75);
-  backdrop-filter: blur(30px) saturate(190%);
-  -webkit-backdrop-filter: blur(30px) saturate(190%);
-  border-bottom: 1px solid rgba(220, 234, 236, 0.8);
-  box-shadow: 0 4px 20px -2px rgba(22, 75, 80, 0.04);
+  background: linear-gradient(
+      180deg,
+      rgba(245, 250, 249, 0.88) 0%,
+      rgba(232, 247, 246, 0.75) 100%
+    );
+  backdrop-filter: blur(34px) saturate(210%);
+  -webkit-backdrop-filter: blur(34px) saturate(210%);
+  border-bottom: 1px solid rgba(200, 231, 227, 0.85);
+  box-shadow:
+    0 6px 24px -2px rgba(20, 91, 89, 0.06),
+    inset 0 -1px 0 rgba(200, 231, 227, 0.6);
+}
+
+/* Legacy aliases for backward compatibility */
+.glass-panel,
+.glass-panel-subtle,
+.glass-panel-glow {
+  backdrop-filter: blur(28px) saturate(200%);
+  -webkit-backdrop-filter: blur(28px) saturate(200%);
+}
+.glass-panel {
+  background: radial-gradient(120% 120% at 20% 10%, rgba(245, 250, 249, 0.78) 0%, rgba(232, 247, 246, 0.58) 50%, rgba(221, 245, 241, 0.45) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 24px 60px -12px rgba(20, 91, 89, 0.12), inset 0 1.5px 0.5px rgba(255, 255, 255, 0.95);
+}
+.glass-panel-subtle {
+  background: linear-gradient(135deg, rgba(245, 250, 249, 0.72) 0%, rgba(232, 247, 246, 0.55) 60%, rgba(220, 239, 245, 0.38) 100%);
+  border: 1px solid rgba(200, 231, 227, 0.75);
+  box-shadow: 0 16px 40px -10px rgba(20, 91, 89, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+.glass-panel-glow {
+  background: radial-gradient(100% 100% at 30% 15%, rgba(245, 250, 249, 0.85) 0%, rgba(232, 247, 246, 0.6) 50%, rgba(191, 233, 226, 0.35) 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.92);
+  box-shadow: 0 30px 70px -15px rgba(32, 178, 170, 0.22), inset 0 2px 1px rgba(255, 255, 255, 1);
 }
 
 /* Subtle Floating Animations */

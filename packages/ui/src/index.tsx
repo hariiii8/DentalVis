@@ -22,17 +22,17 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     const variants = {
       primary:
-        'bg-gradient-to-r from-[#247F83] to-[#164B50] text-white hover:from-[#1b6b6f] hover:to-[#113a3e] focus-visible:ring-[#247F83] shadow-[0_6px_20px_-4px_rgba(36,127,131,0.35)] hover:shadow-[0_10px_24px_-4px_rgba(36,127,131,0.45)] hover:translate-y-[-1px]',
+        'bg-gradient-to-r from-[#20B2AA] to-[#145B59] text-white hover:from-[#1ca099] hover:to-[#104a48] focus-visible:ring-[#20B2AA] shadow-[0_6px_20px_-4px_rgba(32,178,170,0.38)] hover:shadow-[0_10px_24px_-4px_rgba(32,178,170,0.48)] hover:translate-y-[-1px]',
       secondary:
-        'bg-[#164B50] text-white hover:bg-[#0f3438] focus-visible:ring-[#164B50] shadow-sm',
+        'bg-[#145B59] text-white hover:bg-[#0f4442] focus-visible:ring-[#145B59] shadow-sm',
       outline:
-        'border border-[#DCEAEC] bg-white/70 backdrop-blur-md text-[#164B50] hover:bg-[#D9F0ED]/60 hover:border-[#247F83]/40 focus-visible:ring-[#247F83] shadow-sm',
+        'border border-[#C8E7E3] bg-[#E8F7F6]/80 backdrop-blur-md text-[#164B50] hover:bg-[#DDF5F1] hover:border-[#20B2AA]/50 focus-visible:ring-[#20B2AA] shadow-sm',
       ghost:
-        'text-[#164B50] hover:bg-[#D9F0ED]/70 focus-visible:ring-[#247F83]',
+        'text-[#164B50] hover:bg-[#DDF5F1]/70 focus-visible:ring-[#20B2AA]',
       mint:
-        'bg-gradient-to-r from-[#A4E6D5] to-[#D9F0ED] text-[#164B50] hover:brightness-95 focus-visible:ring-[#247F83] border border-[#A4E6D5]/60 shadow-sm font-bold',
+        'bg-gradient-to-r from-[#BFE9E2] to-[#DDF5F1] text-[#145B59] hover:brightness-95 focus-visible:ring-[#20B2AA] border border-[#BFE9E2]/70 shadow-sm font-bold',
       glass:
-        'bg-white/60 backdrop-blur-xl border border-white/80 text-[#164B50] hover:bg-white/80 shadow-[0_8px_24px_rgba(22,75,80,0.08)] hover:shadow-[0_12px_32px_rgba(22,75,80,0.14)]',
+        'bg-[#F5FAF9]/75 backdrop-blur-xl border border-white/90 text-[#164B50] hover:bg-white/90 shadow-[0_8px_24px_rgba(20,91,89,0.08)] hover:shadow-[0_12px_32px_rgba(20,91,89,0.14)]',
     };
 
     const sizes = {
@@ -66,13 +66,13 @@ export function Card({ className, glass = true, children, ...props }: CardProps)
   let glassStyle = 'bg-white border-[#DCEAEC] shadow-sm';
   if (glass === true) {
     glassStyle =
-      'bg-white/70 backdrop-blur-2xl border border-white/85 shadow-[0_12px_36px_-8px_rgba(22,75,80,0.08)] hover:shadow-[0_18px_44px_-8px_rgba(36,127,131,0.16)] hover:border-white transition-all duration-300';
+      'glass-panel hover:shadow-[0_20px_48px_-8px_rgba(36,127,131,0.18)] hover:border-white transition-all duration-300';
   } else if (glass === 'subtle') {
     glassStyle =
-      'bg-white/50 backdrop-blur-xl border border-white/70 shadow-[0_8px_24px_-6px_rgba(22,75,80,0.05)]';
+      'glass-panel-subtle hover:shadow-[0_14px_32px_-6px_rgba(22,75,80,0.1)] transition-all duration-300';
   } else if (glass === 'glow') {
     glassStyle =
-      'bg-gradient-to-br from-white/85 via-white/70 to-[#D9F0ED]/60 backdrop-blur-2xl border border-white/90 shadow-[0_20px_48px_-12px_rgba(36,127,131,0.18)]';
+      'glass-panel-glow hover:shadow-[0_24px_56px_-12px_rgba(36,127,131,0.22)] hover:border-white transition-all duration-300';
   }
 
   return (
@@ -114,11 +114,11 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
 
 export function Badge({ className, variant = 'default', children, ...props }: BadgeProps) {
   const variants = {
-    default: 'bg-[#D9F0ED] text-[#247F83] border border-[#247F83]/20 font-semibold',
-    mint: 'bg-[#A4E6D5]/60 text-[#164B50] border border-[#A4E6D5] font-semibold',
-    outline: 'border border-[#DCEAEC] text-[#164B50] bg-white/80 backdrop-blur-sm',
+    default: 'bg-[#DDF5F1] text-[#20B2AA] border border-[#20B2AA]/30 font-semibold',
+    mint: 'bg-[#BFE9E2]/60 text-[#145B59] border border-[#BFE9E2] font-semibold',
+    outline: 'border border-[#C8E7E3] text-[#164B50] bg-[#F5FAF9]/85 backdrop-blur-sm',
     alert: 'bg-amber-50 text-amber-900 border border-amber-200 font-semibold',
-    glass: 'bg-white/60 backdrop-blur-md text-[#164B50] border border-white/80 font-medium shadow-xs',
+    glass: 'bg-[#F5FAF9]/70 backdrop-blur-md text-[#164B50] border border-white/90 font-medium shadow-xs',
   };
 
   return (
@@ -149,6 +149,9 @@ export function Container({ className, children, ...props }: React.HTMLAttribute
 // ----------------------------------------------------------------------
 // CLINICAL DISCLAIMER BANNER COMPONENT
 // ----------------------------------------------------------------------
+export * from './GlassSurface';
+export * from './LiquidGlass';
+
 export function ClinicalDisclaimerBanner({ lang = 'en', className }: { lang?: 'en' | 'ta'; className?: string }) {
   const text =
     lang === 'ta'

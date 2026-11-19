@@ -2,8 +2,8 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Container, Card, CardHeader, CardTitle, CardDescription, CardContent, Badge } from '@dentalvis/ui';
-import { ArrowRight, Compass, ShieldAlert, Sparkles } from 'lucide-react';
+import { Container, Badge } from '@dentalvis/ui';
+import { ArrowRight, Sparkles, HeartPulse } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function SymptomsPage() {
@@ -59,64 +59,77 @@ export default function SymptomsPage() {
   ];
 
   return (
-    <div className="py-10 space-y-12">
+    <div className="py-10 space-y-16 relative overflow-hidden bg-[#F5FAF9]">
+      {/* Background Optical Ambience in Powder Blue and Soft Mint */}
+      <div className="absolute top-10 left-10 w-[38rem] h-[38rem] bg-gradient-to-br from-[#BFE9E2]/50 via-[#20B2AA]/20 to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute top-1/2 -right-20 w-[32rem] h-[32rem] bg-gradient-to-bl from-[#DCEFF5]/80 via-[#20B2AA]/15 to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
+
       <Container>
-        {/* Header */}
-        <div className="max-w-2xl space-y-4 mb-12">
-          <Badge variant="mint" className="gap-1.5 text-xs font-semibold">
-            <Compass className="w-3.5 h-3.5 text-[#0D9488]" />
-            <span>{isTamil ? 'அறிகுறி வழிகாட்டி' : 'Symptom-Based Navigation'}</span>
-          </Badge>
-          <h1 className="text-4xl font-extrabold text-[#134E4A] tracking-tight">
-            {isTamil ? 'பொதுவான பல் அறிகுறிகள் & விளக்கங்கள்' : 'Common Symptoms & Explanations'}
-          </h1>
-          <p className="text-base text-slate-600 leading-relaxed">
-            {isTamil
-              ? 'நீங்கள் உணரும் குறிப்பிட்ட அசௌகரியத்தைத் தேர்வு செய்து, அது எதனால் ஏற்படுகிறது என்பதையும் அதற்கான சிகிச்சை முறைகளையும் விரிவாக அறியுங்கள்.'
-              : 'Select what you are experiencing to understand the underlying causes and explore patient-tested treatment options.'}
-          </p>
+        {/* Page Header: Liquid Glass Introduction */}
+        <div className="liquid-glass-primary rounded-3xl p-8 sm:p-10 mb-12 space-y-4 isolate relative shadow-md">
+          <div className="liquid-refractive-rim absolute inset-0 rounded-3xl pointer-events-none" />
+          <div className="liquid-specular-sheen absolute inset-0 rounded-3xl pointer-events-none" />
+
+          <div className="relative z-10 space-y-4">
+            <Badge variant="mint" className="gap-1.5 text-xs font-semibold liquid-glass-lens">
+              <HeartPulse className="w-3.5 h-3.5 text-[#20B2AA]" />
+              <span>{isTamil ? 'நோயாளி அறிகுறி வழிகாட்டி' : 'Symptom Explorer'}</span>
+            </Badge>
+
+            <h1 className="text-4xl sm:text-5xl font-black text-[#145B59] tracking-tight">
+              {isTamil ? 'பொதுவான பல் அறிகுறிகள் & வழிகாட்டல்' : 'Common Oral Symptoms'}
+            </h1>
+
+            <p className="text-base sm:text-lg text-[#587477] leading-relaxed max-w-2xl">
+              {isTamil
+                ? 'பல் வலி, கூச்சம் அல்லது ஈறு இரத்தக்கசிவு போன்ற அன்றாட அறிகுறிகளுக்கான காரணங்களை அறிந்து கொள்ளுங்கள். மருத்துவரிடம் விவாதிக்க வேண்டிய தகவல்கள் இங்கே தொகுக்கப்பட்டுள்ளன.'
+                : 'Identify everyday dental discomforts, understand what underlying clinical factors might be involved, and learn which visual procedure guides can clarify your options.'}
+            </p>
+          </div>
         </div>
 
-        {/* Symptoms List */}
+        {/* Symptoms Interactive Grid with Liquid Glass Secondary Surfaces */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {commonSymptoms.map((symp, idx) => (
-            <Card key={idx} className="flex flex-col justify-between hover:translate-y-[-2px] transition-all">
-              <CardHeader>
-                <div className="flex items-center justify-between mb-2">
-                  <Badge variant="outline" className="text-xs">
-                    {isTamil ? symp.categoryNameTa : symp.categoryNameEn}
-                  </Badge>
-                  <Sparkles className="w-4 h-4 text-[#0D9488]" />
-                </div>
-                <CardTitle className="text-lg">
-                  {isTamil ? symp.titleTa : symp.titleEn}
-                </CardTitle>
-                <CardDescription className="text-sm text-slate-600 mt-2">
-                  {isTamil ? symp.descTa : symp.descEn}
-                </CardDescription>
-              </CardHeader>
+          {commonSymptoms.map((sym, idx) => (
+            <div
+              key={idx}
+              className="liquid-glass-secondary hover:liquid-glass-interactive rounded-3xl p-7 flex flex-col justify-between transition-all duration-300 isolate relative group"
+            >
+              <div className="liquid-refractive-rim absolute inset-0 rounded-3xl pointer-events-none" />
+              <div className="liquid-specular-sheen absolute inset-0 rounded-3xl pointer-events-none" />
 
-              <CardContent className="pt-0">
+              <div className="space-y-4 relative z-10">
+                <div className="flex items-center justify-between">
+                  <Badge variant="mint" className="text-[11px] font-bold liquid-glass-lens">
+                    {isTamil ? sym.categoryNameTa : sym.categoryNameEn}
+                  </Badge>
+                  <Sparkles className="w-4 h-4 text-[#20B2AA] opacity-60 group-hover:opacity-100 transition-opacity" />
+                </div>
+
+                <div className="space-y-2">
+                  <h3 className="text-xl font-bold text-[#145B59] group-hover:text-[#20B2AA] transition-colors">
+                    {isTamil ? sym.titleTa : sym.titleEn}
+                  </h3>
+                  <p className="text-xs font-semibold text-[#20B2AA]/90">
+                    {isTamil ? sym.titleEn : sym.titleTa}
+                  </p>
+                  <p className="text-sm text-[#587477] leading-relaxed">
+                    {isTamil ? sym.descTa : sym.descEn}
+                  </p>
+                </div>
+              </div>
+
+              <div className="pt-6 relative z-10">
                 <Link
-                  href={`/explore/${symp.categorySlug}`}
-                  className="text-xs font-bold text-[#0D9488] flex items-center gap-1 hover:underline pt-3 border-t border-slate-100"
+                  href={`/explore/${sym.categorySlug}`}
+                  className="inline-flex items-center gap-2 text-xs font-bold text-[#20B2AA] group-hover:translate-x-1 transition-transform"
                 >
-                  <span>{isTamil ? 'சிகிச்சை வழிகாட்டிகளை காண்க' : 'Explore Treatment Options'}</span>
+                  <span>{isTamil ? 'தொடர்புடைய பிரிவைக் காண்க' : 'Explore Related Topic'}</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           ))}
-        </div>
-
-        {/* Clinical Disclaimer Note */}
-        <div className="mt-12 p-6 rounded-2xl bg-teal-50 border border-teal-200/60 flex items-start gap-3">
-          <ShieldAlert className="w-5 h-5 text-[#0D9488] shrink-0 mt-0.5" />
-          <p className="text-xs text-[#134E4A] leading-relaxed">
-            {isTamil
-              ? 'அறிகுறி விளக்கங்கள் கல்விப் பயன்பாட்டிற்காக மட்டுமே வழங்கப்படுகின்றன. இவை மருத்துவப் பரிசோதனை அல்ல. முறையான மருத்துவ ஆலோசனைக்கு உங்கள் பல் மருத்துவரை அணுகவும்.'
-              : 'Symptom descriptions are educational overviews and do not constitute self-diagnosis or medical triage. Always consult with a licensed dental clinician for personalized diagnostic care.'}
-          </p>
         </div>
       </Container>
     </div>

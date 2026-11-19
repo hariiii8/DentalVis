@@ -13,32 +13,43 @@ export default function ExplorePage() {
   const isTamil = language === 'ta';
 
   return (
-    <div className="py-10 space-y-16">
+    <div className="py-10 space-y-16 relative overflow-hidden bg-[#F5FAF9]">
+      {/* Soft Ambient Background Fields for Glass Depth in Mint, Powder Blue and Aqua */}
+      <div className="absolute top-10 left-10 w-96 h-96 bg-[#BFE9E2]/50 rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute top-1/3 -right-20 w-[32rem] h-[32rem] bg-[#20B2AA]/20 rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute bottom-10 left-1/4 w-[36rem] h-[36rem] bg-[#DCEFF5]/80 rounded-full blur-3xl pointer-events-none -z-10" />
+
       <Container>
-        {/* Page Header */}
-        <div className="max-w-3xl space-y-4 mb-12">
-          <Badge variant="mint" className="gap-1.5 text-xs font-semibold">
-            <Compass className="w-3.5 h-3.5 text-[#0D9488]" />
-            <span>{isTamil ? 'பொது நோயாளி வழிகாட்டி' : 'Patient-Facing Exploration'}</span>
-          </Badge>
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-[#134E4A] tracking-tight">
-            {isTamil ? 'பல் மருத்துவ சிகிச்சை வழிகாட்டிகள்' : 'Explore Dental Treatments'}
-          </h1>
-          <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
-            {isTamil
-              ? 'உங்கள் பல் பிரச்சினைகளுக்கு நவீன மருத்துவத்தில் உள்ள எளிய, பாதுகாப்பான மற்றும் வலி குறைவான சிகிச்சைகளை இங்கு கண்டுணருங்கள். ஒவ்வொரு பிரிவும் வரைபடங்களுடன் தெளிவாக விளக்கப்பட்டுள்ளது.'
-              : 'Select a clinical topic below to discover how specific dental concerns are addressed through modern, comfortable treatment procedures. Each section provides clear, patient-tested visual explanations.'}
-          </p>
+        {/* Page Header: Liquid Glass Hero Introduction Panel */}
+        <div className="liquid-glass-primary rounded-3xl p-8 sm:p-10 mb-12 space-y-4 isolate relative shadow-md">
+          <div className="liquid-refractive-rim absolute inset-0 rounded-3xl pointer-events-none" />
+          <div className="liquid-specular-sheen absolute inset-0 rounded-3xl pointer-events-none" />
+
+          <div className="relative z-10 space-y-3">
+            <Badge variant="mint" className="gap-1.5 text-xs font-semibold liquid-glass-lens">
+              <Compass className="w-3.5 h-3.5 text-[#20B2AA]" />
+              <span>{isTamil ? 'பொது நோயாளி வழிகாட்டி' : 'Patient-Facing Exploration'}</span>
+            </Badge>
+            <h1 className="text-4xl sm:text-5xl font-black text-[#145B59] tracking-tight">
+              {isTamil ? 'பல் மருத்துவ சிகிச்சை வழிகாட்டிகள்' : 'Explore Dental Treatments'}
+            </h1>
+            <p className="text-base sm:text-lg text-[#587477] leading-relaxed max-w-3xl">
+              {isTamil
+                ? 'உங்கள் பல் பிரச்சினைகளுக்கு நவீன மருத்துவத்தில் உள்ள எளிய, பாதுகாப்பான மற்றும் வலி குறைவான சிகிச்சைகளை இங்கு கண்டுணருங்கள். ஒவ்வொரு பிரிவும் வரைபடங்களுடன் தெளிவாக விளக்கப்பட்டுள்ளது.'
+                : 'Select a clinical topic below to discover how specific dental concerns are addressed through modern, comfortable treatment procedures. Each section provides clear, patient-tested visual explanations.'}
+            </p>
+          </div>
         </div>
 
         {/* 6 Patient-Facing Categories Grid */}
         <div className="space-y-6 mb-20">
-          <div className="flex items-center justify-between border-b border-teal-100 pb-4">
-            <div>
-              <h2 className="text-2xl font-bold text-[#134E4A]">
+          <div className="liquid-glass-secondary rounded-2xl px-6 py-4 flex items-center justify-between isolate relative">
+            <div className="liquid-refractive-rim absolute inset-0 rounded-2xl pointer-events-none" />
+            <div className="relative z-10">
+              <h2 className="text-2xl font-bold text-[#145B59]">
                 {isTamil ? 'சிகிச்சைப் பிரிவுகள் (6 Categories)' : 'Explore Categories (6 Topics)'}
               </h2>
-              <p className="text-xs text-slate-500 mt-1">
+              <p className="text-xs text-[#587477] mt-1">
                 {isTamil
                   ? 'வலி, உடைந்த பற்கள், ஈறுகள் மற்றும் அழகு சிகிச்சைகளுக்கான பிரிவுகள்.'
                   : 'Structured patient topics designed around symptoms, conditions, and treatment goals.'}
@@ -54,25 +65,28 @@ export default function ExplorePage() {
         </div>
 
         {/* Complete Available Procedures Directory */}
-        <div className="pt-8 border-t border-teal-100/80 space-y-8">
-          <div>
-            <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#0D9488] mb-1">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>{isTamil ? 'அனைத்து நடைமுறைகள்' : 'Validated Directory'}</span>
+        <div className="pt-8 space-y-8">
+          <div className="liquid-glass-secondary rounded-2xl px-6 py-4 isolate relative">
+            <div className="liquid-refractive-rim absolute inset-0 rounded-2xl pointer-events-none" />
+            <div className="relative z-10">
+              <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#20B2AA] mb-1">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>{isTamil ? 'அனைத்து நடைமுறைகள்' : 'All Clinical Guides'}</span>
+              </div>
+              <h2 className="text-2xl font-bold text-[#145B59]">
+                {isTamil ? 'சிகிச்சை வழிகாட்டி அட்டவணை' : 'Complete Treatment Directory'}
+              </h2>
+              <p className="text-xs text-[#587477] mt-1">
+                {isTamil
+                  ? 'அனைத்து துறைசார்ந்த சிகிச்சை விவரங்கள், கால அளவு மற்றும் வீட்டு பராமரிப்பு குறிப்புகள்.'
+                  : 'Browse our full library of interactive educational guides detailing dental restorations, periodontics, and surgery.'}
+              </p>
             </div>
-            <h2 className="text-3xl font-extrabold text-[#134E4A] tracking-tight">
-              {isTamil ? 'முழுமையான சிகிச்சை வழிகாட்டி அட்டவணை' : 'Complete Treatment Directory'}
-            </h2>
-            <p className="text-sm text-slate-600 mt-1 max-w-2xl">
-              {isTamil
-                ? 'அனைத்து மருத்துவத் துறைகளின் கீழ் அங்கீகரிக்கப்பட்ட நடைமுறை வழிகாட்டிகள்.'
-                : 'Browse verified educational visual guides across Endodontics, Prosthodontics, Periodontics, and Oral Surgery.'}
-            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {CANONICAL_PROCEDURES.map((proc) => (
-              <ProcedureCard key={proc.id} procedure={proc} lang={language} />
+              <ProcedureCard key={proc.slug} procedure={proc} lang={language} />
             ))}
           </div>
         </div>

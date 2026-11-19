@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
-import { Container, Card, Badge } from '@dentalvis/ui';
-import { AlertTriangle, Clock, ShieldAlert } from 'lucide-react';
+import { Container, Badge } from '@dentalvis/ui';
+import { AlertTriangle, Clock, ShieldAlert, PhoneCall } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function EmergencyPage() {
@@ -37,11 +37,16 @@ export default function EmergencyPage() {
   ];
 
   return (
-    <div className="py-10 space-y-12">
+    <div className="py-10 space-y-12 relative overflow-hidden bg-[#F5FAF9]">
+      {/* Background Ambience */}
+      <div className="absolute top-10 left-10 w-[36rem] h-[36rem] bg-rose-200/30 rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute bottom-10 right-10 w-[32rem] h-[32rem] bg-[#BFE9E2]/35 rounded-full blur-3xl pointer-events-none -z-10" />
+
       <Container>
-        {/* Warning Banner */}
-        <div className="rounded-3xl bg-rose-50 border border-rose-200/80 p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 shadow-sm">
-          <div className="flex items-start sm:items-center gap-4">
+        {/* Warning Banner in Translucent Liquid Warning Glass */}
+        <div className="rounded-3xl bg-rose-50/80 backdrop-blur-2xl border border-rose-200/90 p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 shadow-md mb-12 isolate relative">
+          <div className="liquid-refractive-rim absolute inset-0 rounded-3xl pointer-events-none" />
+          <div className="flex items-start sm:items-center gap-4 relative z-10">
             <div className="w-12 h-12 rounded-2xl bg-rose-500 text-white flex items-center justify-center shrink-0 shadow-md shadow-rose-200">
               <AlertTriangle className="w-6 h-6" />
             </div>
@@ -56,56 +61,73 @@ export default function EmergencyPage() {
               </p>
             </div>
           </div>
-          <div className="shrink-0">
-            <span className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-rose-100 text-rose-900 text-xs font-bold shadow-sm">
-              <Clock className="w-4 h-4 text-rose-600" />
-              <span>{isTamil ? 'அவசர கவனிப்பு' : 'Urgent Care'}</span>
+          <div className="shrink-0 relative z-10">
+            <span className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-rose-100 text-rose-900 text-xs font-bold shadow-xs">
+              <Clock className="w-3.5 h-3.5" />
+              <span>{isTamil ? 'அவசர சிகிச்சை' : 'Emergency Priority'}</span>
             </span>
           </div>
         </div>
 
-        {/* Safe Educational Guidance Cards */}
-        <div className="space-y-6">
-          <div className="border-b border-teal-100 pb-3">
-            <h1 className="text-3xl font-extrabold text-[#134E4A]">
-              {isTamil ? 'பல் அவசர வழிகாட்டுதல்' : 'Dental Emergency Assessment Guidance'}
+        {/* Page Header in Liquid Glass */}
+        <div className="liquid-glass-primary rounded-3xl p-8 sm:p-10 mb-12 space-y-4 isolate relative shadow-md">
+          <div className="liquid-refractive-rim absolute inset-0 rounded-3xl pointer-events-none" />
+          <div className="liquid-specular-sheen absolute inset-0 rounded-3xl pointer-events-none" />
+
+          <div className="relative z-10 space-y-3">
+            <Badge variant="alert" className="gap-1.5 text-xs font-bold liquid-glass-lens">
+              <ShieldAlert className="w-3.5 h-3.5 text-amber-800" />
+              <span>{isTamil ? 'அவசர வழிகாட்டல்' : 'Urgent Care Guidelines'}</span>
+            </Badge>
+
+            <h1 className="text-3xl sm:text-4xl font-extrabold text-[#145B59] tracking-tight">
+              {isTamil ? 'பல் மருத்துவ அவசர வழிகாட்டி' : 'Dental Emergency Assessment'}
             </h1>
-            <p className="text-sm text-slate-600 mt-1">
+
+            <p className="text-base text-[#587477] leading-relaxed max-w-2xl">
               {isTamil
-                ? 'பல் அவசர நிலைகளில் தொழில்முறை மருத்துவ கவனிப்பை உடனடியாக நாடுவதற்கான வழிகாட்டல்கள்.'
-                : 'Safe guidance emphasizing immediate professional dental or emergency medical assessment.'}
+                ? 'தீவிர பல் விபத்துகள் மற்றும் திடீர் வலிகளுக்கு முதற்கட்டமாக தொழில்முறை மருத்துவரிடம் உடனடி பரிசோதனை பெறுவது அவசியம். சோதிக்கப்படாத வீட்டு வைத்தியங்களைத் தவிர்க்கவும்.'
+                : 'Recognize dental conditions requiring urgent clinical intervention. Always obtain qualified professional assessment rather than attempting unreviewed self-care.'}
             </p>
-          </div>
-
-          <div className="grid grid-cols-1 gap-6">
-            {urgentConditions.map((cond, idx) => (
-              <Card key={idx} className="p-6 bg-white space-y-4 hover:shadow-md transition-shadow">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
-                  <h3 className="text-xl font-bold text-[#134E4A]">
-                    {isTamil ? cond.titleTa : cond.titleEn}
-                  </h3>
-                  <Badge variant="alert" className="self-start sm:self-auto text-xs font-bold">
-                    {isTamil ? cond.urgencyTa : cond.urgencyEn}
-                  </Badge>
-                </div>
-
-                <div className="space-y-2">
-                  <span className="text-xs font-bold uppercase tracking-wider text-[#0D9488]">
-                    {isTamil ? 'பாதுகாப்பு வழிகாட்டுதல்:' : 'Clinical Safety Guidance:'}
-                  </span>
-                  <p className="text-sm text-slate-700 leading-relaxed">
-                    {isTamil ? cond.actionTa : cond.actionEn}
-                  </p>
-                </div>
-              </Card>
-            ))}
           </div>
         </div>
 
+        {/* Urgent Conditions Cards in Liquid Glass */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          {urgentConditions.map((cond, idx) => (
+            <div
+              key={idx}
+              className="liquid-glass-secondary rounded-3xl p-7 flex flex-col justify-between space-y-6 isolate relative group transition-all duration-300 hover:liquid-glass-interactive"
+            >
+              <div className="liquid-refractive-rim absolute inset-0 rounded-3xl pointer-events-none" />
+              <div className="liquid-specular-sheen absolute inset-0 rounded-3xl pointer-events-none" />
+
+              <div className="space-y-4 relative z-10">
+                <Badge variant="alert" className="text-[11px] font-bold liquid-glass-lens">
+                  {isTamil ? cond.urgencyTa : cond.urgencyEn}
+                </Badge>
+
+                <h3 className="text-lg font-bold text-[#145B59] group-hover:text-[#20B2AA] transition-colors">
+                  {isTamil ? cond.titleTa : cond.titleEn}
+                </h3>
+
+                <p className="text-sm text-[#587477] leading-relaxed">
+                  {isTamil ? cond.actionTa : cond.actionEn}
+                </p>
+              </div>
+
+              <div className="pt-4 border-t border-[#C8E7E3]/70 text-xs font-bold text-[#20B2AA] flex items-center gap-1.5 relative z-10">
+                <PhoneCall className="w-3.5 h-3.5" />
+                <span>{isTamil ? 'உடனடி மருத்துவ ஆலோசனை தேவை' : 'Seek Immediate Professional Help'}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+
         {/* Clinical Disclaimer Note */}
-        <div className="p-6 rounded-2xl bg-teal-50 border border-teal-200/60 flex items-start gap-3">
-          <ShieldAlert className="w-5 h-5 text-[#0D9488] shrink-0 mt-0.5" />
-          <p className="text-xs text-[#134E4A] leading-relaxed">
+        <div className="p-6 rounded-2xl liquid-glass-secondary flex items-start gap-3">
+          <ShieldAlert className="w-5 h-5 text-[#20B2AA] shrink-0 mt-0.5" />
+          <p className="text-xs text-[#145B59] leading-relaxed">
             {isTamil
               ? 'இந்த அவசர வழிகாட்டுதல்கள் நோயாளி விழிப்புணர்வுக்கான கல்வித் தகவல்களே தவிர, மருத்துவப் பரிசோதனை, சிகிச்சை பரிந்துரை அல்லது முதலுதவி சிகிச்சை அல்ல. உடனடியாக உங்கள் பல் மருத்துவரை அல்லது அவசர மருத்துவமனையை அணுகவும்.'
               : 'These guidelines provide educational awareness to help patients seek timely clinical attention. They do not constitute diagnosis, automated triage, or treatment instructions. Always seek in-person professional medical evaluation.'}

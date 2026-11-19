@@ -18,6 +18,16 @@ const sizeConfig = {
   xl: { mark: 72, fullWidth: 290, fullHeight: 78 },
 };
 
+// Reusable Brand Configuration:
+// Change logo source here when the official logo asset is delivered.
+export const BRAND_CONFIG = {
+  name: 'DentalVis',
+  version: '2.0',
+  primaryColor: '#20B2AA',
+  logoMarkSrc: '/brand/logo-mark.svg',
+  hasImageLogo: true,
+};
+
 export function DentalVisLogo({
   variant = 'full',
   size = 'md',
@@ -34,13 +44,19 @@ export function DentalVisLogo({
           className="relative shrink-0 flex items-center justify-center rounded-2xl p-1 transition-transform duration-300 group-hover:scale-105"
           style={{ width: cfg.mark, height: cfg.mark }}
         >
-          <Image
-            src="/brand/logo-mark.svg"
-            alt="DentalVis Logo Mark"
-            fill
-            priority
-            className="object-contain drop-shadow-[0_4px_12px_rgba(36,127,131,0.25)]"
-          />
+          {BRAND_CONFIG.hasImageLogo ? (
+            <Image
+              src={BRAND_CONFIG.logoMarkSrc}
+              alt="DentalVis Logo Mark"
+              fill
+              priority
+              className="object-contain drop-shadow-[0_4px_12px_rgba(32,178,170,0.28)]"
+            />
+          ) : (
+            <div className="w-full h-full rounded-2xl bg-gradient-to-br from-[#20B2AA] to-[#145B59] flex items-center justify-center text-white font-black text-xl">
+              DV
+            </div>
+          )}
         </div>
       ) : (
         <div className="flex items-center gap-3">
@@ -48,25 +64,31 @@ export function DentalVisLogo({
             className="relative shrink-0 flex items-center justify-center transition-transform duration-300 group-hover:scale-105"
             style={{ width: cfg.mark, height: cfg.mark }}
           >
-            <Image
-              src="/brand/logo-mark.svg"
-              alt="DentalVis Mark"
-              fill
-              priority
-              className="object-contain drop-shadow-[0_4px_12px_rgba(36,127,131,0.25)]"
-            />
+            {BRAND_CONFIG.hasImageLogo ? (
+              <Image
+                src={BRAND_CONFIG.logoMarkSrc}
+                alt="DentalVis Mark"
+                fill
+                priority
+                className="object-contain drop-shadow-[0_4px_12px_rgba(32,178,170,0.28)]"
+              />
+            ) : (
+              <div className="w-full h-full rounded-2xl bg-gradient-to-br from-[#20B2AA] to-[#145B59] flex items-center justify-center text-white font-black text-xl">
+                DV
+              </div>
+            )}
           </div>
           <div>
             <div className="flex items-baseline gap-1.5 leading-none">
-              <span className="text-xl sm:text-2xl font-extrabold tracking-tight text-[#164B50]">
-                Dental<span className="bg-gradient-to-r from-[#247F83] via-[#2DD4BF] to-[#A4E6D5] bg-clip-text text-transparent">Vis</span>
+              <span className="text-xl sm:text-2xl font-extrabold tracking-tight text-[#145B59]">
+                Dental<span className="bg-gradient-to-r from-[#20B2AA] via-[#2DD4BF] to-[#BFE9E2] bg-clip-text text-transparent">Vis</span>
               </span>
-              <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-[#D9F0ED] text-[#247F83] border border-[#A4E6D5]/50">
-                2.0
+              <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-[#DDF5F1] text-[#20B2AA] border border-[#BFE9E2]/60">
+                {BRAND_CONFIG.version}
               </span>
             </div>
             {tagline && (
-              <p className="text-[11px] font-medium text-[#64777C] mt-1 tracking-wide">
+              <p className="text-[11px] font-medium text-[#587477] mt-1 tracking-wide">
                 {tagline}
               </p>
             )}
@@ -78,7 +100,7 @@ export function DentalVisLogo({
 
   if (linkHref) {
     return (
-      <Link href={linkHref} className="focus:outline-none focus-visible:ring-2 focus-visible:ring-[#247F83] rounded-2xl">
+      <Link href={linkHref} className="focus:outline-none focus-visible:ring-2 focus-visible:ring-[#20B2AA] rounded-2xl">
         {content}
       </Link>
     );

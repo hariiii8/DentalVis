@@ -35,7 +35,7 @@ export function Navbar() {
           <DentalVisLogo variant="full" size="md" linkHref="/home" />
 
           {/* Desktop Navigation Links (Floating Glass Pill Strip) */}
-          <nav className="hidden md:flex items-center gap-1.5 p-1.5 rounded-2xl bg-white/50 backdrop-blur-md border border-white/80 shadow-[0_2px_12px_rgba(22,75,80,0.04)]">
+          <nav className="hidden md:flex items-center gap-1.5 p-1.5 rounded-2xl liquid-glass-lens">
             {navLinks.map((link) => {
               const Icon = link.icon;
               const isActive =
@@ -48,8 +48,8 @@ export function Navbar() {
                   href={link.href}
                   className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 ${
                     isActive
-                      ? 'bg-gradient-to-r from-[#247F83] to-[#164B50] text-white shadow-sm'
-                      : 'text-[#164B50] hover:bg-[#D9F0ED]/70 hover:text-[#247F83]'
+                      ? 'bg-gradient-to-r from-[#20B2AA] to-[#145B59] text-white shadow-sm'
+                      : 'text-[#145B59] hover:bg-[#DDF5F1]/80 hover:text-[#20B2AA]'
                   }`}
                 >
                   <Icon className="w-4 h-4" />
@@ -62,18 +62,18 @@ export function Navbar() {
           {/* Right Action & Language Selector */}
           <div className="hidden md:flex items-center gap-3">
             <Button
-              variant="outline"
+              variant="glass"
               size="sm"
               onClick={toggleLanguage}
               aria-label={isTamil ? 'Switch to English' : 'தமிழுக்கு மாறவும்'}
-              className="gap-2 font-bold"
+              className="gap-2 font-bold liquid-glass-lens"
             >
-              <Globe className="w-4 h-4 text-[#247F83]" />
+              <Globe className="w-4 h-4 text-[#20B2AA]" />
               <span>{isTamil ? 'English' : 'தமிழ்'}</span>
             </Button>
 
             <Link href="/explore">
-              <Button size="sm" variant="primary">
+              <Button size="sm" variant="mint" className="font-bold text-[#145B59]">
                 {isTamil ? 'வழிகாட்டிகள்' : 'Explore'}
               </Button>
             </Link>
