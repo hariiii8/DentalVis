@@ -81,10 +81,10 @@ export default function ProcedureDetailClientView({
           },
           {
             num: 3,
-            titleEn: 'Permanent Bonding of Lifelike Ceramic Crown',
-            titleTa: 'நிரந்தர பல் தொப்பி பொருத்துதல்',
-            descEn: 'The custom-milled ceramic crown is bonded securely using dental adhesive resin, checked for perfect bite alignment.',
-            descTa: 'தயாரிக்கப்பட்ட செராமிக் தொப்பி மருத்துவ பசை மூலம் நிரந்தரமாகப் பொருத்தப்பட்டு, கடிக்கும் சீரமைப்பு சரிபார்க்கப்படுகிறது.',
+            titleEn: 'Secure Bonding of Lifelike Ceramic Crown',
+            titleTa: 'செராமிக் பல் தொப்பி பொருத்துதல்',
+            descEn: 'The custom-milled ceramic crown is bonded securely using dental adhesive resin, checked for optimal bite alignment.',
+            descTa: 'தயாரிக்கப்பட்ட செராமிக் தொப்பி மருத்துவ பசை மூலம் பொருத்தப்பட்டு, கடிக்கும் சீரமைப்பு சரிபார்க்கப்படுகிறது.',
           },
         ];
 

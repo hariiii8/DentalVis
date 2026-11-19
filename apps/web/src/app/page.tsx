@@ -75,7 +75,7 @@ export default function WelcomePage() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-teal-100/80">
                 <div className="flex items-center gap-2 text-xs font-medium text-slate-600">
                   <CheckCircle2 className="w-4 h-4 text-[#0D9488] shrink-0" />
-                  <span>{isTamil ? 'மருத்துவர் சரிபார்த்த வழிகாட்டிகள்' : 'Doctor-Reviewed Guides'}</span>
+                  <span>{isTamil ? 'தெளிவான காட்சி வழிகாட்டிகள்' : 'Clear Visual Guides'}</span>
                 </div>
                 <div className="flex items-center gap-2 text-xs font-medium text-slate-600">
                   <CheckCircle2 className="w-4 h-4 text-[#0D9488] shrink-0" />

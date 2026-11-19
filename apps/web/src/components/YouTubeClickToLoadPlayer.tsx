@@ -78,8 +78,8 @@ export function YouTubeClickToLoadPlayer({
                 </p>
                 <p className="text-[11px] text-teal-100/90 max-w-xs mt-1">
                   {lang === 'ta'
-                    ? 'தனியுரிமைப் பாதுகாப்பு: நீங்கள் கிளிக் செய்யும் வரை எந்த வெளி தள குக்கீ அல்லது வீடியோ ஸ்கிரிப்ட்களும் ஏற்றப்படாது.'
-                    : 'Privacy shield: No third-party network requests or YouTube cookies are loaded until you click.'}
+                    ? 'தனியுரிமை அறிவிப்பு: நீங்கள் கிளிக் செய்யும் போது மட்டுமே யூடியூப் மீடியா ஸ்கிரிப்ட்டுகள் இயக்கப்படும். யூடியூப் தனது சேவையின் கீழ் குக்கீகளைப் பயன்படுத்தக்கூடும்.'
+                    : 'Third-party media notice: Video player scripts are loaded only after clicking. YouTube may set cookies and collect usage data according to its privacy policy.'}
                 </p>
               </div>
 
