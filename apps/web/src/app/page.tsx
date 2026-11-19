@@ -55,7 +55,7 @@ export default function WelcomePage() {
               </span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-4xl xl:text-5xl font-black text-[#145B59] tracking-tight leading-[1.14]">
+            <h1 className="text-3xl sm:text-4xl lg:text-4xl xl:text-5xl font-black text-[#145B59] tracking-tight leading-[1.14] break-words">
               {isTamil ? (
                 <>
                   பல் மருத்துவக் கவனிப்பை <br />
