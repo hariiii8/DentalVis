@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ExploreCategory } from '@dentalvis/common';
+import { LiquidGlassSurface } from '@dentalvis/ui';
 import { ArrowRight, Compass } from 'lucide-react';
 
 interface CategoryCardProps {
@@ -22,10 +23,12 @@ export function CategoryCard({ category, lang = 'en' }: CategoryCardProps) {
       className="group block h-full focus:outline-none focus:ring-2 focus:ring-[#20B2AA] rounded-3xl"
       aria-label={isTamil ? `${title} பிரிவு` : `${title} category`}
     >
-      <div className="liquid-glass-secondary group-hover:liquid-glass-interactive rounded-3xl h-full flex flex-col justify-between overflow-hidden transition-all duration-300 isolate relative">
-        <div className="liquid-refractive-rim absolute inset-0 rounded-3xl pointer-events-none" />
-        <div className="liquid-specular-sheen absolute inset-0 rounded-3xl pointer-events-none" />
-
+      <LiquidGlassSurface
+        variant="secondary"
+        specular
+        refractiveRim
+        className="group-hover:liquid-glass-interactive rounded-3xl h-full flex flex-col justify-between overflow-hidden transition-all duration-300 isolate"
+      >
         {/* Category Illustrated Cover with Refractive Mask in Seafoam and Powder Blue */}
         <div className="relative aspect-[16/10] w-full overflow-hidden bg-gradient-to-br from-[#F5FAF9] via-[#DDF5F1]/70 to-[#DCEFF5]/60 border-b border-[#C8E7E3]/60">
           <Image
@@ -58,7 +61,7 @@ export function CategoryCard({ category, lang = 'en' }: CategoryCardProps) {
             <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
           </div>
         </div>
-      </div>
+      </LiquidGlassSurface>
     </Link>
   );
 }
