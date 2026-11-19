@@ -2,12 +2,13 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Container, Badge, ClinicalDisclaimerBanner } from '@dentalvis/ui';
+import { Container, Badge, ClinicalDisclaimerBanner, LiquidGlassSurface } from '@dentalvis/ui';
 import { ProcedureDetail } from '@dentalvis/common';
-import { Box, CheckCircle2, Clock, ShieldCheck, HeartPulse, Sparkles, HelpCircle, ArrowLeft } from 'lucide-react';
+import { CheckCircle2, Clock, ShieldCheck, HeartPulse, Sparkles, HelpCircle, ArrowLeft } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { YouTubeClickToLoadPlayer } from '@/components/YouTubeClickToLoadPlayer';
 import { ProcedureCard } from '@/components/ProcedureCard';
+import { ProcedureAnatomyViewer } from '@/components/ProcedureAnatomyViewer';
 
 interface ProcedureDetailClientViewProps {
   procedure: ProcedureDetail;
@@ -212,12 +213,15 @@ export default function ProcedureDetailClientView({
         </Link>
 
         {/* 1. DESKTOP HERO: Two-Column Side-by-Side Layout with Liquid Glass Framing */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch mb-14">
           {/* LEFT COLUMN: Click-to-load Video Player with Liquid Glass Privacy Shield */}
-          <div className="lg:col-span-6 space-y-4">
-            <div className="liquid-glass-floating rounded-3xl p-3 sm:p-4 isolate relative">
-              <div className="liquid-refractive-rim absolute inset-0 rounded-3xl pointer-events-none" />
-              <div className="liquid-specular-sheen absolute inset-0 rounded-3xl pointer-events-none" />
+          <div className="lg:col-span-6 flex flex-col justify-between">
+            <LiquidGlassSurface
+              variant="floating"
+              specular
+              refractiveRim
+              className="p-3 sm:p-4 rounded-3xl h-full flex flex-col justify-between"
+            >
               <YouTubeClickToLoadPlayer
                 videoId="3D-DENTAL-RCT-DEMO"
                 title={title}
@@ -225,86 +229,90 @@ export default function ProcedureDetailClientView({
                 durationText={isTamil ? `~${procedure.durationMinutes} நிமிடங்கள்` : `${procedure.durationMinutes} min guide`}
                 lang={language}
               />
-            </div>
+              <div className="mt-3 px-3 py-2.5 rounded-xl liquid-glass-secondary flex items-center justify-between text-xs text-[#145B59]">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-[#20B2AA]" />
+                  <span className="font-semibold">{isTamil ? 'மருத்துவக் கல்வி வீடியோ' : 'Educational Procedure Guide'}</span>
+                </div>
+                <span className="text-[#587477] font-medium">{isTamil ? 'நோயாளி வழிகாட்டல்' : 'Visual Overview'}</span>
+              </div>
+            </LiquidGlassSurface>
           </div>
 
           {/* RIGHT COLUMN: Procedure Name, Key Info, Department in Liquid Glass Panel */}
-          <div className="lg:col-span-6 space-y-6">
-            <div className="liquid-glass-primary rounded-3xl p-8 sm:p-10 space-y-6 isolate relative shadow-md">
-              <div className="liquid-refractive-rim absolute inset-0 rounded-3xl pointer-events-none" />
-              <div className="liquid-specular-sheen absolute inset-0 rounded-3xl pointer-events-none" />
-
-              <div className="flex flex-wrap items-center gap-2 relative z-10">
-                <Badge variant="mint" className="text-xs font-bold uppercase tracking-wider liquid-glass-lens">
-                  {procedure.primaryDepartmentName}
-                </Badge>
-                <Badge variant="outline" className="text-xs font-mono bg-[#F5FAF9]/75">
-                  {procedure.code}
-                </Badge>
-                <Badge variant="alert" className="text-xs font-semibold">
-                  {isTamil ? 'மருத்துவ ஆய்வு நிலுவையில் உள்ளது (வரைவு)' : 'Clinical Review Pending (Draft)'}
-                </Badge>
-                {procedure.has3DModel && (
-                  <Badge variant="default" className="text-xs gap-1 bg-[#20B2AA] text-white">
-                    <Box className="w-3.5 h-3.5" />
-                    <span>{isTamil ? '3D மாதிரி சேர்க்கப்பட்டுள்ளது' : '3D Model Ready'}</span>
+          <div className="lg:col-span-6 flex flex-col">
+            <LiquidGlassSurface
+              variant="primary"
+              specular
+              refractiveRim
+              className="p-7 sm:p-9 space-y-5 rounded-3xl shadow-md h-full flex flex-col justify-between"
+            >
+              <div className="space-y-4 relative z-10">
+                <div className="flex flex-wrap items-center gap-2">
+                  <Badge variant="mint" className="text-xs font-bold uppercase tracking-wider liquid-glass-lens">
+                    {procedure.primaryDepartmentName}
                   </Badge>
-                )}
-              </div>
-
-              <div className="space-y-2 relative z-10">
-                <h1 className="text-3xl sm:text-4xl font-extrabold text-[#145B59] tracking-tight leading-tight">
-                  {title}
-                </h1>
-                <p className="text-lg font-semibold text-[#20B2AA]">
-                  {secondaryTitle}
-                </p>
-              </div>
-
-              <p className="text-base text-[#587477] leading-relaxed relative z-10">
-                {summary}
-              </p>
-
-              {/* Key Facts Liquid Pill Grid */}
-              <div className="grid grid-cols-2 gap-4 p-5 rounded-2xl liquid-glass-secondary relative z-10">
-                <div className="space-y-1">
-                  <div className="flex items-center gap-1.5 text-xs text-[#20B2AA] uppercase tracking-wider font-bold">
-                    <Clock className="w-3.5 h-3.5 text-[#20B2AA]" />
-                    <span>{isTamil ? 'சிகிச்சை நேரம்' : 'Estimated Time'}</span>
-                  </div>
-                  <p className="text-sm font-extrabold text-[#145B59]">
-                    ~{procedure.durationMinutes} {isTamil ? 'நிமிடங்கள்' : 'minutes'}
-                  </p>
+                  <Badge variant="outline" className="text-xs font-mono bg-[#F5FAF9]/75">
+                    {procedure.code}
+                  </Badge>
+                  <Badge variant="alert" className="text-xs font-semibold">
+                    {isTamil ? 'மருத்துவ ஆய்வு நிலுவையில் உள்ளது (வரைவு)' : 'Clinical Review Pending (Draft)'}
+                  </Badge>
                 </div>
 
                 <div className="space-y-1">
-                  <div className="flex items-center gap-1.5 text-xs text-[#20B2AA] uppercase tracking-wider font-bold">
-                    <HeartPulse className="w-3.5 h-3.5 text-[#20B2AA]" />
-                    <span>{isTamil ? 'மயக்க மருந்து / வசதி' : 'Comfort / Numbing'}</span>
-                  </div>
-                  <p className="text-sm font-extrabold text-[#145B59] line-clamp-1">
-                    {procedure.anesthesiaType}
+                  <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#145B59] tracking-tight leading-tight">
+                    {title}
+                  </h1>
+                  <p className="text-base font-semibold text-[#20B2AA]">
+                    {secondaryTitle}
                   </p>
+                </div>
+
+                <p className="text-sm sm:text-base text-[#587477] leading-relaxed">
+                  {summary}
+                </p>
+
+                {/* Key Facts Liquid Pill Grid */}
+                <div className="grid grid-cols-2 gap-3 p-4 rounded-2xl liquid-glass-secondary">
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-1.5 text-xs text-[#20B2AA] uppercase tracking-wider font-bold">
+                      <Clock className="w-3.5 h-3.5 text-[#20B2AA]" />
+                      <span>{isTamil ? 'சிகிச்சை நேரம்' : 'Estimated Time'}</span>
+                    </div>
+                    <p className="text-sm font-extrabold text-[#145B59]">
+                      ~{procedure.durationMinutes} {isTamil ? 'நிமிடங்கள்' : 'minutes'}
+                    </p>
+                  </div>
+
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-1.5 text-xs text-[#20B2AA] uppercase tracking-wider font-bold">
+                      <HeartPulse className="w-3.5 h-3.5 text-[#20B2AA]" />
+                      <span>{isTamil ? 'மயக்க மருந்து / வசதி' : 'Comfort / Numbing'}</span>
+                    </div>
+                    <p className="text-sm font-extrabold text-[#145B59] line-clamp-1">
+                      {procedure.anesthesiaType}
+                    </p>
+                  </div>
                 </div>
               </div>
 
               {/* Clinical Disclaimer */}
               <div className="pt-2 space-y-2 relative z-10">
                 <ClinicalDisclaimerBanner lang={language} />
-                <div className="px-3.5 py-2 rounded-xl bg-amber-50/70 border border-amber-200/80 text-[11px] text-amber-900 leading-relaxed">
-                  <span className="font-bold">
-                    {isTamil ? 'மருத்துவ மேலாண்மை அறிவிப்பு: ' : 'Content Review Status: '}
-                  </span>
-                  <span>
-                    {isTamil
-                      ? 'இப்பக்கத்தில் உள்ள செயல்முறைப் படிகள், தயாரிப்பு மற்றும் கவனிப்பு தகவல்கள் வரைவு நிலையில் (Draft) உள்ளன. இவை இன்னும் இறுதி மருத்துவக் குழு ஒப்புதல் பெறவில்லை. தகவல் அறியும் கல்வி நோக்கத்திற்காக மட்டுமே இது காட்சிப்படுத்தப்பட்டுள்ளது.'
-                      : 'The procedure steps, preparation, and home recovery points displayed below are educational draft content pending formal clinical governance review. They do not constitute approved institutional clinical protocols.'}
-                  </span>
-                </div>
               </div>
-            </div>
+            </LiquidGlassSurface>
           </div>
         </div>
+
+        {/* 2. DEDICATED ANATOMY VISUALIZATION SECTION (HIGH PRIORITY) */}
+        <section className="mb-16">
+          <ProcedureAnatomyViewer
+            procedureSlug={procedure.slug}
+            imageSrc={coverImageSrc}
+            lang={language}
+          />
+        </section>
 
         {/* 2. SUPPORTING SECTIONS BELOW THE HERO IN LIQUID GLASS */}
         <div className="space-y-16 max-w-4xl">
@@ -387,38 +395,10 @@ export default function ProcedureDetailClientView({
             </div>
           </section>
 
-          {/* Section 4: 3D Anatomy Module Viewport Anchor with Liquid Glass Frame */}
-          <section className="space-y-4 pt-4">
-            <div className="flex items-center justify-between">
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#145B59] tracking-tight">
-                {isTamil ? '4. முப்பரிமாண (3D) உடற்கூறியல் ஆய்வு' : '4. Interactive 3D Anatomy View'}
-              </h2>
-              <Badge variant="mint" className="text-xs liquid-glass-lens">
-                {isTamil ? 'Phase 4 முன்னோட்டம்' : 'Interactive Anchor'}
-              </Badge>
-            </div>
-
-            <div className="liquid-glass-floating rounded-3xl p-8 sm:p-10 text-center isolate relative">
-              <div className="liquid-refractive-rim absolute inset-0 rounded-3xl pointer-events-none" />
-              <div className="liquid-specular-sheen absolute inset-0 rounded-3xl pointer-events-none" />
-              <div className="w-16 h-16 rounded-2xl liquid-glass-lens flex items-center justify-center text-[#20B2AA] mx-auto mb-4 shadow-sm">
-                <Box className="w-8 h-8 animate-pulse text-[#20B2AA]" />
-              </div>
-              <h3 className="text-lg font-bold text-[#145B59]">
-                {isTamil ? 'பல் உட்புற உடற்கூறியல் மாதிரி (3D View)' : 'Cross-Sectional Dental Anatomy Model'}
-              </h3>
-              <p className="text-sm text-[#587477] max-w-lg mx-auto mt-2 leading-relaxed">
-                {isTamil
-                  ? 'பல்லின் எனாமல், டென்டின் மற்றும் நரம்பு கால்வாய்களின் முப்பரிமாண தோற்றம். முழுமையான 3D சுழலும் மாதிரி Phase 4-ல் நேரடியாக இயக்கப்படும்.'
-                  : 'Structured optical viewport reserved for WebGL/Three.js interactive inspection. Provides clean 2D medical illustration fallbacks across all mobile browsers.'}
-              </p>
-            </div>
-          </section>
-
-          {/* Section 5: Aftercare & Recovery */}
+          {/* Section 4: Aftercare & Recovery */}
           <section className="space-y-4">
             <h2 className="text-2xl sm:text-3xl font-extrabold text-[#145B59] tracking-tight">
-              {isTamil ? '5. சிகிச்சைக்குப் பின் கவனிப்பு & மீட்பு' : '5. Aftercare & Home Recovery'}
+              {isTamil ? '4. சிகிச்சைக்குப் பின் கவனிப்பு & மீட்பு' : '4. Aftercare & Home Recovery'}
             </h2>
             <div className="liquid-glass-secondary p-8 rounded-3xl space-y-4">
               <div className="flex items-center gap-2 text-[#20B2AA] font-bold text-sm">
@@ -445,14 +425,14 @@ export default function ProcedureDetailClientView({
             </div>
           </section>
 
-          {/* Section 6: Frequently Asked Questions */}
+          {/* Section 5: Frequently Asked Questions */}
           <section className="space-y-4">
             <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#20B2AA]">
               <HelpCircle className="w-4 h-4" />
               <span>{isTamil ? 'அடிக்கடி கேட்கப்படும் கேள்விகள்' : 'Patient Questions'}</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-[#145B59] tracking-tight">
-              {isTamil ? '6. பொதுவான சந்தேகங்கள் & பதில்கள்' : '6. Frequently Asked Questions'}
+              {isTamil ? '5. பொதுவான சந்தேகங்கள் & பதில்கள்' : '5. Frequently Asked Questions'}
             </h2>
             <div className="space-y-3">
               {faqs.map((faq, index) => (
@@ -468,11 +448,11 @@ export default function ProcedureDetailClientView({
             </div>
           </section>
 
-          {/* Section 7: Related Procedures */}
+          {/* Section 6: Related Procedures */}
           <section className="space-y-6 pt-6 border-t border-[#C8E7E3]/70">
             <div>
               <h2 className="text-2xl font-bold text-[#145B59]">
-                {isTamil ? '7. தொடர்புடைய பிற சிகிச்சைகள்' : '7. Related Procedures'}
+                {isTamil ? '6. தொடர்புடைய பிற சிகிச்சைகள்' : '6. Related Procedures'}
               </h2>
               <p className="text-xs text-[#587477] mt-1">
                 {isTamil

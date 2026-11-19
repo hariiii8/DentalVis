@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Container, Badge } from '@dentalvis/ui';
+import { Container, Badge, LiquidGlassSurface } from '@dentalvis/ui';
 import { AlertTriangle, Clock, ShieldAlert, PhoneCall } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 
@@ -45,7 +45,7 @@ export default function EmergencyPage() {
       <Container>
         {/* Warning Banner in Translucent Liquid Warning Glass */}
         <div className="rounded-3xl bg-rose-50/80 backdrop-blur-2xl border border-rose-200/90 p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 shadow-md mb-12 isolate relative">
-          <div className="liquid-refractive-rim absolute inset-0 rounded-3xl pointer-events-none" />
+          <div aria-hidden="true" className="liquid-refractive-rim absolute inset-0 rounded-3xl pointer-events-none" />
           <div className="flex items-start sm:items-center gap-4 relative z-10">
             <div className="w-12 h-12 rounded-2xl bg-rose-500 text-white flex items-center justify-center shrink-0 shadow-md shadow-rose-200">
               <AlertTriangle className="w-6 h-6" />
@@ -70,10 +70,12 @@ export default function EmergencyPage() {
         </div>
 
         {/* Page Header in Liquid Glass */}
-        <div className="liquid-glass-primary rounded-3xl p-8 sm:p-10 mb-12 space-y-4 isolate relative shadow-md">
-          <div className="liquid-refractive-rim absolute inset-0 rounded-3xl pointer-events-none" />
-          <div className="liquid-specular-sheen absolute inset-0 rounded-3xl pointer-events-none" />
-
+        <LiquidGlassSurface
+          variant="primary"
+          specular
+          refractiveRim
+          className="p-8 sm:p-10 mb-12 space-y-4 shadow-md"
+        >
           <div className="relative z-10 space-y-3">
             <Badge variant="alert" className="gap-1.5 text-xs font-bold liquid-glass-lens">
               <ShieldAlert className="w-3.5 h-3.5 text-amber-800" />
@@ -90,18 +92,18 @@ export default function EmergencyPage() {
                 : 'Recognize dental conditions requiring urgent clinical intervention. Always obtain qualified professional assessment rather than attempting unreviewed self-care.'}
             </p>
           </div>
-        </div>
+        </LiquidGlassSurface>
 
         {/* Urgent Conditions Cards in Liquid Glass */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           {urgentConditions.map((cond, idx) => (
-            <div
+            <LiquidGlassSurface
               key={idx}
-              className="liquid-glass-secondary rounded-3xl p-7 flex flex-col justify-between space-y-6 isolate relative group transition-all duration-300 hover:liquid-glass-interactive"
+              variant="secondary"
+              specular
+              refractiveRim
+              className="p-7 flex flex-col justify-between space-y-6 group transition-all duration-300 hover:liquid-glass-interactive"
             >
-              <div className="liquid-refractive-rim absolute inset-0 rounded-3xl pointer-events-none" />
-              <div className="liquid-specular-sheen absolute inset-0 rounded-3xl pointer-events-none" />
-
               <div className="space-y-4 relative z-10">
                 <Badge variant="alert" className="text-[11px] font-bold liquid-glass-lens">
                   {isTamil ? cond.urgencyTa : cond.urgencyEn}
@@ -120,19 +122,24 @@ export default function EmergencyPage() {
                 <PhoneCall className="w-3.5 h-3.5" />
                 <span>{isTamil ? 'உடனடி மருத்துவ ஆலோசனை தேவை' : 'Seek Immediate Professional Help'}</span>
               </div>
-            </div>
+            </LiquidGlassSurface>
           ))}
         </div>
 
         {/* Clinical Disclaimer Note */}
-        <div className="p-6 rounded-2xl liquid-glass-secondary flex items-start gap-3">
+        <LiquidGlassSurface
+          variant="secondary"
+          specular={false}
+          refractiveRim
+          className="p-6 rounded-2xl flex items-start gap-3 border border-[#C8E7E3]/70"
+        >
           <ShieldAlert className="w-5 h-5 text-[#20B2AA] shrink-0 mt-0.5" />
           <p className="text-xs text-[#145B59] leading-relaxed">
             {isTamil
               ? 'இந்த அவசர வழிகாட்டுதல்கள் நோயாளி விழிப்புணர்வுக்கான கல்வித் தகவல்களே தவிர, மருத்துவப் பரிசோதனை, சிகிச்சை பரிந்துரை அல்லது முதலுதவி சிகிச்சை அல்ல. உடனடியாக உங்கள் பல் மருத்துவரை அல்லது அவசர மருத்துவமனையை அணுகவும்.'
               : 'These guidelines provide educational awareness to help patients seek timely clinical attention. They do not constitute diagnosis, automated triage, or treatment instructions. Always seek in-person professional medical evaluation.'}
           </p>
-        </div>
+        </LiquidGlassSurface>
       </Container>
     </div>
   );

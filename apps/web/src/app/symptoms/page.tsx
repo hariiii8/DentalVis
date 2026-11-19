@@ -2,8 +2,8 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Container, Badge } from '@dentalvis/ui';
-import { ArrowRight, Sparkles, HeartPulse } from 'lucide-react';
+import { Container, Badge, LiquidGlassSurface } from '@dentalvis/ui';
+import { ArrowRight, Sparkles, HeartPulse, ShieldAlert } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function SymptomsPage() {
@@ -66,10 +66,12 @@ export default function SymptomsPage() {
 
       <Container>
         {/* Page Header: Liquid Glass Introduction */}
-        <div className="liquid-glass-primary rounded-3xl p-8 sm:p-10 mb-12 space-y-4 isolate relative shadow-md">
-          <div className="liquid-refractive-rim absolute inset-0 rounded-3xl pointer-events-none" />
-          <div className="liquid-specular-sheen absolute inset-0 rounded-3xl pointer-events-none" />
-
+        <LiquidGlassSurface
+          variant="primary"
+          specular
+          refractiveRim
+          className="p-8 sm:p-10 mb-12 space-y-4 shadow-md"
+        >
           <div className="relative z-10 space-y-4">
             <Badge variant="mint" className="gap-1.5 text-xs font-semibold liquid-glass-lens">
               <HeartPulse className="w-3.5 h-3.5 text-[#20B2AA]" />
@@ -86,18 +88,18 @@ export default function SymptomsPage() {
                 : 'Identify everyday dental discomforts, understand what underlying clinical factors might be involved, and learn which visual procedure guides can clarify your options.'}
             </p>
           </div>
-        </div>
+        </LiquidGlassSurface>
 
         {/* Symptoms Interactive Grid with Liquid Glass Secondary Surfaces */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
           {commonSymptoms.map((sym, idx) => (
-            <div
+            <LiquidGlassSurface
               key={idx}
-              className="liquid-glass-secondary hover:liquid-glass-interactive rounded-3xl p-7 flex flex-col justify-between transition-all duration-300 isolate relative group"
+              variant="secondary"
+              specular
+              refractiveRim
+              className="hover:liquid-glass-interactive rounded-3xl p-7 flex flex-col justify-between transition-all duration-300 isolate group"
             >
-              <div className="liquid-refractive-rim absolute inset-0 rounded-3xl pointer-events-none" />
-              <div className="liquid-specular-sheen absolute inset-0 rounded-3xl pointer-events-none" />
-
               <div className="space-y-4 relative z-10">
                 <div className="flex items-center justify-between">
                   <Badge variant="mint" className="text-[11px] font-bold liquid-glass-lens">
@@ -128,9 +130,24 @@ export default function SymptomsPage() {
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               </div>
-            </div>
+            </LiquidGlassSurface>
           ))}
         </div>
+
+        {/* Clinical Disclaimer Note */}
+        <LiquidGlassSurface
+          variant="secondary"
+          specular={false}
+          refractiveRim
+          className="p-5 rounded-2xl flex items-start gap-3 border border-[#C8E7E3]/70"
+        >
+          <ShieldAlert className="w-5 h-5 text-[#20B2AA] shrink-0 mt-0.5" />
+          <p className="text-xs text-[#587477] leading-relaxed">
+            {isTamil
+              ? 'அறிகுறி வழிகாட்டி குறிப்பு: இப்பக்கத்திலுள்ள தகவல்கள் கல்வி வழிகாட்டல் மட்டுமே. இது மருத்துவ நோயறிதல் அல்லது சிகிச்சை பரிந்துரை அல்ல. உங்கள் மருத்துவரிடம் நேரடி பரிசோதனை பெறவும்.'
+              : 'Educational Navigation Notice: Symptom Explorer is designed for patient educational orientation and clinical discussion. It does not provide diagnosis, risk scoring, or automated treatment recommendations.'}
+          </p>
+        </LiquidGlassSurface>
       </Container>
     </div>
   );
