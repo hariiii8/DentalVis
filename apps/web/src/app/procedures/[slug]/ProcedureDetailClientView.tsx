@@ -239,6 +239,9 @@ export default function ProcedureDetailClientView({
               <Badge variant="outline" className="text-xs font-mono">
                 {procedure.code}
               </Badge>
+              <Badge variant="alert" className="text-xs font-semibold">
+                {isTamil ? 'மருத்துவ ஆய்வு நிலுவையில் உள்ளது (வரைவு)' : 'Clinical Review Pending (Draft)'}
+              </Badge>
               {procedure.has3DModel && (
                 <Badge variant="default" className="text-xs gap-1">
                   <Box className="w-3.5 h-3.5" />
@@ -282,8 +285,18 @@ export default function ProcedureDetailClientView({
             </div>
 
             {/* Clinical Disclaimer */}
-            <div className="pt-2">
+            <div className="pt-2 space-y-2">
               <ClinicalDisclaimerBanner lang={language} />
+              <div className="px-3.5 py-2 rounded-xl bg-amber-50/70 border border-amber-200/80 text-[11px] text-amber-900 leading-relaxed">
+                <span className="font-bold">
+                  {isTamil ? 'மருத்துவ மேலாண்மை அறிவிப்பு: ' : 'Content Review Status: '}
+                </span>
+                <span>
+                  {isTamil
+                    ? 'இப்பக்கத்தில் உள்ள செயல்முறைப் படிகள், தயாரிப்பு மற்றும் கவனிப்பு தகவல்கள் வரைவு நிலையில் (Draft) உள்ளன. இவை இன்னும் இறுதி மருத்துவக் குழு ஒப்புதல் பெறவில்லை. தகவல் அறியும் கல்வி நோக்கத்திற்காக மட்டுமே இது காட்சிப்படுத்தப்பட்டுள்ளது.'
+                    : 'The procedure steps, preparation, and home recovery points displayed below are educational draft content pending formal clinical governance review. They do not constitute approved institutional clinical protocols.'}
+                </span>
+              </div>
             </div>
           </div>
         </div>
