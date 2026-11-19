@@ -1,0 +1,19 @@
+// packages/database/prisma/schema.prisma
+// Initialized for DentalVis 2.0 per Architecture Baseline v1.9.1
+// Full migration & database execution scheduled for Phase 2.2
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Minimal initialization model to establish Prisma package structure
+model HealthCheck {
+  id        String   @id @default(uuid())
+  status    String   @default("OK")
+  checkedAt DateTime @default(now())
+}

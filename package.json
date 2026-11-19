@@ -1,0 +1,19 @@
+{
+  "name": "dentalvis",
+  "version": "2.0.0",
+  "private": true,
+  "description": "DentalVis 2.0 - Bilingual Dental Education Platform",
+  "packageManager": "pnpm@11.15.1",
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "clean": "turbo run clean && rimraf node_modules"
+  },
+  "devDependencies": {
+    "turbo": "^2.4.4",
+    "typescript": "^5.8.2",
+    "rimraf": "^6.0.1"
+  }
+}
