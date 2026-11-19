@@ -83,9 +83,6 @@ export function DentalVisLogo({
               <span className="text-xl sm:text-2xl font-extrabold tracking-tight text-[#145B59]">
                 Dental<span className="bg-gradient-to-r from-[#20B2AA] via-[#2DD4BF] to-[#BFE9E2] bg-clip-text text-transparent">Vis</span>
               </span>
-              <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-[#DDF5F1] text-[#20B2AA] border border-[#BFE9E2]/60">
-                {BRAND_CONFIG.version}
-              </span>
             </div>
             {tagline && (
               <p className="text-[11px] font-medium text-[#587477] mt-1 tracking-wide">

@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Button, Badge } from '@dentalvis/ui';
+import { Button, Badge, LiquidGlassSurface } from '@dentalvis/ui';
 import { Sparkles, ShieldCheck, Globe } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { DentalVisLogo } from '@/components/DentalVisLogo';
@@ -99,16 +99,18 @@ export default function WelcomePage() {
             </div>
           </div>
 
-          {/* RIGHT COLUMN: Dedicated Liquid Glass Artwork Card (No conflicting overlays) */}
+          {/* RIGHT COLUMN: Dedicated Liquid Glass Artwork Card (rAF pointer-responsive) */}
           <div className="lg:col-span-5 relative flex justify-center lg:justify-end">
             {/* Ambient depth glow */}
             <div className="absolute inset-0 bg-gradient-to-tr from-[#BFE9E2]/50 via-[#20B2AA]/20 to-[#DCEFF5]/70 rounded-3xl blur-2xl transform -rotate-2 scale-95" />
 
             {/* Elegant Primary Liquid Glass Presentation Panel */}
-            <div className="liquid-glass-primary rounded-3xl p-5 sm:p-6 space-y-3.5 isolate relative shadow-md w-full max-w-sm lg:max-w-md">
-              <div className="liquid-refractive-rim absolute inset-0 rounded-3xl pointer-events-none" />
-              <div className="liquid-specular-sheen absolute inset-0 rounded-3xl pointer-events-none" />
-
+            <LiquidGlassSurface
+              variant="primary"
+              specular
+              refractiveRim
+              className="p-5 sm:p-6 space-y-3.5 isolate shadow-md w-full max-w-sm lg:max-w-md"
+            >
               {/* Card Header inside glass */}
               <div className="flex items-center justify-between pb-2.5 border-b border-[#C8E7E3]/60 relative z-10">
                 <div className="flex items-center gap-2.5">
@@ -159,7 +161,7 @@ export default function WelcomePage() {
                   </p>
                 </div>
               </div>
-            </div>
+            </LiquidGlassSurface>
           </div>
 
         </div>
@@ -167,7 +169,7 @@ export default function WelcomePage() {
 
       {/* 4. CLEAN MINIMAL FOOTER (Strictly no navigation links) */}
       <footer className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 py-3 text-center text-xs text-[#587477] shrink-0">
-        <p>© {new Date().getFullYear()} DentalVis 2.0. Visual dental guides are strictly educational.</p>
+        <p>© {new Date().getFullYear()} DentalVis. Visual dental guides are strictly educational.</p>
       </footer>
     </div>
   );
