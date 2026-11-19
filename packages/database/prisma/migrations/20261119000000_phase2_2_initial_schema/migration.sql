@@ -10,7 +10,8 @@
 --   7. Stale outbox worker completion fencing guard trigger & atomic completion function
 --   8. Append-only triggers: Prohibits UPDATE and DELETE on ProcedureRevision, ProcedureApproval, ProcedureApprovalRevocation
 --   9. Prevent author self-approval trigger with certified reviewer verification
---  10. Composite foreign key relationships
+--  10. Clinical Approval Quorum and Revocation-Validation Trigger on Publication
+--  11. Composite foreign key relationships
 
 -- ======================================================================
 -- 1. EXTENSIONS & ENUMS
@@ -596,19 +597,23 @@ CREATE TRIGGER "trg_check_session_succession_integrity"
     FOR EACH ROW EXECUTE FUNCTION check_session_succession_integrity();
 
 -- ----------------------------------------------------------------------
--- 7.4 Bidirectional Primary Department Invariant for Published Procedures
+-- 7.4 Bidirectional Primary Department Invariant & Clinical Quorum Trigger
 -- ----------------------------------------------------------------------
 -- 7.4a Checked when ProcedureTranslation is inserted or updated
-CREATE OR REPLACE FUNCTION check_publication_has_primary_dept()
+CREATE OR REPLACE FUNCTION check_procedure_publication_invariants()
 RETURNS TRIGGER AS $$
 DECLARE
     v_primary_count INT;
+    v_valid_approval_count INT;
+    v_configured_quorum INT := 2; -- Default baseline quorum; clinical publishing remains disabled pending governance freeze
 BEGIN
     IF NEW."currentStatus" = 'PUBLISHED' THEN
+        -- 1. Ensure publishedRevisionId is provided
         IF NEW."publishedRevisionId" IS NULL THEN
             RAISE EXCEPTION 'PUBLICATION INVARIANT VIOLATION: Cannot publish Procedure (%) without setting a publishedRevisionId.', NEW."procedureId";
         END IF;
 
+        -- 2. Verify Exact-One Primary Department
         SELECT COUNT(*) INTO v_primary_count
         FROM "ProcedureDepartment"
         WHERE "procedureId" = NEW."procedureId" AND "isPrimary" = true;
@@ -616,15 +621,30 @@ BEGIN
         IF v_primary_count <> 1 THEN
             RAISE EXCEPTION 'TAXONOMY INVARIANT VIOLATION: Procedure (%) must have exactly one primary department to be PUBLISHED. Current primary count: %.', NEW."procedureId", v_primary_count;
         END IF;
+
+        -- 3. Verify Clinical Quorum: Only approved, valid, non-revoked approvals count
+        SELECT COUNT(*) INTO v_valid_approval_count
+        FROM "ProcedureApproval" a
+        WHERE a."revisionId" = NEW."publishedRevisionId"
+          AND a."decision" = 'APPROVED'
+          AND a."isRevoked" = false
+          AND NOT EXISTS (
+              SELECT 1 FROM "ProcedureApprovalRevocation" r WHERE r."approvalId" = a."id"
+          );
+
+        IF v_valid_approval_count < v_configured_quorum THEN
+            RAISE EXCEPTION 'CLINICAL GOVERNANCE VIOLATION: Cannot publish revision (%) for procedure (%). Required active unrevoked approvals: %, current valid approvals: %.',
+                NEW."publishedRevisionId", NEW."procedureId", v_configured_quorum, v_valid_approval_count;
+        END IF;
     END IF;
 
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER "trg_check_publication_primary_dept"
+CREATE TRIGGER "trg_check_procedure_publication_invariants"
     BEFORE INSERT OR UPDATE ON "ProcedureTranslation"
-    FOR EACH ROW EXECUTE FUNCTION check_publication_has_primary_dept();
+    FOR EACH ROW EXECUTE FUNCTION check_procedure_publication_invariants();
 
 -- 7.4b Checked when ProcedureDepartment is inserted, modified, or deleted (checks both OLD and NEW procedures if transferred)
 CREATE OR REPLACE FUNCTION check_published_procedure_cannot_lose_primary_dept()
