@@ -28,11 +28,29 @@ export function validatePrimaryDepartmentInvariant(params: {
   }
 }
 
+export function validateDepartmentTransferIntegrity(params: {
+  sourceProcedure: { id: string; isPublished: boolean; primaryDeptCountAfter: number };
+  targetProcedure: { id: string; isPublished: boolean; primaryDeptCountAfter: number };
+}): void {
+  if (params.sourceProcedure.isPublished && params.sourceProcedure.primaryDeptCountAfter !== 1) {
+    throw new Error(
+      `TAXONOMY INVARIANT VIOLATION: Transfer leaves published source Procedure (${params.sourceProcedure.id}) with ${params.sourceProcedure.primaryDeptCountAfter} primary departments. Exactly one is required.`
+    );
+  }
+  if (params.targetProcedure.isPublished && params.targetProcedure.primaryDeptCountAfter !== 1) {
+    throw new Error(
+      `TAXONOMY INVARIANT VIOLATION: Transfer leaves published target Procedure (${params.targetProcedure.id}) with ${params.targetProcedure.primaryDeptCountAfter} primary departments. Exactly one is required.`
+    );
+  }
+}
+
 export function validateSessionSuccession(params: {
   userId: string;
   sessionFamilyId: string;
   familyStatus: string;
+  newSessionId: string;
   predecessor: { userId: string; sessionFamilyId: string } | null;
+  existingPredecessorChain?: string[]; // Chain of ancestor IDs
 }): void {
   if (params.familyStatus !== 'ACTIVE') {
     throw new Error(
@@ -49,6 +67,12 @@ export function validateSessionSuccession(params: {
     if (params.predecessor.sessionFamilyId !== params.sessionFamilyId) {
       throw new Error(
         `SESSION SECURITY VIOLATION: Cross-family session succession attempted. Predecessor family ${params.predecessor.sessionFamilyId}, successor family ${params.sessionFamilyId}.`
+      );
+    }
+
+    if (params.existingPredecessorChain && params.existingPredecessorChain.includes(params.newSessionId)) {
+      throw new Error(
+        `SESSION SECURITY VIOLATION: Cyclic succession detected. Session ${params.newSessionId} cannot be its own ancestor.`
       );
     }
   }
@@ -82,30 +106,39 @@ export function validateRevocationTargetMatch(params: {
   }
 }
 
-export function validateOutboxFencingCompletion(params: {
-  currentOwner: string;
-  claimingOwner: string;
-  currentFencingGen: bigint;
-  claimingFencingGen: bigint;
-  leaseExpiresAt: Date;
-}): void {
-  if (params.currentOwner !== params.claimingOwner) {
-    throw new Error(
-      `OUTBOX FENCING VIOLATION: Mismatched lease owner. Expected ${params.currentOwner}, got ${params.claimingOwner}.`
-    );
+/**
+ * Simulates and verifies atomic conditional outbox completion:
+ * Returns true if completed, or false/throws if lease is stale/reclaimed.
+ */
+export function executeAtomicOutboxCompletion(params: {
+  job: {
+    id: string;
+    status: string;
+    leaseOwner: string | null;
+    fencingGeneration: bigint;
+    leaseExpiresAt: Date | null;
+  };
+  workerId: string;
+  workerExpectedGeneration: bigint;
+  now?: Date;
+}): boolean {
+  const currentTime = params.now ?? new Date();
+
+  // Atomically matches SQL:
+  // WHERE id = p_job_id AND status = 'PROCESSING' AND leaseOwner = p_worker_id
+  //   AND fencingGeneration = p_expected_fencing_generation AND leaseExpiresAt >= CURRENT_TIMESTAMP
+  if (
+    params.job.status === 'PROCESSING' &&
+    params.job.leaseOwner === params.workerId &&
+    params.job.fencingGeneration === params.workerExpectedGeneration &&
+    params.job.leaseExpiresAt !== null &&
+    params.job.leaseExpiresAt >= currentTime
+  ) {
+    params.job.status = 'COMPLETED';
+    return true;
   }
 
-  if (params.currentFencingGen !== params.claimingFencingGen) {
-    throw new Error(
-      `OUTBOX FENCING VIOLATION: Stale fencing generation. Current generation: ${params.currentFencingGen}, submitted: ${params.claimingFencingGen}.`
-    );
-  }
-
-  if (params.leaseExpiresAt.getTime() < Date.now()) {
-    throw new Error(
-      `OUTBOX FENCING VIOLATION: Cannot complete job on expired lease (expired at ${params.leaseExpiresAt.toISOString()}).`
-    );
-  }
+  return false;
 }
 
 export function validatePublicationQuorum(

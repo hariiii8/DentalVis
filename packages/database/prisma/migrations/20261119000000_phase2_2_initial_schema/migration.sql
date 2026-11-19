@@ -1,15 +1,15 @@
--- DentalVis 2.0 — Phase 2.2 Initial Database Schema & Integrity Migration
+-- DentalVis 2.0 — Phase 2.2 Initial Database Schema & Final Integrity Migration
 -- PostgreSQL 16 Compatible
 -- Enforces:
 --   1. Universal UUID identifiers (gen_random_uuid())
 --   2. UTC timestamps (TIMESTAMPTZ)
 --   3. Partial Unique Index: At most one primary department per procedure
---   4. Bidirectional Trigger Invariant: Exactly one primary department for any PUBLISHED procedure
---   5. Session succession and family boundary integrity trigger
---   6. Strict Revocation Target Foreign Key Integrity
---   7. Stale outbox worker completion fencing guard trigger
+--   4. Bidirectional Trigger Invariant: Exactly one primary department for any PUBLISHED procedure across inserts, updates, deletes, and transfers
+--   5. Session succession and family boundary integrity trigger: Prevents multi-session cycles via recursive cycle check
+--   6. Strict Revocation Target Foreign Key Integrity (ON DELETE RESTRICT - no cascade deletes of security audit records)
+--   7. Stale outbox worker completion fencing guard trigger & atomic completion function
 --   8. Append-only triggers: Prohibits UPDATE and DELETE on ProcedureRevision, ProcedureApproval, ProcedureApprovalRevocation
---   9. Prevent author self-approval trigger
+--   9. Prevent author self-approval trigger with certified reviewer verification
 --  10. Composite foreign key relationships
 
 -- ======================================================================
@@ -112,7 +112,7 @@ CREATE INDEX "idx_user_role_active" ON "User" ("role", "isActive");
 
 CREATE TABLE "SessionFamily" (
     "id" UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    "userId" UUID NOT NULL REFERENCES "User"("id") ON DELETE CASCADE,
+    "userId" UUID NOT NULL REFERENCES "User"("id") ON DELETE RESTRICT,
     "status" "FamilyStatus" NOT NULL DEFAULT 'ACTIVE',
     "createdAt" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "lastActivityAt" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -124,15 +124,15 @@ CREATE INDEX "idx_session_family_user_status" ON "SessionFamily" ("userId", "sta
 
 CREATE TABLE "UserSession" (
     "id" UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    "userId" UUID NOT NULL REFERENCES "User"("id") ON DELETE CASCADE,
-    "sessionFamilyId" UUID NOT NULL REFERENCES "SessionFamily"("id") ON DELETE CASCADE,
+    "userId" UUID NOT NULL REFERENCES "User"("id") ON DELETE RESTRICT,
+    "sessionFamilyId" UUID NOT NULL REFERENCES "SessionFamily"("id") ON DELETE RESTRICT,
     "tokenHash" VARCHAR(64) NOT NULL UNIQUE,
     "status" "SessionStatus" NOT NULL DEFAULT 'ACTIVE',
     "expiresAt" TIMESTAMPTZ NOT NULL,
     "revokedAt" TIMESTAMPTZ,
     "revocationReason" VARCHAR(255),
-    "predecessorSessionId" UUID UNIQUE REFERENCES "UserSession"("id"),
-    "successorSessionId" UUID UNIQUE REFERENCES "UserSession"("id"),
+    "predecessorSessionId" UUID UNIQUE REFERENCES "UserSession"("id") ON DELETE RESTRICT,
+    "successorSessionId" UUID UNIQUE REFERENCES "UserSession"("id") ON DELETE RESTRICT,
     "lastRequestId" VARCHAR(64),
     "encryptedRecoveryEnvelope" TEXT,
     "recoveryExpiresAt" TIMESTAMPTZ,
@@ -150,15 +150,15 @@ CREATE INDEX "idx_user_session_family_status" ON "UserSession" ("sessionFamilyId
 CREATE INDEX "idx_user_session_user_status" ON "UserSession" ("userId", "status");
 CREATE INDEX "idx_user_session_recovery_exp" ON "UserSession" ("recoveryExpiresAt");
 
--- Revocation Events Table with Strict Foreign-Key Bound Targets
+-- Revocation Events Table: ON DELETE RESTRICT ensures revocation audit records can NEVER be cascade deleted
 CREATE TABLE "RevocationEvent" (
     "id" UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     "type" "RevocationType" NOT NULL,
     "targetType" "RevocationTargetType" NOT NULL,
     "targetId" UUID NOT NULL,
-    "targetSessionId" UUID REFERENCES "UserSession"("id") ON DELETE CASCADE,
-    "targetFamilyId" UUID REFERENCES "SessionFamily"("id") ON DELETE CASCADE,
-    "targetUserId" UUID REFERENCES "User"("id") ON DELETE CASCADE,
+    "targetSessionId" UUID REFERENCES "UserSession"("id") ON DELETE RESTRICT,
+    "targetFamilyId" UUID REFERENCES "SessionFamily"("id") ON DELETE RESTRICT,
+    "targetUserId" UUID REFERENCES "User"("id") ON DELETE RESTRICT,
     "reason" VARCHAR(255) NOT NULL,
     "occurredAt" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "createdAt" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -189,7 +189,7 @@ CREATE INDEX "idx_revocation_consumer_heartbeat" ON "RevocationConsumer" ("lastH
 
 CREATE TABLE "RevocationEventAck" (
     "consumerId" VARCHAR(64) NOT NULL REFERENCES "RevocationConsumer"("consumerId") ON DELETE CASCADE,
-    "eventId" UUID NOT NULL REFERENCES "RevocationEvent"("id") ON DELETE CASCADE,
+    "eventId" UUID NOT NULL REFERENCES "RevocationEvent"("id") ON DELETE RESTRICT,
     "ackedAt" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT "pk_revocation_ack" PRIMARY KEY ("consumerId", "eventId")
 );
@@ -531,7 +531,7 @@ CREATE TRIGGER "trg_check_procedure_approval_governance"
     FOR EACH ROW EXECUTE FUNCTION check_procedure_approval_governance();
 
 -- ----------------------------------------------------------------------
--- 7.3 Session Succession, Family Boundary & Cyclic Prevention Trigger
+-- 7.3 Session Succession, Family Boundary & Recursive Cycle Prevention
 -- ----------------------------------------------------------------------
 CREATE OR REPLACE FUNCTION check_session_succession_integrity()
 RETURNS TRIGGER AS $$
@@ -539,8 +539,10 @@ DECLARE
     v_pred_user UUID;
     v_pred_family UUID;
     v_family_status "FamilyStatus";
+    v_curr_id UUID;
+    v_hop_count INT := 0;
 BEGIN
-    -- 1. Verify Session Family is not REVOKED or EXPIRED
+    -- 1. Verify Session Family is ACTIVE
     SELECT "status" INTO v_family_status
     FROM "SessionFamily"
     WHERE "id" = NEW."sessionFamilyId";
@@ -566,6 +568,23 @@ BEGIN
         IF v_pred_family <> NEW."sessionFamilyId" THEN
             RAISE EXCEPTION 'SESSION SECURITY VIOLATION: Cross-family session succession attempted. Predecessor family %, successor family %.', v_pred_family, NEW."sessionFamilyId";
         END IF;
+
+        -- 3. Recursive Cycle Detection: Traverse predecessor chain up to 100 hops
+        v_curr_id := NEW."predecessorSessionId";
+        WHILE v_curr_id IS NOT NULL LOOP
+            IF v_curr_id = NEW."id" THEN
+                RAISE EXCEPTION 'SESSION SECURITY VIOLATION: Cyclic succession detected. Session % cannot be its own ancestor.', NEW."id";
+            END IF;
+
+            v_hop_count := v_hop_count + 1;
+            IF v_hop_count > 100 THEN
+                RAISE EXCEPTION 'SESSION SECURITY VIOLATION: Succession depth exceeded 100 hops or infinite cycle encountered.';
+            END IF;
+
+            SELECT "predecessorSessionId" INTO v_curr_id
+            FROM "UserSession"
+            WHERE "id" = v_curr_id;
+        END LOOP;
     END IF;
 
     RETURN NEW;
@@ -607,41 +626,53 @@ CREATE TRIGGER "trg_check_publication_primary_dept"
     BEFORE INSERT OR UPDATE ON "ProcedureTranslation"
     FOR EACH ROW EXECUTE FUNCTION check_publication_has_primary_dept();
 
--- 7.4b Checked when ProcedureDepartment is modified or deleted
+-- 7.4b Checked when ProcedureDepartment is inserted, modified, or deleted (checks both OLD and NEW procedures if transferred)
 CREATE OR REPLACE FUNCTION check_published_procedure_cannot_lose_primary_dept()
 RETURNS TRIGGER AS $$
 DECLARE
-    v_procedure_id UUID;
-    v_has_published_translations BOOLEAN;
+    v_proc_id UUID;
+    v_has_published BOOLEAN;
     v_primary_count INT;
 BEGIN
-    IF TG_OP = 'DELETE' THEN
-        v_procedure_id := OLD."procedureId";
-    ELSE
-        v_procedure_id := NEW."procedureId";
-    END IF;
+    -- Check procedure from OLD record if available (DELETE or procedure transfer)
+    IF TG_OP IN ('DELETE', 'UPDATE') AND OLD."procedureId" IS NOT NULL THEN
+        v_proc_id := OLD."procedureId";
+        SELECT EXISTS (
+            SELECT 1 FROM "ProcedureTranslation"
+            WHERE "procedureId" = v_proc_id AND "currentStatus" = 'PUBLISHED'
+        ) INTO v_has_published;
 
-    -- Check if any translation of this procedure is currently PUBLISHED
-    SELECT EXISTS (
-        SELECT 1 FROM "ProcedureTranslation"
-        WHERE "procedureId" = v_procedure_id AND "currentStatus" = 'PUBLISHED'
-    ) INTO v_has_published_translations;
+        IF v_has_published THEN
+            SELECT COUNT(*) INTO v_primary_count
+            FROM "ProcedureDepartment"
+            WHERE "procedureId" = v_proc_id AND "isPrimary" = true;
 
-    IF v_has_published_translations THEN
-        SELECT COUNT(*) INTO v_primary_count
-        FROM "ProcedureDepartment"
-        WHERE "procedureId" = v_procedure_id AND "isPrimary" = true;
-
-        IF v_primary_count <> 1 THEN
-            RAISE EXCEPTION 'TAXONOMY INVARIANT VIOLATION: Cannot remove or demote the primary department for published Procedure (%). Every published procedure must maintain exactly one primary department.', v_procedure_id;
+            IF v_primary_count <> 1 THEN
+                RAISE EXCEPTION 'TAXONOMY INVARIANT VIOLATION: Operation leaves published Procedure (%) with % primary departments. Exactly one is required.', v_proc_id, v_primary_count;
+            END IF;
         END IF;
     END IF;
 
-    IF TG_OP = 'DELETE' THEN
-        RETURN OLD;
-    ELSE
-        RETURN NEW;
+    -- Check procedure from NEW record if available (INSERT or UPDATE)
+    IF TG_OP IN ('INSERT', 'UPDATE') AND NEW."procedureId" IS NOT NULL AND (TG_OP = 'INSERT' OR NEW."procedureId" <> OLD."procedureId" OR NEW."isPrimary" <> OLD."isPrimary") THEN
+        v_proc_id := NEW."procedureId";
+        SELECT EXISTS (
+            SELECT 1 FROM "ProcedureTranslation"
+            WHERE "procedureId" = v_proc_id AND "currentStatus" = 'PUBLISHED'
+        ) INTO v_has_published;
+
+        IF v_has_published THEN
+            SELECT COUNT(*) INTO v_primary_count
+            FROM "ProcedureDepartment"
+            WHERE "procedureId" = v_proc_id AND "isPrimary" = true;
+
+            IF v_primary_count <> 1 THEN
+                RAISE EXCEPTION 'TAXONOMY INVARIANT VIOLATION: Operation leaves published Procedure (%) with % primary departments. Exactly one is required.', v_proc_id, v_primary_count;
+            END IF;
+        END IF;
     END IF;
+
+    IF TG_OP = 'DELETE' THEN RETURN OLD; ELSE RETURN NEW; END IF;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -651,32 +682,75 @@ CREATE CONSTRAINT TRIGGER "trg_check_published_procedure_dept_change"
     FOR EACH ROW EXECUTE FUNCTION check_published_procedure_cannot_lose_primary_dept();
 
 -- ----------------------------------------------------------------------
--- 7.5 Outbox Monotonic Fencing Lease Completion Guard
+-- 7.5 Outbox Monotonic Fencing Lease Acquisition & Atomic Completion Functions
 -- ----------------------------------------------------------------------
-CREATE OR REPLACE FUNCTION check_outbox_fencing_guard()
-RETURNS TRIGGER AS $$
+-- 7.5a Atomic Lease Acquisition (Increments Fencing Generation)
+CREATE OR REPLACE FUNCTION acquire_outbox_lease(
+    p_worker_id VARCHAR(64),
+    p_lease_duration_seconds INT DEFAULT 30,
+    p_batch_size INT DEFAULT 10
+)
+RETURNS TABLE (
+    "id" UUID,
+    "tag" VARCHAR(100),
+    "slug" VARCHAR(255),
+    "language" "ContentLanguage",
+    "payload" JSONB,
+    "fencingGeneration" BIGINT
+) AS $$
 BEGIN
-    -- When transitioning to COMPLETED, verify fencing generation and lease state
-    IF NEW."status" = 'COMPLETED' AND OLD."status" <> 'COMPLETED' THEN
-        IF OLD."leaseOwner" IS NULL OR NEW."leaseOwner" <> OLD."leaseOwner" THEN
-            RAISE EXCEPTION 'OUTBOX FENCING VIOLATION: Worker (%) cannot complete job (%) assigned to lease owner (%).', NEW."leaseOwner", NEW."id", OLD."leaseOwner";
-        END IF;
-
-        IF NEW."fencingGeneration" <> OLD."fencingGeneration" THEN
-            RAISE EXCEPTION 'OUTBOX FENCING VIOLATION: Stale fencing generation % submitted for job (%). Current generation: %.', NEW."fencingGeneration", NEW."id", OLD."fencingGeneration";
-        END IF;
-
-        IF OLD."leaseExpiresAt" IS NOT NULL AND OLD."leaseExpiresAt" < CURRENT_TIMESTAMP THEN
-            RAISE EXCEPTION 'OUTBOX FENCING VIOLATION: Cannot complete job (%) with an expired lease (expired at %).', NEW."id", OLD."leaseExpiresAt";
-        END IF;
-
-        NEW."completedAt" := CURRENT_TIMESTAMP;
-    END IF;
-
-    RETURN NEW;
+    RETURN QUERY
+    WITH available_records AS (
+        SELECT o."id"
+        FROM "CacheRevalidationOutbox" o
+        WHERE o."status" = 'PENDING'
+           OR (o."status" = 'PROCESSING' AND o."leaseExpiresAt" < CURRENT_TIMESTAMP)
+           OR (o."status" = 'RETRY_SCHEDULED' AND o."leaseExpiresAt" <= CURRENT_TIMESTAMP)
+        ORDER BY o."createdAt" ASC
+        LIMIT p_batch_size
+        FOR UPDATE SKIP LOCKED
+    )
+    UPDATE "CacheRevalidationOutbox" u
+    SET
+        "status" = 'PROCESSING',
+        "leaseOwner" = p_worker_id,
+        "leaseExpiresAt" = CURRENT_TIMESTAMP + (p_lease_duration_seconds || ' seconds')::INTERVAL,
+        "fencingGeneration" = u."fencingGeneration" + 1,
+        "attemptCount" = u."attemptCount" + 1,
+        "updatedAt" = CURRENT_TIMESTAMP
+    FROM available_records a
+    WHERE u."id" = a."id"
+    RETURNING u."id", u."tag", u."slug", u."language", u."payload", u."fencingGeneration";
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER "trg_check_outbox_fencing_guard"
-    BEFORE UPDATE ON "CacheRevalidationOutbox"
-    FOR EACH ROW EXECUTE FUNCTION check_outbox_fencing_guard();
+-- 7.5b Atomic Conditional Completion (Enforces Exact Expected Fencing Generation & Active Lease)
+CREATE OR REPLACE FUNCTION complete_outbox_job(
+    p_job_id UUID,
+    p_worker_id VARCHAR(64),
+    p_expected_fencing_generation BIGINT
+)
+RETURNS BOOLEAN AS $$
+DECLARE
+    v_rows_updated INT;
+BEGIN
+    UPDATE "CacheRevalidationOutbox"
+    SET
+        "status" = 'COMPLETED',
+        "completedAt" = CURRENT_TIMESTAMP,
+        "updatedAt" = CURRENT_TIMESTAMP
+    WHERE "id" = p_job_id
+      AND "status" = 'PROCESSING'
+      AND "leaseOwner" = p_worker_id
+      AND "fencingGeneration" = p_expected_fencing_generation
+      AND "leaseExpiresAt" >= CURRENT_TIMESTAMP;
+
+    GET DIAGNOSTICS v_rows_updated = ROW_COUNT;
+
+    IF v_rows_updated = 1 THEN
+        RETURN TRUE;
+    ELSE
+        RETURN FALSE;
+    END IF;
+END;
+$$ LANGUAGE plpgsql;

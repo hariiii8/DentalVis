@@ -1,6 +1,6 @@
 // packages/database/prisma/schema.prisma
 // DentalVis 2.0 — Production Domain & Database Schema
-// Architecture Baseline v1.9.1 & Phase 2.2 Integrity Audit Revision
+// Architecture Baseline v1.9.1 & Phase 2.2 Final Corrections Revision
 
 generator client {
   provider = "prisma-client-js"
@@ -104,7 +104,7 @@ model User {
   createdAt          DateTime   @default(now()) @db.Timestamptz(6)
   updatedAt          DateTime   @default(now()) @updatedAt @db.Timestamptz(6)
 
-  // Relationships
+  // Relationships (Soft Archival & Strict Audit Retention)
   sessionFamilies    SessionFamily[]
   sessions           UserSession[]
   authoredRevisions  ProcedureRevision[]
@@ -129,7 +129,7 @@ model SessionFamily {
   revokedAt        DateTime?    @db.Timestamptz(6)
   revocationReason String?      @db.VarChar(255)
 
-  user             User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user             User         @relation(fields: [userId], references: [id], onDelete: Restrict)
   sessions         UserSession[]
   revocationEventsTargeted RevocationEvent[] @relation("RevokedFamilyTarget")
 
@@ -159,10 +159,10 @@ model UserSession {
   createdAt                 DateTime      @default(now()) @db.Timestamptz(6)
   updatedAt                 DateTime      @default(now()) @updatedAt @db.Timestamptz(6)
 
-  user                      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  sessionFamily             SessionFamily @relation(fields: [sessionFamilyId], references: [id], onDelete: Cascade)
+  user                      User          @relation(fields: [userId], references: [id], onDelete: Restrict)
+  sessionFamily             SessionFamily @relation(fields: [sessionFamilyId], references: [id], onDelete: Restrict)
 
-  predecessor               UserSession?  @relation("SessionSuccession", fields: [predecessorSessionId], references: [id])
+  predecessor               UserSession?  @relation("SessionSuccession", fields: [predecessorSessionId], references: [id], onDelete: Restrict)
   successor                 UserSession?  @relation("SessionSuccession")
   revocationEventsTargeted  RevocationEvent[] @relation("RevokedSessionTarget")
 
@@ -172,7 +172,7 @@ model UserSession {
 }
 
 // ----------------------------------------------------------------------
-// 3. DISTRIBUTED REVOCATION ENGINE (SECTION 4 AUDIT: FOREIGN-KEY BOUND TARGETS)
+// 3. DISTRIBUTED REVOCATION ENGINE (RESTRICT ON TARGET DELETION)
 // ----------------------------------------------------------------------
 
 model RevocationEvent {
@@ -181,7 +181,7 @@ model RevocationEvent {
   targetType    RevocationTargetType
   targetId      String               @db.Uuid // Explicit polymorphic target UUID
   
-  // Explicit Non-Polymorphic Foreign Keys Enforcing Relational Integrity
+  // Non-Polymorphic Foreign Keys with ON DELETE RESTRICT for durable security audit trail
   targetSessionId String?            @db.Uuid
   targetFamilyId  String?            @db.Uuid
   targetUserId    String?            @db.Uuid
@@ -190,9 +190,9 @@ model RevocationEvent {
   occurredAt    DateTime             @default(now()) @db.Timestamptz(6)
   createdAt     DateTime             @default(now()) @db.Timestamptz(6)
 
-  targetSession UserSession?         @relation("RevokedSessionTarget", fields: [targetSessionId], references: [id], onDelete: Cascade)
-  targetFamily  SessionFamily?       @relation("RevokedFamilyTarget", fields: [targetFamilyId], references: [id], onDelete: Cascade)
-  targetUser    User?                @relation("RevokedUserTarget", fields: [targetUserId], references: [id], onDelete: Cascade)
+  targetSession UserSession?         @relation("RevokedSessionTarget", fields: [targetSessionId], references: [id], onDelete: Restrict)
+  targetFamily  SessionFamily?       @relation("RevokedFamilyTarget", fields: [targetFamilyId], references: [id], onDelete: Restrict)
+  targetUser    User?                @relation("RevokedUserTarget", fields: [targetUserId], references: [id], onDelete: Restrict)
 
   acks          RevocationEventAck[]
 
@@ -223,7 +223,7 @@ model RevocationEventAck {
   ackedAt     DateTime           @default(now()) @db.Timestamptz(6)
 
   consumer    RevocationConsumer @relation(fields: [consumerId], references: [consumerId], onDelete: Cascade)
-  event       RevocationEvent    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  event       RevocationEvent    @relation(fields: [eventId], references: [id], onDelete: Restrict)
 
   @@id([consumerId, eventId])
 }
@@ -327,7 +327,7 @@ model ProcedureApprovalRevocation {
 }
 
 // ----------------------------------------------------------------------
-// 5. TAXONOMY & EXPLORATION (DV19-06: SEPARATED CATEGORY VS DEPT)
+// 5. TAXONOMY & EXPLORATION (DECOUPLED CATEGORY VS DEPT)
 // ----------------------------------------------------------------------
 
 model ExploreCategory {
