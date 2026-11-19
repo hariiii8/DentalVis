@@ -1,11 +1,14 @@
 /**
- * Content Languages supported by DentalVis
+ * DentalVis 2.0 — Canonical Domain Types & Contracts
+ * Reconciled for Architecture Baseline v1.9.1 & Phase 2.2
  */
+
+// ----------------------------------------------------------------------
+// ENUMS
+// ----------------------------------------------------------------------
+
 export type ContentLanguage = 'en' | 'ta';
 
-/**
- * Editorial Workflow Statuses
- */
 export type ContentStatus = 
   | 'DRAFT'
   | 'PENDING_APPROVAL'
@@ -13,9 +16,6 @@ export type ContentStatus =
   | 'PUBLISHED'
   | 'ARCHIVED';
 
-/**
- * User Roles in DentalVis Platform
- */
 export type UserRole =
   | 'PATIENT_VIEWER'
   | 'CLINICAL_AUTHOR'
@@ -23,10 +23,62 @@ export type UserRole =
   | 'CHIEF_EDITOR'
   | 'SYSTEM_ADMIN';
 
-/**
- * Patient-Facing Explore Categories
- * (Decoupled from internal clinical departments as required by Architecture Baseline v1.9.1)
- */
+export type SessionStatus =
+  | 'ACTIVE'
+  | 'SUPERSEDED'
+  | 'REVOKED_MANUAL'
+  | 'REVOKED_REPLAY_ATTACK'
+  | 'EXPIRED';
+
+export type FamilyStatus =
+  | 'ACTIVE'
+  | 'REVOKED'
+  | 'EXPIRED';
+
+export type RevocationType =
+  | 'REVOKE_SESSION'
+  | 'REVOKE_FAMILY'
+  | 'REVOKE_USER';
+
+export type RevocationTargetType =
+  | 'SESSION'
+  | 'FAMILY'
+  | 'USER';
+
+export type ApprovalDecision =
+  | 'APPROVED'
+  | 'REJECTED';
+
+export type MediaAssetProvider =
+  | 'CLOUDINARY'
+  | 'S3_COMPATIBLE'
+  | 'LOCAL_MOCK';
+
+export type MediaValidationStatus =
+  | 'PENDING_INSPECTION'
+  | 'VERIFIED'
+  | 'REJECTED';
+
+export type OutboxStatus =
+  | 'PENDING'
+  | 'PROCESSING'
+  | 'COMPLETED'
+  | 'RETRY_SCHEDULED'
+  | 'DEAD_LETTER';
+
+// ----------------------------------------------------------------------
+// SAFE PUBLIC DTOs (No Secrets or Hashes Exposed)
+// ----------------------------------------------------------------------
+
+export interface UserPublicDto {
+  id: string;
+  email: string;
+  fullName: string;
+  role: UserRole;
+  clinicalSpecialty?: string;
+  isActive: boolean;
+}
+
 export interface ExploreCategory {
   id: string;
   slug: string;
@@ -38,9 +90,15 @@ export interface ExploreCategory {
   featuredProcedureSlugs: string[];
 }
 
-/**
- * Educational Procedure Summary for Patient-Facing Displays
- */
+export interface DepartmentDto {
+  id: string;
+  code: string;
+  nameEn: string;
+  nameTa: string;
+  descriptionEn?: string;
+  descriptionTa?: string;
+}
+
 export interface ProcedureSummary {
   id: string;
   slug: string;
@@ -55,9 +113,6 @@ export interface ProcedureSummary {
   exploreCategorySlugs: string[];
 }
 
-/**
- * Detailed Procedure Presentation Contract
- */
 export interface ProcedureDetail extends ProcedureSummary {
   overviewHtmlEn: string;
   overviewHtmlTa: string;
@@ -72,12 +127,49 @@ export interface ProcedureDetail extends ProcedureSummary {
   interactiveStepsCount: number;
 }
 
-/**
- * Canonical Explore Categories Seed / Reference List
- */
+// ----------------------------------------------------------------------
+// IMMUTABLE REVISION SNAPSHOT SCHEMA (RFC 8785 TARGET)
+// ----------------------------------------------------------------------
+
+export interface ProcedureRevisionSnapshot {
+  procedureId: string;
+  language: ContentLanguage;
+  revisionNumber: number;
+  title: string;
+  slug: string;
+  summary: string;
+  overviewHtml: string;
+  sanitizerVersion: string;
+  coverMedia?: {
+    providerAssetId: string;
+    contentHash: string;
+    secureUrl: string;
+  };
+  model3DMedia?: {
+    providerAssetId: string;
+    contentHash: string;
+    secureUrl: string;
+  };
+  interactiveSteps: Array<{
+    stepNumber: number;
+    titleEn: string;
+    titleTa: string;
+    instructionEn: string;
+    instructionTa: string;
+    cameraPosition?: [number, number, number];
+    cameraTarget?: [number, number, number];
+    highlightNode?: string;
+  }>;
+  disclaimer: string;
+}
+
+// ----------------------------------------------------------------------
+// CANONICAL REFERENCE SEED LISTS
+// ----------------------------------------------------------------------
+
 export const CANONICAL_EXPLORE_CATEGORIES: ExploreCategory[] = [
   {
-    id: 'cat-pain-sensitivity',
+    id: '11111111-1111-4111-a111-111111111101',
     slug: 'pain-and-sensitivity',
     titleEn: 'Pain & Sensitivity',
     titleTa: 'பல் வலி & கூச்சம்',
@@ -87,7 +179,7 @@ export const CANONICAL_EXPLORE_CATEGORIES: ExploreCategory[] = [
     featuredProcedureSlugs: ['root-canal-treatment', 'dental-fillings']
   },
   {
-    id: 'cat-broken-chipped',
+    id: '11111111-1111-4111-a111-111111111102',
     slug: 'broken-or-chipped-teeth',
     titleEn: 'Broken or Chipped Teeth',
     titleTa: 'உடைந்த அல்லது விரிசல் விழுந்த பற்கள்',
@@ -97,7 +189,7 @@ export const CANONICAL_EXPLORE_CATEGORIES: ExploreCategory[] = [
     featuredProcedureSlugs: ['dental-crowns', 'dental-bonding']
   },
   {
-    id: 'cat-gums-bleeding',
+    id: '11111111-1111-4111-a111-111111111103',
     slug: 'gums-and-bleeding',
     titleEn: 'Gums & Bleeding',
     titleTa: 'ஈறுகள் & இரத்தக் கசிவு',
@@ -107,7 +199,7 @@ export const CANONICAL_EXPLORE_CATEGORIES: ExploreCategory[] = [
     featuredProcedureSlugs: ['deep-cleaning-scaling', 'gingivitis-care']
   },
   {
-    id: 'cat-missing-teeth',
+    id: '11111111-1111-4111-a111-111111111104',
     slug: 'missing-teeth',
     titleEn: 'Missing Teeth',
     titleTa: 'இழந்த பற்கள்',
@@ -117,7 +209,7 @@ export const CANONICAL_EXPLORE_CATEGORIES: ExploreCategory[] = [
     featuredProcedureSlugs: ['single-dental-implant', 'fixed-dental-bridge']
   },
   {
-    id: 'cat-tooth-alignment',
+    id: '11111111-1111-4111-a111-111111111105',
     slug: 'tooth-alignment',
     titleEn: 'Tooth Alignment',
     titleTa: 'பல் சீரமைப்பு',
@@ -127,7 +219,7 @@ export const CANONICAL_EXPLORE_CATEGORIES: ExploreCategory[] = [
     featuredProcedureSlugs: ['clear-aligners', 'orthodontic-braces']
   },
   {
-    id: 'cat-dental-appearance',
+    id: '11111111-1111-4111-a111-111111111106',
     slug: 'dental-appearance',
     titleEn: 'Dental Appearance',
     titleTa: 'பல் அழகு & பராமரிப்பு',
@@ -138,12 +230,44 @@ export const CANONICAL_EXPLORE_CATEGORIES: ExploreCategory[] = [
   }
 ];
 
-/**
- * Standard Educational Procedures Seed / Reference List
- */
+export const CANONICAL_DEPARTMENTS: DepartmentDto[] = [
+  {
+    id: '22222222-2222-4222-a222-222222222201',
+    code: 'ENDO',
+    nameEn: 'Endodontics',
+    nameTa: 'வேர் கால்வாய் சிகிச்சை பிரிவு (Endodontics)',
+    descriptionEn: 'Specialized in dental pulp biology and root canal therapy.',
+    descriptionTa: 'பல் நரம்பு மற்றும் வேர் கால்வாய் சிகிச்சை சார்ந்த துறை.'
+  },
+  {
+    id: '22222222-2222-4222-a222-222222222202',
+    code: 'PROS',
+    nameEn: 'Prosthodontics',
+    nameTa: 'செயற்கைப் பல் சீரமைப்பு பிரிவு (Prosthodontics)',
+    descriptionEn: 'Specialized in restoring damaged and missing teeth with crowns, bridges, and dentures.',
+    descriptionTa: 'கிரவுன், பிரிட்ஜ் மற்றும் செயற்கைப் பற்கள் மூலம் பல்லை சீரமைக்கும் பிரிவு.'
+  },
+  {
+    id: '22222222-2222-4222-a222-222222222203',
+    code: 'PERIO',
+    nameEn: 'Periodontics',
+    nameTa: 'ஈறு நோய் சிகிச்சை பிரிவு (Periodontics)',
+    descriptionEn: 'Specialized in periodontal tissue care and gum inflammation management.',
+    descriptionTa: 'ஈறு ஆரோக்கியம் மற்றும் ஈறு தொற்றுகளைக் குணப்படுத்தும் துறை.'
+  },
+  {
+    id: '22222222-2222-4222-a222-222222222204',
+    code: 'IMPL',
+    nameEn: 'Implantology & Oral Surgery',
+    nameTa: 'பல் இம்ப்ளான்ட் மற்றும் வாய் அறுவை சிகிச்சை',
+    descriptionEn: 'Specialized in dental implants and surgical oral procedures.',
+    descriptionTa: 'பல் இம்ப்ளான்ட் மற்றும் அறுவை சிகிச்சைகளுக்கான பிரத்யேகத் துறை.'
+  }
+];
+
 export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
   {
-    id: 'proc-root-canal',
+    id: '33333333-3333-4333-a333-333333333301',
     slug: 'root-canal-treatment',
     code: 'ENDO-RCT-01',
     titleEn: 'Root Canal Treatment',
@@ -161,7 +285,7 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     interactiveStepsCount: 4
   },
   {
-    id: 'proc-dental-crowns',
+    id: '33333333-3333-4333-a333-333333333302',
     slug: 'dental-crowns',
     code: 'PROS-CRW-01',
     titleEn: 'Dental Crowns',
@@ -179,7 +303,7 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     interactiveStepsCount: 3
   },
   {
-    id: 'proc-deep-cleaning',
+    id: '33333333-3333-4333-a333-333333333303',
     slug: 'deep-cleaning-scaling',
     code: 'PERIO-SCL-01',
     titleEn: 'Deep Cleaning & Scaling',
@@ -196,7 +320,7 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     interactiveStepsCount: 3
   },
   {
-    id: 'proc-single-implant',
+    id: '33333333-3333-4333-a333-333333333304',
     slug: 'single-dental-implant',
     code: 'IMPL-SNGL-01',
     titleEn: 'Single Dental Implant',
@@ -215,9 +339,6 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
   }
 ];
 
-/**
- * Standard Clinical Educational Disclaimer
- */
 export const CLINICAL_DISCLAIMER_EN = 
   "Educational Visual Guide Only: The information provided on DentalVis is designed to facilitate informed discussions between patients and certified dental professionals. It does not constitute medical diagnosis, clinical treatment advice, or formal care recommendations.";
 

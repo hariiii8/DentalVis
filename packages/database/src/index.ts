@@ -1,5 +1,15 @@
-/**
- * Database client placeholder for Phase 2.1 initialization.
- * Production models, migrations and connections are managed in Phase 2.2.
- */
-export const DATABASE_PACKAGE_VERSION = "2.0.0-phase2.1";
+import { PrismaClient } from '@prisma/client';
+
+export * from '@prisma/client';
+
+const globalForPrisma = globalThis as unknown as {
+  prisma: PrismaClient | undefined;
+};
+
+export const prisma =
+  globalForPrisma.prisma ??
+  new PrismaClient({
+    log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
+  });
+
+if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;

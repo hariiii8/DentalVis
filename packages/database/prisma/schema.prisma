@@ -1,6 +1,6 @@
 // packages/database/prisma/schema.prisma
-// Initialized for DentalVis 2.0 per Architecture Baseline v1.9.1
-// Full migration & database execution scheduled for Phase 2.2
+// DentalVis 2.0 — Production Domain & Database Schema
+// Architecture Baseline v1.9.1 & Phase 2.2 Specification
 
 generator client {
   provider = "prisma-client-js"
@@ -11,9 +11,532 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Minimal initialization model to establish Prisma package structure
-model HealthCheck {
-  id        String   @id @default(uuid())
-  status    String   @default("OK")
-  checkedAt DateTime @default(now())
+// ----------------------------------------------------------------------
+// ENUMS
+// ----------------------------------------------------------------------
+
+enum UserRole {
+  PATIENT_VIEWER
+  CLINICAL_AUTHOR
+  CLINICAL_REVIEWER
+  CHIEF_EDITOR
+  SYSTEM_ADMIN
+}
+
+enum SessionStatus {
+  ACTIVE
+  SUPERSEDED
+  REVOKED_MANUAL
+  REVOKED_REPLAY_ATTACK
+  EXPIRED
+}
+
+enum FamilyStatus {
+  ACTIVE
+  REVOKED
+  EXPIRED
+}
+
+enum RevocationType {
+  REVOKE_SESSION
+  REVOKE_FAMILY
+  REVOKE_USER
+}
+
+enum RevocationTargetType {
+  SESSION
+  FAMILY
+  USER
+}
+
+enum ContentLanguage {
+  en
+  ta
+}
+
+enum ContentStatus {
+  DRAFT
+  PENDING_APPROVAL
+  APPROVED
+  PUBLISHED
+  ARCHIVED
+}
+
+enum ApprovalDecision {
+  APPROVED
+  REJECTED
+}
+
+enum MediaAssetProvider {
+  CLOUDINARY
+  S3_COMPATIBLE
+  LOCAL_MOCK
+}
+
+enum MediaValidationStatus {
+  PENDING_INSPECTION
+  VERIFIED
+  REJECTED
+}
+
+enum OutboxStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  RETRY_SCHEDULED
+  DEAD_LETTER
+}
+
+// ----------------------------------------------------------------------
+// 1. USER & IDENTITY
+// ----------------------------------------------------------------------
+
+model User {
+  id                 String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email              String     @unique @db.VarChar(255)
+  passwordHash       String     @db.VarChar(255)
+  fullName           String     @db.VarChar(150)
+  role               UserRole   @default(PATIENT_VIEWER)
+  licenseNumber      String?    @db.VarChar(100)
+  clinicalSpecialty  String?    @db.VarChar(150)
+  isActive           Boolean    @default(true)
+  deactivatedAt      DateTime?  @db.Timestamptz(6)
+  createdAt          DateTime   @default(now()) @db.Timestamptz(6)
+  updatedAt          DateTime   @default(now()) @updatedAt @db.Timestamptz(6)
+
+  // Relationships
+  sessionFamilies    SessionFamily[]
+  sessions           UserSession[]
+  authoredRevisions  ProcedureRevision[]
+  clinicalApprovals  ProcedureApproval[]
+  approvalRevocations ProcedureApprovalRevocation[]
+  auditLogs          AdminAuditLog[]
+
+  @@index([role, isActive])
+}
+
+// ----------------------------------------------------------------------
+// 2. AUTHENTICATION & SESSION FAMILY (DV19-01 / SECTION 4)
+// ----------------------------------------------------------------------
+
+model SessionFamily {
+  id               String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId           String       @db.Uuid
+  status           FamilyStatus @default(ACTIVE)
+  createdAt        DateTime     @default(now()) @db.Timestamptz(6)
+  lastActivityAt   DateTime     @default(now()) @db.Timestamptz(6)
+  revokedAt        DateTime?    @db.Timestamptz(6)
+  revocationReason String?      @db.VarChar(255)
+
+  user             User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  sessions         UserSession[]
+
+  @@index([userId, status])
+}
+
+model UserSession {
+  id                        String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId                    String        @db.Uuid
+  sessionFamilyId           String        @db.Uuid
+  tokenHash                 String        @unique @db.VarChar(64) // SHA-256 of Refresh Token
+  status                    SessionStatus @default(ACTIVE)
+  expiresAt                 DateTime      @db.Timestamptz(6)
+  revokedAt                 DateTime?     @db.Timestamptz(6)
+  revocationReason          String?       @db.VarChar(255)
+
+  // Successor Tracking for Option A Idempotent Bearer Rotation
+  predecessorSessionId      String?       @unique @db.Uuid
+  successorSessionId        String?       @unique @db.Uuid
+  lastRequestId             String?       @db.VarChar(64) // Idempotency Correlation Token
+  encryptedRecoveryEnvelope String?       @db.Text       // AES-256-GCM recovery envelope
+  recoveryExpiresAt         DateTime?     @db.Timestamptz(6)
+
+  // Security Context
+  ipHash                    String?       @db.VarChar(64) // Pseudonymized IP hash
+  userAgent                 String?       @db.Text
+  createdAt                 DateTime      @default(now()) @db.Timestamptz(6)
+  updatedAt                 DateTime      @default(now()) @updatedAt @db.Timestamptz(6)
+
+  user                      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  sessionFamily             SessionFamily @relation(fields: [sessionFamilyId], references: [id], onDelete: Cascade)
+
+  predecessor               UserSession?  @relation("SessionSuccession", fields: [predecessorSessionId], references: [id])
+  successor                 UserSession?  @relation("SessionSuccession")
+
+  @@index([sessionFamilyId, status])
+  @@index([userId, status])
+  @@index([recoveryExpiresAt])
+}
+
+// ----------------------------------------------------------------------
+// 3. DISTRIBUTED REVOCATION ENGINE (DV19-02, DV19-03 / SECTION 5)
+// ----------------------------------------------------------------------
+
+model RevocationEvent {
+  id          String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  type        RevocationType
+  targetType  RevocationTargetType
+  targetId    String               @db.Uuid // Polymorphic target UUID (sessionId, familyId, userId)
+  reason      String               @db.VarChar(255)
+  occurredAt  DateTime             @default(now()) @db.Timestamptz(6)
+  createdAt   DateTime             @default(now()) @db.Timestamptz(6)
+
+  acks        RevocationEventAck[]
+
+  @@index([targetId, type])
+  @@index([occurredAt])
+}
+
+model RevocationConsumer {
+  consumerId            String               @id @db.VarChar(64) // Stable logical consumer name (e.g. 'api-worker')
+  processInstanceId     String               @db.VarChar(64)     // Unique per container boot (UUID)
+  leaseOwner            String               @db.VarChar(64)
+  leaseExpiresAt        DateTime             @db.Timestamptz(6)
+  fencingGeneration     BigInt               @default(0)
+  lastProcessedCursor   DateTime?            @db.Timestamptz(6)
+  lastBaselineAt        DateTime?            @db.Timestamptz(6)
+  lastHeartbeatAt       DateTime             @default(now()) @db.Timestamptz(6)
+  registeredAt          DateTime             @default(now()) @db.Timestamptz(6)
+
+  acks                  RevocationEventAck[]
+
+  @@index([leaseExpiresAt])
+  @@index([lastHeartbeatAt])
+}
+
+model RevocationEventAck {
+  consumerId  String             @db.VarChar(64)
+  eventId     String             @db.Uuid
+  ackedAt     DateTime           @default(now()) @db.Timestamptz(6)
+
+  consumer    RevocationConsumer @relation(fields: [consumerId], references: [consumerId], onDelete: Cascade)
+  event       RevocationEvent    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  @@id([consumerId, eventId])
+}
+
+// ----------------------------------------------------------------------
+// 4. CANONICAL EDUCATIONAL CONTENT ENTITIES (SECTIONS 6 & 7)
+// ----------------------------------------------------------------------
+
+model Procedure {
+  id                  String                 @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  slug                String                 @unique @db.VarChar(255)
+  code                String                 @unique @db.VarChar(50) // e.g. 'ENDO-RCT-01'
+  isArchived          Boolean                @default(false)
+  createdAt           DateTime               @default(now()) @db.Timestamptz(6)
+  updatedAt           DateTime               @default(now()) @updatedAt @db.Timestamptz(6)
+
+  translations        ProcedureTranslation[]
+  exploreCategories   ProcedureExploreCategory[]
+  departments         ProcedureDepartment[]
+  conditions          ConditionProcedure[]
+  preventionGuides    PreventionGuideProcedure[]
+
+  @@index([isArchived])
+}
+
+model ProcedureTranslation {
+  procedureId         String            @db.Uuid
+  language            ContentLanguage
+  currentStatus       ContentStatus     @default(DRAFT)
+  publishedRevisionId String?           @db.Uuid
+  isArchived          Boolean           @default(false)
+  createdAt           DateTime          @default(now()) @db.Timestamptz(6)
+  updatedAt           DateTime          @default(now()) @updatedAt @db.Timestamptz(6)
+
+  procedure           Procedure         @relation(fields: [procedureId], references: [id], onDelete: Restrict)
+  revisions           ProcedureRevision[] @relation("TranslationRevisions")
+  publishedRevision   ProcedureRevision?  @relation("PublishedRevision", fields: [procedureId, language, publishedRevisionId], references: [procedureId, language, id], onDelete: Restrict)
+
+  @@id([procedureId, language])
+  @@index([currentStatus, isArchived])
+}
+
+model ProcedureRevision {
+  id              String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  procedureId     String            @db.Uuid
+  language        ContentLanguage
+  revisionNumber  Int
+  title           String            @db.VarChar(255)
+  slug            String            @db.VarChar(255)
+  summary         String            @db.Text
+  overviewHtml    String            @db.Text
+  snapshotData    Json              @db.JsonB
+  contentHash     String            @db.Char(64) // SHA-256 of RFC 8785 canonical JSON
+  sanitizerVersion String           @default("DOMPurify-3.2") @db.VarChar(50)
+  authorId        String            @db.Uuid
+  coverMediaId    String?           @db.Uuid
+  model3DMediaId  String?           @db.Uuid
+  createdAt       DateTime          @default(now()) @db.Timestamptz(6)
+
+  translation     ProcedureTranslation @relation("TranslationRevisions", fields: [procedureId, language], references: [procedureId, language], onDelete: Restrict)
+  publishedIn     ProcedureTranslation[] @relation("PublishedRevision")
+  author          User                 @relation(fields: [authorId], references: [id], onDelete: Restrict)
+  coverMedia      MediaAsset?          @relation("RevisionCoverImage", fields: [coverMediaId], references: [id], onDelete: Restrict)
+  model3DMedia    MediaAsset?          @relation("RevisionModel3D", fields: [model3DMediaId], references: [id], onDelete: Restrict)
+  approvals       ProcedureApproval[]
+  interactiveSteps InteractiveStep[]
+
+  @@unique([procedureId, language, revisionNumber])
+  @@unique([procedureId, language, id])
+  @@index([slug, language])
+}
+
+model ProcedureApproval {
+  id                 String                       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  revisionId         String                       @db.Uuid
+  reviewerId         String                       @db.Uuid
+  licenseNumber      String                       @db.VarChar(100)
+  clinicalSpecialty  String                       @db.VarChar(150)
+  decision           ApprovalDecision
+  clinicalNotes      String?                      @db.Text
+  isRevoked          Boolean                      @default(false)
+  signedAt           DateTime                     @default(now()) @db.Timestamptz(6)
+
+  revision           ProcedureRevision            @relation(fields: [revisionId], references: [id], onDelete: Restrict)
+  reviewer           User                         @relation(fields: [reviewerId], references: [id], onDelete: Restrict)
+  revocations        ProcedureApprovalRevocation[]
+
+  @@unique([revisionId, reviewerId])
+  @@index([decision, isRevoked])
+}
+
+model ProcedureApprovalRevocation {
+  id                 String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  approvalId         String            @db.Uuid
+  revokingDoctorId   String            @db.Uuid
+  reason             String            @db.Text
+  revokedAt          DateTime          @default(now()) @db.Timestamptz(6)
+
+  approval           ProcedureApproval @relation(fields: [approvalId], references: [id], onDelete: Restrict)
+  revokingDoctor     User              @relation(fields: [revokingDoctorId], references: [id], onDelete: Restrict)
+}
+
+// ----------------------------------------------------------------------
+// 5. TAXONOMY & EXPLORATION (DV19-06: SEPARATED CATEGORY VS DEPT)
+// ----------------------------------------------------------------------
+
+model ExploreCategory {
+  id             String                     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  slug           String                     @unique @db.VarChar(255)
+  titleEn        String                     @db.VarChar(150)
+  titleTa        String                     @db.VarChar(150)
+  descriptionEn  String                     @db.Text
+  descriptionTa  String                     @db.Text
+  iconName       String                     @default("Compass") @db.VarChar(50)
+  displayOrder   Int                        @default(0)
+  isArchived     Boolean                    @default(false)
+  createdAt      DateTime                   @default(now()) @db.Timestamptz(6)
+  updatedAt      DateTime                   @default(now()) @updatedAt @db.Timestamptz(6)
+
+  procedures     ProcedureExploreCategory[]
+
+  @@index([isArchived, displayOrder])
+}
+
+model ProcedureExploreCategory {
+  procedureId       String          @db.Uuid
+  exploreCategoryId String          @db.Uuid
+  assignedAt        DateTime        @default(now()) @db.Timestamptz(6)
+
+  procedure         Procedure       @relation(fields: [procedureId], references: [id], onDelete: Cascade)
+  exploreCategory   ExploreCategory @relation(fields: [exploreCategoryId], references: [id], onDelete: Cascade)
+
+  @@id([procedureId, exploreCategoryId])
+}
+
+model Department {
+  id          String                @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  code        String                @unique @db.VarChar(50) // e.g. 'ENDO', 'PERIO'
+  nameEn      String                @db.VarChar(150)
+  nameTa      String                @db.VarChar(150)
+  descriptionEn String?             @db.Text
+  descriptionTa String?             @db.Text
+  isArchived  Boolean               @default(false)
+  createdAt   DateTime              @default(now()) @db.Timestamptz(6)
+  updatedAt   DateTime              @default(now()) @updatedAt @db.Timestamptz(6)
+
+  procedures  ProcedureDepartment[]
+
+  @@index([isArchived])
+}
+
+model ProcedureDepartment {
+  procedureId  String     @db.Uuid
+  departmentId String     @db.Uuid
+  isPrimary    Boolean    @default(false)
+  assignedAt   DateTime   @default(now()) @db.Timestamptz(6)
+
+  procedure    Procedure  @relation(fields: [procedureId], references: [id], onDelete: Cascade)
+  department   Department @relation(fields: [departmentId], references: [id], onDelete: Cascade)
+
+  @@id([procedureId, departmentId])
+  // Note: Partial unique index for isPrimary = true and exact-one primary check are enforced in PostgreSQL
+}
+
+// ----------------------------------------------------------------------
+// 6. CLINICAL PATHOLOGY, ANATOMY & PREVENTION ENTITIES
+// ----------------------------------------------------------------------
+
+model Condition {
+  id            String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  slug          String               @unique @db.VarChar(255)
+  code          String               @unique @db.VarChar(50)
+  titleEn       String               @db.VarChar(255)
+  titleTa       String               @db.VarChar(255)
+  overviewEn    String               @db.Text
+  overviewTa    String               @db.Text
+  isArchived    Boolean              @default(false)
+  createdAt     DateTime             @default(now()) @db.Timestamptz(6)
+  updatedAt     DateTime             @default(now()) @updatedAt @db.Timestamptz(6)
+
+  procedures    ConditionProcedure[]
+
+  @@index([isArchived])
+}
+
+model ConditionProcedure {
+  conditionId String    @db.Uuid
+  procedureId String    @db.Uuid
+  assignedAt  DateTime  @default(now()) @db.Timestamptz(6)
+
+  condition   Condition @relation(fields: [conditionId], references: [id], onDelete: Cascade)
+  procedure   Procedure @relation(fields: [procedureId], references: [id], onDelete: Cascade)
+
+  @@id([conditionId, procedureId])
+}
+
+model AnatomicalStructure {
+  id            String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  code          String    @unique @db.VarChar(50) // e.g. 'TOOTH-16', 'PULP-CHAMBER'
+  nameEn        String    @db.VarChar(150)
+  nameTa        String    @db.VarChar(150)
+  descriptionEn String    @db.Text
+  descriptionTa String    @db.Text
+  modelNodeName String?   @db.VarChar(100) // Maps to GLB node/mesh name
+  isArchived    Boolean   @default(false)
+  createdAt     DateTime  @default(now()) @db.Timestamptz(6)
+  updatedAt     DateTime  @default(now()) @updatedAt @db.Timestamptz(6)
+
+  @@index([isArchived])
+}
+
+model PreventionGuide {
+  id            String                     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  slug          String                     @unique @db.VarChar(255)
+  titleEn       String                     @db.VarChar(255)
+  titleTa       String                     @db.VarChar(255)
+  contentHtmlEn String                     @db.Text
+  contentHtmlTa String                     @db.Text
+  isArchived    Boolean                    @default(false)
+  createdAt     DateTime                   @default(now()) @db.Timestamptz(6)
+  updatedAt     DateTime                   @default(now()) @updatedAt @db.Timestamptz(6)
+
+  procedures    PreventionGuideProcedure[]
+
+  @@index([isArchived])
+}
+
+model PreventionGuideProcedure {
+  preventionGuideId String          @db.Uuid
+  procedureId       String          @db.Uuid
+  assignedAt        DateTime        @default(now()) @db.Timestamptz(6)
+
+  preventionGuide   PreventionGuide @relation(fields: [preventionGuideId], references: [id], onDelete: Cascade)
+  procedure         Procedure       @relation(fields: [procedureId], references: [id], onDelete: Cascade)
+
+  @@id([preventionGuideId, procedureId])
+}
+
+model InteractiveStep {
+  id              String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  revisionId      String            @db.Uuid
+  stepNumber      Int
+  titleEn         String            @db.VarChar(255)
+  titleTa         String            @db.VarChar(255)
+  instructionEn   String            @db.Text
+  instructionTa   String            @db.Text
+  cameraPosition  Json?             @db.JsonB // [x, y, z] coordinate array
+  cameraTarget    Json?             @db.JsonB // [x, y, z] target array
+  highlightNode   String?           @db.VarChar(100) // GLB target mesh identifier
+  createdAt       DateTime          @default(now()) @db.Timestamptz(6)
+
+  revision        ProcedureRevision @relation(fields: [revisionId], references: [id], onDelete: Cascade)
+
+  @@unique([revisionId, stepNumber])
+}
+
+// ----------------------------------------------------------------------
+// 7. MEDIA ASSET GOVERNANCE (SECTION 8)
+// ----------------------------------------------------------------------
+
+model MediaAsset {
+  id                 String                @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  provider           MediaAssetProvider    @default(CLOUDINARY)
+  providerAssetId    String                @db.VarChar(255) // Cloudinary public_id
+  secureUrl          String                @db.Text
+  format             String                @db.VarChar(20)  // webp, glb, svg, png
+  fileSizeBytes      BigInt
+  width              Int?
+  height             Int?
+  contentHash        String                @db.Char(64)     // SHA-256 of inspected actual bytes
+  validationStatus   MediaValidationStatus @default(PENDING_INSPECTION)
+  validationReport   Json?                 @db.JsonB
+  uploadedByUserId   String?               @db.Uuid
+  createdAt          DateTime              @default(now()) @db.Timestamptz(6)
+  updatedAt          DateTime              @default(now()) @updatedAt @db.Timestamptz(6)
+
+  revisionsAsCover   ProcedureRevision[]   @relation("RevisionCoverImage")
+  revisionsAsModel3D ProcedureRevision[]   @relation("RevisionModel3D")
+
+  @@unique([provider, providerAssetId])
+  @@index([contentHash])
+  @@index([validationStatus])
+}
+
+// ----------------------------------------------------------------------
+// 8. RELIABLE CACHE REVALIDATION OUTBOX (SECTION 11)
+// ----------------------------------------------------------------------
+
+model CacheRevalidationOutbox {
+  id                String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tag               String       @db.VarChar(100) // e.g. 'procedure:root-canal-treatment'
+  slug              String       @db.VarChar(255)
+  language          ContentLanguage
+  status            OutboxStatus @default(PENDING)
+  payload           Json         @db.JsonB
+  leaseOwner        String?      @db.VarChar(64)
+  leaseExpiresAt    DateTime?    @db.Timestamptz(6)
+  fencingGeneration BigInt       @default(0) // Incremented on every lease acquisition
+  attemptCount      Int          @default(0)
+  maxAttempts       Int          @default(5)
+  lastError         String?      @db.Text
+  completedAt       DateTime?    @db.Timestamptz(6)
+  createdAt         DateTime     @default(now()) @db.Timestamptz(6)
+  updatedAt         DateTime     @default(now()) @updatedAt @db.Timestamptz(6)
+
+  @@index([status, leaseExpiresAt])
+  @@index([fencingGeneration])
+}
+
+// ----------------------------------------------------------------------
+// 9. AUDIT LOGGING (SECTION 10: TAMPER-RESISTANT ADMINISTRATIVE LEDGER)
+// ----------------------------------------------------------------------
+
+model AdminAuditLog {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId      String   @db.Uuid
+  action      String   @db.VarChar(100) // e.g. 'REVISION_CREATED', 'APPROVAL_SUBMITTED'
+  targetType  String   @db.VarChar(50)
+  targetId    String   @db.Uuid
+  metadata    Json     @db.JsonB
+  ipHash      String?  @db.VarChar(64)  // Salted SHA-256 hash (never raw IP)
+  userAgent   String?  @db.Text
+  createdAt   DateTime @default(now()) @db.Timestamptz(6)
+
+  user        User     @relation(fields: [userId], references: [id], onDelete: Restrict)
+
+  @@index([targetType, targetId])
+  @@index([createdAt])
 }
