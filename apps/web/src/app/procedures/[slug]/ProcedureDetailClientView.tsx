@@ -7,7 +7,6 @@ import { ProcedureDetail } from '@dentalvis/common';
 import { Box, CheckCircle2, Clock, ShieldCheck, HeartPulse, Sparkles, HelpCircle, ArrowLeft } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { YouTubeClickToLoadPlayer } from '@/components/YouTubeClickToLoadPlayer';
-import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { ProcedureCard } from '@/components/ProcedureCard';
 
 interface ProcedureDetailClientViewProps {
@@ -197,17 +196,8 @@ export default function ProcedureDetailClientView({
   ];
 
   return (
-    <div className="py-12 space-y-16">
+    <div className="py-10 space-y-16">
       <Container>
-        {/* Navigation Breadcrumb */}
-        <Breadcrumbs
-          items={[
-            { label: isTamil ? 'பல் சிகிச்சைகள்' : 'Explore Treatments', href: '/explore' },
-            { label: title },
-          ]}
-          homeLabel={isTamil ? 'முகப்பு' : 'Home'}
-        />
-
         {/* Back Link */}
         <Link
           href="/explore"

@@ -8,7 +8,6 @@ import { ExploreCategory, ProcedureDetail } from '@dentalvis/common';
 import { ArrowLeft, Compass, Info } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { ProcedureCard } from '@/components/ProcedureCard';
-import { Breadcrumbs } from '@/components/Breadcrumbs';
 
 interface CategoryClientViewProps {
   category: ExploreCategory;
@@ -25,17 +24,8 @@ export default function CategoryClientView({ category, relatedProcedures }: Cate
   const imageSrc = `/images/categories/${category.slug}.svg`;
 
   return (
-    <div className="py-12 space-y-12">
+    <div className="py-10 space-y-12">
       <Container>
-        {/* Navigation Breadcrumb */}
-        <Breadcrumbs
-          items={[
-            { label: isTamil ? 'பல் சிகிச்சைகள்' : 'Explore Treatments', href: '/explore' },
-            { label: title },
-          ]}
-          homeLabel={isTamil ? 'முகப்பு' : 'Home'}
-        />
-
         {/* Back Link */}
         <Link
           href="/explore"

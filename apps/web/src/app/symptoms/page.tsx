@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { Container, Card, CardHeader, CardTitle, CardDescription, CardContent, Badge } from '@dentalvis/ui';
 import { ArrowRight, Compass, ShieldAlert, Sparkles } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
-import { Breadcrumbs } from '@/components/Breadcrumbs';
 
 export default function SymptomsPage() {
   const { language } = useLanguage();
@@ -60,16 +59,8 @@ export default function SymptomsPage() {
   ];
 
   return (
-    <div className="py-12 space-y-12">
+    <div className="py-10 space-y-12">
       <Container>
-        {/* Navigation Breadcrumb */}
-        <Breadcrumbs
-          items={[
-            { label: isTamil ? 'அறிகுறிகள் பட்டியல்' : 'Common Symptoms' }
-          ]}
-          homeLabel={isTamil ? 'முகப்பு' : 'Home'}
-        />
-
         {/* Header */}
         <div className="max-w-2xl space-y-4 mb-12">
           <Badge variant="mint" className="gap-1.5 text-xs font-semibold">

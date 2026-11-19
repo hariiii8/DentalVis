@@ -7,23 +7,14 @@ import { Compass, Sparkles } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { CategoryCard } from '@/components/CategoryCard';
 import { ProcedureCard } from '@/components/ProcedureCard';
-import { Breadcrumbs } from '@/components/Breadcrumbs';
 
 export default function ExplorePage() {
   const { language } = useLanguage();
   const isTamil = language === 'ta';
 
   return (
-    <div className="py-12 space-y-16">
+    <div className="py-10 space-y-16">
       <Container>
-        {/* Navigation Breadcrumb */}
-        <Breadcrumbs
-          items={[
-            { label: isTamil ? 'பல் சிகிச்சைகள்' : 'Explore Treatments' }
-          ]}
-          homeLabel={isTamil ? 'முகப்பு' : 'Home'}
-        />
-
         {/* Page Header */}
         <div className="max-w-3xl space-y-4 mb-12">
           <Badge variant="mint" className="gap-1.5 text-xs font-semibold">

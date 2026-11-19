@@ -4,7 +4,6 @@ import React from 'react';
 import { Container, Card, Badge } from '@dentalvis/ui';
 import { AlertTriangle, Clock, ShieldAlert } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
-import { Breadcrumbs } from '@/components/Breadcrumbs';
 
 export default function EmergencyPage() {
   const { language } = useLanguage();
@@ -38,16 +37,8 @@ export default function EmergencyPage() {
   ];
 
   return (
-    <div className="py-12 space-y-12">
+    <div className="py-10 space-y-12">
       <Container>
-        {/* Navigation Breadcrumb */}
-        <Breadcrumbs
-          items={[
-            { label: isTamil ? 'அவசர வழிகாட்டுதல்' : 'Emergency Guidance' }
-          ]}
-          homeLabel={isTamil ? 'முகப்பு' : 'Home'}
-        />
-
         {/* Warning Banner */}
         <div className="rounded-3xl bg-rose-50 border border-rose-200/80 p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 shadow-sm">
           <div className="flex items-start sm:items-center gap-4">
