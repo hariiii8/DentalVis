@@ -1,8 +1,8 @@
 'use client';
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Container, Badge, LiquidGlassSurface } from '@dentalvis/ui';
-import { CANONICAL_EXPLORE_CATEGORIES, CANONICAL_PROCEDURES } from '@dentalvis/common';
+import { CANONICAL_EXPLORE_CATEGORIES, getVisibleProcedures } from '@dentalvis/common';
 import { Compass, Sparkles } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { CategoryCard } from '@/components/CategoryCard';
@@ -11,6 +11,9 @@ import { ProcedureCard } from '@/components/ProcedureCard';
 export default function ExplorePage() {
   const { language } = useLanguage();
   const isTamil = language === 'ta';
+
+  // Strict publication gating: only published procedures in production
+  const visibleProcedures = useMemo(() => getVisibleProcedures(), []);
 
   return (
     <div className="py-10 space-y-16 relative overflow-hidden bg-[#F5FAF9]">
@@ -95,7 +98,7 @@ export default function ExplorePage() {
           </LiquidGlassSurface>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {CANONICAL_PROCEDURES.map((proc) => (
+            {visibleProcedures.map((proc) => (
               <ProcedureCard key={proc.slug} procedure={proc} lang={language} />
             ))}
           </div>

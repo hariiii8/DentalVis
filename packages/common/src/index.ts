@@ -48,6 +48,7 @@ export interface ProcedureSummary {
   primaryDepartmentName: string;
   exploreCategorySlugs: string[];
   governanceTier?: GovernanceTier;
+  contentStatus: ContentStatus;
 }
 
 export interface ProcedureDetail extends ProcedureSummary {
@@ -329,6 +330,7 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     primaryDepartmentName: 'Endodontics – Root Canal Treatments',
     exploreCategorySlugs: ['pain-and-sensitivity'],
     governanceTier: 'TIER_2',
+    contentStatus: 'PUBLISHED',
     overviewHtmlEn: '<p>Root canal treatment is designed to relieve tooth pain and save your natural tooth. During the procedure, the dentist gently cleans the inflamed pulp inside the root canals, disinfects the inner chamber, and fills it with a biocompatible material.</p>',
     overviewHtmlTa: '<p>வேர் கால்வாய் சிகிச்சை என்பது பல் வலியைப் போக்கி உங்கள் இயற்கை பல்லை பாதுகாப்பதற்காக செய்யப்படும் ஒரு சிகிச்சையாகும்.</p>',
     has3DModel: true,
@@ -352,6 +354,7 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     primaryDepartmentName: 'Prosthodontics – Crowns, Bridges & Dentures',
     exploreCategorySlugs: ['broken-or-chipped-teeth'],
     governanceTier: 'TIER_2',
+    contentStatus: 'PUBLISHED',
     overviewHtmlEn: '<p>A dental crown is a tooth-shaped "cap" that is placed over a prepared tooth to restore its size, shape, strength, and improve its appearance.</p>',
     overviewHtmlTa: '<p>பல் தொப்பி என்பது சேதமடைந்த அல்லது பலவீனமான பல்லின் மீது பொருத்தப்பட்டு அதன் வலிமையையும் வடிவத்தையும் மீட்டெடுக்கிறது.</p>',
     has3DModel: true,
@@ -375,6 +378,7 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     primaryDepartmentName: 'Periodontics – Gum Treatments & Surgeries',
     exploreCategorySlugs: ['gums-and-bleeding'],
     governanceTier: 'TIER_2',
+    contentStatus: 'PUBLISHED',
     overviewHtmlEn: '<p>Dental scaling and root planing clean deep below the gum line to remove plaque and tartar deposits that regular brushing cannot reach.</p>',
     overviewHtmlTa: '<p>வழக்கமான பிரஷிங் மூலம் நீக்க முடியாத காரையை ஈறுகளின் அடியில் இருந்து ஆழமாக சுத்தம் செய்யும் மருத்துவ முறை.</p>',
     has3DModel: false,
@@ -397,6 +401,7 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     primaryDepartmentName: 'Dental Implantology',
     exploreCategorySlugs: ['missing-teeth'],
     governanceTier: 'TIER_2',
+    contentStatus: 'PUBLISHED',
     overviewHtmlEn: '<p>A dental implant provides a permanent replacement for a missing tooth, behaving just like a natural tooth root.</p>',
     overviewHtmlTa: '<p>பல் இம்ப்ளான்ட் என்பது இழந்த பல்லின் வேரைப் போலவே தாடை எலும்பில் பொருத்தப்படும் ஒரு நிலையான தீர்வாகும்.</p>',
     has3DModel: true,
@@ -420,6 +425,7 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     primaryDepartmentName: 'Restorative Dentistry',
     exploreCategorySlugs: ['pain-and-sensitivity', 'broken-or-chipped-teeth'],
     governanceTier: 'TIER_2',
+    contentStatus: 'DRAFT',
     overviewHtmlEn: '<p>Composite dental fillings bond directly to the remaining natural tooth structure using a specialized adhesive and curing blue light. This allows conservative removal of diseased enamel while restoring strength and invisible aesthetic appeal.</p>',
     overviewHtmlTa: '<p>காம்போசிட் அடைப்பு என்பது பல்லின் இயற்கையான நிறத்துடனேயே ஒன்றிணைந்து பல்லின் உறுதியை மீட்டெடுக்கும் ஒரு நவீன முறையாகும். சொத்தை அகற்றப்பட்ட பிறகு நீல நிற ஒளிக் கதிர் மூலம் இந்த கலவை பல்லோடு கெட்டியாக இணைக்கப்படுகிறது.</p>',
     has3DModel: false,
@@ -442,6 +448,7 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     primaryDepartmentName: 'Preventive Dental Treatments',
     exploreCategorySlugs: ['gums-and-bleeding', 'dental-appearance'],
     governanceTier: 'TIER_1',
+    contentStatus: 'DRAFT',
     overviewHtmlEn: '<p>Routine dental cleaning (dental prophylaxis) removes soft bacterial plaque, light surface stains, and calculus from above the gumline. A smooth, mint-flavored polishing paste leaves teeth feeling glass-smooth and refreshed.</p>',
     overviewHtmlTa: '<p>வழக்கமான பல் சுத்தம் என்பது பிரஷிங் மூலம் நீக்க முடியாத லேசான கறைகள் மற்றும் பற்களின் மேற்பரப்பு படிவுகளை அகற்றி ஈறுகளில் வீக்கம் ஏற்படுவதைத் தடுக்கும் மிக முக்கியமான தடுப்பு சிகிச்சையாகும்.</p>',
     has3DModel: false,
@@ -464,6 +471,7 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     primaryDepartmentName: 'Oral & Maxillofacial Surgery',
     exploreCategorySlugs: ['missing-teeth'],
     governanceTier: 'TIER_2',
+    contentStatus: 'DRAFT',
     overviewHtmlEn: '<p>When a tooth cannot be saved through root canal therapy or coronal restoration, gentle extraction prevents spreading bone infection. Modern dental elevators gently loosen the tooth within its socket with comfortable pressure and zero sharp pain.</p>',
     overviewHtmlTa: '<p>வேர் கால்வாய் சிகிச்சையாலோ அல்லது தொப்பியாலோ காப்பாற்ற முடியாத அளவிற்கு சேதமடைந்த பற்களை சுற்றியுள்ள எலும்புக்கு சேதம் ஏற்படாமல் மென்மையாக அகற்றும் மருத்துவ முறை இதுவாகும்.</p>',
     has3DModel: false,
@@ -486,6 +494,7 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     primaryDepartmentName: 'Oral & Maxillofacial Surgery',
     exploreCategorySlugs: ['tooth-alignment'],
     governanceTier: 'TIER_2',
+    contentStatus: 'DRAFT',
     overviewHtmlEn: '<p>Impacted wisdom teeth often lack sufficient arch room to erupt vertically, exerting pressure on neighboring second molars or triggering recurrent pericoronitis infections. A micro-incision allows direct visualization and gentle sectioned removal.</p>',
     overviewHtmlTa: '<p>தாடையில் போதிய இடம் இல்லாததால் சாய்வாக முளைத்து அருகிலுள்ள பற்களை அழுத்தும் ஞானப்பற்களை சிறிய அறுவை சிகிச்சை மூலம் துல்லியமாகப் பிரித்து அகற்றும் சிகிச்சை முறை இதுவாகும்.</p>',
     has3DModel: false,
@@ -508,6 +517,7 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     primaryDepartmentName: 'Orthodontics – Braces & Teeth Alignment',
     exploreCategorySlugs: ['tooth-alignment'],
     governanceTier: 'TIER_2',
+    contentStatus: 'DRAFT',
     overviewHtmlEn: '<p>Fixed orthodontic brackets bonded securely to the tooth surfaces connect via high-tech nickel-titanium shape-memory archwires. Over time, gentle biological forces encourage alveolar bone remodeling, guiding teeth smoothly into ideal alignment.</p>',
     overviewHtmlTa: '<p>பற்களின் மீது பொருத்தப்படும் பிராக்கெட்டுகள் மற்றும் மெல்லிய கம்பிகள் மூலம் மென்மையான தொடர் அழுத்தம் செலுத்தப்பட்டு, பற்கள் எலும்புக்குள் மெதுவாக நகர்ந்து சரியான வரிசைக்கு கொண்டு வரப்படுகின்றன.</p>',
     has3DModel: false,
@@ -530,6 +540,7 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     primaryDepartmentName: 'Cosmetic Dentistry – Smile Enhancement',
     exploreCategorySlugs: ['dental-appearance'],
     governanceTier: 'TIER_1',
+    contentStatus: 'DRAFT',
     overviewHtmlEn: '<p>Professional teeth whitening uses hydrogen or carbamide peroxide formulations buffered to neutral pH. Guided oxygen molecules penetrate microscopic enamel prisms to break apart chromophore stain bonds from tea, coffee, or aging while gingival gums remain shielded.</p>',
     overviewHtmlTa: '<p>மருத்துவ மேற்பார்வையில் ஈறுகளை பாதுகாப்பான ஜெல் கொண்டு மூடிவிட்டு, பற்களின் எனாமல் அடுக்கில் உள்ள ஆழ்ந்த கறைகளை ஆக்ஸிஜன் மூலக்கூறுகள் மூலம் நீக்கும் பாதுகாப்பான அழகு சிகிச்சை இதுவாகும்.</p>',
     has3DModel: false,
@@ -542,3 +553,68 @@ export const CLINICAL_DISCLAIMER_EN =
 
 export const CLINICAL_DISCLAIMER_TA = 
   "கல்வி வழிகாட்டி மட்டுமே: டென்டல்விஸ் தளத்தில் உள்ள தகவல்கள் நோயாளிகளுக்கும் பல் மருத்துவ நிபுணர்களுக்கும் இடையேயான கலந்துரையாடலை எளிதாக்குவதற்காக மட்டுமே உருவாக்கப்பட்டுள்ளது. இது மருத்துவப் பரிசோதனை அல்லது சிகிச்சை பரிந்துரை அல்ல.";
+
+// ----------------------------------------------------------------------
+// PUBLICATION POLICY UTILITIES
+// ----------------------------------------------------------------------
+
+/**
+ * Reusable publication policy predicate.
+ * - In production: strictly enforces `contentStatus === 'PUBLISHED'`.
+ * - In controlled non-production preview (DENTALVIS_PREVIEW_MODE === 'true' and NODE_ENV !== 'production'):
+ *   permits previewing unapproved 'DRAFT' and 'PENDING_APPROVAL' content with visible notices.
+ * - Rejects/withdrawn/unknown statuses always default to hidden.
+ */
+declare const process: { env?: Record<string, string | undefined> } | undefined;
+
+export function isProcedureVisibleInEnvironment(
+  proc: ProcedureSummary,
+  env: { nodeEnv?: string; previewMode?: string } = {}
+): boolean {
+  if (!proc || !proc.contentStatus) {
+    return false;
+  }
+
+  const nodeEnv = env.nodeEnv ?? (typeof process !== 'undefined' ? process.env?.NODE_ENV : undefined);
+  const previewMode = env.previewMode ?? (typeof process !== 'undefined' ? process.env?.DENTALVIS_PREVIEW_MODE : undefined);
+
+  const isProduction = nodeEnv === 'production';
+  const isPreviewAuthorized = !isProduction && previewMode === 'true';
+
+  if (isProduction || !isPreviewAuthorized) {
+    return proc.contentStatus === 'PUBLISHED';
+  }
+
+  // In non-production authorized preview:
+  // Allow PUBLISHED, DRAFT, and PENDING_APPROVAL with transparent notices.
+  // Never expose ARCHIVED, REJECTED, or unknown statuses.
+  return (
+    proc.contentStatus === 'PUBLISHED' ||
+    proc.contentStatus === 'DRAFT' ||
+    proc.contentStatus === 'PENDING_APPROVAL'
+  );
+}
+
+/**
+ * Returns canonical procedures filtered by the active environment's publication policy.
+ */
+export function getVisibleProcedures(
+  env: { nodeEnv?: string; previewMode?: string } = {}
+): ProcedureDetail[] {
+  return CANONICAL_PROCEDURES.filter((proc) => isProcedureVisibleInEnvironment(proc, env));
+}
+
+/**
+ * Returns a specific canonical procedure by slug only if visible under the current publication policy.
+ */
+export function getVisibleProcedureBySlug(
+  slug: string,
+  env: { nodeEnv?: string; previewMode?: string } = {}
+): ProcedureDetail | undefined {
+  const proc = CANONICAL_PROCEDURES.find((p) => p.slug === slug);
+  if (!proc) {
+    return undefined;
+  }
+  return isProcedureVisibleInEnvironment(proc, env) ? proc : undefined;
+}
+

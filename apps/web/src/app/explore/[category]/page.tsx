@@ -1,6 +1,6 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
-import { CANONICAL_EXPLORE_CATEGORIES, CANONICAL_PROCEDURES } from '@dentalvis/common';
+import { CANONICAL_EXPLORE_CATEGORIES, getVisibleProcedures } from '@dentalvis/common';
 import CategoryClientView from './CategoryClientView';
 
 interface CategoryPageProps {
@@ -17,7 +17,9 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     notFound();
   }
 
-  const relatedProcedures = CANONICAL_PROCEDURES.filter((p) =>
+  // Strict publication gating: only published procedures in production
+  const visibleProcedures = getVisibleProcedures();
+  const relatedProcedures = visibleProcedures.filter((p) =>
     p.exploreCategorySlugs.includes(category.slug)
   );
 
