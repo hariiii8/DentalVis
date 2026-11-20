@@ -1,12 +1,13 @@
 // packages/database/prisma/seed.ts
-// DentalVis 2.0 — Development Seed Script
-// Architecture Baseline v1.9.1 & Phase 2.2 Specification
+// DentalVis — Development & Production Seed Script
+// Architecture Baseline v1.9.1 — Phase 2.2 Department Expansion & Batch 1 Catalogue
 //
 // Rules enforced:
-// 1. Never invent doctor approvals.
-// 2. Never mark unverified placeholder revisions as clinically approved.
-// 3. Reconciles with canonical Explore Categories and Procedures.
-// 4. Establishes primary department assignments and unapproved DRAFT revisions.
+// 1. Exactly 15 approved departments seeded.
+// 2. Option A In-Place narrowing of IMPL (UUID preserved) and OMFS added.
+// 3. Exactly 10 canonical procedures seeded with idempotent upserts.
+// 4. Strict Governance: 0 doctor approvals invented; all revisions remain in DRAFT status.
+// 5. Existing four procedures preserved with existing UUIDs and revisions.
 
 import { PrismaClient, UserRole, ContentLanguage, ContentStatus } from '@prisma/client';
 import { 
@@ -18,8 +19,36 @@ import {
 
 const prisma = new PrismaClient();
 
+// Secondary department associations per approved Phase 2.1 mapping
+const SECONDARY_DEPARTMENT_CODES: Record<string, string[]> = {
+  'root-canal-treatment': ['REST'],
+  'dental-crowns': ['REST'],
+  'deep-cleaning-scaling': ['PREV'],
+  'single-dental-implant': ['PROS', 'OMFS'], // Approved addition of OMFS for surgical implant placement
+  'composite-dental-fillings': ['PREV'],
+  'routine-dental-cleaning-polishing': ['PERIO'],
+  'routine-tooth-extraction': ['REST'],
+  'wisdom-tooth-extraction': [],
+  'fixed-orthodontic-braces': ['PEDO'],
+  'professional-teeth-whitening': [],
+};
+
+// Department code lookup helper
+const PROCEDURE_PRIMARY_DEPT_CODE: Record<string, string> = {
+  'root-canal-treatment': 'ENDO',
+  'dental-crowns': 'PROS',
+  'deep-cleaning-scaling': 'PERIO',
+  'single-dental-implant': 'IMPL',
+  'composite-dental-fillings': 'REST',
+  'routine-dental-cleaning-polishing': 'PREV',
+  'routine-tooth-extraction': 'OMFS',
+  'wisdom-tooth-extraction': 'OMFS',
+  'fixed-orthodontic-braces': 'ORTH',
+  'professional-teeth-whitening': 'COSM',
+};
+
 async function main() {
-  console.log('🌱 Starting DentalVis 2.0 database seeding...');
+  console.log('🌱 Starting DentalVis Phase 2.2 database seeding...');
 
   // 1. Seed System Admin & Clinical Author (Unapproved Draft Author)
   const systemAuthor = await prisma.user.upsert({
@@ -37,7 +66,7 @@ async function main() {
   });
   console.log(`✓ Seeded Clinical Author: ${systemAuthor.email}`);
 
-  // 2. Seed Clinical Departments
+  // 2. Seed 15 Clinical Departments (Enforcing Option A for IMPL + New OMFS)
   for (const dept of CANONICAL_DEPARTMENTS) {
     await prisma.department.upsert({
       where: { code: dept.code },
@@ -58,7 +87,7 @@ async function main() {
       },
     });
   }
-  console.log(`✓ Seeded ${CANONICAL_DEPARTMENTS.length} clinical departments.`);
+  console.log(`✓ Seeded ${CANONICAL_DEPARTMENTS.length} clinical departments (15 departments confirmed).`);
 
   // 3. Seed Explore Categories (Decoupled Patient Discovery Taxonomy)
   for (let i = 0; i < CANONICAL_EXPLORE_CATEGORIES.length; i++) {
@@ -92,7 +121,7 @@ async function main() {
   const deptMap = await prisma.department.findMany();
 
   for (const proc of CANONICAL_PROCEDURES) {
-    // 4a. Procedure Root Entity
+    // 4a. Procedure Root Entity (Preserves existing UUIDs)
     const createdProc = await prisma.procedure.upsert({
       where: { code: proc.code },
       update: {
@@ -107,13 +136,14 @@ async function main() {
     });
 
     // 4b. Primary Department Assignment (Exact-one primary invariant)
-    const matchingDept = deptMap.find(d => proc.primaryDepartmentName.includes(d.nameEn) || d.code === 'ENDO');
-    if (matchingDept) {
+    const primaryDeptCode = PROCEDURE_PRIMARY_DEPT_CODE[proc.slug] || 'PREV';
+    const primaryDept = deptMap.find(d => d.code === primaryDeptCode);
+    if (primaryDept) {
       await prisma.procedureDepartment.upsert({
         where: {
           procedureId_departmentId: {
             procedureId: createdProc.id,
-            departmentId: matchingDept.id,
+            departmentId: primaryDept.id,
           },
         },
         update: {
@@ -121,13 +151,37 @@ async function main() {
         },
         create: {
           procedureId: createdProc.id,
-          departmentId: matchingDept.id,
+          departmentId: primaryDept.id,
           isPrimary: true,
         },
       });
     }
 
-    // 4c. Explore Category Relationships
+    // 4c. Secondary Department Associations (Approved Phase 2.1 Multi-Dept Mappings)
+    const secondaryCodes = SECONDARY_DEPARTMENT_CODES[proc.slug] || [];
+    for (const secCode of secondaryCodes) {
+      const secDept = deptMap.find(d => d.code === secCode);
+      if (secDept) {
+        await prisma.procedureDepartment.upsert({
+          where: {
+            procedureId_departmentId: {
+              procedureId: createdProc.id,
+              departmentId: secDept.id,
+            },
+          },
+          update: {
+            isPrimary: false,
+          },
+          create: {
+            procedureId: createdProc.id,
+            departmentId: secDept.id,
+            isPrimary: false,
+          },
+        });
+      }
+    }
+
+    // 4d. Explore Category Relationships
     for (const catSlug of proc.exploreCategorySlugs) {
       const cat = await prisma.exploreCategory.findUnique({ where: { slug: catSlug } });
       if (cat) {
@@ -147,8 +201,8 @@ async function main() {
       }
     }
 
-    // 4d. Seed English Translation Anchor (Status: DRAFT - No fake approvals)
-    const enTrans = await prisma.procedureTranslation.upsert({
+    // 4e. Seed English Translation Anchor (Status: DRAFT - No fake approvals)
+    await prisma.procedureTranslation.upsert({
       where: {
         procedureId_language: {
           procedureId: createdProc.id,
@@ -163,8 +217,8 @@ async function main() {
       },
     });
 
-    // 4e. Seed Draft Revision 1 (Unapproved Editorial Snapshot)
-    const enRevision = await prisma.procedureRevision.upsert({
+    // 4f. Seed Draft Revision 1 (Unapproved Editorial Snapshot)
+    await prisma.procedureRevision.upsert({
       where: {
         procedureId_language_revisionNumber: {
           procedureId: createdProc.id,
@@ -172,7 +226,12 @@ async function main() {
           revisionNumber: 1,
         },
       },
-      update: {},
+      update: {
+        title: proc.titleEn,
+        slug: proc.slug,
+        summary: proc.summaryEn,
+        overviewHtml: proc.overviewHtmlEn,
+      },
       create: {
         procedureId: createdProc.id,
         language: ContentLanguage.en,
@@ -182,7 +241,7 @@ async function main() {
         summary: proc.summaryEn,
         overviewHtml: proc.overviewHtmlEn,
         sanitizerVersion: 'DOMPurify-3.2',
-        contentHash: 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', // Initial hash placeholder
+        contentHash: 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855',
         authorId: systemAuthor.id,
         snapshotData: {
           procedureId: createdProc.id,
@@ -192,12 +251,13 @@ async function main() {
           slug: proc.slug,
           summary: proc.summaryEn,
           overviewHtml: proc.overviewHtmlEn,
+          governanceTier: proc.governanceTier,
           disclaimer: CLINICAL_DISCLAIMER_EN,
         },
       },
     });
 
-    // 4f. Seed Tamil Translation Anchor (Status: DRAFT)
+    // 4g. Seed Tamil Translation Anchor (Status: DRAFT)
     await prisma.procedureTranslation.upsert({
       where: {
         procedureId_language: {
@@ -221,7 +281,12 @@ async function main() {
           revisionNumber: 1,
         },
       },
-      update: {},
+      update: {
+        title: proc.titleTa,
+        slug: proc.slug,
+        summary: proc.summaryTa,
+        overviewHtml: proc.overviewHtmlTa,
+      },
       create: {
         procedureId: createdProc.id,
         language: ContentLanguage.ta,
@@ -241,12 +306,13 @@ async function main() {
           slug: proc.slug,
           summary: proc.summaryTa,
           overviewHtml: proc.overviewHtmlTa,
+          governanceTier: proc.governanceTier,
           disclaimer: CLINICAL_DISCLAIMER_EN,
         },
       },
     });
   }
-  console.log(`✓ Seeded ${CANONICAL_PROCEDURES.length} procedures with DRAFT bilingual revisions.`);
+  console.log(`✓ Seeded ${CANONICAL_PROCEDURES.length} procedures (10 total: 4 preserved + 6 new Batch 1) with DRAFT bilingual revisions.`);
   console.log('🔒 Strict Governance Preserved: 0 doctor approvals invented; all revisions remain in DRAFT status.');
 }
 

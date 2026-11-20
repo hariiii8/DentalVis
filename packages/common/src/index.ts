@@ -1,11 +1,6 @@
-/**
- * DentalVis 2.0 — Canonical Domain Types & Contracts
- * Reconciled for Architecture Baseline v1.9.1 & Phase 2.2
- */
-
-// ----------------------------------------------------------------------
-// ENUMS
-// ----------------------------------------------------------------------
+// packages/common/src/index.ts
+// DentalVis — Canonical Domain Types & Clinical Taxonomy (RFC 8785 Compatible)
+// Architecture Baseline v1.9.1 — Phase 2.2 Canonical Procedures & Departments
 
 export type ContentLanguage = 'en' | 'ta';
 
@@ -16,68 +11,9 @@ export type ContentStatus =
   | 'PUBLISHED'
   | 'ARCHIVED';
 
-export type UserRole =
-  | 'PATIENT_VIEWER'
-  | 'CLINICAL_AUTHOR'
-  | 'CLINICAL_REVIEWER'
-  | 'CHIEF_EDITOR'
-  | 'SYSTEM_ADMIN';
+export type ApprovalDecision = 'APPROVED' | 'REJECTED';
 
-export type SessionStatus =
-  | 'ACTIVE'
-  | 'SUPERSEDED'
-  | 'REVOKED_MANUAL'
-  | 'REVOKED_REPLAY_ATTACK'
-  | 'EXPIRED';
-
-export type FamilyStatus =
-  | 'ACTIVE'
-  | 'REVOKED'
-  | 'EXPIRED';
-
-export type RevocationType =
-  | 'REVOKE_SESSION'
-  | 'REVOKE_FAMILY'
-  | 'REVOKE_USER';
-
-export type RevocationTargetType =
-  | 'SESSION'
-  | 'FAMILY'
-  | 'USER';
-
-export type ApprovalDecision =
-  | 'APPROVED'
-  | 'REJECTED';
-
-export type MediaAssetProvider =
-  | 'CLOUDINARY'
-  | 'S3_COMPATIBLE'
-  | 'LOCAL_MOCK';
-
-export type MediaValidationStatus =
-  | 'PENDING_INSPECTION'
-  | 'VERIFIED'
-  | 'REJECTED';
-
-export type OutboxStatus =
-  | 'PENDING'
-  | 'PROCESSING'
-  | 'COMPLETED'
-  | 'RETRY_SCHEDULED'
-  | 'DEAD_LETTER';
-
-// ----------------------------------------------------------------------
-// SAFE PUBLIC DTOs (No Secrets or Hashes Exposed)
-// ----------------------------------------------------------------------
-
-export interface UserPublicDto {
-  id: string;
-  email: string;
-  fullName: string;
-  role: UserRole;
-  clinicalSpecialty?: string;
-  isActive: boolean;
-}
+export type GovernanceTier = 'TIER_1' | 'TIER_2' | 'TIER_3';
 
 export interface ExploreCategory {
   id: string;
@@ -95,8 +31,8 @@ export interface DepartmentDto {
   code: string;
   nameEn: string;
   nameTa: string;
-  descriptionEn?: string;
-  descriptionTa?: string;
+  descriptionEn: string;
+  descriptionTa: string;
 }
 
 export interface ProcedureSummary {
@@ -111,6 +47,7 @@ export interface ProcedureSummary {
   anesthesiaType?: string;
   primaryDepartmentName: string;
   exploreCategorySlugs: string[];
+  governanceTier?: GovernanceTier;
 }
 
 export interface ProcedureDetail extends ProcedureSummary {
@@ -158,13 +95,12 @@ export interface ProcedureRevisionSnapshot {
     instructionTa: string;
     cameraPosition?: [number, number, number];
     cameraTarget?: [number, number, number];
-    highlightNode?: string;
   }>;
   disclaimer: string;
 }
 
 // ----------------------------------------------------------------------
-// CANONICAL REFERENCE SEED LISTS
+// TAXONOMY: 6 CANONICAL EXPLORE CATEGORIES (PATIENT-FACING)
 // ----------------------------------------------------------------------
 
 export const CANONICAL_EXPLORE_CATEGORIES: ExploreCategory[] = [
@@ -176,7 +112,7 @@ export const CANONICAL_EXPLORE_CATEGORIES: ExploreCategory[] = [
     descriptionEn: 'Understand sudden aches, hot or cold sensitivity, and deep tooth discomfort.',
     descriptionTa: 'திடீர் வலி, சூடான அல்லது குளிர்ந்த உணவுகளுக்கான கூச்சம் மற்றும் பல் வலியைப் புரிந்து கொள்ளுங்கள்.',
     iconName: 'AlertCircle',
-    featuredProcedureSlugs: ['root-canal-treatment', 'dental-fillings']
+    featuredProcedureSlugs: ['root-canal-treatment', 'composite-dental-fillings']
   },
   {
     id: '11111111-1111-4111-a111-111111111102',
@@ -186,7 +122,7 @@ export const CANONICAL_EXPLORE_CATEGORIES: ExploreCategory[] = [
     descriptionEn: 'Explore how cracked enamel, fractures, and damaged tooth crowns are restored.',
     descriptionTa: 'பல் விரிசல்கள், உடைப்புகள் மற்றும் சேதமடைந்த பற்களை சீரமைக்கும் முறைகளை அறியுங்கள்.',
     iconName: 'ShieldAlert',
-    featuredProcedureSlugs: ['dental-crowns', 'dental-bonding']
+    featuredProcedureSlugs: ['dental-crowns', 'composite-dental-fillings']
   },
   {
     id: '11111111-1111-4111-a111-111111111103',
@@ -196,7 +132,7 @@ export const CANONICAL_EXPLORE_CATEGORIES: ExploreCategory[] = [
     descriptionEn: 'Learn about tender gums, redness during brushing, and gentle periodontal care.',
     descriptionTa: 'ஈறு வீக்கம், பல் துலக்கும் போது ஏற்படும் இரத்தக் கசிவு மற்றும் ஈறு பராமரிப்பு முறைகள்.',
     iconName: 'HeartPulse',
-    featuredProcedureSlugs: ['deep-cleaning-scaling', 'gingivitis-care']
+    featuredProcedureSlugs: ['deep-cleaning-scaling', 'routine-dental-cleaning-polishing']
   },
   {
     id: '11111111-1111-4111-a111-111111111104',
@@ -206,7 +142,7 @@ export const CANONICAL_EXPLORE_CATEGORIES: ExploreCategory[] = [
     descriptionEn: 'Visual explanations of implants, fixed bridges, and modern tooth replacement options.',
     descriptionTa: 'பல் இம்ப்ளான்ட், பிரிட்ஜ் மற்றும் நவீன பல் மாற்று சிகிச்சைகள் பற்றிய விளக்கங்கள்.',
     iconName: 'Layers',
-    featuredProcedureSlugs: ['single-dental-implant', 'fixed-dental-bridge']
+    featuredProcedureSlugs: ['single-dental-implant', 'routine-tooth-extraction']
   },
   {
     id: '11111111-1111-4111-a111-111111111105',
@@ -216,7 +152,7 @@ export const CANONICAL_EXPLORE_CATEGORIES: ExploreCategory[] = [
     descriptionEn: 'Clear guides on clear aligners, orthodontic braces, and gentle bite correction.',
     descriptionTa: 'கிளியர் அலைனர்கள் மற்றும் கிளிப் சிகிச்சைகள் மூலம் பல் வரிசை சீரமைக்கும் முறைகள்.',
     iconName: 'Compass',
-    featuredProcedureSlugs: ['clear-aligners', 'orthodontic-braces']
+    featuredProcedureSlugs: ['fixed-orthodontic-braces', 'wisdom-tooth-extraction']
   },
   {
     id: '11111111-1111-4111-a111-111111111106',
@@ -226,46 +162,160 @@ export const CANONICAL_EXPLORE_CATEGORIES: ExploreCategory[] = [
     descriptionEn: 'Safe, doctor-guided insight into whitening, stain removal, and smile enhancement.',
     descriptionTa: 'பல் வெளுப்பாக்குதல், கறை நீக்குதல் மற்றும் புன்னகை மேம்பாட்டு சிகிச்சைகள்.',
     iconName: 'Sparkles',
-    featuredProcedureSlugs: ['professional-teeth-whitening', 'porcelain-veneers']
+    featuredProcedureSlugs: ['professional-teeth-whitening', 'routine-dental-cleaning-polishing']
   }
 ];
 
+// ----------------------------------------------------------------------
+// TAXONOMY: 15 APPROVED CLINICAL DEPARTMENTS (PHASE 2.2 EXPANSION)
+// ----------------------------------------------------------------------
+
 export const CANONICAL_DEPARTMENTS: DepartmentDto[] = [
+  // 1. Preventive Dental Treatments (PREV)
+  {
+    id: '22222222-2222-4222-a222-222222222205',
+    code: 'PREV',
+    nameEn: 'Preventive Dental Treatments',
+    nameTa: 'தடுப்பு பல் மருத்துவ சிகிச்சை பிரிவு (Preventive)',
+    descriptionEn: 'Specialized in dental disease prevention, routine cleanings, fluorides, and sealants.',
+    descriptionTa: 'பல் நோய்களைத் தடுக்கும் முறைகள், வழக்கமான பல் சுத்தம் மற்றும் பராமரிப்புக்கான பிரிவு.'
+  },
+  // 2. Restorative Dentistry (REST)
+  {
+    id: '22222222-2222-4222-a222-222222222206',
+    code: 'REST',
+    nameEn: 'Restorative Dentistry',
+    nameTa: 'பல் மறுசீரமைப்பு சிகிச்சை பிரிவு (Restorative)',
+    descriptionEn: 'Specialized in direct tooth restorations, composite fillings, and bonding.',
+    descriptionTa: 'சொத்தை பற்கள் மற்றும் சிதைந்த பற்களை அடைத்து சரிசெய்யும் பிரிவு.'
+  },
+  // 3. Endodontics – Root Canal Treatments (ENDO - Existing Canonical)
   {
     id: '22222222-2222-4222-a222-222222222201',
     code: 'ENDO',
-    nameEn: 'Endodontics',
+    nameEn: 'Endodontics – Root Canal Treatments',
     nameTa: 'வேர் கால்வாய் சிகிச்சை பிரிவு (Endodontics)',
-    descriptionEn: 'Specialized in dental pulp biology and root canal therapy.',
-    descriptionTa: 'பல் நரம்பு மற்றும் வேர் கால்வாய் சிகிச்சை சார்ந்த துறை.'
+    descriptionEn: 'Specialized in dental pulp biology, root canal therapy, and retreatment.',
+    descriptionTa: 'பல் நரம்பு மற்றும் வேர் கால்வாய் சிகிச்சை சார்ந்த பிரத்யேகத் துறை.'
   },
+  // 4. Periodontics – Gum Treatments & Surgeries (PERIO - Existing Canonical)
+  {
+    id: '22222222-2222-4222-a222-222222222203',
+    code: 'PERIO',
+    nameEn: 'Periodontics – Gum Treatments & Surgeries',
+    nameTa: 'ஈறு நோய் சிகிச்சை பிரிவு (Periodontics)',
+    descriptionEn: 'Specialized in periodontal tissue health, deep scaling, and gum grafting.',
+    descriptionTa: 'ஈறு ஆரோக்கியம், காரை நீக்கம் மற்றும் ஈறு தொற்றுகளைக் குணப்படுத்தும் துறை.'
+  },
+  // 5. Oral & Maxillofacial Surgery (OMFS - New Independent Department)
+  {
+    id: '22222222-2222-4222-a222-222222222207',
+    code: 'OMFS',
+    nameEn: 'Oral & Maxillofacial Surgery',
+    nameTa: 'வாய் மற்றும் தாடை அறுவை சிகிச்சை பிரிவு (Oral Surgery)',
+    descriptionEn: 'Specialized in surgical extractions, wisdom teeth removal, and bone grafting.',
+    descriptionTa: 'பல் பிரித்தெடுத்தல், ஞானப்பல் அறுவை சிகிச்சை மற்றும் தாடை அறுவை சிகிச்சைகள்.'
+  },
+  // 6. Dental Implantology (IMPL - Option A In-Place Narrowing of Existing Record)
+  {
+    id: '22222222-2222-4222-a222-222222222204',
+    code: 'IMPL',
+    nameEn: 'Dental Implantology',
+    nameTa: 'பல் இம்ப்ளான்ட் சிகிச்சை பிரிவு (Implantology)',
+    descriptionEn: 'Specialized in biocompatible titanium dental implants and full-arch restorations.',
+    descriptionTa: 'தாடை எலும்பில் பொருத்தப்படும் நிலையான நவீன செயற்கைப் பல் இம்ப்ளான்ட் பிரிவு.'
+  },
+  // 7. Prosthodontics – Crowns, Bridges & Dentures (PROS - Existing Canonical)
   {
     id: '22222222-2222-4222-a222-222222222202',
     code: 'PROS',
-    nameEn: 'Prosthodontics',
+    nameEn: 'Prosthodontics – Crowns, Bridges & Dentures',
     nameTa: 'செயற்கைப் பல் சீரமைப்பு பிரிவு (Prosthodontics)',
     descriptionEn: 'Specialized in restoring damaged and missing teeth with crowns, bridges, and dentures.',
     descriptionTa: 'கிரவுன், பிரிட்ஜ் மற்றும் செயற்கைப் பற்கள் மூலம் பல்லை சீரமைக்கும் பிரிவு.'
   },
+  // 8. Orthodontics – Braces & Teeth Alignment (ORTH)
   {
-    id: '22222222-2222-4222-a222-222222222203',
-    code: 'PERIO',
-    nameEn: 'Periodontics',
-    nameTa: 'ஈறு நோய் சிகிச்சை பிரிவு (Periodontics)',
-    descriptionEn: 'Specialized in periodontal tissue care and gum inflammation management.',
-    descriptionTa: 'ஈறு ஆரோக்கியம் மற்றும் ஈறு தொற்றுகளைக் குணப்படுத்தும் துறை.'
+    id: '22222222-2222-4222-a222-222222222208',
+    code: 'ORTH',
+    nameEn: 'Orthodontics – Braces & Teeth Alignment',
+    nameTa: 'பல் வரிசை சீரமைப்பு பிரிவு (Orthodontics)',
+    descriptionEn: 'Specialized in fixed metal/ceramic braces, clear aligners, and bite correction.',
+    descriptionTa: 'பல் கிளிப் மற்றும் கிளியர் அலைனர்கள் மூலம் பல் வரிசையை சீரமைக்கும் துறை.'
   },
+  // 9. Pediatric Dentistry – Children\'s Dental Treatments (PEDO)
   {
-    id: '22222222-2222-4222-a222-222222222204',
-    code: 'IMPL',
-    nameEn: 'Implantology & Oral Surgery',
-    nameTa: 'பல் இம்ப்ளான்ட் மற்றும் வாய் அறுவை சிகிச்சை',
-    descriptionEn: 'Specialized in dental implants and surgical oral procedures.',
-    descriptionTa: 'பல் இம்ப்ளான்ட் மற்றும் அறுவை சிகிச்சைகளுக்கான பிரத்யேகத் துறை.'
+    id: '22222222-2222-4222-a222-222222222209',
+    code: 'PEDO',
+    nameEn: "Pediatric Dentistry – Children's Dental Care",
+    nameTa: 'குழந்தைகள் பல் மருத்துவ பிரிவு (Pediatric)',
+    descriptionEn: 'Specialized in primary teeth care, pulpotomies, space maintainers, and gentle pediatric care.',
+    descriptionTa: 'குழந்தைகளுக்கான பால் பற்கள் பராமரிப்பு மற்றும் பிரத்யேக பல் சிகிச்சைகள்.'
+  },
+  // 10. Cosmetic Dentistry – Smile Enhancement (COSM)
+  {
+    id: '22222222-2222-4222-a222-222222222210',
+    code: 'COSM',
+    nameEn: 'Cosmetic Dentistry – Smile Enhancement',
+    nameTa: 'புன்னகை அழகு பல் மருத்துவ பிரிவு (Cosmetic)',
+    descriptionEn: 'Specialized in aesthetic smile design, professional whitening, and veneers.',
+    descriptionTa: 'பல் வெளுப்பாக்குதல், பீங்கான் லேமினேட் மற்றும் புன்னகை அழகு சிகிச்சைகள்.'
+  },
+  // 11. Dental Trauma & Emergency Treatments (EMRG)
+  {
+    id: '22222222-2222-4222-a222-222222222211',
+    code: 'EMRG',
+    nameEn: 'Dental Trauma & Emergency Treatments',
+    nameTa: 'அவசர பல் சிகிச்சை & காயம் மேலாண்மை பிரிவு (Emergency)',
+    descriptionEn: 'Specialized in urgent management of tooth avulsion, fractures, severe infections, and acute pain.',
+    descriptionTa: 'அடிபட்ட பற்கள், உடைந்த பற்கள் மற்றும் தீவிர பல் அவசர சிகிச்சைக்கான துறை.'
+  },
+  // 12. Sedation & Dental Anesthesia (SEDA)
+  {
+    id: '22222222-2222-4222-a222-222222222212',
+    code: 'SEDA',
+    nameEn: 'Sedation & Dental Anesthesia',
+    nameTa: 'மயக்க மருந்து & நோயாளி வசதி பிரிவு (Sedation)',
+    descriptionEn: 'Specialized in nitrous oxide inhalation, oral sedation, and IV conscious sedation.',
+    descriptionTa: 'பயமின்றி சிகிச்சை பெற உதவும் சிரிப்பு வாயு மற்றும் பிரத்யேக மயக்க மருந்து முறைகள்.'
+  },
+  // 13. Oral Medicine – Therapeutic Treatments (ORAL)
+  {
+    id: '22222222-2222-4222-a222-222222222213',
+    code: 'ORAL',
+    nameEn: 'Oral Medicine – Therapeutic Treatments',
+    nameTa: 'வாய்வழி மருத்துவ சிகிச்சை பிரிவு (Oral Medicine)',
+    descriptionEn: 'Specialized in non-surgical oral mucosal lesions, ulcers, dry mouth, and biopsies.',
+    descriptionTa: 'வாய் புண்கள், வாய் வறட்சி மற்றும் வாய் மென்திசு நோய்களுக்கான மருத்துவ பிரிவு.'
+  },
+  // 14. TMJ & Orofacial Pain Treatments (TMJD)
+  {
+    id: '22222222-2222-4222-a222-222222222214',
+    code: 'TMJD',
+    nameEn: 'TMJ & Orofacial Pain Treatments',
+    nameTa: 'தாடை மூட்டு வலி & முக வலி சிகிச்சை பிரிவு (TMJ)',
+    descriptionEn: 'Specialized in temporomandibular joint disorders, bruxism splints, and muscle pain relief.',
+    descriptionTa: 'தாடை மூட்டு வலி, பல் கடிக்கும் பழக்கம் மற்றும் தசை வலி மேலாண்மைக்கான துறை.'
+  },
+  // 15. Sleep & Airway Dental Treatments (SLPA)
+  {
+    id: '22222222-2222-4222-a222-222222222215',
+    code: 'SLPA',
+    nameEn: 'Sleep & Airway Dental Treatments',
+    nameTa: 'தூக்க சுவாசம் & குறட்டை தடுப்பு பிரிவு (Sleep Dentistry)',
+    descriptionEn: 'Specialized in mandibular advancement devices for mild-to-moderate sleep apnea and snoring.',
+    descriptionTa: 'தூக்கத்தில் மூச்சுத்திணறல் மற்றும் குறட்டையைக் கட்டுப்படுத்தும் சிறப்பு வாய் உபகரணங்கள்.'
   }
 ];
 
+// ----------------------------------------------------------------------
+// CANONICAL PROCEDURES: 10 PROCEDURES (4 EXISTING + 6 BATCH 1 NEW)
+// ----------------------------------------------------------------------
+
 export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
+  // --------------------------------------------------------------------
+  // 1. EXISTING CANONICAL: Root Canal Treatment (ENDO)
+  // --------------------------------------------------------------------
   {
     id: '33333333-3333-4333-a333-333333333301',
     slug: 'root-canal-treatment',
@@ -276,14 +326,19 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     summaryTa: 'பல்லின் உள் பகுதியில் ஏற்பட்ட தொற்றை அகற்றி, இயற்கை பல்லை பாதுகாக்கும் மென்மையான சிகிச்சை.',
     durationMinutes: 60,
     anesthesiaType: 'Local Anesthesia',
-    primaryDepartmentName: 'Endodontics',
+    primaryDepartmentName: 'Endodontics – Root Canal Treatments',
     exploreCategorySlugs: ['pain-and-sensitivity'],
+    governanceTier: 'TIER_2',
     overviewHtmlEn: '<p>Root canal treatment is designed to relieve tooth pain and save your natural tooth. During the procedure, the dentist gently cleans the inflamed pulp inside the root canals, disinfects the inner chamber, and fills it with a biocompatible material.</p>',
     overviewHtmlTa: '<p>வேர் கால்வாய் சிகிச்சை என்பது பல் வலியைப் போக்கி உங்கள் இயற்கை பல்லை பாதுகாப்பதற்காக செய்யப்படும் ஒரு சிகிச்சையாகும்.</p>',
     has3DModel: true,
     model3DId: 'model-molar-cross-section',
     interactiveStepsCount: 4
   },
+
+  // --------------------------------------------------------------------
+  // 2. EXISTING CANONICAL: Dental Crowns (PROS)
+  // --------------------------------------------------------------------
   {
     id: '33333333-3333-4333-a333-333333333302',
     slug: 'dental-crowns',
@@ -294,14 +349,19 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     summaryTa: 'சேதமடைந்த பல்லை பலப்படுத்தவும் அதன் இயல்பான தோற்றத்தை மீட்டெடுக்கவும் பொருத்தப்படும் உறை.',
     durationMinutes: 45,
     anesthesiaType: 'Local Anesthesia',
-    primaryDepartmentName: 'Prosthodontics',
+    primaryDepartmentName: 'Prosthodontics – Crowns, Bridges & Dentures',
     exploreCategorySlugs: ['broken-or-chipped-teeth'],
+    governanceTier: 'TIER_2',
     overviewHtmlEn: '<p>A dental crown is a tooth-shaped "cap" that is placed over a prepared tooth to restore its size, shape, strength, and improve its appearance.</p>',
     overviewHtmlTa: '<p>பல் தொப்பி என்பது சேதமடைந்த அல்லது பலவீனமான பல்லின் மீது பொருத்தப்பட்டு அதன் வலிமையையும் வடிவத்தையும் மீட்டெடுக்கிறது.</p>',
     has3DModel: true,
     model3DId: 'model-dental-crown',
     interactiveStepsCount: 3
   },
+
+  // --------------------------------------------------------------------
+  // 3. EXISTING CANONICAL: Deep Cleaning & Scaling (PERIO)
+  // --------------------------------------------------------------------
   {
     id: '33333333-3333-4333-a333-333333333303',
     slug: 'deep-cleaning-scaling',
@@ -312,13 +372,18 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     summaryTa: 'ஈறுகளுக்கு அடியில் படிந்துள்ள கடினமான காரையை அகற்றி, ஈறு ஆரோக்கியத்தை மீட்டெடுக்கும் சிகிச்சை.',
     durationMinutes: 45,
     anesthesiaType: 'Topical or Local Numbing',
-    primaryDepartmentName: 'Periodontics',
+    primaryDepartmentName: 'Periodontics – Gum Treatments & Surgeries',
     exploreCategorySlugs: ['gums-and-bleeding'],
+    governanceTier: 'TIER_2',
     overviewHtmlEn: '<p>Dental scaling and root planing clean deep below the gum line to remove plaque and tartar deposits that regular brushing cannot reach.</p>',
     overviewHtmlTa: '<p>வழக்கமான பிரஷிங் மூலம் நீக்க முடியாத காரையை ஈறுகளின் அடியில் இருந்து ஆழமாக சுத்தம் செய்யும் மருத்துவ முறை.</p>',
     has3DModel: false,
     interactiveStepsCount: 3
   },
+
+  // --------------------------------------------------------------------
+  // 4. EXISTING CANONICAL: Single Dental Implant (IMPL)
+  // --------------------------------------------------------------------
   {
     id: '33333333-3333-4333-a333-333333333304',
     slug: 'single-dental-implant',
@@ -329,13 +394,146 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     summaryTa: 'இழந்த பல்லுக்குப் பதிலாக தாடை எலும்பில் பொருத்தப்படும் நிலையான நவீன செயற்கைப் பல்.',
     durationMinutes: 75,
     anesthesiaType: 'Local Anesthesia with Sedation Options',
-    primaryDepartmentName: 'Implantology & Oral Surgery',
+    primaryDepartmentName: 'Dental Implantology',
     exploreCategorySlugs: ['missing-teeth'],
+    governanceTier: 'TIER_2',
     overviewHtmlEn: '<p>A dental implant provides a permanent replacement for a missing tooth, behaving just like a natural tooth root.</p>',
     overviewHtmlTa: '<p>பல் இம்ப்ளான்ட் என்பது இழந்த பல்லின் வேரைப் போலவே தாடை எலும்பில் பொருத்தப்படும் ஒரு நிலையான தீர்வாகும்.</p>',
     has3DModel: true,
     model3DId: 'model-dental-implant',
     interactiveStepsCount: 5
+  },
+
+  // --------------------------------------------------------------------
+  // 5. BATCH 1 NEW: Composite Dental Fillings (REST) - Tier 2
+  // --------------------------------------------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333305',
+    slug: 'composite-dental-fillings',
+    code: 'REST-FIL-01',
+    titleEn: 'Composite Dental Fillings',
+    titleTa: 'பல் நிற காம்போசிட் அடைப்பு (Dental Fillings)',
+    summaryEn: 'Tooth-colored biocompatible resin placed in gentle layers to repair decayed enamel and restore natural chewing function.',
+    summaryTa: 'பல் சொத்தையை நீக்கி, பல்லின் இயற்கை நிறத்திலேயே அடைத்து பலப்படுத்தும் நவீன சிகிச்சை.',
+    durationMinutes: 30,
+    anesthesiaType: 'Localized Numbing as Needed',
+    primaryDepartmentName: 'Restorative Dentistry',
+    exploreCategorySlugs: ['pain-and-sensitivity', 'broken-or-chipped-teeth'],
+    governanceTier: 'TIER_2',
+    overviewHtmlEn: '<p>Composite dental fillings bond directly to the remaining natural tooth structure using a specialized adhesive and curing blue light. This allows conservative removal of diseased enamel while restoring strength and invisible aesthetic appeal.</p>',
+    overviewHtmlTa: '<p>காம்போசிட் அடைப்பு என்பது பல்லின் இயற்கையான நிறத்துடனேயே ஒன்றிணைந்து பல்லின் உறுதியை மீட்டெடுக்கும் ஒரு நவீன முறையாகும். சொத்தை அகற்றப்பட்ட பிறகு நீல நிற ஒளிக் கதிர் மூலம் இந்த கலவை பல்லோடு கெட்டியாக இணைக்கப்படுகிறது.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 4
+  },
+
+  // --------------------------------------------------------------------
+  // 6. BATCH 1 NEW: Routine Dental Cleaning & Polishing (PREV) - Tier 1
+  // --------------------------------------------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333306',
+    slug: 'routine-dental-cleaning-polishing',
+    code: 'PREV-CLN-01',
+    titleEn: 'Routine Dental Cleaning & Polishing',
+    titleTa: 'வழக்கமான பல் சுத்தம் மற்றும் மெருகூட்டல் (Prophylaxis)',
+    summaryEn: 'Gentle supragingival cleaning and polishing to eliminate everyday plaque, food stains, and early tartar for healthy gums.',
+    summaryTa: 'பற்களின் மேற்பரப்பில் உள்ள அழுக்கு, கறை மற்றும் படிவுகளை அகற்றி ஈறுகளை ஆரோக்கியமாக வைக்கும் எளிய சிகிச்சை.',
+    durationMinutes: 35,
+    anesthesiaType: 'Non-Invasive / Topical Polish',
+    primaryDepartmentName: 'Preventive Dental Treatments',
+    exploreCategorySlugs: ['gums-and-bleeding', 'dental-appearance'],
+    governanceTier: 'TIER_1',
+    overviewHtmlEn: '<p>Routine dental cleaning (dental prophylaxis) removes soft bacterial plaque, light surface stains, and calculus from above the gumline. A smooth, mint-flavored polishing paste leaves teeth feeling glass-smooth and refreshed.</p>',
+    overviewHtmlTa: '<p>வழக்கமான பல் சுத்தம் என்பது பிரஷிங் மூலம் நீக்க முடியாத லேசான கறைகள் மற்றும் பற்களின் மேற்பரப்பு படிவுகளை அகற்றி ஈறுகளில் வீக்கம் ஏற்படுவதைத் தடுக்கும் மிக முக்கியமான தடுப்பு சிகிச்சையாகும்.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 3
+  },
+
+  // --------------------------------------------------------------------
+  // 7. BATCH 1 NEW: Routine Tooth Extraction (OMFS) - Tier 2
+  // --------------------------------------------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333307',
+    slug: 'routine-tooth-extraction',
+    code: 'OMFS-EXT-01',
+    titleEn: 'Routine Tooth Extraction',
+    titleTa: 'வழக்கமான பல் எடுத்தல் (Tooth Extraction)',
+    summaryEn: 'Safe, pain-free removal of an unrestorable or severely fractured tooth under comfortable local anesthesia to protect adjacent oral health.',
+    summaryTa: 'மீட்டெடுக்க முடியாத அளவு சேதமடைந்த அல்லது உடைந்த பல்லை வலியின்றி பாதுகாப்பாக அகற்றும் சிகிச்சை.',
+    durationMinutes: 40,
+    anesthesiaType: 'Profound Local Anesthesia',
+    primaryDepartmentName: 'Oral & Maxillofacial Surgery',
+    exploreCategorySlugs: ['missing-teeth'],
+    governanceTier: 'TIER_2',
+    overviewHtmlEn: '<p>When a tooth cannot be saved through root canal therapy or coronal restoration, gentle extraction prevents spreading bone infection. Modern dental elevators gently loosen the tooth within its socket with comfortable pressure and zero sharp pain.</p>',
+    overviewHtmlTa: '<p>வேர் கால்வாய் சிகிச்சையாலோ அல்லது தொப்பியாலோ காப்பாற்ற முடியாத அளவிற்கு சேதமடைந்த பற்களை சுற்றியுள்ள எலும்புக்கு சேதம் ஏற்படாமல் மென்மையாக அகற்றும் மருத்துவ முறை இதுவாகும்.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 4
+  },
+
+  // --------------------------------------------------------------------
+  // 8. BATCH 1 NEW: Surgical Wisdom Tooth Extraction (OMFS) - Tier 2
+  // --------------------------------------------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333308',
+    slug: 'wisdom-tooth-extraction',
+    code: 'OMFS-WIS-01',
+    titleEn: 'Surgical Wisdom Tooth Extraction',
+    titleTa: 'ஞானப்பல் அறுவை சிகிச்சை (Wisdom Tooth Surgery)',
+    summaryEn: 'Careful surgical removal of impacted third molars trapped under the gums or bone to relieve jaw pain and protect neighboring teeth.',
+    summaryTa: 'தாடை எலும்புக்குள் சிக்கியுள்ள அல்லது தவறான திசையில் முளைக்கும் ஞானப்பல்லை பாதுகாப்பாக அகற்றும் அறுவை சிகிச்சை.',
+    durationMinutes: 50,
+    anesthesiaType: 'Profound Local Numbing with Sedation Options',
+    primaryDepartmentName: 'Oral & Maxillofacial Surgery',
+    exploreCategorySlugs: ['tooth-alignment'],
+    governanceTier: 'TIER_2',
+    overviewHtmlEn: '<p>Impacted wisdom teeth often lack sufficient arch room to erupt vertically, exerting pressure on neighboring second molars or triggering recurrent pericoronitis infections. A micro-incision allows direct visualization and gentle sectioned removal.</p>',
+    overviewHtmlTa: '<p>தாடையில் போதிய இடம் இல்லாததால் சாய்வாக முளைத்து அருகிலுள்ள பற்களை அழுத்தும் ஞானப்பற்களை சிறிய அறுவை சிகிச்சை மூலம் துல்லியமாகப் பிரித்து அகற்றும் சிகிச்சை முறை இதுவாகும்.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 4
+  },
+
+  // --------------------------------------------------------------------
+  // 9. BATCH 1 NEW: Fixed Metal & Ceramic Braces (ORTH) - Tier 2
+  // --------------------------------------------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333309',
+    slug: 'fixed-orthodontic-braces',
+    code: 'ORTH-BRC-01',
+    titleEn: 'Fixed Metal & Ceramic Braces',
+    titleTa: 'பல் கிளிப் சிகிச்சை (Fixed Braces)',
+    summaryEn: 'Precision brackets and gentle archwires that guide crowded, crooked, or spaced teeth into healthy, harmonious alignment.',
+    summaryTa: 'வரிசை மாறிய அல்லது இடைவெளி உள்ள பற்களை சீரான வரிசைக்கு கொண்டு வரும் நவீன கிளிப் சிகிச்சை.',
+    durationMinutes: 60,
+    anesthesiaType: 'Non-Invasive / Painless Placement',
+    primaryDepartmentName: 'Orthodontics – Braces & Teeth Alignment',
+    exploreCategorySlugs: ['tooth-alignment'],
+    governanceTier: 'TIER_2',
+    overviewHtmlEn: '<p>Fixed orthodontic brackets bonded securely to the tooth surfaces connect via high-tech nickel-titanium shape-memory archwires. Over time, gentle biological forces encourage alveolar bone remodeling, guiding teeth smoothly into ideal alignment.</p>',
+    overviewHtmlTa: '<p>பற்களின் மீது பொருத்தப்படும் பிராக்கெட்டுகள் மற்றும் மெல்லிய கம்பிகள் மூலம் மென்மையான தொடர் அழுத்தம் செலுத்தப்பட்டு, பற்கள் எலும்புக்குள் மெதுவாக நகர்ந்து சரியான வரிசைக்கு கொண்டு வரப்படுகின்றன.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 4
+  },
+
+  // --------------------------------------------------------------------
+  // 10. BATCH 1 NEW: Professional Teeth Whitening (COSM) - Tier 1
+  // --------------------------------------------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333310',
+    slug: 'professional-teeth-whitening',
+    code: 'COSM-WHT-01',
+    titleEn: 'Professional Teeth Whitening',
+    titleTa: 'பல் வெளுப்பாக்குதல் (Professional Teeth Whitening)',
+    summaryEn: 'Clinician-supervised active oxygen gel treatment that gently dissolves deep intrinsic enamel stains without stripping natural tooth minerals.',
+    summaryTa: 'பற்களின் எனாமலுக்கு பாதிப்பின்றி உட்புறக் கறைகளை நீக்கி பற்களை வெண்மையாக்கும் நவீன சிகிச்சை.',
+    durationMinutes: 45,
+    anesthesiaType: 'Gingival Barrier Protection / Non-Invasive',
+    primaryDepartmentName: 'Cosmetic Dentistry – Smile Enhancement',
+    exploreCategorySlugs: ['dental-appearance'],
+    governanceTier: 'TIER_1',
+    overviewHtmlEn: '<p>Professional teeth whitening uses hydrogen or carbamide peroxide formulations buffered to neutral pH. Guided oxygen molecules penetrate microscopic enamel prisms to break apart chromophore stain bonds from tea, coffee, or aging while gingival gums remain shielded.</p>',
+    overviewHtmlTa: '<p>மருத்துவ மேற்பார்வையில் ஈறுகளை பாதுகாப்பான ஜெல் கொண்டு மூடிவிட்டு, பற்களின் எனாமல் அடுக்கில் உள்ள ஆழ்ந்த கறைகளை ஆக்ஸிஜன் மூலக்கூறுகள் மூலம் நீக்கும் பாதுகாப்பான அழகு சிகிச்சை இதுவாகும்.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 3
   }
 ];
 

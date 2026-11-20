@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="brcBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F0FDFA" />
+      <stop offset="50%" stop-color="#E6F7F2" />
+      <stop offset="100%" stop-color="#CCFBF1" />
+    </linearGradient>
+    <linearGradient id="bracketSteel" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="40%" stop-color="#CBD5E1" />
+      <stop offset="100%" stop-color="#64748B" />
+    </linearGradient>
+    <linearGradient id="archwireNiTi" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284C7" />
+      <stop offset="50%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#0284C7" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0D9488" flood-opacity="0.15" />
+    </filter>
+  </defs>
+
+  <rect width="100%" height="100%" fill="url(#brcBg)" rx="24" />
+
+  <!-- Background Orthodontic Aesthetic Arch Curve Grid -->
+  <path d="M 160 270 Q 400 230 640 270" fill="none" stroke="#0D9488" stroke-width="1.5" stroke-opacity="0.2" stroke-dasharray="6 6" />
+
+  <!-- Continuous Nickel-Titanium (NiTi) Memory Archwire (Running across teeth) -->
+  <!-- Rendered below brackets but across crowns -->
+  
+  <g filter="url(#shadow)">
+    <!-- 3 Anterior Teeth Segment (Right Central Incisor, Left Central Incisor, Lateral Incisor) -->
+    
+    <!-- Tooth 1: Central Incisor Left -->
+    <path d="M 330 180 C 330 130, 350 120, 385 120 C 400 120, 415 130, 415 180 L 415 300 C 415 305, 330 305, 330 300 Z" 
+          fill="#FFFFFF" stroke="#0D9488" stroke-width="4" stroke-linejoin="round" />
+
+    <!-- Tooth 2: Central Incisor Right -->
+    <path d="M 425 180 C 425 130, 445 120, 480 120 C 495 120, 510 130, 510 180 L 510 300 C 510 305, 425 305, 425 300 Z" 
+          fill="#FFFFFF" stroke="#0D9488" stroke-width="4" stroke-linejoin="round" />
+
+    <!-- Tooth 3: Lateral Incisor Left -->
+    <path d="M 245 190 C 245 145, 265 135, 295 135 C 310 135, 320 145, 320 190 L 320 295 C 320 300, 245 300, 245 295 Z" 
+          fill="#FFFFFF" stroke="#0D9488" stroke-width="4" stroke-linejoin="round" />
+
+    <!-- Tooth 4: Lateral Incisor Right -->
+    <path d="M 520 190 C 520 145, 530 135, 550 135 C 575 135, 590 145, 590 190 L 590 295 C 590 300, 520 300, 520 295 Z" 
+          fill="#FFFFFF" stroke="#0D9488" stroke-width="4" stroke-linejoin="round" />
+
+    <!-- Gingival Festoon Margin (Healthy Pink Gums) -->
+    <path d="M 220 180 Q 280 160 325 180 Q 370 150 420 180 Q 465 150 515 180 Q 560 160 610 180 L 610 120 L 220 120 Z" 
+          fill="#FDA4AF" fill-opacity="0.55" stroke="#F43F5E" stroke-width="2" />
+
+    <!-- Continuous Active Archwire passing through slots -->
+    <path d="M 230 235 Q 400 230 600 235" fill="none" stroke="url(#archwireNiTi)" stroke-width="4" stroke-linecap="round" />
+
+    <!-- Precision Ceramic/Metal Twin Brackets Bonded to Each Crown -->
+    <!-- Bracket on Tooth 3 -->
+    <rect x="265" y="215" width="35" height="38" rx="6" fill="url(#bracketSteel)" stroke="#334155" stroke-width="1.5" />
+    <circle cx="282" cy="234" r="5" fill="#20B2AA" fill-opacity="0.8" />
+
+    <!-- Bracket on Tooth 1 (Center Left) -->
+    <rect x="355" y="215" width="40" height="40" rx="6" fill="url(#bracketSteel)" stroke="#334155" stroke-width="2" />
+    <circle cx="375" cy="235" r="6" fill="#20B2AA" />
+    <line x1="355" y1="235" x2="395" y2="235" stroke="#0284C7" stroke-width="3" />
+
+    <!-- Bracket on Tooth 2 (Center Right) -->
+    <rect x="445" y="215" width="40" height="40" rx="6" fill="url(#bracketSteel)" stroke="#334155" stroke-width="2" />
+    <circle cx="465" cy="235" r="6" fill="#20B2AA" />
+    <line x1="445" y1="235" x2="485" y2="235" stroke="#0284C7" stroke-width="3" />
+
+    <!-- Bracket on Tooth 4 -->
+    <rect x="540" y="215" width="35" height="38" rx="6" fill="url(#bracketSteel)" stroke="#334155" stroke-width="1.5" />
+    <circle cx="557" cy="234" r="5" fill="#20B2AA" fill-opacity="0.8" />
+  </g>
+
+  <!-- Technical Callouts -->
+  <rect x="130" y="270" width="165" height="32" rx="8" fill="#FFFFFF" stroke="#0284C7" stroke-width="1.5" />
+  <text x="212" y="291" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#0369A1" text-anchor="middle">NiTi Memory Archwire</text>
+  <line x1="295" y1="286" x2="355" y2="245" stroke="#0284C7" stroke-width="1.5" />
+
+  <rect x="500" y="280" width="165" height="32" rx="8" fill="#FFFFFF" stroke="#0D9488" stroke-width="1.5" />
+  <text x="582" y="301" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#134E4A" text-anchor="middle">Bonded Twin Bracket</text>
+  <line x1="500" y1="290" x2="480" y2="255" stroke="#0D9488" stroke-width="1.5" />
+
+  <!-- Department & Code Pill -->
+  <rect x="235" y="440" width="330" height="36" rx="18" fill="#FFFFFF" stroke="#0D9488" stroke-width="1.5" />
+  <text x="400" y="463" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#145B59" text-anchor="middle">ORTH-BRC-01 • Orthodontics &amp; Alignment</text>
+</svg>

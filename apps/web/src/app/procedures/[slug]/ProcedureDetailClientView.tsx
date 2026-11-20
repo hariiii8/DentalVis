@@ -31,6 +31,12 @@ export default function ProcedureDetailClientView({
     'dental-crowns',
     'deep-cleaning-scaling',
     'single-dental-implant',
+    'composite-dental-fillings',
+    'routine-dental-cleaning-polishing',
+    'routine-tooth-extraction',
+    'wisdom-tooth-extraction',
+    'fixed-orthodontic-braces',
+    'professional-teeth-whitening',
   ]);
   const coverImageSrc = KNOWN_PROCEDURE_IMAGES.has(procedure.slug)
     ? `/images/procedures/${procedure.slug}.svg`
@@ -150,6 +156,184 @@ export default function ProcedureDetailClientView({
             titleTa: 'அபட்மென்ட் & செராமிக் பல் பொருத்துதல்',
             descEn: 'A custom ceramic connector (abutment) and lifelike porcelain crown are attached to give you a strong, indistinguishable natural tooth.',
             descTa: 'இணைப்பு பகுதி மற்றும் அழகிய பீங்கான் பல் பொருத்தப்பட்டு, இயற்கையான பல்லை போன்ற வடிவம் தரப்படுகிறது.',
+          },
+        ];
+
+      case 'composite-dental-fillings':
+        return [
+          {
+            num: 1,
+            titleEn: 'Decay Removal & Cavity Cleansing',
+            titleTa: 'சொத்தை நீக்கம் & துவார தூய்மைப்படுத்தல்',
+            descEn: 'The dentist gently clears away diseased enamel and cleanses the internal cavity space to ensure an optimal bonding foundation.',
+            descTa: 'பல்லில் உள்ள சொத்தை பகுதி மென்மையாக அகற்றப்பட்டு, புதிய அடைப்பு சரியாக ஒட்டுவதற்காக தூய்மைப்படுத்தப்படுகிறது.',
+          },
+          {
+            num: 2,
+            titleEn: 'Etching & Adhesive Micro-Bonding',
+            titleTa: 'மைக்ரோ பிணைப்பு தயாரிப்பு (Etching & Bonding)',
+            descEn: 'A safe conditioning gel creates micro-porosities in the enamel, followed by a liquid resin primer that chemically locks into the tooth.',
+            descTa: 'பல்லின் எனாமல் மீது ஒரு மென்மையான ஜெல் பூசப்பட்டு, காம்போசிட் கலவை பல்லோடு உறுதியாக ஒட்டுவதற்கு பிணைப்பு திரவம் இடப்படுகிறது.',
+          },
+          {
+            num: 3,
+            titleEn: 'Layered Composite Resin Application',
+            titleTa: 'அடுக்குமுறையில் காம்போசிட் கலவை இடுதல்',
+            descEn: 'Shade-matched biocompatible composite is placed in delicate increments, sculpting natural ridges and chewing cusps.',
+            descTa: 'பல்லின் இயற்கை நிறத்திற்கு ஏற்றவாறு மெல்லிய அடுக்குகளாக காம்போசிட் கலவை வைக்கப்பட்டு வடிவம் தரப்படுகிறது.',
+          },
+          {
+            num: 4,
+            titleEn: 'Blue Light Curing & Functional Bite Polish',
+            titleTa: 'ஒளிக் கதிர் கெட்டிப்படுத்துதல் & மெருகூட்டல்',
+            descEn: 'A focused blue curing light hardens each layer instantly. The surface is then polished until it feels glass-smooth against your tongue.',
+            descTa: 'நீல நிற ஒளிக் கதிர் மூலம் கலவை உடனடியாக கெட்டியாக்கப்பட்டு, கடிக்கும் போது எந்த உறுத்தலும் இல்லாதவாறு மெருகூட்டப்படுகிறது.',
+          },
+        ];
+
+      case 'routine-dental-cleaning-polishing':
+        return [
+          {
+            num: 1,
+            titleEn: 'Periodontal Screening & Plaque Assessment',
+            titleTa: 'பல் & ஈறு ஆரம்ப நிலை பரிசோதனை',
+            descEn: 'A comfortable inspection checks gum health, noting any focal points of surface plaque, tobacco stains, or calculus.',
+            descTa: 'பற்கள் மற்றும் ஈறுகளின் ஆரோக்கியம் பரிசோதிக்கப்பட்டு, கறை மற்றும் படிவுகள் உள்ள இடங்கள் கண்டறியப்படுகின்றன.',
+          },
+          {
+            num: 2,
+            titleEn: 'Gentle Supragingival Ultrasonic Scaling',
+            titleTa: 'அல்ட்ராசோனிக் மூலம் மேற்பரப்பு படிவு நீக்கம்',
+            descEn: 'A smooth cavitron tip uses cool water vibrations to wash away hardened tartar above the gumline without scratching enamel.',
+            descTa: 'குளிர்ந்த நீர் தெளிக்கும் அல்ட்ராசோனிக் கருவி மூலம் பற்களின் மேல் படிந்துள்ள காரை மற்றும் கறைகள் எளிதாக அகற்றப்படுகின்றன.',
+          },
+          {
+            num: 3,
+            titleEn: 'Prophy Paste Polishing & Floss Sweep',
+            titleTa: 'மென்மையான பேஸ்ட் கொண்டு மெருகூட்டுதல்',
+            descEn: 'A rotating soft rubber cup with fine-grit prophy paste buffs away residual stains, leaving teeth radiant and silky-smooth.',
+            descTa: 'மென்மையான சுழலும் ரப்பர் கப் மற்றும் பிரத்யேக பேஸ்ட் மூலம் பற்கள் மெருகூட்டப்பட்டு இயற்கை பளபளப்பு மீட்டெடுக்கப்படுகிறது.',
+          },
+        ];
+
+      case 'routine-tooth-extraction':
+        return [
+          {
+            num: 1,
+            titleEn: 'Profound Local Numbing & Tissue Relaxation',
+            titleTa: 'முழுமையான மரத்துப்போகச் செய்தல்',
+            descEn: 'Targeted local anesthetic surrounds the tooth, ensuring the entire area is completely numbed to sharp sensation before beginning.',
+            descTa: 'சிகிச்சை முழுவதும் நீங்கள் எந்த வலியும் உணராத வண்ணம் பல்லின் சுற்றிலும் சிறந்த மயக்க மருந்து இடப்படுகிறது.',
+          },
+          {
+            num: 2,
+            titleEn: 'Gentle Socket Expansion & Elevation',
+            titleTa: 'பல் வேரை மென்மையாக தளர்த்துதல்',
+            descEn: 'A precision dental elevator applies controlled, gentle rocking pressure to gently expand the alveolar socket ligament.',
+            descTa: 'சிறப்பு கருவி மூலம் பல்லின் வேர் பகுதியை எலும்பிலிருந்து விடுவிக்க மென்மையான அழுத்தம் செலுத்தப்படுகிறது.',
+          },
+          {
+            num: 3,
+            titleEn: 'Atraumatic Tooth Removal',
+            titleTa: 'கவனமாக பல்லை அகற்றுதல்',
+            descEn: 'Once loose, the tooth is lifted gently from its socket with dental forceps, protecting the neighboring bone ridges.',
+            descTa: 'பல் முழுமையாக தளர்ந்ததும், சுற்றியுள்ள எலும்பு மற்றும் ஈறுகளுக்கு பாதிப்பின்றி கவனமாக வெளியில் எடுக்கப்படுகிறது.',
+          },
+          {
+            num: 4,
+            titleEn: 'Hemostasis & Protective Gauze Placement',
+            titleTa: 'இரத்தக் கசிவை தடுத்து பஞ்சு வைத்தல்',
+            descEn: 'The extraction socket is cleaned, inspected, and sterile gauze is positioned with bite pressure to initiate natural blood clot healing.',
+            descTa: 'பல் எடுக்கப்பட்ட பகுதி சுத்தம் செய்யப்பட்டு, இரத்தக் கசிவு நின்று காயம் ஆறத் தொடங்குவதற்காக பஞ்சு வைக்கப்படுகிறது.',
+          },
+        ];
+
+      case 'wisdom-tooth-extraction':
+        return [
+          {
+            num: 1,
+            titleEn: 'Anesthetic Numbing & Comfort Positioning',
+            titleTa: 'முழுமையான மயக்க உணர்வு & தயாரிப்பு',
+            descEn: 'The jaw region is deeply numbed with long-acting local anesthetic to guarantee complete patient comfort throughout.',
+            descTa: 'ஞானப்பல் இருக்கும் பகுதி மற்றும் தாடை நரம்புகள் முழுமையாக மரத்துப்போகச் செய்யப்பட்டு நோயாளி வசதியாக உணர வைக்கப்படுகிறார்.',
+          },
+          {
+            num: 2,
+            titleEn: 'Mucosal Micro-Incision & Direct Visualization',
+            titleTa: 'ஈறு பகுதியில் சிறிய துவாரம்',
+            descEn: 'A tiny incision along the gumline exposes the underlying impacted crown trapped below the tissue margin.',
+            descTa: 'ஈறுக்கு அடியில் சிக்கியுள்ள ஞானப்பல்லை தெளிவாகப் பார்க்க ஈறு வரிசையில் சிறிய இடைவெளி ஏற்படுத்தப்படுகிறது.',
+          },
+          {
+            num: 3,
+            titleEn: 'Precision Tooth Sectioning',
+            titleTa: 'பல்லைப் பிரித்து பாதுகாப்பாக எடுத்தல்',
+            descEn: 'To preserve surrounding jawbone, the tooth is sectioned into smaller segments and removed gently piece by piece.',
+            descTa: 'தாடை எலும்பை சேதப்படுத்தாமல் இருக்க, ஞானப்பல் சிறிய துண்டுகளாகப் பிரிக்கப்பட்டு மென்மையாக அகற்றப்படுகிறது.',
+          },
+          {
+            num: 4,
+            titleEn: 'Antiseptic Irrigation & Dissolvable Suturing',
+            titleTa: 'கிருமிநாசினி சுத்தம் & கரையும் தையல்',
+            descEn: 'The surgical site is irrigated with sterile saline, and dissolvable micro-sutures protect the gum tissue as it heals.',
+            descTa: 'சிகிச்சை செய்த பகுதி தூய்மையாக்கப்பட்டு, ஈறு வேகமாக ஆறுவதற்காக தானாகக் கரையும் நுண்ணிய தையல் போடப்படுகிறது.',
+          },
+        ];
+
+      case 'fixed-orthodontic-braces':
+        return [
+          {
+            num: 1,
+            titleEn: 'Tooth Surface Preparation & Conditioning',
+            titleTa: 'பல் மேற்பரப்பு தயாரிப்பு',
+            descEn: 'Each tooth is gently cleaned and conditioned with a mild primer so brackets adhere with orthodontic strength.',
+            descTa: 'பிராக்கெட்டுகள் பல்லின் மீது உறுதியாக ஒட்டுவதற்காக பற்கள் நன்கு சுத்தம் செய்யப்பட்டு தயார் செய்யப்படுகின்றன.',
+          },
+          {
+            num: 2,
+            titleEn: 'Precision Twin Bracket Bonding',
+            titleTa: 'பிராக்கெட்டுகளை துல்லியமாகப் பொருத்துதல்',
+            descEn: 'Individual ceramic or metal brackets are bonded to the facial center of each crown using light-cured composite adhesive.',
+            descTa: 'ஒவ்வொரு பல்லின் மையப் பகுதியிலும் பிரத்யேக ஒட்டுப்பொருள் கொண்டு பிராக்கெட்டுகள் துல்லியமாக ஒட்டப்படுகின்றன.',
+          },
+          {
+            num: 3,
+            titleEn: 'Shape-Memory Archwire Threading',
+            titleTa: 'நிக்கல்-டைட்டானியம் கம்பி அமைத்தல்',
+            descEn: 'A flexible nickel-titanium archwire is seated into bracket slots to deliver light, continuous biological alignment forces.',
+            descTa: 'பற்களை சரியான திசையில் நகர்த்துவதற்காக பிராக்கெட்டுகளின் ஊடே நெகிழ்வான கம்பிகள் பொருத்தப்படுகின்றன.',
+          },
+          {
+            num: 4,
+            titleEn: 'Elastic Ligature Securing & Comfort Guidance',
+            titleTa: 'ரப்பர் வளையங்கள் & பராமரிப்பு ஆலோசனைகள்',
+            descEn: 'Colored or clear elastomeric ties lock the wire in place, and soft orthodontic wax is provided to cushion mouth contours.',
+            descTa: 'கம்பியைப் பிடித்து வைக்க ரப்பர் வளையங்கள் இடப்பட்டு, உதடுகள் மற்றும் கன்னங்கள் உறுத்தாமல் இருக்க மெழுகு வழங்கப்படுகிறது.',
+          },
+        ];
+
+      case 'professional-teeth-whitening':
+        return [
+          {
+            num: 1,
+            titleEn: 'Baseline Shade Mapping & Pre-Polish',
+            titleTa: 'தற்போதைய பல் நிற அளவீடு (Shade Guide)',
+            descEn: 'A clinical shade guide records your starting tooth color, followed by a gentle pumice buff to clear superficial film.',
+            descTa: 'பற்களின் தற்போதைய நிறம் பதிவு செய்யப்பட்டு, மேல்புற அழுக்குகள் லேசாக சுத்தம் செய்யப்படுகின்றன.',
+          },
+          {
+            num: 2,
+            titleEn: 'Light-Cured Gingival Barrier Protection',
+            titleTa: 'ஈறுகளுக்கான பாதுகாப்பு அரண் (Gingival Barrier)',
+            descEn: 'A protective resin dam is painted along the gumline and cured solid to shield delicate tissues from whitening gel.',
+            descTa: 'வெளுப்பாக்கும் ஜெல் ஈறுகளில் படாமல் இருக்க, ஈறு வரிசையில் நீல நிற பாதுகாப்பு அரண் பூசி கெட்டியாக்கப்படுகிறது.',
+          },
+          {
+            num: 3,
+            titleEn: 'Active Oxygen Whitening Gel Application',
+            titleTa: 'வெளுப்பாக்கும் ஜெல் இடுதல் & பளபளப்பு',
+            descEn: 'Buffered active oxygen gel is applied across the teeth in controlled 15-minute intervals to dissolve intrinsic chromophore stains.',
+            descTa: 'பற்களின் எனாமலை பாதிக்காமல் உட்புறக் கறைகளை உடைக்கக்கூடிய மருத்துவ ஜெல் தடவப்பட்டு பற்கள் பளபளப்பாக்கப்படுகின்றன.',
           },
         ];
 

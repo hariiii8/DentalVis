@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="wisBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F1F5F9" />
+      <stop offset="50%" stop-color="#E2E8F0" />
+      <stop offset="100%" stop-color="#CBD5E1" />
+    </linearGradient>
+    <linearGradient id="nerveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FACC15" />
+      <stop offset="100%" stop-color="#EAB308" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0D9488" flood-opacity="0.15" />
+    </filter>
+  </defs>
+
+  <rect width="100%" height="100%" fill="url(#wisBg)" rx="24" />
+
+  <!-- Mandibular Bone Contour with Ascending Ramus -->
+  <path d="M 180 260 L 450 260 C 500 260, 540 240, 580 180 L 620 120 L 620 420 L 180 420 Z" 
+        fill="#E2E8F0" stroke="#94A3B8" stroke-width="2.5" />
+
+  <!-- Inferior Alveolar Nerve Canal (Yellow Pathway through Mandible) -->
+  <path d="M 180 375 Q 380 375 580 320" fill="none" stroke="url(#nerveGrad)" stroke-width="8" stroke-linecap="round" />
+  <path d="M 180 375 Q 380 375 580 320" fill="none" stroke="#CA8A04" stroke-width="1" stroke-dasharray="4 4" />
+
+  <g filter="url(#shadow)">
+    <!-- 1. Normal Upright Second Molar (Tooth #47 / #37) -->
+    <path d="M 280 250 
+             C 280 180, 310 170, 335 180 
+             C 345 185, 365 185, 375 180 
+             C 400 170, 430 180, 430 250 
+             C 430 290, 420 330, 410 360 
+             C 400 390, 395 390, 385 360 
+             C 375 330, 365 330, 355 360 
+             C 345 390, 340 390, 330 360 
+             C 320 330, 310 330, 300 360 
+             C 290 330, 280 290, 280 250 Z" 
+          fill="#FFFFFF" stroke="#0D9488" stroke-width="4" stroke-linejoin="round" />
+
+    <!-- 2. Mesioangular Impacted Third Molar (Wisdom Tooth tilted 45° into Second Molar) -->
+    <g transform="translate(480, 270) rotate(-42)">
+      <!-- Impacted Tooth Profile -->
+      <path d="M -40 -30 
+               C -40 -80, -10 -90, 15 -80 
+               C 25 -75, 45 -75, 55 -80 
+               C 80 -90, 110 -80, 110 -30 
+               C 110 20, 100 60, 90 90 
+               C 80 120, 75 120, 65 90 
+               C 55 60, 45 60, 35 90 
+               C 25 120, 20 120, 10 90 
+               C 0 60, -10 60, -20 90 
+               C -30 60, -40 20, -40 -30 Z" 
+            fill="#FEF9C3" stroke="#CA8A04" stroke-width="4" stroke-linejoin="round" />
+
+      <!-- Surgical Sectioning Division Micro-Line (Dotted Precision Cut) -->
+      <line x1="-38" y1="-20" x2="108" y2="-20" stroke="#0D9488" stroke-width="2.5" stroke-dasharray="4 2" />
+    </g>
+
+    <!-- Mucogingival Soft Tissue Margin Flap (Cutaway Guide) -->
+    <path d="M 240 240 Q 360 230 460 245 C 500 240, 530 205, 560 170" fill="none" stroke="#FDA4AF" stroke-width="5" stroke-linecap="round" />
+  </g>
+
+  <!-- Technical Callouts -->
+  <rect x="130" y="140" width="150" height="32" rx="8" fill="#FFFFFF" stroke="#0D9488" stroke-width="1.5" />
+  <text x="205" y="161" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#134E4A" text-anchor="middle">Upright Second Molar</text>
+  <line x1="280" y1="156" x2="330" y2="185" stroke="#0D9488" stroke-width="1.5" />
+
+  <rect x="495" y="90" width="175" height="32" rx="8" fill="#FFFFFF" stroke="#CA8A04" stroke-width="1.5" />
+  <text x="582" y="111" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#854D0E" text-anchor="middle">Mesioangular Impaction</text>
+  <line x1="535" y1="122" x2="495" y2="175" stroke="#CA8A04" stroke-width="1.5" />
+
+  <rect x="500" y="360" width="175" height="32" rx="8" fill="#FFFFFF" stroke="#EAB308" stroke-width="1.5" />
+  <text x="587" y="381" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#A16207" text-anchor="middle">Inferior Alveolar Nerve</text>
+  <line x1="500" y1="376" x2="440" y2="365" stroke="#EAB308" stroke-width="1.5" />
+
+  <!-- Department & Code Pill -->
+  <rect x="235" y="440" width="330" height="36" rx="18" fill="#FFFFFF" stroke="#0D9488" stroke-width="1.5" />
+  <text x="400" y="463" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#145B59" text-anchor="middle">OMFS-WIS-01 • Oral &amp; Maxillofacial Surgery</text>
+</svg>

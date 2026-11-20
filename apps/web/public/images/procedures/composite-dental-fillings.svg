@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="filBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F5FAF9" />
+      <stop offset="50%" stop-color="#E6F7F2" />
+      <stop offset="100%" stop-color="#CCFBF1" />
+    </linearGradient>
+    <linearGradient id="compositeSheen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95" />
+      <stop offset="50%" stop-color="#F8FAFC" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#E2E8F0" stop-opacity="0.85" />
+    </linearGradient>
+    <linearGradient id="curingLight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#0284C7" stop-opacity="0.05" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0D9488" flood-opacity="0.15" />
+    </filter>
+  </defs>
+
+  <rect width="100%" height="100%" fill="url(#filBg)" rx="24" />
+
+  <!-- Background Technical Grid Lines -->
+  <line x1="200" y1="250" x2="600" y2="250" stroke="#0D9488" stroke-width="1.5" stroke-opacity="0.15" stroke-dasharray="8 8" />
+  <line x1="400" y1="80" x2="400" y2="420" stroke="#0D9488" stroke-width="1.5" stroke-opacity="0.15" stroke-dasharray="8 8" />
+
+  <!-- Blue Photopolymerization Curing Light Cone -->
+  <polygon points="360,70 440,70 470,200 330,200" fill="url(#curingLight)" />
+  <path d="M 370 70 L 430 70 L 420 95 L 380 95 Z" fill="#0284C7" stroke="#0369A1" stroke-width="2" />
+  <line x1="400" y1="95" x2="400" y2="170" stroke="#38BDF8" stroke-width="2" stroke-dasharray="4 4" stroke-opacity="0.7" />
+
+  <!-- Tooth Cross-Section with Layered Composite Restoration -->
+  <g filter="url(#shadow)">
+    <!-- Natural Tooth Outer Wall (Enamel & Dentin) -->
+    <path d="M 310 180 
+             C 310 120, 350 110, 380 120 
+             C 390 125, 410 125, 420 120 
+             C 450 110, 490 120, 490 180 
+             C 490 230, 475 270, 465 320 
+             C 450 380, 440 400, 425 400 
+             C 415 400, 410 340, 400 300 
+             C 390 340, 385 400, 375 400 
+             C 360 400, 350 380, 335 320 
+             C 325 270, 310 230, 310 180 Z" 
+          fill="#FFFFFF" stroke="#0D9488" stroke-width="6" stroke-linejoin="round" />
+
+    <!-- Healthy Dentin Core -->
+    <path d="M 330 185 
+             C 330 145, 360 135, 380 145 
+             C 390 150, 410 150, 420 145 
+             C 440 135, 470 145, 470 185 
+             C 470 225, 455 260, 450 300 
+             C 438 350, 432 375, 425 380 
+             C 418 375, 410 325, 400 295 
+             C 390 325, 382 375, 375 380 
+             C 368 375, 362 350, 350 300 
+             C 345 260, 330 225, 330 185 Z" 
+          fill="#FEF9C3" stroke="#CA8A04" stroke-width="2" />
+
+    <!-- Preserved Healthy Vital Pulp -->
+    <path d="M 380 230 C 380 200, 400 190, 420 200 C 420 230, 415 280, 410 350 L 390 350 Z" 
+          fill="#FDA4AF" stroke="#E11D48" stroke-width="1.5" />
+
+    <!-- Prepared Occlusal Cavity with Adhesive Bonding Layer (Teal Micro-Line) -->
+    <path d="M 365 140 C 365 180, 435 180, 435 140 Z" fill="#CCFBF1" stroke="#0D9488" stroke-width="2" stroke-dasharray="3 2" />
+
+    <!-- Layered Tooth-Colored Composite Resin Fill -->
+    <path d="M 367 138 C 367 175, 433 175, 433 138 Q 400 145 367 138 Z" fill="url(#compositeSheen)" stroke="#0D9488" stroke-width="2.5" />
+
+    <!-- Occlusal Anatomical Fissures Sculpted in Composite -->
+    <path d="M 385 142 Q 400 148 415 142" fill="none" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" />
+  </g>
+
+  <!-- Technical Callouts -->
+  <rect x="150" y="140" width="150" height="32" rx="8" fill="#FFFFFF" stroke="#0284C7" stroke-width="1.5" />
+  <text x="225" y="161" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#0369A1" text-anchor="middle">Photopolymer Curing</text>
+  <line x1="300" y1="156" x2="350" y2="156" stroke="#0284C7" stroke-width="1.5" />
+
+  <rect x="495" y="140" width="165" height="32" rx="8" fill="#FFFFFF" stroke="#0D9488" stroke-width="1.5" />
+  <text x="577" y="161" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#134E4A" text-anchor="middle">Layered Composite Resin</text>
+  <line x1="495" y1="156" x2="435" y2="156" stroke="#0D9488" stroke-width="1.5" />
+
+  <!-- Department & Code Pill -->
+  <rect x="250" y="440" width="300" height="36" rx="18" fill="#FFFFFF" stroke="#0D9488" stroke-width="1.5" />
+  <text x="400" y="463" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#145B59" text-anchor="middle">REST-FIL-01 • Restorative Dentistry</text>
+</svg>
