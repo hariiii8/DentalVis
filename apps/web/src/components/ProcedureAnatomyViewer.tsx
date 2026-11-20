@@ -205,12 +205,14 @@ export function ProcedureAnatomyViewer({
             <Layers className="w-3.5 h-3.5 text-[#20B2AA]" />
             <span>
               {isTamil
-                ? 'உயர் தெளிவு மருத்துவ விளக்கப்படம்'
-                : 'High-Fidelity Medical Cross-Section'}
+                ? 'கல்விக்கான உடற்கூறியல் விளக்கப்படம்'
+                : 'Educational Anatomical Illustration'}
             </span>
           </Badge>
           <Badge variant="outline" className="text-[11px] font-mono text-[#587477] bg-[#F5FAF9]/80">
-            {isTamil ? 'மருத்துவ ஆய்வு நிலுவையில் உள்ளது' : 'Clinical Draft Review'}
+            {isTamil
+              ? 'மருத்துவ பரிசோதனைக்கு உட்படாதது · பயிற்சிக் குறிப்பு மட்டுமே'
+              : 'Not Clinically Reviewed · Educational Reference Only'}
           </Badge>
         </div>
       </div>
@@ -306,14 +308,14 @@ export function ProcedureAnatomyViewer({
           ))}
         </div>
 
-        {/* Status Chip (Honest statement about 3D vs High-Res 2D Cross Section) */}
+        {/* Status Chip (Honest statement: 2D Educational Diagram) */}
         <div className="absolute bottom-3 left-3 z-20">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl liquid-glass-lens text-[11px] font-bold text-[#145B59] shadow-xs">
             <Sparkles className="w-3.5 h-3.5 text-[#20B2AA]" />
             <span>
               {isTamil
-                ? 'துல்லிய மருத்துவ உடற்கூறியல் ஆய்வு'
-                : 'Medical Anatomical Cross-Section'}
+                ? '2D கல்வி விளக்க வரைபடம்'
+                : '2D Educational Diagram'}
             </span>
           </span>
         </div>
@@ -358,8 +360,8 @@ export function ProcedureAnatomyViewer({
         <ShieldCheck className="w-4 h-4 text-[#20B2AA] shrink-0 mt-0.5" />
         <p className="leading-relaxed">
           {isTamil
-            ? 'உடற்கூறியல் விளக்கக் குறிப்பு: இப்பக்கத்தில் உள்ள வரைபடங்கள் நோயாளிகளின் புரிதலுக்கான வரைவு நிலையிலுள்ள கல்வி மாதிரிகளாகும் (Draft). இது தனிநபர் மருத்துவ சிகிச்சைக்கு மாற்றாகாது.'
-            : 'Anatomical Guidance Notice: These cross-sectional visualizations represent educational clinical drafts designed to support patient understanding. Interactive WebGL three-dimensional mesh models remain subject to institutional medical review.'}
+            ? 'இது பொதுவான புரிதலை ஆதரிப்பதற்காக உருவாக்கப்பட்ட எளிமைப்படுத்தப்பட்ட 2D கல்வி விளக்கப்படமாகும். இது முறையான மருத்துவ அல்லது நிறுவன ஆய்வுக்கு உட்படவில்லை, மேலும் இது நோயறிதல் படமும் அல்ல. தனிப்பட்ட மருத்துவ ஆலோசனைக்கு தகுதியான பல் மருத்துவ நிபுணரை அணுகவும்.'
+            : 'This is a simplified 2D educational illustration intended to support general understanding. It has not undergone formal clinical or institutional review and is not a diagnostic image. Consult a qualified dental professional for individual clinical advice.'}
         </p>
       </div>
     </LiquidGlassSurface>

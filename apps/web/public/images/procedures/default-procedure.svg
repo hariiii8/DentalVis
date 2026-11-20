@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="placeholderBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F5FAF9" />
+      <stop offset="50%" stop-color="#E6F7F2" />
+      <stop offset="100%" stop-color="#DCEFF5" />
+    </linearGradient>
+    <filter id="placeholderShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0D9488" flood-opacity="0.12" />
+    </filter>
+  </defs>
+
+  <rect width="100%" height="100%" fill="url(#placeholderBg)" rx="24" />
+
+  <!-- Background Technical Grid Lines -->
+  <line x1="200" y1="250" x2="600" y2="250" stroke="#0D9488" stroke-width="1.5" stroke-opacity="0.15" stroke-dasharray="8 8" />
+  <line x1="400" y1="80" x2="400" y2="420" stroke="#0D9488" stroke-width="1.5" stroke-opacity="0.15" stroke-dasharray="8 8" />
+
+  <!-- Neutral Dental Anatomy Schematic (Generalized Tooth Outline) -->
+  <g filter="url(#placeholderShadow)">
+    <!-- Enamel & Dentin Outer Wall -->
+    <path d="M 320 180 
+             C 320 120, 355 110, 385 120 
+             C 395 125, 405 125, 415 120 
+             C 445 110, 480 120, 480 180 
+             C 480 230, 465 270, 455 320 
+             C 445 370, 435 390, 420 390 
+             C 410 390, 405 340, 400 300 
+             C 395 340, 390 390, 380 390 
+             C 365 390, 355 370, 345 320 
+             C 335 270, 320 230, 320 180 Z" 
+          fill="#FFFFFF" stroke="#0D9488" stroke-width="5" stroke-linejoin="round" />
+
+    <!-- Inner Core Schematic Wall -->
+    <path d="M 340 185 
+             C 340 145, 365 135, 385 145 
+             C 395 150, 405 150, 415 145 
+             C 435 135, 460 145, 460 185 
+             C 460 225, 448 260, 440 300 
+             C 432 340, 425 365, 420 370 
+             C 415 365, 408 325, 400 295 
+             C 392 325, 385 365, 380 370 
+             C 375 365, 368 340, 360 300 
+             C 352 260, 340 225, 340 185 Z" 
+          fill="#E6F7F2" stroke="#20B2AA" stroke-width="2" stroke-dasharray="4 2" />
+
+    <!-- Center Cross Emblem -->
+    <circle cx="400" cy="220" r="16" fill="#20B2AA" fill-opacity="0.15" stroke="#20B2AA" stroke-width="2" />
+    <path d="M 400 212 L 400 228 M 392 220 L 408 220" stroke="#0D9488" stroke-width="2.5" stroke-linecap="round" />
+  </g>
+
+  <!-- Technical Callout Pill -->
+  <rect x="250" y="440" width="300" height="36" rx="18" fill="#FFFFFF" stroke="#0D9488" stroke-width="1.5" />
+  <text x="400" y="463" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#145B59" text-anchor="middle">DentalVis • Educational Dental Reference</text>
+</svg>

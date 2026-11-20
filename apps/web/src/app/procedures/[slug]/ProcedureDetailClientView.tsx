@@ -26,7 +26,15 @@ export default function ProcedureDetailClientView({
   const secondaryTitle = isTamil ? procedure.titleEn : procedure.titleTa;
   const summary = isTamil ? procedure.summaryTa : procedure.summaryEn;
   const overviewHtml = isTamil ? procedure.overviewHtmlTa : procedure.overviewHtmlEn;
-  const coverImageSrc = `/images/procedures/${procedure.slug}.svg`;
+  const KNOWN_PROCEDURE_IMAGES = new Set([
+    'root-canal-treatment',
+    'dental-crowns',
+    'deep-cleaning-scaling',
+    'single-dental-implant',
+  ]);
+  const coverImageSrc = KNOWN_PROCEDURE_IMAGES.has(procedure.slug)
+    ? `/images/procedures/${procedure.slug}.svg`
+    : '/images/procedures/default-procedure.svg';
 
   // Curated clinical step breakdowns per procedure
   const getSteps = () => {
@@ -256,7 +264,9 @@ export default function ProcedureDetailClientView({
                     {procedure.code}
                   </Badge>
                   <Badge variant="alert" className="text-xs font-semibold">
-                    {isTamil ? 'மருத்துவ ஆய்வு நிலுவையில் உள்ளது (வரைவு)' : 'Clinical Review Pending (Draft)'}
+                    {isTamil
+                      ? 'மருத்துவ பரிசோதனைக்கு உட்படாதது · பயிற்சிக் குறிப்பு மட்டுமே'
+                      : 'Not Clinically Reviewed · Educational Reference Only'}
                   </Badge>
                 </div>
 
