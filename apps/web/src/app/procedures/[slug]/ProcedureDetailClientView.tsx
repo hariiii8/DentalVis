@@ -9,6 +9,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import { YouTubeClickToLoadPlayer } from '@/components/YouTubeClickToLoadPlayer';
 import { ProcedureCard } from '@/components/ProcedureCard';
 import { ProcedureAnatomyViewer } from '@/components/ProcedureAnatomyViewer';
+import { ProcedureAnatomy3D } from '@/components/3d';
 
 interface ProcedureDetailClientViewProps {
   procedure: ProcedureDetail;
@@ -501,11 +502,15 @@ export default function ProcedureDetailClientView({
 
         {/* 2. DEDICATED ANATOMY VISUALIZATION SECTION (HIGH PRIORITY) */}
         <section className="mb-16">
-          <ProcedureAnatomyViewer
-            procedureSlug={procedure.slug}
-            imageSrc={coverImageSrc}
-            lang={language}
-          />
+          {procedure.slug === 'root-canal-treatment' ? (
+            <ProcedureAnatomy3D procedureSlug={procedure.slug} />
+          ) : (
+            <ProcedureAnatomyViewer
+              procedureSlug={procedure.slug}
+              imageSrc={coverImageSrc}
+              lang={language}
+            />
+          )}
         </section>
 
         {/* 2. SUPPORTING SECTIONS BELOW THE HERO IN LIQUID GLASS */}

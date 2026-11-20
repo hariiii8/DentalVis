@@ -1,0 +1,226 @@
+// apps/web/src/components/3d/procedure3DRegistry.ts
+// DentalVis — Canonical 3D Procedure Configuration Registry
+
+import { Procedure3DConfig } from './types';
+
+export const ROOT_CANAL_TREATMENT_3D_CONFIG: Procedure3DConfig = {
+  procedureSlug: 'root-canal-treatment',
+  modelAssetPath: null, // Distinctly null until genuine GLB model asset is authored in Phase 3.3
+  isModelReady: false,
+  clinicalReviewStatus: 'EDUCATIONAL_DRAFT',
+  provenance: {
+    author: 'DentalVis Anatomy Architecture Team',
+    license: 'Proprietary / Educational Use Only',
+    sourceUrl: 'https://dentalvis.org/anatomy/root-canal-treatment',
+  },
+  defaultCameraPosition: [0, 1.2, 4.5],
+  defaultCameraTarget: [0, 0, 0],
+  cameraPresets: [
+    {
+      id: 'front',
+      labelEn: 'Buccal Profile',
+      labelTa: 'முன்பக்க தோற்றம்',
+      position: [0, 0.5, 4.2],
+      target: [0, 0, 0],
+    },
+    {
+      id: 'cross-section',
+      labelEn: 'Cross-Section',
+      labelTa: 'குறுக்குவெட்டு தோற்றம்',
+      position: [2.5, 1.2, 3.2],
+      target: [0, 0, 0],
+    },
+    {
+      id: 'occlusal',
+      labelEn: 'Chewing Surface',
+      labelTa: 'மெல்லும் மேற்பரப்பு (Occlusal)',
+      position: [0, 4.5, 0.5],
+      target: [0, 0, 0],
+    },
+    {
+      id: 'apical',
+      labelEn: 'Root Tips (Apical)',
+      labelTa: 'வேர் முனைகள் (Apical)',
+      position: [0, -4.0, 1.5],
+      target: [0, -0.5, 0],
+    },
+    {
+      id: 'exploded',
+      labelEn: 'Exploded Layers',
+      labelTa: 'பிரிக்கப்பட்ட அடுக்குகள்',
+      position: [3.2, 2.0, 3.8],
+      target: [0, 0, 0],
+    },
+  ],
+  layerGroups: [
+    {
+      id: 'enamel',
+      labelEn: 'Outer Enamel',
+      labelTa: 'வெளிப்புற எனாமல்',
+      defaultVisible: true,
+    },
+    {
+      id: 'dentin',
+      labelEn: 'Dentin Core',
+      labelTa: 'டென்டின் உடல்',
+      defaultVisible: true,
+    },
+    {
+      id: 'pulp',
+      labelEn: 'Pulp Chamber & Canals',
+      labelTa: 'நரம்பு அறை & கால்வாய்கள்',
+      defaultVisible: true,
+    },
+    {
+      id: 'bone',
+      labelEn: 'Alveolar Bone Socket',
+      labelTa: 'தாடை எலும்பு குழி',
+      defaultVisible: true,
+    },
+    {
+      id: 'gingiva',
+      labelEn: 'Gingival Cuff (Gums)',
+      labelTa: 'ஈறு திசு (Gums)',
+      defaultVisible: true,
+    },
+  ],
+  structures: [
+    {
+      id: 'enamel-shell',
+      meshName: 'Mesh_Enamel_Outer',
+      labelEn: 'Translucent Enamel Shell',
+      labelTa: 'ஒளிரும் எனாமல் வெளி அடுக்கு',
+      descriptionEn: 'The hardest substance in the human body, protecting underlying sensitive dentin from acid wear and chewing forces.',
+      descriptionTa: 'மனித உடலின் கடினமான பகுதி; அமில அரிப்பு மற்றும் மெல்லும் அழுத்தத்திலிருந்து உட்புற டென்டினை பாதுகாக்கிறது.',
+      layerGroup: 'enamel',
+      defaultVisible: true,
+      colorHint: '#E8F7F6',
+    },
+    {
+      id: 'dentin-body',
+      meshName: 'Mesh_Dentin_Body',
+      labelEn: 'Living Dentin Layer',
+      labelTa: 'உயிருள்ள டென்டின் அடுக்கு',
+      descriptionEn: 'A mineralized layer containing microscopic tubules that transmit hot and cold sensations to the nerve.',
+      descriptionTa: 'சூடான மற்றும் குளிர்ந்த உணர்வுகளை நரம்பிற்கு கடத்தும் நுண்ணிய குழாய்களைக் கொண்ட பகுதி.',
+      layerGroup: 'dentin',
+      defaultVisible: true,
+      colorHint: '#F4E8D1',
+    },
+    {
+      id: 'pulp-chamber',
+      meshName: 'Mesh_Pulp_Chamber',
+      labelEn: 'Coronal Pulp Chamber',
+      labelTa: 'கிரவுன் நரம்பு அறை',
+      descriptionEn: 'The central soft tissue chamber containing blood vessels, connective tissues, and nerves that sustain the growing tooth.',
+      descriptionTa: 'இரத்த நாளங்கள் மற்றும் நரம்புகளைக் கொண்டு பல்லுக்கு ஊட்டமளிக்கும் மைய மென்திசுப் பகுதி.',
+      layerGroup: 'pulp',
+      defaultVisible: true,
+      colorHint: '#E25B68',
+    },
+    {
+      id: 'root-canals',
+      meshName: 'Mesh_Canal_Filaments',
+      labelEn: 'Radicular Root Canals',
+      labelTa: 'வேர் கால்வாய்கள்',
+      descriptionEn: 'Microscopic pathways through which nerves travel toward the root tip and exit into the jawbone.',
+      descriptionTa: 'நரம்புகள் வேர் முனை வழியாக தாடை எலும்புக்குள் செல்லும் நுட்பமான கால்வாய் வழிகள்.',
+      layerGroup: 'pulp',
+      defaultVisible: true,
+      colorHint: '#D94352',
+    },
+    {
+      id: 'alveolar-bone',
+      meshName: 'Mesh_Alveolar_Housing',
+      labelEn: 'Alveolar Bone Socket',
+      labelTa: 'தாடை எலும்பு கூண்டு',
+      descriptionEn: 'Dense trabecular bone housing that anchors the tooth roots securely inside the dental arch.',
+      descriptionTa: 'பற்களின் வேர்களை தாடையோடு உறுதியாக பிணைத்து நிலைநிறுத்தும் எலும்புப் பகுதி.',
+      layerGroup: 'bone',
+      defaultVisible: true,
+      colorHint: '#DCEFF5',
+    },
+    {
+      id: 'gingiva-tissue',
+      meshName: 'Mesh_Gingiva_Tissue',
+      labelEn: 'Attached Gingiva',
+      labelTa: 'இணைக்கப்பட்ட ஈறு திசு',
+      descriptionEn: 'Protective oral mucosal seal preventing oral bacteria from penetrating deep into the jawbone socket.',
+      descriptionTa: 'வாய் பாக்டீரியாக்கள் எலும்புக்குள் ஆழமாக நுழைவதைத் தடுக்கும் பாதுகாப்பு ஈறு அரண்.',
+      layerGroup: 'gingiva',
+      defaultVisible: true,
+      colorHint: '#F8B4B8',
+    },
+  ],
+  hotspots: [
+    {
+      id: 'hotspot-crown',
+      structureId: 'enamel-shell',
+      position: [0, 0.9, 0.4],
+      titleEn: 'Coronal Enamel Surface',
+      titleTa: 'பல் மகுட எனாமல் பகுதி',
+      contentEn: 'Acid from dietary sugars can cause demineralization here, forming early cavities that may progress deeper.',
+      contentTa: 'உணவு சர்க்கரையினால் ஏற்படும் அமில அரிப்பு இங்கு தொடங்கி, நரம்பு வரை ஆழமாக பரவக்கூடும்.',
+    },
+    {
+      id: 'hotspot-pulp',
+      structureId: 'pulp-chamber',
+      position: [0, 0.2, 0.2],
+      titleEn: 'Infected Dental Pulp',
+      titleTa: 'தொற்றுக்குள்ளான பல் நரம்பு',
+      contentEn: 'When decay reaches this soft chamber, acute throbbing pain occurs. RCT gently removes this infected tissue.',
+      contentTa: 'சொத்தை இந்த நரம்பு அறையை அடையும் போது தீவிர வலி உண்டாகிறது. வேர் கால்வாய் சிகிச்சை மூலம் இது அகற்றப்படுகிறது.',
+    },
+    {
+      id: 'hotspot-apex',
+      structureId: 'root-canals',
+      position: [0, -1.2, 0.1],
+      titleEn: 'Apical Foramen (Root Tip)',
+      titleTa: 'வேர் முனைத் துளை (Apex)',
+      contentEn: 'The critical apical exit sealed with biocompatible gutta-percha to prevent future jaw infections.',
+      contentTa: 'எதிர்காலத்தில் தொற்று பரவாமல் தடுக்க பாதுகாப்பான ரப்பர் கலவை கொண்டு சீல் செய்யப்படும் வேர் முனை.',
+    },
+  ],
+  educationalSequences: [
+    {
+      stepNumber: 1,
+      titleEn: 'Healthy Tooth Architecture',
+      titleTa: 'ஆரோக்கியமான பல் கட்டமைப்பு',
+      explanationEn: 'The natural protective layers: hard enamel outer shell, sensitive dentin, and vital internal pulp.',
+      explanationTa: 'இயற்கையான பாதுகாப்பு அடுக்குகள்: வெளிப்புற எனாமல், உணர்திறன் கொண்ட டென்டின் மற்றும் உள்ளிருக்கும் நரம்பு.',
+      cameraPreset: 'cross-section',
+    },
+    {
+      stepNumber: 2,
+      titleEn: 'Bacterial Invasion to Pulp',
+      titleTa: 'நரம்பை அடையும் பாக்டீரியா தொற்று',
+      explanationEn: 'Deep decay penetrates through enamel and dentin into the living pulp chamber, triggering inflammation.',
+      explanationTa: 'ஆழமான சொத்தை எனாமல் மற்றும் டென்டின் வழியே ஊடுருவி நரம்பை அடைந்து வலியை உருவாக்குகிறது.',
+      cameraPreset: 'cross-section',
+    },
+    {
+      stepNumber: 3,
+      titleEn: 'Canal Debridement & Shaping',
+      titleTa: 'கால்வாய்களை சுத்தம் செய்து வடிவமைத்தல்',
+      explanationEn: 'Precision micro-instruments gently clean and disinfect the complex root canal pathways.',
+      explanationTa: 'நுண்ணிய கருவிகள் மூலம் வேர் கால்வாய்கள் மென்மையாக சுத்தம் செய்யப்பட்டு தொற்று நீக்கப்படுகிறது.',
+      cameraPreset: 'apical',
+    },
+    {
+      stepNumber: 4,
+      titleEn: 'Hermetic Apical Sealing',
+      titleTa: 'பாதுகாப்பான வேர் கால்வாய் சீல்',
+      explanationEn: 'Canals are filled and sealed permanently with gutta-percha, protecting the jawbone from bacteria.',
+      explanationTa: 'கால்வாய்கள் நிரந்தரமாக கிருமிநாசினி ரப்பர் கொண்டு மூடப்பட்டு, தாடை எலும்பு பாதுகாக்கப்படுகிறது.',
+      cameraPreset: 'front',
+    },
+  ],
+};
+
+const PROCEDURE_3D_REGISTRY: Record<string, Procedure3DConfig> = {
+  'root-canal-treatment': ROOT_CANAL_TREATMENT_3D_CONFIG,
+};
+
+export function getProcedure3DConfig(slug: string): Procedure3DConfig | null {
+  return PROCEDURE_3D_REGISTRY[slug] || null;
+}
