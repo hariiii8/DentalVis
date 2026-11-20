@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F8FAFC" />
+      <stop offset="50%" stop-color="#F1F5F9" />
+      <stop offset="100%" stop-color="#E2E8F0" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0D9488" flood-opacity="0.15" />
+    </filter>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#bg)" rx="24" />
+  <path d="M 400 130 L 400 70" stroke="#0D9488" stroke-width="4" stroke-linecap="round" />
+  <polyline points="388,85 400,68 412,85" fill="none" stroke="#0D9488" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+  <g filter="url(#shadow)">
+    <!-- Mandibular Bone Contour -->
+    <path d="M 260 280 Q 400 260 540 280 L 540 390 L 260 390 Z" fill="#E2E8F0" stroke="#94A3B8" stroke-width="2.5" />
+    <!-- Elevated Tooth -->
+    <path d="M 370 200 C 365 150, 380 135, 400 135 C 420 135, 435 150, 430 200 C 425 240, 415 280, 405 305 C 400 310, 400 310, 395 305 C 385 280, 375 240, 370 200 Z" fill="#FFFFFF" stroke="#0D9488" stroke-width="4" />
+  </g>
+  <rect x="250" y="440" width="300" height="36" rx="18" fill="#FFFFFF" stroke="#0D9488" stroke-width="1.5" />
+  <text x="400" y="463" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#145B59" text-anchor="middle">OMFS • Oral &amp; Maxillofacial Surgery</text>
+</svg>

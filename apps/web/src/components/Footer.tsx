@@ -102,7 +102,7 @@ export function Footer() {
         </div>
 
         <div className="text-center text-xs text-[#64777C] pt-4 border-t border-[#DCEAEC]">
-          <p>© {new Date().getFullYear()} DentalVis 2.0. Visual dental guides are strictly educational.</p>
+          <p>© {new Date().getFullYear()} DentalVis. Visual dental guides are strictly educational.</p>
         </div>
       </Container>
     </footer>

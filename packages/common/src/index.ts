@@ -29,6 +29,7 @@ export interface ExploreCategory {
 export interface DepartmentDto {
   id: string;
   code: string;
+  slug: string;
   nameEn: string;
   nameTa: string;
   descriptionEn: string;
@@ -46,6 +47,7 @@ export interface ProcedureSummary {
   durationMinutes?: number;
   anesthesiaType?: string;
   primaryDepartmentName: string;
+  primaryDepartmentCode?: string;
   exploreCategorySlugs: string[];
   governanceTier?: GovernanceTier;
   contentStatus: ContentStatus;
@@ -176,6 +178,7 @@ export const CANONICAL_DEPARTMENTS: DepartmentDto[] = [
   {
     id: '22222222-2222-4222-a222-222222222205',
     code: 'PREV',
+    slug: 'preventive-dentistry',
     nameEn: 'Preventive Dental Treatments',
     nameTa: 'தடுப்பு பல் மருத்துவ சிகிச்சை பிரிவு (Preventive)',
     descriptionEn: 'Specialized in dental disease prevention, routine cleanings, fluorides, and sealants.',
@@ -185,6 +188,7 @@ export const CANONICAL_DEPARTMENTS: DepartmentDto[] = [
   {
     id: '22222222-2222-4222-a222-222222222206',
     code: 'REST',
+    slug: 'restorative-dentistry',
     nameEn: 'Restorative Dentistry',
     nameTa: 'பல் மறுசீரமைப்பு சிகிச்சை பிரிவு (Restorative)',
     descriptionEn: 'Specialized in direct tooth restorations, composite fillings, and bonding.',
@@ -194,6 +198,7 @@ export const CANONICAL_DEPARTMENTS: DepartmentDto[] = [
   {
     id: '22222222-2222-4222-a222-222222222201',
     code: 'ENDO',
+    slug: 'endodontics',
     nameEn: 'Endodontics – Root Canal Treatments',
     nameTa: 'வேர் கால்வாய் சிகிச்சை பிரிவு (Endodontics)',
     descriptionEn: 'Specialized in dental pulp biology, root canal therapy, and retreatment.',
@@ -203,6 +208,7 @@ export const CANONICAL_DEPARTMENTS: DepartmentDto[] = [
   {
     id: '22222222-2222-4222-a222-222222222203',
     code: 'PERIO',
+    slug: 'periodontics',
     nameEn: 'Periodontics – Gum Treatments & Surgeries',
     nameTa: 'ஈறு நோய் சிகிச்சை பிரிவு (Periodontics)',
     descriptionEn: 'Specialized in periodontal tissue health, deep scaling, and gum grafting.',
@@ -212,6 +218,7 @@ export const CANONICAL_DEPARTMENTS: DepartmentDto[] = [
   {
     id: '22222222-2222-4222-a222-222222222207',
     code: 'OMFS',
+    slug: 'oral-maxillofacial-surgery',
     nameEn: 'Oral & Maxillofacial Surgery',
     nameTa: 'வாய் மற்றும் தாடை அறுவை சிகிச்சை பிரிவு (Oral Surgery)',
     descriptionEn: 'Specialized in surgical extractions, wisdom teeth removal, and bone grafting.',
@@ -221,6 +228,7 @@ export const CANONICAL_DEPARTMENTS: DepartmentDto[] = [
   {
     id: '22222222-2222-4222-a222-222222222204',
     code: 'IMPL',
+    slug: 'dental-implantology',
     nameEn: 'Dental Implantology',
     nameTa: 'பல் இம்ப்ளான்ட் சிகிச்சை பிரிவு (Implantology)',
     descriptionEn: 'Specialized in biocompatible titanium dental implants and full-arch restorations.',
@@ -230,6 +238,7 @@ export const CANONICAL_DEPARTMENTS: DepartmentDto[] = [
   {
     id: '22222222-2222-4222-a222-222222222202',
     code: 'PROS',
+    slug: 'prosthodontics',
     nameEn: 'Prosthodontics – Crowns, Bridges & Dentures',
     nameTa: 'செயற்கைப் பல் சீரமைப்பு பிரிவு (Prosthodontics)',
     descriptionEn: 'Specialized in restoring damaged and missing teeth with crowns, bridges, and dentures.',
@@ -239,15 +248,17 @@ export const CANONICAL_DEPARTMENTS: DepartmentDto[] = [
   {
     id: '22222222-2222-4222-a222-222222222208',
     code: 'ORTH',
+    slug: 'orthodontics',
     nameEn: 'Orthodontics – Braces & Teeth Alignment',
     nameTa: 'பல் வரிசை சீரமைப்பு பிரிவு (Orthodontics)',
     descriptionEn: 'Specialized in fixed metal/ceramic braces, clear aligners, and bite correction.',
     descriptionTa: 'பல் கிளிப் மற்றும் கிளியர் அலைனர்கள் மூலம் பல் வரிசையை சீரமைக்கும் துறை.'
   },
-  // 9. Pediatric Dentistry – Children\'s Dental Treatments (PEDO)
+  // 9. Pediatric Dentistry – Children\'s Dental Care (PEDO)
   {
     id: '22222222-2222-4222-a222-222222222209',
     code: 'PEDO',
+    slug: 'pediatric-dentistry',
     nameEn: "Pediatric Dentistry – Children's Dental Care",
     nameTa: 'குழந்தைகள் பல் மருத்துவ பிரிவு (Pediatric)',
     descriptionEn: 'Specialized in primary teeth care, pulpotomies, space maintainers, and gentle pediatric care.',
@@ -257,6 +268,7 @@ export const CANONICAL_DEPARTMENTS: DepartmentDto[] = [
   {
     id: '22222222-2222-4222-a222-222222222210',
     code: 'COSM',
+    slug: 'cosmetic-dentistry',
     nameEn: 'Cosmetic Dentistry – Smile Enhancement',
     nameTa: 'புன்னகை அழகு பல் மருத்துவ பிரிவு (Cosmetic)',
     descriptionEn: 'Specialized in aesthetic smile design, professional whitening, and veneers.',
@@ -266,6 +278,7 @@ export const CANONICAL_DEPARTMENTS: DepartmentDto[] = [
   {
     id: '22222222-2222-4222-a222-222222222211',
     code: 'EMRG',
+    slug: 'dental-trauma-emergency',
     nameEn: 'Dental Trauma & Emergency Treatments',
     nameTa: 'அவசர பல் சிகிச்சை & காயம் மேலாண்மை பிரிவு (Emergency)',
     descriptionEn: 'Specialized in urgent management of tooth avulsion, fractures, severe infections, and acute pain.',
@@ -275,6 +288,7 @@ export const CANONICAL_DEPARTMENTS: DepartmentDto[] = [
   {
     id: '22222222-2222-4222-a222-222222222212',
     code: 'SEDA',
+    slug: 'sedation-anesthesia',
     nameEn: 'Sedation & Dental Anesthesia',
     nameTa: 'மயக்க மருந்து & நோயாளி வசதி பிரிவு (Sedation)',
     descriptionEn: 'Specialized in nitrous oxide inhalation, oral sedation, and IV conscious sedation.',
@@ -284,6 +298,7 @@ export const CANONICAL_DEPARTMENTS: DepartmentDto[] = [
   {
     id: '22222222-2222-4222-a222-222222222213',
     code: 'ORAL',
+    slug: 'oral-medicine',
     nameEn: 'Oral Medicine – Therapeutic Treatments',
     nameTa: 'வாய்வழி மருத்துவ சிகிச்சை பிரிவு (Oral Medicine)',
     descriptionEn: 'Specialized in non-surgical oral mucosal lesions, ulcers, dry mouth, and biopsies.',
@@ -293,6 +308,7 @@ export const CANONICAL_DEPARTMENTS: DepartmentDto[] = [
   {
     id: '22222222-2222-4222-a222-222222222214',
     code: 'TMJD',
+    slug: 'tmj-orofacial-pain',
     nameEn: 'TMJ & Orofacial Pain Treatments',
     nameTa: 'தாடை மூட்டு வலி & முக வலி சிகிச்சை பிரிவு (TMJ)',
     descriptionEn: 'Specialized in temporomandibular joint disorders, bruxism splints, and muscle pain relief.',
@@ -302,6 +318,7 @@ export const CANONICAL_DEPARTMENTS: DepartmentDto[] = [
   {
     id: '22222222-2222-4222-a222-222222222215',
     code: 'SLPA',
+    slug: 'sleep-airway-dentistry',
     nameEn: 'Sleep & Airway Dental Treatments',
     nameTa: 'தூக்க சுவாசம் & குறட்டை தடுப்பு பிரிவு (Sleep Dentistry)',
     descriptionEn: 'Specialized in mandibular advancement devices for mild-to-moderate sleep apnea and snoring.',
@@ -328,6 +345,7 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     durationMinutes: 60,
     anesthesiaType: 'Local Anesthesia',
     primaryDepartmentName: 'Endodontics – Root Canal Treatments',
+    primaryDepartmentCode: 'ENDO',
     exploreCategorySlugs: ['pain-and-sensitivity'],
     governanceTier: 'TIER_2',
     contentStatus: 'PUBLISHED',
@@ -352,6 +370,7 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     durationMinutes: 45,
     anesthesiaType: 'Local Anesthesia',
     primaryDepartmentName: 'Prosthodontics – Crowns, Bridges & Dentures',
+    primaryDepartmentCode: 'PROS',
     exploreCategorySlugs: ['broken-or-chipped-teeth'],
     governanceTier: 'TIER_2',
     contentStatus: 'PUBLISHED',
@@ -376,6 +395,7 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     durationMinutes: 45,
     anesthesiaType: 'Topical or Local Numbing',
     primaryDepartmentName: 'Periodontics – Gum Treatments & Surgeries',
+    primaryDepartmentCode: 'PERIO',
     exploreCategorySlugs: ['gums-and-bleeding'],
     governanceTier: 'TIER_2',
     contentStatus: 'PUBLISHED',
@@ -399,6 +419,7 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     durationMinutes: 75,
     anesthesiaType: 'Local Anesthesia with Sedation Options',
     primaryDepartmentName: 'Dental Implantology',
+    primaryDepartmentCode: 'IMPL',
     exploreCategorySlugs: ['missing-teeth'],
     governanceTier: 'TIER_2',
     contentStatus: 'PUBLISHED',
@@ -423,6 +444,7 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     durationMinutes: 30,
     anesthesiaType: 'Localized Numbing as Needed',
     primaryDepartmentName: 'Restorative Dentistry',
+    primaryDepartmentCode: 'REST',
     exploreCategorySlugs: ['pain-and-sensitivity', 'broken-or-chipped-teeth'],
     governanceTier: 'TIER_2',
     contentStatus: 'DRAFT',
@@ -446,6 +468,7 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     durationMinutes: 35,
     anesthesiaType: 'Non-Invasive / Topical Polish',
     primaryDepartmentName: 'Preventive Dental Treatments',
+    primaryDepartmentCode: 'PREV',
     exploreCategorySlugs: ['gums-and-bleeding', 'dental-appearance'],
     governanceTier: 'TIER_1',
     contentStatus: 'DRAFT',
@@ -469,6 +492,7 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     durationMinutes: 40,
     anesthesiaType: 'Profound Local Anesthesia',
     primaryDepartmentName: 'Oral & Maxillofacial Surgery',
+    primaryDepartmentCode: 'OMFS',
     exploreCategorySlugs: ['missing-teeth'],
     governanceTier: 'TIER_2',
     contentStatus: 'DRAFT',
@@ -492,6 +516,7 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     durationMinutes: 50,
     anesthesiaType: 'Profound Local Numbing with Sedation Options',
     primaryDepartmentName: 'Oral & Maxillofacial Surgery',
+    primaryDepartmentCode: 'OMFS',
     exploreCategorySlugs: ['tooth-alignment'],
     governanceTier: 'TIER_2',
     contentStatus: 'DRAFT',
@@ -515,6 +540,7 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     durationMinutes: 60,
     anesthesiaType: 'Non-Invasive / Painless Placement',
     primaryDepartmentName: 'Orthodontics – Braces & Teeth Alignment',
+    primaryDepartmentCode: 'ORTH',
     exploreCategorySlugs: ['tooth-alignment'],
     governanceTier: 'TIER_2',
     contentStatus: 'DRAFT',
@@ -538,6 +564,7 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     durationMinutes: 45,
     anesthesiaType: 'Gingival Barrier Protection / Non-Invasive',
     primaryDepartmentName: 'Cosmetic Dentistry – Smile Enhancement',
+    primaryDepartmentCode: 'COSM',
     exploreCategorySlugs: ['dental-appearance'],
     governanceTier: 'TIER_1',
     contentStatus: 'DRAFT',
@@ -617,4 +644,36 @@ export function getVisibleProcedureBySlug(
   }
   return isProcedureVisibleInEnvironment(proc, env) ? proc : undefined;
 }
+
+/**
+ * Returns canonical department by slug or code.
+ */
+export function getDepartmentBySlugOrCode(slugOrCode: string): DepartmentDto | undefined {
+  return CANONICAL_DEPARTMENTS.find(
+    (dept) => dept.slug === slugOrCode || dept.code.toLowerCase() === slugOrCode.toLowerCase()
+  );
+}
+
+/**
+ * Returns visible procedures belonging to a department by its code or slug.
+ */
+export function getVisibleProceduresByDepartment(
+  deptSlugOrCode: string,
+  env: { nodeEnv?: string; previewMode?: string } = {}
+): ProcedureDetail[] {
+  const dept = getDepartmentBySlugOrCode(deptSlugOrCode);
+  if (!dept) {
+    return [];
+  }
+  return getVisibleProcedures(env).filter((proc) => {
+    if (proc.primaryDepartmentCode) {
+      return proc.primaryDepartmentCode === dept.code;
+    }
+    return (
+      proc.primaryDepartmentName.toLowerCase().includes(`(${dept.code.toLowerCase()})`) ||
+      proc.primaryDepartmentName.toLowerCase() === dept.nameEn.toLowerCase()
+    );
+  });
+}
+
 

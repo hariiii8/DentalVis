@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F0FDF4" />
+      <stop offset="50%" stop-color="#E6F7F2" />
+      <stop offset="100%" stop-color="#CCFBF1" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0D9488" flood-opacity="0.15" />
+    </filter>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#bg)" rx="24" />
+  <circle cx="400" cy="250" r="150" fill="none" stroke="#F43F5E" stroke-width="2" stroke-opacity="0.2" stroke-dasharray="6 6" />
+  <g filter="url(#shadow)">
+    <!-- Tooth Outer Wall -->
+    <path d="M 330 180 C 330 120, 360 110, 380 120 C 390 125, 410 125, 420 120 C 440 110, 470 120, 470 180 C 470 230, 455 270, 445 320 C 435 370, 430 390, 420 390 C 410 390, 405 340, 400 300 C 395 340, 390 390, 380 390 C 370 390, 365 370, 355 320 C 345 270, 330 230, 330 180 Z" fill="#FFFFFF" stroke="#0D9488" stroke-width="5" />
+    <!-- Sealed Canals (Pink/Coral) -->
+    <path d="M 380 190 C 380 175, 420 175, 420 190 C 420 220, 415 250, 410 290 L 408 360 L 402 360 L 400 290 L 398 360 L 392 360 L 390 290 C 385 250, 380 220, 380 190 Z" fill="#FB7185" stroke="#E11D48" stroke-width="2" />
+  </g>
+  <rect x="250" y="440" width="300" height="36" rx="18" fill="#FFFFFF" stroke="#0D9488" stroke-width="1.5" />
+  <text x="400" y="463" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#145B59" text-anchor="middle">ENDO • Endodontics</text>
+</svg>

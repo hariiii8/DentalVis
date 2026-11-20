@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F5FAF9" />
+      <stop offset="50%" stop-color="#E6F7F2" />
+      <stop offset="100%" stop-color="#DCEFF5" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0D9488" flood-opacity="0.15" />
+    </filter>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#bg)" rx="24" />
+  <circle cx="400" cy="240" r="140" fill="none" stroke="#0D9488" stroke-width="2" stroke-opacity="0.2" stroke-dasharray="6 6" />
+  <g filter="url(#shadow)">
+    <!-- Natural Tooth Profile -->
+    <path d="M 330 190 C 330 130, 360 120, 380 130 C 390 135, 410 135, 420 130 C 440 120, 470 130, 470 190 C 470 240, 460 270, 450 320 C 440 370, 435 390, 425 390 C 415 390, 410 340, 400 300 C 390 340, 385 390, 375 390 C 365 390, 360 370, 350 320 C 340 270, 330 240, 330 190 Z" fill="#FFFFFF" stroke="#0D9488" stroke-width="5" />
+    <!-- Sculpted Filling Restoration -->
+    <path d="M 370 145 C 370 185, 430 185, 430 145 Z" fill="#CCFBF1" stroke="#20B2AA" stroke-width="2.5" />
+    <circle cx="400" cy="160" r="5" fill="#0D9488" />
+  </g>
+  <rect x="250" y="440" width="300" height="36" rx="18" fill="#FFFFFF" stroke="#0D9488" stroke-width="1.5" />
+  <text x="400" y="463" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#145B59" text-anchor="middle">REST • Restorative Dentistry</text>
+</svg>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F5FAF9" />
+      <stop offset="50%" stop-color="#E6F7F2" />
+      <stop offset="100%" stop-color="#CCFBF1" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0D9488" flood-opacity="0.15" />
+    </filter>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#bg)" rx="24" />
+  <circle cx="400" cy="240" r="140" fill="none" stroke="#20B2AA" stroke-width="2" stroke-opacity="0.25" stroke-dasharray="6 6" />
+  <g filter="url(#shadow)">
+    <!-- Cellular Micro-Vessel Diagnostic Cross Section -->
+    <circle cx="400" cy="230" r="75" fill="#FFFFFF" stroke="#0D9488" stroke-width="4" />
+    <circle cx="400" cy="230" r="60" fill="#E6F7F2" stroke="#20B2AA" stroke-width="2" stroke-dasharray="4 2" />
+    <!-- Therapeutic Caduceus / Healing Leaf -->
+    <path d="M 390 190 Q 430 220 395 260 Q 370 230 390 190 Z" fill="#20B2AA" />
+    <circle cx="415" cy="215" r="5" fill="#145B59" />
+  </g>
+  <rect x="250" y="440" width="300" height="36" rx="18" fill="#FFFFFF" stroke="#0D9488" stroke-width="1.5" />
+  <text x="400" y="463" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#145B59" text-anchor="middle">ORAL • Oral Medicine &amp; Therapeutics</text>
+</svg>

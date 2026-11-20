@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDF4FF" />
+      <stop offset="50%" stop-color="#E6F7F2" />
+      <stop offset="100%" stop-color="#CCFBF1" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0D9488" flood-opacity="0.15" />
+    </filter>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#bg)" rx="24" />
+  <!-- Sparkling Star Rays -->
+  <path d="M 400 100 L 404 115 L 420 120 L 404 125 L 400 140 L 396 125 L 380 120 L 396 115 Z" fill="#20B2AA" />
+  <path d="M 270 170 L 273 180 L 285 183 L 273 186 L 270 196 L 267 186 L 255 183 L 267 180 Z" fill="#20B2AA" />
+  <g filter="url(#shadow)">
+    <!-- Harmonious Smile Contour with Central Incisors -->
+    <path d="M 330 180 C 330 130, 350 120, 385 120 C 400 120, 415 130, 415 180 L 415 310 L 330 310 Z" fill="#FFFFFF" stroke="#0D9488" stroke-width="4" />
+    <path d="M 425 180 C 425 130, 445 120, 480 120 C 495 120, 510 130, 510 180 L 510 310 L 425 310 Z" fill="#FFFFFF" stroke="#0D9488" stroke-width="4" />
+    <!-- Radiant Aesthetic Smile Curve -->
+    <path d="M 260 280 Q 420 370 580 280" fill="none" stroke="#20B2AA" stroke-width="4" stroke-linecap="round" />
+  </g>
+  <rect x="250" y="440" width="300" height="36" rx="18" fill="#FFFFFF" stroke="#0D9488" stroke-width="1.5" />
+  <text x="400" y="463" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#145B59" text-anchor="middle">COSM • Cosmetic Dentistry</text>
+</svg>

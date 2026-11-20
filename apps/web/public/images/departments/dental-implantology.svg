@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F0FDFA" />
+      <stop offset="50%" stop-color="#E6F7F2" />
+      <stop offset="100%" stop-color="#CCFBF1" />
+    </linearGradient>
+    <linearGradient id="ti" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#475569" />
+      <stop offset="50%" stop-color="#94A3B8" />
+      <stop offset="100%" stop-color="#334155" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0D9488" flood-opacity="0.15" />
+    </filter>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#bg)" rx="24" />
+  <g filter="url(#shadow)">
+    <!-- Jawbone -->
+    <path d="M 260 280 Q 400 260 540 280 L 540 400 L 260 400 Z" fill="#E2E8F0" stroke="#94A3B8" stroke-width="2" />
+    <!-- Ceramic Crown -->
+    <path d="M 360 200 C 360 140, 375 125, 400 130 C 425 125, 440 140, 440 200 L 440 220 L 360 220 Z" fill="#FFFFFF" stroke="#0D9488" stroke-width="4" />
+    <!-- Titanium Abutment -->
+    <polygon points="375,220 425,220 415,250 385,250" fill="url(#ti)" stroke="#1E293B" stroke-width="2" />
+    <!-- Threaded Root -->
+    <path d="M 385 250 L 415 250 L 410 360 L 400 375 L 390 360 Z" fill="url(#ti)" stroke="#1E293B" stroke-width="2" />
+  </g>
+  <rect x="250" y="440" width="300" height="36" rx="18" fill="#FFFFFF" stroke="#0D9488" stroke-width="1.5" />
+  <text x="400" y="463" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#145B59" text-anchor="middle">IMPL • Dental Implantology</text>
+</svg>

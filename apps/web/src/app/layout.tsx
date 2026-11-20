@@ -5,7 +5,7 @@ import { Footer } from '@/components/Footer';
 import { LanguageProvider } from '@/context/LanguageContext';
 
 export const metadata: Metadata = {
-  title: 'DentalVis 2.0 — Visual Dental Education Platform',
+  title: 'DentalVis — Visual Dental Education Platform',
   description: 'Understand dental treatments, conditions, and oral anatomy clearly through interactive visual guides in English and Tamil.',
 };
 
