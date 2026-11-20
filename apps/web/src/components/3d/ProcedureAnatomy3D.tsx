@@ -49,7 +49,7 @@ export function ProcedureAnatomy3D({ procedureSlug, imageSrc }: ProcedureAnatomy
 
   const webgl = useWebGLSupport();
   const config: Procedure3DConfig | null = getProcedure3DConfig(procedureSlug);
-  const state = useAnatomyViewerState(config || ({} as Procedure3DConfig));
+  const state = useAnatomyViewerState(config);
 
   const [viewMode, setViewMode] = useState<'3d' | '2d'>('3d');
   const [runtimeError, setRuntimeError] = useState<string | null>(null);

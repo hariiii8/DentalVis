@@ -26,15 +26,17 @@ export interface AnatomyViewerState {
   resetAll: () => void;
 }
 
-export function useAnatomyViewerState(config: Procedure3DConfig): AnatomyViewerState {
+export function useAnatomyViewerState(config: Procedure3DConfig | null): AnatomyViewerState {
   // Initial layer visibility dictionary
   const initialLayers = useMemo(() => {
     const layers: Record<string, boolean> = {};
-    for (const group of config.layerGroups) {
-      layers[group.id] = group.defaultVisible;
+    if (config?.layerGroups) {
+      for (const group of config.layerGroups) {
+        layers[group.id] = group.defaultVisible;
+      }
     }
     return layers;
-  }, [config.layerGroups]);
+  }, [config?.layerGroups]);
 
   const [activeCameraPreset, setActiveCameraPreset] = useState<CameraPresetType>('front');
   const [visibleLayers, setVisibleLayers] = useState<Record<string, boolean>>(initialLayers);
@@ -68,13 +70,13 @@ export function useAnatomyViewerState(config: Procedure3DConfig): AnatomyViewerS
 
   const selectHotspot = useCallback((hotspotId: string | null) => {
     setActiveHotspotId(hotspotId);
-    if (hotspotId) {
+    if (hotspotId && config?.hotspots) {
       const hp = config.hotspots.find((h) => h.id === hotspotId);
       if (hp) {
         setSelectedStructureId(hp.structureId);
       }
     }
-  }, [config.hotspots]);
+  }, [config?.hotspots]);
 
   const toggleAutoRotate = useCallback(() => {
     setIsAutoRotating((prev) => !prev);
@@ -82,7 +84,7 @@ export function useAnatomyViewerState(config: Procedure3DConfig): AnatomyViewerS
 
   const setSequenceStep = useCallback((step: number | null) => {
     setActiveSequenceStep(step);
-    if (step !== null) {
+    if (step !== null && config?.educationalSequences) {
       const seq = config.educationalSequences.find((s) => s.stepNumber === step);
       if (seq?.cameraPreset) {
         setActiveCameraPreset(seq.cameraPreset);
@@ -97,7 +99,7 @@ export function useAnatomyViewerState(config: Procedure3DConfig): AnatomyViewerS
         });
       }
     }
-  }, [config.educationalSequences]);
+  }, [config?.educationalSequences]);
 
   const resetAll = useCallback(() => {
     setActiveCameraPreset('front');

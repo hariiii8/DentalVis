@@ -6,6 +6,8 @@ import { Procedure3DConfig } from './types';
 export const ROOT_CANAL_TREATMENT_3D_CONFIG: Procedure3DConfig = {
   procedureSlug: 'root-canal-treatment',
   modelAssetPath: null, // Distinctly null until genuine GLB model asset is authored in Phase 3.3
+  modelFamily: 'POSTERIOR_MOLAR',
+  modelState: 'IN_DEVELOPMENT',
   isModelReady: false,
   clinicalReviewStatus: 'EDUCATIONAL_DRAFT',
   provenance: {

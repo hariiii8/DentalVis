@@ -51,9 +51,29 @@ export interface EducationalSequenceStep {
   cameraPreset?: CameraPresetType;
 }
 
+export type ModelLifecycleState = 
+  | 'AVAILABLE_AND_FUNCTIONAL'
+  | 'IN_DEVELOPMENT'
+  | 'AWAITING_CLINICAL_REVIEW'
+  | 'TECHNICAL_FAILURE';
+
+export type AnatomicalModelFamily =
+  | 'POSTERIOR_MOLAR'
+  | 'ANTERIOR_INCISOR'
+  | 'IMPLANT_BONE_SOCKET'
+  | 'PERIODONTAL_QUADRANT'
+  | 'FULL_DENTAL_ARCH'
+  | 'SURGICAL_WISDOM_MANDIBULAR_NERVE'
+  | 'PEDIATRIC_PRIMARY_DENTITION'
+  | 'ORAL_MUCOSA_PATHOLOGY'
+  | 'TMJ_OROFACIAL_CRANIOFACIAL'
+  | 'AIRWAY_SYSTEMIC_SPECIALIZED';
+
 export interface Procedure3DConfig {
   procedureSlug: string;
   modelAssetPath: string | null; // null if asset not yet authored/available
+  modelFamily: AnatomicalModelFamily;
+  modelState: ModelLifecycleState;
   isModelReady: boolean;
   clinicalReviewStatus: 'NOT_REVIEWED' | 'EDUCATIONAL_DRAFT' | 'CLINICALLY_REVIEWED';
   provenance: {
