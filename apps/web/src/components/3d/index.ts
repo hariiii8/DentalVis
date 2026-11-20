@@ -7,5 +7,5 @@ export { AnatomyControlsOverlay } from './AnatomyControlsOverlay';
 export { AnatomyHotspots } from './AnatomyHotspots';
 export { CameraManager } from './CameraManager';
 export { SceneEnvironment } from './SceneEnvironment';
-export { getProcedure3DConfig, ROOT_CANAL_TREATMENT_3D_CONFIG } from './procedure3DRegistry';
+export { getProcedure3DConfig, getAllCanonical3DConfigs, CANONICAL_56_3D_CONFIGS } from './procedure3DRegistry';
 export * from './types';

@@ -8,6 +8,7 @@ import { Canvas } from '@react-three/fiber';
 import { SceneEnvironment } from './SceneEnvironment';
 import { CameraManager } from './CameraManager';
 import { AnatomyHotspots } from './AnatomyHotspots';
+import { ModelHost } from './ModelHost';
 import { Procedure3DConfig } from './types';
 import { AnatomyViewerState } from './hooks/useAnatomyViewerState';
 
@@ -67,10 +68,14 @@ export function ProcedureAnatomyCanvas({
           lang={lang}
         />
 
-        {/* Future Model Host Slot:
-            In Phase 3.3, genuine GLB anatomical models load inside this group.
-            When modelAssetPath is present, useGLTF / ModelHost is mounted here.
-        */}
+        {/* Model Host Slot: Mounts genuine GLB model when assetPath is ready */}
+        {config.modelAssetPath && config.isModelReady && (
+          <ModelHost
+            modelAssetPath={config.modelAssetPath}
+            config={config}
+            state={state}
+          />
+        )}
       </Suspense>
     </Canvas>
   );
