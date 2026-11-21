@@ -63,6 +63,16 @@ const SECONDARY_DEPARTMENT_CODES: Record<string, string[]> = {
   'pediatric-pulpotomy': ['ENDO'],
   'pediatric-stainless-steel-crowns': ['REST'],
   'pediatric-space-maintainers': ['ORTH'],
+  // Batch 5 procedures
+  'porcelain-veneers': ['PROS'],
+  'gingival-recontouring': ['PERIO'],
+  'knocked-out-tooth-avulsion': ['ENDO', 'PEDO'],
+  'emergency-broken-tooth-repair': ['REST', 'ENDO'],
+  'recement-dislodged-crown-bridge': ['PROS'],
+  'nitrous-oxide-inhalation-sedation': ['PEDO'],
+  'oral-sedation': [],
+  'intravenous-dental-sedation': ['OMFS'],
+  'recurrent-aphthous-ulcer-care': [],
 };
 
 // Department code lookup helper
@@ -109,6 +119,16 @@ const PROCEDURE_PRIMARY_DEPT_CODE: Record<string, string> = {
   'pediatric-pulpotomy': 'PEDO',
   'pediatric-stainless-steel-crowns': 'PEDO',
   'pediatric-space-maintainers': 'PEDO',
+  // Batch 5 procedures
+  'porcelain-veneers': 'COSM',
+  'gingival-recontouring': 'COSM',
+  'knocked-out-tooth-avulsion': 'EMRG',
+  'emergency-broken-tooth-repair': 'EMRG',
+  'recement-dislodged-crown-bridge': 'EMRG',
+  'nitrous-oxide-inhalation-sedation': 'SEDA',
+  'oral-sedation': 'SEDA',
+  'intravenous-dental-sedation': 'SEDA',
+  'recurrent-aphthous-ulcer-care': 'ORAL',
 };
 
 async function main() {

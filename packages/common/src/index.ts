@@ -559,17 +559,17 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     code: 'COSM-WHT-01',
     titleEn: 'Professional Teeth Whitening',
     titleTa: 'பல் வெளுப்பாக்குதல் (Professional Teeth Whitening)',
-    summaryEn: 'Clinician-supervised active oxygen gel treatment that gently dissolves deep intrinsic enamel stains without stripping natural tooth minerals.',
-    summaryTa: 'பற்களின் எனாமலுக்கு பாதிப்பின்றி உட்புறக் கறைகளை நீக்கி பற்களை வெண்மையாக்கும் நவீன சிகிச்சை.',
-    durationMinutes: 45,
+    summaryEn: 'Clinician-supervised oxidative bleaching treatment that lightens intrinsic and extrinsic enamel chromogens while safeguarding gingival tissues.',
+    summaryTa: 'மருத்துவ மேற்பார்வையில் ஈறுகளைப் பாதுகாத்து எனாமல் கறைகளை நீக்கி பற்களை வெண்மையாக்கும் நவீன சிகிச்சை.',
+    durationMinutes: 60,
     anesthesiaType: 'Gingival Barrier Protection / Non-Invasive',
     primaryDepartmentName: 'Cosmetic Dentistry – Smile Enhancement',
     primaryDepartmentCode: 'COSM',
     exploreCategorySlugs: ['dental-appearance'],
     governanceTier: 'TIER_1',
     contentStatus: 'DRAFT',
-    overviewHtmlEn: '<p>Professional teeth whitening uses hydrogen or carbamide peroxide formulations buffered to neutral pH. Guided oxygen molecules penetrate microscopic enamel prisms to break apart chromophore stain bonds from tea, coffee, or aging while gingival gums remain shielded.</p>',
-    overviewHtmlTa: '<p>மருத்துவ மேற்பார்வையில் ஈறுகளை பாதுகாப்பான ஜெல் கொண்டு மூடிவிட்டு, பற்களின் எனாமல் அடுக்கில் உள்ள ஆழ்ந்த கறைகளை ஆக்ஸிஜன் மூலக்கூறுகள் மூலம் நீக்கும் பாதுகாப்பான அழகு சிகிச்சை இதுவாகும்.</p>',
+    overviewHtmlEn: '<p>Professional in-office teeth whitening utilizes buffered hydrogen peroxide or carbamide peroxide formulations to oxidize organic chromophores located within enamel and dentinal tubules. Oxygen-free radicals chemically break conjugated double bonds of staining macromolecules into smaller, non-pigmented components. Prior to gel application, soft tissues are protected using light-cured resin gingival barriers or rubber dams to prevent chemical irritation. Potential post-operative pulpal sensitivity and gingival irritation are usually mild, transient, and self-limiting over several days. Whitening does not change the shade of existing resin composites, ceramic veneers, or crowns; restorative shade matching is evaluated following color stabilization.</p>',
+    overviewHtmlTa: '<p>மருத்துவ மேற்பார்வையில் செய்யப்படும் தொழில்முறை பல் வெளுப்பாக்குதல் (In-Office Whitening) எனாமல் மற்றும் டென்டின் அடுக்குகளில் உள்ள ஆழ்ந்த கரிமக் கறைகளை ஆக்ஸிஜனேற்ற முறையில் நீக்குகிறது. ஹைட்ரஜன் பெராக்சைடு அல்லது கார்பமைடு பெராக்சைடு ஜெல் பயன்படுத்தப்படுவதற்கு முன்பு, ஈறுகள் பாதிக்கப்படாமல் இருக்க பிரத்யேக ஒளி-குணப்படுத்தும் ரெசின் தடுப்பு (Gingival Barrier) அல்லது ரப்பர் டேம் கொண்டு முழுமையாகப் பாதுகாக்கப்படுகின்றன. சிகிச்சைக்குப் பின் ஏற்படும் லேசான பல் கூச்சம் தற்காலிகமானது மற்றும் சில நாட்களில் சரியாகும். இந்த சிகிச்சை இயற்கையான பற்களுக்கு மட்டுமே பலனளிக்கும்; முன்பே உள்ள பற்காப்பு மூடிகள் (Crowns) அல்லது காம்போசிட் அடைப்புகளின் நிறத்தை இது மாற்றாது.</p>',
     has3DModel: false,
     interactiveStepsCount: 3
   },
@@ -1266,6 +1266,222 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     contentStatus: 'DRAFT',
     overviewHtmlEn: '<p>Pediatric space maintainers are fixed or removable appliances designed to preserve dental arch perimeter and leeway space following the premature loss of primary molars. Not every premature loss mandates an appliance; clinical decisions depend on the child’s dental development stage, specific tooth lost, radiographic root development of the permanent successor, available arch length, and existing occlusion. When indicated, appliances such as the unilateral band-and-loop, mandibular lingual holding arch, or maxillary Nance appliance passively maintain space to prevent adjacent molars from tipping mesially and blocking successor eruption. Because evidence demonstrates both benefits and clinical limitations, regular follow-up is essential to monitor for plaque accumulation, caries on anchor teeth, soft-tissue impingement, cement failure, and to ensure timely removal as the adult premolar erupts.</p>',
     overviewHtmlTa: '<p>இடைவெளி பாதுகாக்கும் சாதனம் (Pediatric Space Maintainers) என்பது பால் கடவாய்ப் பற்கள் முன்கூட்டியே விழுந்துவிட்டால் நிரந்தரப் பல் முளைப்பதற்கான இடைவெளியைப் பாதுகாக்கப் பயன்படும் சாதனமாகும். பால் பல் விழுந்த எல்லா குழந்தைகளுக்கும் இந்த சாதனம் தேவைப்படுவதில்லை; குழந்தையின் பல் வளர்ச்சி நிலை, அடியில் வளரும் நிரந்தரப் பல்லின் வேர் வளர்ச்சி, மற்றும் தாடையில் உள்ள இடம் ஆகியவற்றைப் பொறுத்தே மருத்துவர் இதைத் தீர்மானிக்கிறார். தேவைப்படும் போது வளையம் மற்றும் கம்பி சாதனம் மூலம் இடைவெளி பராமரிக்கப்படுகிறது. எனினும், பற்களில் கறை சேருதல், சொத்தை வருதல் அல்லது கம்பி உடைதல் போன்ற சிக்கல்களைத் தவிர்க்கவும், புதிய நிரந்தரப் பல் வெளிவரும் போது சரியான நேரத்தில் சாதனத்தை அகற்றவும் தொடர்ச்சியான மருத்துவப் பரிசோதனை அவசியமாகும்.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 3
+  },
+
+  // ------------------------------
+  // 42. Custom Porcelain Veneers (COSM-VEN-01) - Canonical Position #42
+  // ------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333342',
+    slug: 'porcelain-veneers',
+    code: 'COSM-VEN-01',
+    titleEn: 'Custom Porcelain Veneers',
+    titleTa: 'பீங்கான் வெனியர்கள் (Custom Porcelain Veneers)',
+    summaryEn: 'Ultra-thin, custom-fabricated ceramic facings adhesively bonded to anterior teeth to enhance morphology, alignment, and aesthetic shade.',
+    summaryTa: 'பற்களின் வடிவம், சீரமைப்பு மற்றும் நிறத்தை இயற்கையாக மேம்படுத்த முன்பற்களின் மேல் பொருத்தப்படும் மெல்லிய பீங்கான் கவசங்கள்.',
+    durationMinutes: 75,
+    anesthesiaType: 'Local Infiltration (as indicated) / Enamel Conditioning',
+    primaryDepartmentName: 'Cosmetic Dentistry – Smile Enhancement',
+    primaryDepartmentCode: 'COSM',
+    exploreCategorySlugs: ['dental-appearance'],
+    governanceTier: 'TIER_2',
+    contentStatus: 'DRAFT',
+    overviewHtmlEn: '<p>Custom porcelain veneers are delicate, laboratory-fabricated ceramic laminate shells adhesively bonded to the facial surfaces of anterior teeth to correct discoloration, minor malposition, morphological variations, or localized incisal wear. Tooth preparation is individualized based on pre-existing tooth position and desired aesthetic correction; while minimally invasive preparation confined to enamel optimizes bonding reliability, preparation depth is not universal and may involve dentin when addressing significant rotations or severe intrinsic discoloration. Survival outcomes are generally favorable in clinical studies when bonded primarily to enamel, but longevity varies with bonding substrate, ceramic material selection, and occlusal dynamics. Severe bruxism or clenching elevates mechanical risk, necessitating comprehensive occlusal risk assessment and protective nocturnal appliances.</p>',
+    overviewHtmlTa: '<p>பீங்கான் வெனியர்கள் (Porcelain Veneers) என்பது முன்பற்களின் நிறமாற்றம், சிறிய ஒழுங்கின்மை, இடைவெளிகள் அல்லது தேய்மானங்களைச் சரிசெய்ய பற்களின் முன்பகுதியில் பிரத்யேகமாக ஒட்டப்படும் மிக மெல்லிய செராமிக் தகடுகளாகும். பல்லின் எனாமல் அடுக்கில் தேவைக்கேற்ப மிகக்குறைந்த அளவிலான ஆயத்தப் பணி செய்யப்பட்டு, அதிநவீன பிசின் பசை (Resin Cement) மூலம் இவை இணைக்கப்படுகின்றன. பெரும்பாலான ஆய்வுகளில் இவை பல ஆண்டுகள் சிறப்பாக உழைப்பதாகக் குறிப்பிடப்பட்டாலும், பல்லின் எனாமல் தரம், ஒட்டப்படும் முறை மற்றும் மெல்லும் விசை ஆகியவற்றைப் பொறுத்து இவற்றின் ஆயுட்காலம் மாறுபடும். கடுமையான பல் கடிக்கும் அல்லது தேய்க்கும் பழக்கம் (Bruxism) உள்ளவர்களுக்கு வெனியர் உடைவதைத் தடுக்க பாதுகாப்பான இரவுப் பற்காப்பு (Nightguard) பரிந்துரைக்கப்படுகிறது.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 4
+  },
+
+  // ------------------------------
+  // 43. Aesthetic Gingival Recontouring (COSM-GNG-01) - Canonical Position #43
+  // ------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333343',
+    slug: 'gingival-recontouring',
+    code: 'COSM-GNG-01',
+    titleEn: 'Aesthetic Gingival Recontouring',
+    titleTa: 'ஈறு சீரமைப்பு அறுவை சிகிச்சை (Aesthetic Gingival Recontouring)',
+    summaryEn: 'Precise soft-tissue reshaping to harmonize asymmetrical gingival margins, correct altered passive eruption, and refine smile aesthetics.',
+    summaryTa: 'புன்னகையின் அழகை அதிகரிக்க சீரற்ற அல்லது அதிகப்படியான ஈறு திசுக்களை துல்லியமாக மறுவடிவமைக்கும் சிகிச்சை.',
+    durationMinutes: 45,
+    anesthesiaType: 'Local Infiltration / Topical Anesthesia',
+    primaryDepartmentName: 'Cosmetic Dentistry – Smile Enhancement',
+    primaryDepartmentCode: 'COSM',
+    exploreCategorySlugs: ['dental-appearance', 'gum-health'],
+    governanceTier: 'TIER_2',
+    contentStatus: 'DRAFT',
+    overviewHtmlEn: '<p>Aesthetic gingival recontouring (gingivoplasty) is a minimally invasive periodontal surgical procedure designed to reshape excessive, uneven, or asymmetrical gingival margins that obscure clinical crowns. Utilizing surgical scalpels, electrosurgical units, or dental soft-tissue lasers, excess gingiva is delicately sculpted to establish harmonious contours and natural scalloping. Soft-tissue recontouring alone is appropriate only when adequate supracrestal tissue attachment exists coronal to the alveolar crest. Because biological tissue dimensions vary between patients and individual teeth, an arbitrary fixed measurement cannot be assumed; if soft-tissue excision alone impinges upon the supracrestal connective tissue attachment, formal surgical crown lengthening involving osseous resection is required to prevent chronic gingival inflammation or tissue rebound.</p>',
+    overviewHtmlTa: '<p>ஈறு சீரமைப்பு சிகிச்சை (Gingival Recontouring / Gingivoplasty) என்பது பற்களை அதிகமாக மூடியிருக்கும் அல்லது சமச்சீரற்ற முறையில் உள்ள அதிகப்படியான ஈறு திசுக்களைச் சீரமைத்து புன்னகையை அழகாக்கும் செயல்முறையாகும். நவீன லேசர் அல்லது அறுவை சிகிச்சை முறைகள் மூலம் அதிகப்படியான ஈறுகள் மென்மையாக அகற்றப்பட்டு பற்களின் சரியான வடிவம் வெளிக்கொணரப்படுகிறது. இந்த மென்மையான திசு சீரமைப்பு போதுமானதா அல்லது எலும்பைச் சீரமைக்கும் அறுவை சிகிச்சை (Osseous Crown Lengthening) தேவையா என்பதை ஈறுக்கும் தாடை எலும்புக்கும் இடையே உள்ள தனித்துவமான திசு இடைவெளியைப் (Supracrestal Tissue Attachment) பரிசோதித்து மருத்துவர் தீர்மானிக்கிறார். முறையான திட்டமிடல் நாள்பட்ட ஈறு வீக்கம் மற்றும் திசு மீண்டும் வளர்வதைத் தடுக்கிறது.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 3
+  },
+
+  // ------------------------------
+  // 44. Knocked-Out Permanent Tooth Emergency Management (EMRG-AVL-01) - Canonical Position #44
+  // ------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333344',
+    slug: 'knocked-out-tooth-avulsion',
+    code: 'EMRG-AVL-01',
+    titleEn: 'Knocked-Out Tooth Emergency Management',
+    titleTa: 'முழுமையாக விழுந்த பல் அவசர சிகிச்சை (Avulsed Permanent Tooth Management)',
+    summaryEn: 'Time-critical emergency management, physiological preservation, replantation, and stabilization of completely displaced permanent teeth.',
+    summaryTa: 'விபத்தினால் வேருடன் கழன்று விழுந்த நிரந்தரப் பல்லை அவசரமாகப் பாதுகாத்து மீண்டும் பொருத்தும் அதிமுக்கிய சிகிச்சை.',
+    durationMinutes: 60,
+    anesthesiaType: 'Local Infiltration / Regional Block',
+    primaryDepartmentName: 'Dental Trauma & Emergency Treatments',
+    primaryDepartmentCode: 'EMRG',
+    exploreCategorySlugs: ['emergency-dental'],
+    governanceTier: 'TIER_2',
+    contentStatus: 'DRAFT',
+    overviewHtmlEn: '<p>Dental avulsion represents the complete displacement of a tooth from its alveolar socket due to trauma. This clinical protocol applies exclusively to permanent teeth; primary (baby) teeth must NEVER be replanted due to severe risks of damaging developing succedaneous permanent tooth buds. Immediate first aid significantly influences long-term prognosis: the tooth should be handled solely by its crown—never touching or scraping root periodontal ligament (PDL) cells. Immediate replantation at the scene is ideal; alternatively, immediate immersion in physiological storage media such as Hank’s Balanced Salt Solution (HBSS) or cold milk preserves cellular viability. Saliva or saline may serve as temporary alternatives, while dry storage or water must be avoided. Urgent dental assessment is vital for gentle socket irrigation, flexible splinting (commonly ~2 weeks for uncomplicated avulsions, though adjusted for concurrent fractures), tetanus prophylaxis review, and timely endodontic planning for mature teeth.</p>',
+    overviewHtmlTa: '<p>அடிபடுதல் அல்லது விபத்தினால் பல் அதன் தாடை எலும்புக்குழியிலிருந்து வேருடன் முழுமையாக வெளியேறுவது பல் அவுல்ஷன் (Avulsion) எனப்படும். இந்த அவசர சிகிச்சை முறை நிரந்தரப் பற்களுக்கு மட்டுமே பொருந்தும்; குழந்தைகளின் பால் பற்களை ஒருபோதும் மீண்டும் பொருத்தக் கூடாது, ஏனெனில் அது கீழே உருவாகும் நிரந்தரப் பல்லின் முளையைப் பாதிக்கலாம். விழுந்த பல்லின் வேர்ப் பகுதியைத் தொடாமல், அதன் மகுடப் பகுதியை (Crown) மட்டுமே பிடித்து, உடனடியாக அதே இடத்தில் மீண்டும் பொருத்துவது சிறந்தது. அது இயலாவிட்டால் பல்லினை குளிர்ந்த பால் அல்லது ஹாங்க்ஸ் கரைசல் (HBSS) போன்ற பாதுகாப்பான திரவத்தில் வைத்து உடனடியாக பல் மருத்துவரிடம் கொண்டு செல்ல வேண்டும். தண்ணீரில் போடுவதையோ அல்லது காய்ந்து போக விடுவதையோ தவிர்க்க வேண்டும். மருத்துவர் பல்லினைப் பரிசோதித்து, மென்மையான கம்பி (Flexible Splint) மூலம் நிலைநிறுத்தி, தேவைக்கேற்ப வேர்க்கால் சிகிச்சையைத் திட்டமிடுவார்.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 4
+  },
+
+  // ------------------------------
+  // 45. Emergency Broken or Chipped Tooth Repair (EMRG-BRK-01) - Canonical Position #45
+  // ------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333345',
+    slug: 'emergency-broken-tooth-repair',
+    code: 'EMRG-BRK-01',
+    titleEn: 'Emergency Broken Tooth Repair',
+    titleTa: 'உடைந்த பல் அவசர சிகிச்சை (Emergency Broken Tooth Repair)',
+    summaryEn: 'Urgent diagnostic assessment and restorative stabilization for traumatic dental fractures, protecting pulpal vitality and coronal integrity.',
+    summaryTa: 'விபத்தால் உடைந்த அல்லது சிதைந்த பல்லின் நரம்பைப் பாதுகாத்து உடனுக்குடன் சீரமைக்கும் அவசர சிகிச்சை.',
+    durationMinutes: 45,
+    anesthesiaType: 'Local Infiltration (as indicated) / Topical Anesthesia',
+    primaryDepartmentName: 'Dental Trauma & Emergency Treatments',
+    primaryDepartmentCode: 'EMRG',
+    exploreCategorySlugs: ['emergency-dental'],
+    governanceTier: 'TIER_1',
+    contentStatus: 'DRAFT',
+    overviewHtmlEn: '<p>Emergency broken tooth repair addresses traumatic crown fractures resulting from impacts, falls, or masticatory trauma. Fractures are clinically categorized into uncomplicated (confined to enamel or enamel-dentin without pulpal exposure) and complicated (exposing the vital dental pulp). Immediate dental evaluation with radiographic imaging is essential to evaluate fracture margins, assess pulp vitality, and rule out concurrent root fracture, alveolar injury, or luxation. Intact fractured tooth fragments stored in saline or milk can often be reattached using adhesive resin techniques. Treatment is individualized: uncomplicated fractures are restored with dentin sealing and composite resin, while complicated fractures require vital pulp therapy (such as direct pulp capping or partial Cvek pulpotomy with hydraulic calcium-silicate materials) or endodontic therapy based on exposure size, contamination, and stage of root apex maturity.</p>',
+    overviewHtmlTa: '<p>விபத்து அல்லது கடினமான உணவைக் கடிப்பதால் பல் உடைந்து போகும்போது உடனடியாக செய்யப்படும் சிகிச்சை இதுவாகும். பல் உடைவு என்பது நரம்பு வெளிப்படாத சாதாரண உடைவு (Uncomplicated) அல்லது பல்லின் உள்பகுதி நரம்பு வெளிப்படும் தீவிர உடைவு (Complicated) என இருவகையாகப் பிரிக்கப்படுகிறது. எக்ஸ்-ரே மூலம் பல்லின் வேர் மற்றும் நரம்பின் நிலை பரிசோதிக்கப்படுகிறது. உடைந்த பல்லின் துண்டு பத்திரமாக கிடைத்தால், அதை பாலில் அல்லது சலைன் திரவத்தில் வைத்து எடுத்து வந்தால் பிசின் பசை மூலம் மீண்டும் ஒட்ட முடியும். நரம்பு வெளிப்படாத பற்களுக்கு எனாமல் போன்ற நவீன காம்போசிட் அடைப்பு செய்யப்படுகிறது; நரம்பு பாதிக்கப்பட்டிருந்தால், பல்லின் வேர் வளர்ச்சி மற்றும் நிலையைப் பொறுத்து நரம்பைப் பாதுகாக்கும் பிரத்யேக சிகிச்சையோ அல்லது வேர்க்கால் சிகிச்சையோ (Root Canal) மேற்கொள்ளப்படுகிறது.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 3
+  },
+
+  // ------------------------------
+  // 46. Recementation of Dislodged Crown or Bridge (EMRG-RCM-01) - Canonical Position #46
+  // ------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333346',
+    slug: 'recement-dislodged-crown-bridge',
+    code: 'EMRG-RCM-01',
+    titleEn: 'Recementation of Dislodged Crown or Bridge',
+    titleTa: 'கழன்ற பற்காப்பு மூடியை மீண்டும் பொருத்துதல் (Crown or Bridge Recementation)',
+    summaryEn: 'Diagnostic evaluation of abutment health, margin integrity, and definitive adhesive re-luting of detached fixed prosthodontic restorations.',
+    summaryTa: 'கழன்று விழுந்த பற்காப்பு மூடி அல்லது பாலத்தை, பல்லின் ஆரோக்கியத்தைப் பரிசோதித்து மீண்டும் பாதுகாப்பாகப் பொருத்துதல்.',
+    durationMinutes: 30,
+    anesthesiaType: 'Non-Invasive / Local Infiltration (if sensitive)',
+    primaryDepartmentName: 'Dental Trauma & Emergency Treatments',
+    primaryDepartmentCode: 'EMRG',
+    exploreCategorySlugs: ['emergency-dental'],
+    governanceTier: 'TIER_1',
+    contentStatus: 'DRAFT',
+    overviewHtmlEn: '<p>Recementation of a dislodged crown or fixed partial denture is a systematic clinical procedure that requires meticulous diagnostic assessment before any re-bonding decision. Dislodgement frequently indicates underlying biomechanical or biological failure. The clinician inspects both the abutment tooth and the restoration intaglio surface clinically and radiographically to rule out recurrent caries, core or root fractures, periodontal breakdown, compromised retention form, or occlusal interference. Definitive recementation is indicated only when the underlying abutment is biologically sound, structural margins remain intact, and the restoration seats completely without rocking. The restoration and abutment are thoroughly cleaned of residual cement, disinfected, and re-luted using an appropriate definitive dental cement (such as resin-modified glass ionomer or adhesive resin cement). If active caries or abutment fracture is discovered, recementation is contraindicated until restorative reconstruction is achieved.</p>',
+    overviewHtmlTa: '<p>பற்காப்பு மூடி (Crown) அல்லது பாலம் (Bridge) கழன்று வரும்போது, அதை உடனடியாக மீண்டும் ஒட்டிவிடுவது மட்டுமே சரியான தீர்வாகாது. கழன்றதற்கான அடிப்படைக் காரணத்தைக் கண்டறிவது மிக அவசியமாகும். மருத்துவர் எக்ஸ்-ரே மற்றும் நேரடிப் பரிசோதனை மூலம் பல்லில் மீண்டும் சொத்தை ஏற்பட்டுள்ளதா, பல்லின் அடித்தளம் அல்லது வேரில் விரிசல் உள்ளதா, அல்லது பற்காப்பு மூடி சேதமடைந்துள்ளதா என்பதை ஆய்வு செய்வார். பல் ஆரோக்கியமாகவும் உறுதியாகவும் இருந்தால் மட்டுமே, பழைய சிமெண்ட் எச்சங்கள் முழுமையாக அகற்றப்பட்டு, புதிய வலிமையான டென்டல் சிமெண்ட் (Resin or Glass Ionomer) மூலம் மீண்டும் பொருத்தப்படும். பல்லில் சொத்தை அல்லது விரிசல் இருந்தால், அதனைச் சரிசெய்த பிறகே புதிய மூடி பொருத்தப்பட வேண்டும்.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 3
+  },
+
+  // ------------------------------
+  // 47. Nitrous Oxide Inhalation Sedation (SEDA-N2O-01) - Canonical Position #47
+  // ------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333347',
+    slug: 'nitrous-oxide-inhalation-sedation',
+    code: 'SEDA-N2O-01',
+    titleEn: 'Nitrous Oxide Inhalation Sedation',
+    titleTa: 'நைட்ரஸ் ஆக்சைடு உள்ளிழுக்கும் மயக்க நிலை (Nitrous Oxide Inhalation Sedation)',
+    summaryEn: 'Safe, titrated inhalation anxiolysis delivering controlled nitrous oxide and oxygen to alleviate dental fear while maintaining active communication.',
+    summaryTa: 'பல் மருத்துவப் பயத்தைப் போக்க மூக்கின் வழியாக பிராணவாயுவுடன் கலந்து செலுத்தப்படும் பாதுகாப்பான மயக்க வாயு சிகிச்சை.',
+    durationMinutes: 45,
+    anesthesiaType: 'Inhalation Anxiolysis / Nitrous Oxide & Oxygen',
+    primaryDepartmentName: 'Sedation & Dental Anesthesia',
+    primaryDepartmentCode: 'SEDA',
+    exploreCategorySlugs: ['general-dental'],
+    governanceTier: 'TIER_1',
+    contentStatus: 'DRAFT',
+    overviewHtmlEn: '<p>Nitrous oxide inhalation sedation (conscious inhalation anxiolysis) is a widely utilized pharmacological technique designed to relieve mild-to-moderate dental anxiety and raise pain reaction thresholds while keeping the patient fully conscious and responsive. Delivered continuously through a contoured nasal mask, the gas mixture is incrementally titrated with individualized concentrations. In accordance with safety engineering and regulatory guidelines, modern dental delivery units feature mechanical fail-safe mechanisms ensuring a minimum of 30% oxygen (maximum 70% nitrous oxide). The patient retains intact protective laryngeal reflexes, breathes spontaneously, and communicates verbally throughout. Following treatment, 100% pure oxygen is administered for a minimum of 5 minutes to clear residual gas from the lungs and prevent diffusion hypoxia. Absolute and relative contraindications—including severe COPD, acute upper airway obstruction, first-trimester pregnancy, or recent middle ear surgery—must be evaluated prior to administration.</p>',
+    overviewHtmlTa: '<p>நைட்ரஸ் ஆக்சைடு உள்ளிழுக்கும் சிகிச்சை (Nitrous Oxide Sedation / Laughing Gas) என்பது பல் மருத்துவ சிகிச்சையின் போது ஏற்படும் பயம் மற்றும் பதற்றத்தைக் குறைக்க உதவும் மிகவும் பாதுகாப்பான முறையாகும். ஒரு சிறிய மூக்கு முகமூடி (Nasal Mask) வழியாக நைட்ரஸ் ஆக்சைடு மற்றும் ஆக்சிஜன் கலவை படிப்படியாகச் செலுத்தப்படுகிறது. நவீன கருவிகளில் குறைந்தபட்சம் 30% பிராணவாயு (Oxygen) எப்போதும் இருக்குமாறு தானியங்கி பாதுகாப்பு அமைப்புகள் வடிவமைக்கப்பட்டுள்ளன. நோயாளி முழு விழிப்புணர்வுடன் இருப்பார், மருத்துவரின் அறிவுரைகளுக்குப் பதிலளிக்க முடியும், மற்றும் சுவாசம் இயல்பாக இருக்கும். சிகிச்சை முடிந்தவுடன், நுரையீரலில் உள்ள எஞ்சிய வாயுவை முழுமையாக வெளியேற்றவும் தலைச்சுற்றலைத் தவிர்க்கவும் 5 நிமிடங்களுக்கு தூய 100% ஆக்சிஜன் வழங்கப்படுகிறது. கடுமையான நுரையீரல் பாதிப்பு அல்லது மூக்கடைப்பு உள்ளவர்களுக்கு இது பரிந்துரைக்கப்படுவதில்லை.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 3
+  },
+
+  // ------------------------------
+  // 48. Moderate Oral Conscious Sedation (SEDA-ORL-01) - Canonical Position #48
+  // ------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333348',
+    slug: 'oral-sedation',
+    code: 'SEDA-ORL-01',
+    titleEn: 'Moderate Oral Conscious Sedation',
+    titleTa: 'வாய்வழி மயக்க மாத்திரை சிகிச்சை (Moderate Oral Conscious Sedation)',
+    summaryEn: 'Pharmacological conscious sedation utilizing oral sedatives to achieve relaxation and anxiolysis, supported by continuous physiological monitoring.',
+    summaryTa: 'பல் மருத்துவ பதற்றத்தைப் போக்க மாத்திரை வடிவில் வழங்கப்படும் பாதுகாப்பான மிதமான மயக்க நிலை சிகிச்சை.',
+    durationMinutes: 90,
+    anesthesiaType: 'Oral Sedative Anxiolysis + Local Anesthesia',
+    primaryDepartmentName: 'Sedation & Dental Anesthesia',
+    primaryDepartmentCode: 'SEDA',
+    exploreCategorySlugs: ['general-dental'],
+    governanceTier: 'TIER_2',
+    contentStatus: 'DRAFT',
+    overviewHtmlEn: '<p>Moderate oral conscious sedation employs orally administered sedative medications to alleviate moderate to severe dental fear and facilitate necessary clinical care. Sedation exists on a clinical continuum; because an oral route or predetermined dose cannot guarantee an unvarying depth of depression, clinicians must possess the training and rescue capabilities to manage deeper levels of sedation if they occur. Thorough preoperative assessment—evaluating medical history, ASA physical status, and airway anatomy—and strict adherence to fasting (NPO) guidelines are mandatory. Intraoperatively, the patient remains conscious, maintaining airway reflexes and responding purposefully to verbal commands or light tactile stimulation. Continuous multi-parameter physiological monitoring (pulse oximetry, blood pressure, heart rate, and ventilation assessment) is maintained throughout the visit. Reversal agents and emergency resuscitation equipment are kept immediately accessible. Discharge requires meeting verified recovery criteria in the care of a designated adult escort.</p>',
+    overviewHtmlTa: '<p>மிதமான வாய்வழி மயக்க சிகிச்சை (Oral Sedation) என்பது அதிகப்படியான பல் மருத்துவ பயம் உள்ள நோயாளிகளுக்கு சிகிச்சை தொடங்குவதற்கு முன் மாத்திரை வடிவில் மயக்க மருந்து வழங்கி உடலையும் மனதையும் அமைதிப்படுத்தும் முறையாகும். மயக்க நிலை என்பது நபருக்கு நபர் மாறுபடக்கூடியது என்பதால், முன்கூட்டியே நோயாளியின் உடல்நிலை, பிற மருத்துவக் கோளாறுகள் மற்றும் உணவு உட்கொள்ளாமை (NPO) விதிகள் தீவிரமாகப் பரிசோதிக்கப்படுகின்றன. சிகிச்சையின் போது நோயாளி விழிப்புணர்வுடன் இருப்பார், இயல்பாகச் சுவாசிப்பார் மற்றும் மருத்துவரின் கேள்விகளுக்குப் பதிலளிக்க முடியும். சிகிச்சை முழுவதும் ரத்த அழுத்தம், இதயத்துடிப்பு மற்றும் பிராணவாயு அளவு (Pulse Oximetry) ஆகியவை தொடர்ந்து கண்காணிக்கப்படுகின்றன. சிகிச்சை முடிந்த பிறகு, நோயாளி முழு விழிப்புணர்வை அடைந்ததை உறுதிசெய்த பிறகே, ஒரு பொறுப்பான துணையுடன் வீட்டிற்கு அனுப்பி வைக்கப்படுகிறார்.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 4
+  },
+
+  // ------------------------------
+  // 49. Deep Intravenous Dental Sedation (SEDA-IVS-01) - Canonical Position #49
+  // ------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333349',
+    slug: 'intravenous-dental-sedation',
+    code: 'SEDA-IVS-01',
+    titleEn: 'Deep Intravenous Dental Sedation',
+    titleTa: 'நரம்பு வழி மயக்க சிகிச்சை (Deep Intravenous Dental Sedation)',
+    summaryEn: 'Advanced specialist-governed intravenous sedation providing controlled deep relaxation for complex maxillofacial and extensive surgical procedures.',
+    summaryTa: 'சிக்கலான மற்றும் பெரிய அறுவை சிகிச்சைகளின் போது நிபுணர் மேற்பார்வையில் நரம்பு வழியாக வழங்கப்படும் உயர்நிலை மயக்க சிகிச்சை.',
+    durationMinutes: 120,
+    anesthesiaType: 'Specialist-Administered Intravenous Sedation + Local Anesthesia',
+    primaryDepartmentName: 'Sedation & Dental Anesthesia',
+    primaryDepartmentCode: 'SEDA',
+    exploreCategorySlugs: ['general-dental'],
+    governanceTier: 'TIER_3',
+    contentStatus: 'DRAFT',
+    overviewHtmlEn: '<p>Deep intravenous (IV) dental sedation is an advanced, hospital-grade sedation modality governed by strict specialist clinical standards. This educational module provides a high-level conceptual overview only; in accordance with medical governance, specific drug names, dosages, infusion combinations, or operational protocols are intentionally omitted. Deep IV sedation is restricted to credentialed dentist anesthesiologists, oral and maxillofacial surgeons, or certified dental practitioners holding advanced sedation permits. Continuous real-time physiological monitoring is required, including end-tidal carbon dioxide capnography, continuous electrocardiography (ECG), non-invasive blood pressure, and pulse oximetry, supported by dedicated anesthesia personnel whose sole responsibility is patient surveillance. Because protective airway reflexes may be partially lost and ventilatory depression can occur, advanced airway rescue equipment and current advanced life support (ACLS) capabilities must be instantly deployable. Patients are discharged only after fully meeting standardized post-anesthesia scoring criteria under the escort of a responsible adult.</p>',
+    overviewHtmlTa: '<p>நரம்பு வழி மயக்க சிகிச்சை (Deep IV Sedation) என்பது பெரிய வாய் மற்றும் தாடை அறுவை சிகிச்சைகள் அல்லது தீவிர பயம் உள்ளவர்களுக்கு நிபுணத்துவ மயக்கவியல் மருத்துவர்களால் (Dentist Anesthesiologists / Maxillofacial Surgeons) நரம்பு வழியாக மருந்துகள் செலுத்தப்பட்டு வழங்கப்படும் உயர்நிலை மயக்க முறையாகும். மருத்துவ நெறிமுறைகளின்படி, இந்த விளக்கம் விழிப்புணர்வுக்காக மட்டுமே வழங்கப்படுகிறது; குறிப்பிட்ட மருந்துகளின் பெயர்களோ அல்லது அளவுகளோ இதில் விவரிக்கப்படவில்லை. இந்த சிகிச்சையின் போது நோயாளியின் சுவாசம், இதயத்துடிப்பு (ECG), ரத்த அழுத்தம் மற்றும் கார்பன் டை ஆக்சைடு அளவு (Capnography) ஆகியவை சிறப்பு உபகரணங்கள் மூலம் நொடிகள் தோறும் கண்காணிக்கப்படுகின்றன. மூச்சுப்பாதையைப் பாதுகாக்கும் அனைத்து அவசரகால மீட்புக் கருவிகளும் தயார் நிலையில் இருப்பது சட்டப்பூர்வ விதியாகும். நோயாளி முழுமையான சுயநினைவு மற்றும் இயல்புநிலையை அடைந்த பிறகே துணையுடன் அனுப்பப்படுவார்.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 4
+  },
+
+  // ------------------------------
+  // 50. Recurrent Aphthous Stomatitis Management (ORAL-APU-01) - Canonical Position #50
+  // ------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333350',
+    slug: 'recurrent-aphthous-ulcer-care',
+    code: 'ORAL-APU-01',
+    titleEn: 'Recurrent Aphthous Stomatitis Management',
+    titleTa: 'தொடர் வாய் புண் சிகிச்சை (Recurrent Aphthous Stomatitis Management)',
+    summaryEn: 'Diagnostic evaluation, differentiation, and evidence-based topical palliative management of recurrent oral aphthous ulcerations (canker sores).',
+    summaryTa: 'வாயில் அடிக்கடி ஏற்படும் வலி மிகுந்த புண்களைக் கண்டறிந்து, வலியைத் தணித்து விரைவாகக் குணப்படுத்தும் நவீன சிகிச்சை முறை.',
+    durationMinutes: 30,
+    anesthesiaType: 'Topical Mucosal Anesthesia / Protective Barrier Paste',
+    primaryDepartmentName: 'Oral Medicine – Therapeutic Treatments',
+    primaryDepartmentCode: 'ORAL',
+    exploreCategorySlugs: ['gum-health', 'general-dental'],
+    governanceTier: 'TIER_1',
+    contentStatus: 'DRAFT',
+    overviewHtmlEn: '<p>Recurrent aphthous stomatitis (RAS, commonly known as canker sores) is one of the most frequent non-contagious inflammatory conditions of the oral cavity. Characterized by painful, recurrent, round or ovoid necrotizing ulcerations with a grayish-yellow pseudomembranous center and an erythematous halo, lesions typically manifest on non-keratinized mobile oral mucosa (such as labial and buccal mucosa, or the floor of the mouth). Minor aphthae are generally self-limiting, healing within 7 to 14 days without scarring, whereas major aphthae are larger, penetrate deeper, and may persist for weeks. Clinical assessment must distinguish benign aphthous ulceration from infectious stomatitis, traumatic injuries, autoimmune blistering disorders, and oral malignancy; any solitary oral ulcer persisting beyond 2 to 3 weeks warrants urgent clinical evaluation and potential biopsy. Management focuses on symptomatic pain relief, mucosal protection, and promoting tissue repair using topical bioadhesive pastes, protective rinses, and localized topical anti-inflammatory formulations. Recurrent or severe presentations warrant systemic evaluation for hematinic deficiencies (iron, ferritin, B12, folate) or gastrointestinal conditions.</p>',
+    overviewHtmlTa: '<p>தொடர் வாய் புண் சிகிச்சை (Recurrent Aphthous Stomatitis / Canker Sores) என்பது உதட்டின் உட்பகுதி, கன்னத்தின் உட்புறம் அல்லது நாக்கின் அடியில் அடிக்கடி தோன்றும் வலி மிகுந்த வாய் புண்களுக்கான மருத்துவ பராமரிப்பு முறையாகும். இவை தொற்றும் புண்கள் அல்ல. சிறிய வாய் புண்கள் பொதுவாக 7 முதல் 14 நாட்களில் தானாகவே ஆறிவிடும்; ஆனால் பெரிய புண்கள் (Major Aphthae) ஆழமாகவும், அதிக வலியுடனும், ஆற பல வாரங்கள் ஆகலாம். அனைத்து வாய் புண்களும் சாதாரணமானவை அல்ல என்பதால், இரண்டு அல்லது மூன்று வாரங்களுக்கு மேல் ஆறாமல் இருக்கும் எந்த ஒரு வாய் புண்ணையும் உடனடியாக பல் மருத்துவரிடம் காட்டி புற்றுநோய் அல்லது பிற தீவிர பாதிப்புகள் இல்லை என்பதை உறுதிப்படுத்த வேண்டும். இந்த சிகிச்சையில் வலியைத் தணிக்கும் களிம்புகள் (Topical Anesthetics), அழற்சியைக் குறைக்கும் மருந்துகள் மற்றும் புண்ணின் மேல் படரும் பாதுகாப்புப் பசைகள் (Barrier Pastes) பயன்படுத்தப்படுகின்றன. அடிக்கடி கடுமையான புண்கள் வருபவர்களுக்கு உடலில் இரும்புச்சத்து, வைட்டமின் பி12 குறைபாடு அல்லது செரிமான மண்டலக் கோளாறுகள் உள்ளதா எனப் பரிசோதிக்கப்பட வேண்டும்.</p>',
     has3DModel: false,
     interactiveStepsCount: 3
   }

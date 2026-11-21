@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgIvs" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A" />
+      <stop offset="50%" stop-color="#1E293B" />
+      <stop offset="100%" stop-color="#334155" />
+    </linearGradient>
+    <linearGradient id="infusionGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#0284C7" />
+    </linearGradient>
+    <linearGradient id="screenGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#020617" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+    <filter id="shadowIvs" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="3" dy="5" stdDeviation="6" flood-opacity="0.25" />
+    </filter>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#bgIvs)" rx="16" />
+
+  <!-- Specialist Multi-Modal Anesthesia Monitoring Station -->
+  <g filter="url(#shadowIvs)" transform="translate(60, 100)">
+    <rect width="400" height="280" rx="14" fill="url(#screenGrad)" stroke="#475569" stroke-width="2.5" />
+
+    <!-- ETCO2 Capnography Trace (Square Waveform - Gold) -->
+    <text x="25" y="38" font-family="system-ui, monospace" font-size="13" font-weight="700" fill="#FBBF24">ETCO2: 38 mmHg (Continuous Capnography)</text>
+    <path d="M 25 70 L 60 70 L 63 48 L 120 48 L 124 70 L 160 70 L 163 48 L 220 48 L 224 70 L 260 70 L 263 48 L 320 48 L 324 70 L 375 70" fill="none" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" />
+
+    <!-- 3-Lead Continuous ECG Trace (Cyan Waveform) -->
+    <text x="25" y="115" font-family="system-ui, monospace" font-size="13" font-weight="700" fill="#38BDF8">ECG Lead II: 64 bpm Sinus Rhythm</text>
+    <path d="M 25 150 L 80 150 L 86 142 L 92 165 L 98 120 L 104 158 L 110 150 L 170 150 L 176 142 L 182 165 L 188 120 L 194 158 L 200 150 L 260 150 L 266 142 L 272 165 L 278 120 L 284 158 L 290 150 L 375 150" fill="none" stroke="#38BDF8" stroke-width="2.5" stroke-linecap="round" />
+
+    <!-- Vital Numbers Row -->
+    <text x="25" y="195" font-family="system-ui, monospace" font-size="12" font-weight="700" fill="#4ADE80">SpO2: 100%</text>
+    <text x="145" y="195" font-family="system-ui, monospace" font-size="12" font-weight="700" fill="#E2E8F0">NIBP: 115/70</text>
+    <text x="265" y="195" font-family="system-ui, monospace" font-size="12" font-weight="700" fill="#C084FC">Resp: 14 rpm</text>
+
+    <!-- Governance Status Alert -->
+    <rect x="25" y="220" width="350" height="38" rx="8" fill="#1E293B" stroke="#64748B" stroke-width="1.5" />
+    <circle cx="45" cy="239" r="6" fill="#38BDF8" />
+    <text x="60" y="244" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#F8FAFC">Dedicated Anesthesiologist / ACLS Provider</text>
+  </g>
+
+  <!-- Intravenous Vascular Infusion System (Right Side) -->
+  <g filter="url(#shadowIvs)" transform="translate(530, 90)">
+    <!-- IV Bag Graphic -->
+    <path d="M 60 20 L 140 20 C 150 20, 160 30, 160 45 L 160 150 C 160 170, 140 185, 100 190 C 60 185, 40 170, 40 150 L 40 45 C 40 30, 50 20, 60 20 Z" fill="#FFFFFF" opacity="0.15" stroke="#94A3B8" stroke-width="2" />
+    <path d="M 45 60 L 155 60 L 155 145 C 155 162, 138 175, 100 180 C 62 175, 45 162, 45 145 Z" fill="url(#infusionGrad)" opacity="0.4" />
+    <text x="100" y="90" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#BAE6FD" text-anchor="middle">Saline Infusion</text>
+
+    <!-- IV Drip Chamber & Tubing -->
+    <rect x="92" y="190" width="16" height="35" rx="4" fill="#FFFFFF" opacity="0.5" stroke="#CBD5E1" stroke-width="1.5" />
+    <path d="M 100 225 C 100 270, 120 290, 80 320 C 50 340, 20 330, -30 330" fill="none" stroke="#BAE6FD" stroke-width="3" />
+
+    <!-- Cannula Guide Point -->
+    <circle cx="-35" cy="330" r="7" fill="#38BDF8" />
+    <text x="-35" y="360" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#93C5FD" text-anchor="middle">IV Cannula</text>
+  </g>
+
+  <!-- Educational Specialist Governance Badges -->
+  <rect x="60" y="420" width="320" height="34" rx="8" fill="#1E293B" stroke="#475569" stroke-width="1.5" />
+  <circle cx="80" cy="437" r="6" fill="#F59E0B" />
+  <text x="95" y="442" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#FCD34D">TIER 3: Specialist Anesthesia Facility Only</text>
+
+  <rect x="410" y="420" width="330" height="34" rx="8" fill="#1E293B" stroke="#475569" stroke-width="1.5" />
+  <circle cx="430" cy="437" r="6" fill="#38BDF8" />
+  <text x="445" y="442" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#E2E8F0">Continuous ETCO2 Capnography & ECG</text>
+
+  <!-- Title Badge -->
+  <rect x="40" y="35" width="280" height="34" rx="8" fill="#1E293B" stroke="#475569" stroke-width="1.5" />
+  <circle cx="58" cy="52" r="6" fill="#38BDF8" />
+  <text x="74" y="57" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#F8FAFC">Deep Intravenous Sedation</text>
+</svg>

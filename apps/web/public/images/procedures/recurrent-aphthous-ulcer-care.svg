@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgApu" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF1F2" />
+      <stop offset="50%" stop-color="#FFE4E6" />
+      <stop offset="100%" stop-color="#FECDD3" />
+    </linearGradient>
+    <linearGradient id="mucosaGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FDA4AF" />
+      <stop offset="50%" stop-color="#FB7185" />
+      <stop offset="100%" stop-color="#F43F5E" />
+    </linearGradient>
+    <linearGradient id="haloGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EF4444" />
+      <stop offset="100%" stop-color="#B91C1C" />
+    </linearGradient>
+    <linearGradient id="sloughGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FEF08A" />
+      <stop offset="100%" stop-color="#FDE047" />
+    </linearGradient>
+    <filter id="shadowApu" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="3" dy="5" stdDeviation="6" flood-opacity="0.14" />
+    </filter>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#bgApu)" rx="16" />
+
+  <!-- Oral Labial / Buccal Mucosa Layer (Non-Keratinized Tissue) -->
+  <g filter="url(#shadowApu)" transform="translate(140, 100)">
+    <!-- Mucosal Field Background -->
+    <path d="M 0 100 C 60 40, 200 20, 260 20 C 340 20, 460 50, 520 100 C 530 180, 510 260, 480 290 C 420 320, 280 320, 200 310 C 80 300, 10 250, 0 100 Z" fill="url(#mucosaGrad)" stroke="#E11D48" stroke-width="2" />
+    <!-- Fine Microvascular Network / Capillary Highlights -->
+    <path d="M 40 80 Q 90 95 140 70 M 380 60 Q 420 85 470 70 M 80 250 Q 140 230 180 270 M 350 280 Q 410 250 460 270" stroke="#BE123C" stroke-width="1.2" stroke-linecap="round" opacity="0.4" />
+
+    <!-- Aphthous Ulceration Core -->
+    <!-- 1. Outer Erythematous Inflammatory Halo -->
+    <ellipse cx="260" cy="165" rx="100" ry="70" fill="url(#haloGrad)" opacity="0.9" />
+    <!-- 2. Hyperemic Transition Ring -->
+    <ellipse cx="260" cy="165" rx="82" ry="56" fill="#DC2626" />
+    <!-- 3. Central Necrotizing Pseudomembranous Fibrin Slough -->
+    <ellipse cx="260" cy="165" rx="65" ry="42" fill="url(#sloughGrad)" stroke="#EAB308" stroke-width="2" />
+
+    <!-- Exposed Nerve Endings Visual Graphic -->
+    <circle cx="235" cy="155" r="3" fill="#D97706" />
+    <circle cx="260" cy="170" r="3.5" fill="#D97706" />
+    <circle cx="285" cy="160" r="3" fill="#D97706" />
+    <circle cx="250" cy="180" r="2.5" fill="#D97706" />
+  </g>
+
+  <!-- Topical Bioadhesive Barrier Paste Shield Layer (Semi-transparent overlay) -->
+  <g transform="translate(140, 100)">
+    <path d="M 180 125 C 220 105, 300 105, 340 125 C 360 145, 360 185, 340 205 C 300 225, 220 225, 180 205 C 160 185, 160 145, 180 125 Z" fill="#67E8F9" opacity="0.3" stroke="#06B6D4" stroke-width="2.5" stroke-dasharray="4,4" />
+    <text x="260" y="80" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#0891B2" text-anchor="middle">Topical Barrier Paste Shield</text>
+  </g>
+
+  <!-- Educational Flags & Diagnostic Markers -->
+  <rect x="80" y="420" width="310" height="34" rx="8" fill="#FFFFFF" stroke="#FECDD3" stroke-width="1.5" />
+  <circle cx="100" cy="437" r="6" fill="#E11D48" />
+  <text x="115" y="442" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#9F1239">Ulcers >2–3 Weeks Require Clinical Biopsy</text>
+
+  <rect x="420" y="420" width="300" height="34" rx="8" fill="#FFFFFF" stroke="#BAE6FD" stroke-width="1.5" />
+  <circle cx="440" cy="437" r="6" fill="#0284C7" />
+  <text x="455" y="442" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#0369A1">Topical Anxiolytic & Anti-Inflammatory Pastes</text>
+
+  <!-- Title Badge -->
+  <rect x="40" y="35" width="290" height="34" rx="8" fill="#FFFFFF" stroke="#FDA4AF" stroke-width="1.5" />
+  <circle cx="58" cy="52" r="6" fill="#E11D48" />
+  <text x="74" y="57" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#9F1239">Recurrent Aphthous Ulcer Care</text>
+</svg>

@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgN2o" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F5F3FF" />
+      <stop offset="50%" stop-color="#EDE9FE" />
+      <stop offset="100%" stop-color="#DDD6FE" />
+    </linearGradient>
+    <linearGradient id="maskGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#0284C7" />
+    </linearGradient>
+    <linearGradient id="gasGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#A78BFA" />
+      <stop offset="100%" stop-color="#7C3AED" />
+    </linearGradient>
+    <filter id="shadowN2o" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="3" dy="5" stdDeviation="6" flood-opacity="0.12" />
+    </filter>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#bgN2o)" rx="16" />
+
+  <!-- Stylized Patient Profile Silhouette (Nose and Lips) -->
+  <g stroke="#94A3B8" stroke-width="2" fill="none" opacity="0.6">
+    <path d="M 240 120 C 260 160, 275 200, 280 230 C 290 250, 310 255, 335 250 C 315 265, 310 275, 315 290 C 325 305, 335 308, 320 325 C 300 345, 290 380, 290 420" />
+  </g>
+
+  <!-- Ergonomic Nasal Inhalation Hood / Mask -->
+  <g filter="url(#shadowN2o)" transform="translate(310, 180)">
+    <!-- Main Mask Cup -->
+    <path d="M 0 45 C 10 15, 35 -5, 65 0 C 85 5, 95 30, 95 65 C 95 95, 75 110, 45 105 C 15 100, -5 75, 0 45 Z" fill="url(#maskGrad)" stroke="#0369A1" stroke-width="2.5" />
+    <!-- Soft Silicone Cushion Rim -->
+    <path d="M 5 45 C 12 20, 32 5, 60 8 C 78 12, 85 32, 85 62 C 85 88, 68 100, 42 96 C 18 92, 0 70, 5 45 Z" fill="#E0F2FE" opacity="0.4" />
+
+    <!-- Dual Scavenging / Supply Breathing Tubes -->
+    <path d="M 85 30 C 120 20, 170 35, 210 20" fill="none" stroke="#60A5FA" stroke-width="6" stroke-linecap="round" />
+    <path d="M 85 75 C 120 85, 170 70, 210 85" fill="none" stroke="#A78BFA" stroke-width="6" stroke-linecap="round" />
+  </g>
+
+  <!-- Flowmeter Gas Mixture Graphic (Right Side Console) -->
+  <g filter="url(#shadowN2o)" transform="translate(560, 120)">
+    <rect width="160" height="230" rx="12" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2" />
+    <text x="80" y="30" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#475569" text-anchor="middle">Flowmeter Mixer</text>
+
+    <!-- O2 Tube (Green / Blue Standard) -->
+    <rect x="25" y="50" width="45" height="130" rx="6" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1.5" />
+    <rect x="28" y="90" width="39" height="85" rx="4" fill="#22C55E" opacity="0.8" />
+    <text x="47" y="198" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#15803D" text-anchor="middle">O2 ≥ 30%</text>
+
+    <!-- N2O Tube (Blue Standard) -->
+    <rect x="90" y="50" width="45" height="130" rx="6" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1.5" />
+    <rect x="93" y="115" width="39" height="60" rx="4" fill="#3B82F6" opacity="0.8" />
+    <text x="112" y="198" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#1D4ED8" text-anchor="middle">N2O ≤ 70%</text>
+
+    <text x="80" y="222" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="#64748B" text-anchor="middle">Fail-Safe Calibrated</text>
+  </g>
+
+  <!-- Calming Gas Wave Particles -->
+  <g fill="#8B5CF6" opacity="0.3">
+    <circle cx="280" cy="270" r="8" />
+    <circle cx="260" cy="290" r="5" />
+    <circle cx="240" cy="310" r="10" />
+    <circle cx="270" cy="330" r="6" />
+  </g>
+
+  <!-- Information Badges -->
+  <rect x="80" y="420" width="280" height="34" rx="8" fill="#FFFFFF" stroke="#DDD6FE" stroke-width="1.5" />
+  <circle cx="100" cy="437" r="6" fill="#7C3AED" />
+  <text x="115" y="442" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#6D28D9">Continuous Inhalation Anxiolysis</text>
+
+  <rect x="390" y="420" width="330" height="34" rx="8" fill="#FFFFFF" stroke="#BAE6FD" stroke-width="1.5" />
+  <circle cx="410" cy="437" r="6" fill="#0284C7" />
+  <text x="425" y="442" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#0369A1">Post-Op 5-Min 100% Oxygen Flush</text>
+
+  <!-- Title Badge -->
+  <rect x="40" y="35" width="280" height="34" rx="8" fill="#FFFFFF" stroke="#C4B5FD" stroke-width="1.5" />
+  <circle cx="58" cy="52" r="6" fill="#7C3AED" />
+  <text x="74" y="57" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#6D28D9">Nitrous Oxide Sedation</text>
+</svg>

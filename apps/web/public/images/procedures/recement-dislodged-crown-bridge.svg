@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgRcm" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F0FDF4" />
+      <stop offset="50%" stop-color="#DCFCE7" />
+      <stop offset="100%" stop-color="#BBF7D0" />
+    </linearGradient>
+    <linearGradient id="abutmentGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FEF08A" />
+      <stop offset="70%" stop-color="#FDE047" />
+      <stop offset="100%" stop-color="#E2E8F0" />
+    </linearGradient>
+    <linearGradient id="crownGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="50%" stop-color="#E0F2FE" />
+      <stop offset="100%" stop-color="#BAE6FD" />
+    </linearGradient>
+    <linearGradient id="cementGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FCD34D" />
+      <stop offset="100%" stop-color="#F59E0B" />
+    </linearGradient>
+    <filter id="shadowRcm" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="3" dy="5" stdDeviation="6" flood-opacity="0.14" />
+    </filter>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#bgRcm)" rx="16" />
+
+  <!-- Lower Molar Abutment Tooth Core (Cleaned, Sound Dentin) -->
+  <g filter="url(#shadowRcm)" transform="translate(320, 220)">
+    <!-- Roots in Alveolar Bone -->
+    <path d="M 10 90 C 5 130, -10 180, 5 210 C 20 220, 45 180, 50 140 C 60 140, 75 140, 85 140 C 90 180, 115 220, 130 210 C 145 180, 130 130, 125 90 Z" fill="#E2E8F0" stroke="#94A3B8" stroke-width="2" />
+
+    <!-- Prepared Molar Core / Abutment Shape with Chamfer Margin -->
+    <path d="M 0 90 C 5 70, 15 40, 30 15 C 35 8, 100 8, 105 15 C 120 40, 130 70, 135 90 C 110 95, 25 95, 0 90 Z" fill="url(#abutmentGrad)" stroke="#CA8A04" stroke-width="2.5" />
+
+    <!-- Chamfer Margin Shoulder Highlight -->
+    <path d="M -5 90 C 20 95, 115 95, 140 90" stroke="#16A34A" stroke-width="3" stroke-linecap="round" />
+  </g>
+
+  <!-- Dislodged Prosthetic Crown (Suspended Above Abutment) -->
+  <g filter="url(#shadowRcm)" transform="translate(310, 80)">
+    <!-- Outer Ceramic Crown Geometry -->
+    <path d="M -5 100 C 5 60, 20 15, 45 -15 C 60 -25, 100 -25, 115 -15 C 140 15, 155 60, 165 100 C 140 110, 20 110, -5 100 Z" fill="url(#crownGrad)" stroke="#0284C7" stroke-width="2.5" />
+    <!-- Cuspal Anatomy Ridges -->
+    <path d="M 25 15 Q 40 40 50 50 Q 80 50 90 20 Q 110 45 135 15" fill="none" stroke="#7DD3FC" stroke-width="2.5" />
+
+    <!-- Intaglio Cavity Hollow (Under-Surface) -->
+    <path d="M 12 95 C 22 75, 30 45, 42 28 C 48 20, 108 20, 114 28 C 126 45, 134 75, 144 95 Z" fill="#F8FAFC" stroke="#F59E0B" stroke-width="2" stroke-dasharray="4,4" />
+
+    <!-- Cleaned Intaglio Cement Micro-Film Indicator -->
+    <path d="M 15 94 C 24 76, 32 46, 44 30 C 50 22, 106 22, 112 30 C 124 46, 132 76, 141 94" fill="none" stroke="url(#cementGrad)" stroke-width="4" opacity="0.8" />
+  </g>
+
+  <!-- Re-seating Alignment Guide Arrows -->
+  <g stroke="#16A34A" stroke-width="2.5" fill="none">
+    <path d="M 280 150 L 280 230" />
+    <polygon points="280,235 274,223 286,223" fill="#16A34A" />
+
+    <path d="M 500 150 L 500 230" />
+    <polygon points="500,235 494,223 506,223" fill="#16A34A" />
+  </g>
+
+  <!-- Educational Guidance Badges -->
+  <rect x="80" y="420" width="290" height="34" rx="8" fill="#FFFFFF" stroke="#BBF7D0" stroke-width="1.5" />
+  <circle cx="100" cy="437" r="6" fill="#16A34A" />
+  <text x="115" y="442" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#15803D">Sound Abutment & Caries Inspection</text>
+
+  <rect x="410" y="420" width="310" height="34" rx="8" fill="#FFFFFF" stroke="#FED7AA" stroke-width="1.5" />
+  <circle cx="430" cy="437" r="6" fill="#EA580C" />
+  <text x="445" y="442" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#C2410C">Clean Intaglio & Definitive Adhesive Luting</text>
+
+  <!-- Title Badge -->
+  <rect x="40" y="35" width="290" height="34" rx="8" fill="#FFFFFF" stroke="#86EFAC" stroke-width="1.5" />
+  <circle cx="58" cy="52" r="6" fill="#16A34A" />
+  <text x="74" y="57" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#15803D">Crown / Bridge Recementation</text>
+</svg>

@@ -68,6 +68,16 @@ export default function ProcedureDetailClientView({
     'pediatric-pulpotomy',
     'pediatric-stainless-steel-crowns',
     'pediatric-space-maintainers',
+    // Batch 5 procedures
+    'porcelain-veneers',
+    'gingival-recontouring',
+    'knocked-out-tooth-avulsion',
+    'emergency-broken-tooth-repair',
+    'recement-dislodged-crown-bridge',
+    'nitrous-oxide-inhalation-sedation',
+    'oral-sedation',
+    'intravenous-dental-sedation',
+    'recurrent-aphthous-ulcer-care',
   ]);
   const coverImageSrc = KNOWN_PROCEDURE_IMAGES.has(procedure.slug)
     ? `/images/procedures/${procedure.slug}.svg`
@@ -1230,6 +1240,260 @@ export default function ProcedureDetailClientView({
             titleTa: 'சாதனம் ஒட்டுதல் & தொடர் கண்காணிப்பு',
             descEn: 'The appliance is cemented to passively maintain leeway space, with regular recall to monitor hygiene and remove it once the adult tooth erupts.',
             descTa: 'சாதனம் சிமெண்ட் கொண்டு ஒட்டப்படுகிறது; கறை சேராமல் கண்காணிக்கவும், நிரந்தரப் பல் முளைத்ததும் சரியான நேரத்தில் கழற்றவும் தொடர் பரிசோதனை அவசியம்.',
+          },
+        ];
+
+      // Batch 5 Procedures
+      case 'porcelain-veneers':
+        return [
+          {
+            num: 1,
+            titleEn: 'Aesthetic Analysis & Diagnostic Mockup',
+            titleTa: 'புன்னகை வடிவமைப்பு & மாதிரியமைப்பு',
+            descEn: 'Facial aesthetics, shade, and occlusal guidance are evaluated, accompanied by a diagnostic wax-up to preview desired contours.',
+            descTa: 'முக அமைப்பு, பல்லின் நிறம் மற்றும் கடிக்கும் விசை ஆகியவை பரிசோதிக்கப்பட்டு, புன்னகை வடிவமைப்பு மாதிரி மூலம் முன்கூட்டியே திட்டமிடப்படுகிறது.',
+          },
+          {
+            num: 2,
+            titleEn: 'Conservative Tooth Preparation & Precision Impression',
+            titleTa: 'பல் தயாரிப்பு & துல்லிய அளவெடுத்தல்',
+            descEn: 'Individualized, conservative enamel preparation is performed as indicated, followed by digital or elastomeric impressions and provisional veneers.',
+            descTa: 'பல்லின் எனாமல் அடுக்கில் தேவைக்கேற்ப குறைந்தபட்ச தயாரிப்பு செய்யப்பட்டு, நவீன டிஜிட்டல் ஸ்கேன் அல்லது அளவெடுத்து தற்காலிக வெனியர் பொருத்தப்படுகிறது.',
+          },
+          {
+            num: 3,
+            titleEn: 'Laboratory Fabrication & Custom Ceramic Glazing',
+            titleTa: 'செராமிக் ஆய்வக தயாரிப்பு & மெருகூட்டல்',
+            descEn: 'High-strength ceramic (such as lithium disilicate or feldspathic porcelain) is custom crafted to match natural translucency and shade gradients.',
+            descTa: 'இயற்கையான பல்லின் ஒளி ஊடுருவும் தன்மையுடன் ஒத்துப்போகுமாறு அதிநவீன ஆய்வகத்தில் பீங்கான் தகடுகள் பிரத்யேகமாக உருவாக்கப்படுகின்றன.',
+          },
+          {
+            num: 4,
+            titleEn: 'Adhesive Cementation, Occlusal Refinement & Nightguard Review',
+            titleTa: 'பிசின் ஒட்டுதல் & கடிக்கும் விசை பரிசோதனை',
+            descEn: 'Enamel conditioning and resin bonding definitively seal the veneers, followed by precise occlusal adjustment and protective guard evaluation.',
+            descTa: 'ரெசின் சிமெண்ட் கொண்டு வெனியர்கள் உறுதியாக ஒட்டப்படுகின்றன; கடிக்கும் விசை சரிசெய்யப்பட்டு, இரவில் பற்களைப் பாதுகாக்க நைட் கார்டு பரிசீலிக்கப்படுகிறது.',
+          },
+        ];
+
+      case 'gingival-recontouring':
+        return [
+          {
+            num: 1,
+            titleEn: 'Aesthetic Periodontal Mapping & Biological Width Assessment',
+            titleTa: 'ஈறு அமைப்பு வரைபடம் & திசு பரிசோதனை',
+            descEn: 'Gingival margins, smile symmetry, and supracrestal tissue dimensions coronal to alveolar bone are measured to ensure soft-tissue-only suitability.',
+            descTa: 'ஈறுகளின் சமச்சீர்மை மற்றும் தாடை எலும்புக்கு மேல் உள்ள திசு இடைவெளி பரிசோதிக்கப்பட்டு, மென்மையான திசு சீரமைப்பு மட்டும் போதுமா என மதிப்பீடு செய்யப்படுகிறது.',
+          },
+          {
+            num: 2,
+            titleEn: 'Precision Laser or Surgical Sculpting',
+            titleTa: 'துல்லிய லேசர் அல்லது அறுவை சிகிச்சை சீரமைப்பு',
+            descEn: 'Local anesthesia is placed, followed by meticulous soft-tissue contouring with a dental laser or scalpel to expose natural crown dimensions.',
+            descTa: 'உள்ளூர் மயக்க மருந்து வழங்கப்பட்டு, அதிநவீன லேசர் அல்லது அறுவை உபகரணம் மூலம் அதிகப்படியான ஈறு திசுக்கள் மென்மையாக நீக்கப்பட்டு பற்கள் வெளிப்படுத்தப்படுகின்றன.',
+          },
+          {
+            num: 3,
+            titleEn: 'Tissue Hemostasis, Margin Polishing & Postoperative Healing',
+            titleTa: 'ரத்தக் கட்டுப்பாடு & திசு ஆறும் பராமரிப்பு',
+            descEn: 'Hemostasis is achieved instantly, margin contours are inspected, and postoperative oral hygiene instructions are reviewed for rapid re-epithelialization.',
+            descTa: 'ரத்தக் கசிவு முழுமையாகக் கட்டுப்படுத்தப்பட்டு, ஈறுகளின் புதிய வடிவமைப்பு உறுதிசெய்யப்படுகிறது; திசுக்கள் விரைவாக ஆற மென்மையான வாய் பராமரிப்பு முறைகள் கற்பிக்கப்படுகின்றன.',
+          },
+        ];
+
+      case 'knocked-out-tooth-avulsion':
+        return [
+          {
+            num: 1,
+            titleEn: 'Immediate First Aid, Handling & Transport',
+            titleTa: 'அவசர முதலுதவி, பல்லினைப் பாதுகாத்தல் & கொண்டுவருதல்',
+            descEn: 'Permanent tooth is handled strictly by the crown, briefly rinsed with cold saline/water if soiled, and transported in cold milk, HBSS, or saliva.',
+            descTa: 'விழுந்த நிரந்தரப் பல்லின் மகுடத்தை மட்டுமே தொட வேண்டும்; வேரைத் தொடாமல் குளிர்ந்த பால் அல்லது ஹாங்க்ஸ் கரைசலில் வைத்து உடனடியாக மருத்துவமனைக்குக் கொண்டுவர வேண்டும்.',
+          },
+          {
+            num: 2,
+            titleEn: 'Socket Inspection, Gentle Debridement & Replantation',
+            titleTa: 'எலும்புக்குழி பரிசோதனை & பல்லை மீண்டும் பொருத்துதல்',
+            descEn: 'Under local anesthesia, the alveolar socket is gently cleared of blood clots and the tooth is repositioned into its anatomical position without force.',
+            descTa: 'மயக்க மருந்து வழங்கப்பட்டு, எலும்புக்குழி மென்மையாகச் சுத்தம் செய்யப்பட்டு, பல் மீண்டும் அதன் சரியான இடத்தில் மென்மையாகப் பொருத்தப்படுகிறது.',
+          },
+          {
+            num: 3,
+            titleEn: 'Flexible Splinting & Occlusal Verification',
+            titleTa: 'நெகிழ்வான கம்பி மூலம் கட்டுதல் & கடி அமைப்பு ஆய்வு',
+            descEn: 'A passive, flexible splint is bonded to adjacent teeth to stabilize the replanted tooth while allowing physiological micromovement for PDL healing.',
+            descTa: 'பக்கத்து பற்களுடன் சேர்த்து மெல்லிய நெகிழ்வான கம்பி (Flexible Splint) ஒட்டப்பட்டு பல் அசையாமல் நிலைநிறுத்தப்படுகிறது.',
+          },
+          {
+            num: 4,
+            titleEn: 'Tetanus Status, Antibiotic Review & Scheduled Endodontics',
+            titleTa: 'தடுப்பூசி ஆய்வு & திட்டமிடப்பட்ட வேர்க்கால் சிகிச்சை',
+            descEn: 'Systemic tetanus coverage and individualized medication are assessed, scheduling endodontic management within 7 to 14 days for mature teeth.',
+            descTa: 'டெட்டனஸ் தடுப்பூசி நிலை ஆய்வு செய்யப்பட்டு, முழுமையாக வளர்ந்த பற்களுக்கு 7 முதல் 14 நாட்களுக்குள் வேர்க்கால் சிகிச்சை திட்டமிடப்படுகிறது.',
+          },
+        ];
+
+      case 'emergency-broken-tooth-repair':
+        return [
+          {
+            num: 1,
+            titleEn: 'Emergency Triage, Radiographic & Pulpal Evaluation',
+            titleTa: 'அவசரப் பரிசோதனை, எக்ஸ்-ரே & நரம்பு ஆய்வு',
+            descEn: 'Clinical examination and radiographs identify fracture extent, pulpal involvement, root integrity, and surrounding alveolar bone status.',
+            descTa: 'பல் உடைந்த விதம், உள்பகுதி நரம்பு வெளிப்பட்டுள்ளதா, மற்றும் வேரில் விரிசல் உள்ளதா என்பது எக்ஸ்-ரே மூலம் துல்லியமாகப் பரிசோதிக்கப்படுகிறது.',
+          },
+          {
+            num: 2,
+            titleEn: 'Pulp Protection or Vital Pulp Therapy (as Indicated)',
+            titleTa: 'நரம்புப் பாதுகாப்பு அல்லது உயிருள்ள நரம்பு சிகிச்சை',
+            descEn: 'Exposed dentin is sealed with biocompatible liners; if pulp is exposed, individualized pulp capping or partial pulpotomy is performed to preserve vitality.',
+            descTa: 'வெளிப்பட்ட டென்டின் அடுக்கு பாதுகாக்கப்படுகிறது; நரம்பு வெளிப்பட்டிருந்தால், பல்லின் உயிரோட்டத்தைத் தக்கவைக்க நவீன பயோமெட்டீரியல் மூலம் பாதுகாப்பு அளிக்கப்படுகிறது.',
+          },
+          {
+            num: 3,
+            titleEn: 'Adhesive Fragment Reattachment or Direct Composite Restoration',
+            titleTa: 'உடைந்த துண்டை மீண்டும் ஒட்டுதல் அல்லது காம்போசிட் அடைப்பு',
+            descEn: 'The hydrated tooth fragment is adhesively reattached, or multi-layered aesthetic composite resin is sculpted to restore natural form and function.',
+            descTa: 'பத்திரமாக எடுத்துவரப்பட்ட பல்லின் துண்டு மீண்டும் ஒட்டப்படுகிறது, அல்லது அடுக்குக் காம்போசிட் பிசின் கொண்டு பல்லின் பழைய வடிவம் முழுமையாக மீட்டமைக்கப்படுகிறது.',
+          },
+        ];
+
+      case 'recement-dislodged-crown-bridge':
+        return [
+          {
+            num: 1,
+            titleEn: 'Comprehensive Abutment & Margin Inspection',
+            titleTa: 'அடித்தளப் பல் & பற்காப்பு மூடி பரிசோதனை',
+            descEn: 'The underlying abutment tooth and restoration intaglio are evaluated clinically and radiographically to rule out recurrent caries, fracture, or periodontal defects.',
+            descTa: 'பற்காப்பு மூடி கழன்றதற்கான காரணத்தை அறிய பல்லில் மீண்டும் சொத்தை, வேர் விரிசல் அல்லது ஈறு பாதிப்பு உள்ளதா என எக்ஸ்-ரே மூலம் பரிசோதிக்கப்படுகிறது.',
+          },
+          {
+            num: 2,
+            titleEn: 'Cement Debridement, Disinfection & Try-In Verification',
+            titleTa: 'பழைய சிமெண்ட் நீக்கம், கிருமிநாசினி & பொருத்திப் பார்த்தல்',
+            descEn: 'Old luting cement is completely removed from restoration and abutment, surfaces are disinfected, and passive, rocking-free seatability is verified.',
+            descTa: 'பழைய சிமெண்ட் எச்சங்கள் முற்றிலும் அகற்றப்பட்டு, கிருமிநாசினி கொண்டு சுத்தம் செய்யப்பட்டு, மூடி ஆட்டமின்றி சரியாகப் பொருந்துகிறதா என சரிபார்க்கப்படுகிறது.',
+          },
+          {
+            num: 3,
+            titleEn: 'Definitive Adhesive Luting & Occlusal Clearance',
+            titleTa: 'நிலையான சிமெண்ட் ஒட்டுதல் & கடிக்கும் விசை சரிபார்த்தல்',
+            descEn: 'Appropriate dental cement (such as resin-modified glass ionomer or adhesive resin) is placed, excess removed, and interocclusal contacts checked.',
+            descTa: 'உயர்தர டென்டல் சிமெண்ட் மூலம் மூடி நிரந்தரமாக ஒட்டப்படுகிறது; அதிகப்படியான சிமெண்ட் நீக்கப்பட்டு, கடிக்கும் போது அழுத்தம் இல்லாதவாறு சரிசெய்யப்படுகிறது.',
+          },
+        ];
+
+      case 'nitrous-oxide-inhalation-sedation':
+        return [
+          {
+            num: 1,
+            titleEn: 'Preoperative Medical Screening & Mask Positioning',
+            titleTa: 'மருத்துவ வரலாறு பரிசோதனை & மூக்கு முகமூடி பொருத்துதல்',
+            descEn: 'Patient medical history and airway patency are reviewed, followed by comfortable placement of a contoured scented nasal mask delivering pure oxygen.',
+            descTa: 'உடல்நிலை மற்றும் மூச்சுப்பாதை பரிசோதிக்கப்பட்டு, நோயாளிக்கு வசதியான நறுமண மூக்கு முகமூடி பொருத்தப்பட்டு தூய பிராணவாயு வழங்கப்படுகிறது.',
+          },
+          {
+            num: 2,
+            titleEn: 'Gradual Nitrous Oxide Titration & Anxiolysis',
+            titleTa: 'நைட்ரஸ் ஆக்சைடு படிப்படியாக செலுத்துதல் & பதற்றத் தணிவு',
+            descEn: 'Nitrous oxide is incrementally introduced with a minimum of 30% oxygen fail-safe, achieving relaxed conscious anxiolysis with intact verbal responsiveness.',
+            descTa: 'குறைந்தபட்சம் 30% ஆக்சிஜனுடன் நைட்ரஸ் ஆக்சைடு படிப்படியாக அதிகரிக்கப்பட்டு, நோயாளி முழு விழிப்புணர்வுடன் அமைதியான மனநிலையை அடைகிறார்.',
+          },
+          {
+            num: 3,
+            titleEn: 'Post-Procedure 100% Oxygen Flush & Recovery Verification',
+            titleTa: 'சிகிச்சைக்குப் பின் 100% ஆக்சிஜன் வழங்குதல் & முழு விழிப்புணர்வு',
+            descEn: '100% oxygen is administered for at least 5 minutes to eliminate residual nitrous oxide from the lungs and prevent diffusion hypoxia prior to discharge.',
+            descTa: 'சிகிச்சை முடிந்ததும் நுரையீரலில் உள்ள வாயுவை முழுமையாக வெளியேற்றி தலைச்சுற்றலைத் தடுக்க 5 நிமிடங்களுக்கு 100% தூய ஆக்சிஜன் வழங்கப்பட்டு இயல்புநிலைக்குக் கொண்டுவரப்படுகிறது.',
+          },
+        ];
+
+      case 'oral-sedation':
+        return [
+          {
+            num: 1,
+            titleEn: 'Pre-Sedation Medical Evaluation & Fasting Review',
+            titleTa: 'மயக்கத்திற்கு முந்தைய மருத்துவ ஆய்வு & உணவுக்கட்டுப்பாடு',
+            descEn: 'Medical history, ASA status, and strict fasting adherence are verified, establishing an individualized conscious sedation plan.',
+            descTa: 'முந்தைய மருத்துவ வரலாறு, உடல் தகுதி மற்றும் உணவு உட்கொள்ளாமை விதிகள் (Fasting) ஆகியவை தீவிரமாகப் பரிசோதிக்கப்பட்டு திட்டமிடப்படுகிறது.',
+          },
+          {
+            num: 2,
+            titleEn: 'Oral Sedative Administration & Relaxed Induction',
+            titleTa: 'வாய்வழி மாத்திரை உட்கொள்ளுதல் & அமைதியான மயக்கத் தொடக்கம்',
+            descEn: 'Prescribed oral medication is administered in a quiet environment, allowing gradual onset of systemic relaxation and reduced anxiety.',
+            descTa: 'பரிந்துரைக்கப்பட்ட மாத்திரை உட்கொள்ளப்பட்டு, அமைதியான சூழலில் பதற்றம் குறைந்து ஆழ்ந்த தளர்வான நிலையை நோயாளி அடைகிறார்.',
+          },
+          {
+            num: 3,
+            titleEn: 'Continuous Multi-Parameter Physiological Monitoring',
+            titleTa: 'தொடர்ச்சியான உடல் இயக்கக் கண்காணிப்பு',
+            descEn: 'Vital signs—pulse oximetry, blood pressure, heart rate, and responsiveness—are monitored continuously throughout dental treatment.',
+            descTa: 'பல் சிகிச்சை முடியும் வரை ரத்த அழுத்தம், இதயத்துடிப்பு மற்றும் ஆக்சிஜன் அளவு ஆகியவை அதிநவீன மானிட்டர் மூலம் தொடர்ந்து கண்காணிக்கப்படுகின்றன.',
+          },
+          {
+            num: 4,
+            titleEn: 'Recovery Assessment & Supervised Discharge',
+            titleTa: 'விழிப்புணர்வு மீட்பு ஆய்வு & பாதுகாப்பான வழியனுப்புதல்',
+            descEn: 'Recovery criteria are verified, releasing the patient into the care of an adult escort with specific postoperative safety instructions.',
+            descTa: 'நோயாளி இயல்புநிலைக்குத் திரும்பியதை மருத்துவர் உறுதிசெய்து, பாதுகாப்பு அறிவுரைகளுடன் பொறுப்பான துணையுடன் வீட்டிற்கு அனுப்பி வைக்கப்படுகிறார்.',
+          },
+        ];
+
+      case 'intravenous-dental-sedation':
+        return [
+          {
+            num: 1,
+            titleEn: 'Specialist Anesthesia Assessment & Patient Preparation',
+            titleTa: 'மயக்கவியல் நிபுணர் பரிசோதனை & நோயாளி தயாரிப்பு',
+            descEn: 'A certified specialist evaluates airway anatomy, fasting adherence, and monitors baseline cardiovascular status in a fully equipped clinical facility.',
+            descTa: 'மயக்கவியல் நிபுணர் அல்லது அறுவை சிகிச்சை நிபுணர் மூச்சுப்பாதை மற்றும் உடல்நிலையை முழுமையாகப் பரிசோதித்து சிகிச்சைக்குத் தயார்படுத்துகிறார்.',
+          },
+          {
+            num: 2,
+            titleEn: 'Intravenous Access & Multi-Lead Monitoring Setup',
+            titleTa: 'நரம்பு வழி பாதை அமைத்தல் & கண்காணிப்புக் கருவிகள் பொருத்துதல்',
+            descEn: 'Intravenous line access is established, connecting continuous capnography (ETCO2), continuous ECG, automated NIBP, and pulse oximetry.',
+            descTa: 'கையில் பாதுகாப்பான நரம்பு வழி ஊசி செலுத்தப்பட்டு, இதயத்துடிப்பு (ECG), சுவாசம் (Capnography) மற்றும் ரத்த அழுத்தக் கருவிகள் இணைக்கப்படுகின்றன.',
+          },
+          {
+            num: 3,
+            titleEn: 'Specialist-Controlled Deep Sedation & Dedicated Monitoring',
+            titleTa: 'நிபுணர் கட்டுப்படுத்திய மயக்க நிலை & பிரத்யேக கண்காணிப்பு',
+            descEn: 'Targeted intravenous medications are carefully titrated by the dedicated anesthesia clinician, maintaining airway patency throughout complex surgical care.',
+            descTa: 'அறுவை சிகிச்சை முடியும் வரை மயக்க மருந்துகள் நிபுணரால் துல்லியமாக நிர்வகிக்கப்பட்டு, நோயாளியின் சுவாசம் மற்றும் பாதுகாப்பு தொடர்ந்து உறுதிசெய்யப்படுகிறது.',
+          },
+          {
+            num: 4,
+            titleEn: 'Standardized Post-Anesthesia Recovery & Accompanied Discharge',
+            titleTa: 'மயக்கத்திற்குப் பிந்தைய மீட்பு & துணையுடன் வழியனுப்புதல்',
+            descEn: 'The patient recovers in a dedicated monitoring bay, meeting formal discharge scoring criteria before releasing to a responsible adult escort.',
+            descTa: 'சிறப்பு கண்காணிப்பு அறையில் நோயாளி முழு நினைவாற்றல் மற்றும் வலிமையை மீட்டெடுத்த பிறகு, துணையுடன் வீட்டிற்கு அனுப்பி வைக்கப்படுகிறார்.',
+          },
+        ];
+
+      case 'recurrent-aphthous-ulcer-care':
+        return [
+          {
+            num: 1,
+            titleEn: 'Clinical Examination & Differential Diagnosis',
+            titleTa: 'மருத்துவப் பரிசோதனை & புண் வகையைக் கண்டறிதல்',
+            descEn: 'The oral medicine clinician inspects ulcer size, duration, morphology, and mucosal location to rule out malignancy, traumatic lesions, or viral infections.',
+            descTa: 'வாய் புண்ணின் அளவு, காலம் மற்றும் வடிவம் பரிசோதிக்கப்பட்டு, புற்றுநோய் அல்லது வைரஸ் தொற்று இல்லை என்பதை உறுதிசெய்ய துல்லியமாக ஆராயப்படுகிறது.',
+          },
+          {
+            num: 2,
+            titleEn: 'Topical Pain Relief & Anti-Inflammatory Barrier Application',
+            titleTa: 'வலி நிவாரணம் & அழற்சி எதிர்ப்பு பாதுகாப்புப் பூச்சு',
+            descEn: 'Topical mucosal anesthetics, soothing rinses, and bioadhesive anti-inflammatory barrier pastes are applied to shield exposed nerve endings.',
+            descTa: 'புண்ணின் வலியை உடனடியாகக் குறைக்க மயக்கக் களிம்பு மற்றும் புண் மேலும் புண்படாமல் பாதுகாக்க ஒட்டும் பாதுகாப்புப் பசை (Barrier Paste) பூசப்படுகிறது.',
+          },
+          {
+            num: 3,
+            titleEn: 'Systemic Health Screening & Preventive Self-Care Counseling',
+            titleTa: 'உடல்நலப் பரிசோதனை & தடுப்புப் பராமரிப்பு ஆலோசனைகள்',
+            descEn: 'Recurrent patterns are evaluated for nutritional deficiencies (iron, B12, folate) or gastrointestinal conditions, advising on non-irritating diet and oral hygiene.',
+            descTa: 'அடிக்கடி புண் வருவதைத் தவிர்க்க ஊட்டச்சத்து குறைபாடு உள்ளதா என இரத்தப் பரிசோதனை பரிந்துரைக்கப்பட்டு, காரமற்ற உணவு மற்றும் வாய் பராமரிப்பு முறைகள் கற்பிக்கப்படுகின்றன.',
           },
         ];
 

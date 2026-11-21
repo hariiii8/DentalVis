@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgBrk" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFBEB" />
+      <stop offset="50%" stop-color="#FEF3C7" />
+      <stop offset="100%" stop-color="#FDE68A" />
+    </linearGradient>
+    <linearGradient id="toothGrad3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="70%" stop-color="#F8FAFC" />
+      <stop offset="100%" stop-color="#E2E8F0" />
+    </linearGradient>
+    <linearGradient id="dentinGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FEF08A" />
+      <stop offset="100%" stop-color="#F59E0B" />
+    </linearGradient>
+    <linearGradient id="pulpGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F43F5E" />
+      <stop offset="100%" stop-color="#BE123C" />
+    </linearGradient>
+    <filter id="shadowBrk" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="3" dy="5" stdDeviation="6" flood-opacity="0.14" />
+    </filter>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#bgBrk)" rx="16" />
+
+  <!-- Base Anterior Incisor with Oblique Crown Fracture -->
+  <g filter="url(#shadowBrk)" transform="translate(180, 50)">
+    <!-- Root in Bone -->
+    <path d="M 120 180 C 120 120, 140 40, 160 10 C 180 40, 200 120, 200 180 Z" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="2" />
+
+    <!-- Pulp Chamber & Root Canal -->
+    <path d="M 155 40 C 158 80, 156 140, 150 180 C 146 210, 148 240, 154 260 C 158 262, 162 262, 166 260 C 172 240, 174 210, 170 180 C 164 140, 162 80, 165 40 Z" fill="url(#pulpGrad)" />
+
+    <!-- Remaining Intact Tooth Body -->
+    <path d="M 100 180 C 95 240, 100 320, 115 365 C 130 372, 165 372, 175 350 L 175 270 L 225 210 C 220 190, 215 180, 210 180 Z" fill="url(#toothGrad3)" stroke="#94A3B8" stroke-width="2.5" />
+
+    <!-- Exposed Dentin Zone Along Fracture Line -->
+    <path d="M 175 350 L 175 270 L 225 210 C 220 205, 210 205, 205 210 L 165 260 L 165 340 Z" fill="url(#dentinGrad)" stroke="#D97706" stroke-width="1.5" />
+
+    <!-- Jagged Fracture Margin -->
+    <path d="M 175 350 L 180 320 L 172 290 L 195 260 L 185 240 L 225 210" fill="none" stroke="#D97706" stroke-width="3" stroke-linecap="round" />
+  </g>
+
+  <!-- Detached Fractured Incisal Edge Fragment (Awaiting Reattachment or Composite Build-up) -->
+  <g filter="url(#shadowBrk)" transform="translate(480, 230) rotate(-10)">
+    <path d="M 0 0 L 10 30 L 2 60 L 25 90 L 15 110 L 55 80 C 50 40, 40 10, 25 0 Z" fill="url(#toothGrad3)" stroke="#0284C7" stroke-width="2" stroke-dasharray="4,4" />
+    <text x="70" y="60" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#0284C7">Hydrated Fragment</text>
+  </g>
+
+  <!-- Adhesive Reattachment / Restoration Guide Line -->
+  <path d="M 470 280 C 430 280, 400 300, 365 320" fill="none" stroke="#2563EB" stroke-width="2.5" stroke-dasharray="6,4" />
+  <polygon points="360,323 372,315 370,328" fill="#2563EB" />
+
+  <!-- Educational Badges -->
+  <rect x="80" y="420" width="280" height="34" rx="8" fill="#FFFFFF" stroke="#FDE68A" stroke-width="1.5" />
+  <circle cx="100" cy="437" r="6" fill="#D97706" />
+  <text x="115" y="442" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#92400E">Protect Exposed Dentin & Pulp</text>
+
+  <rect x="400" y="420" width="320" height="34" rx="8" fill="#FFFFFF" stroke="#BAE6FD" stroke-width="1.5" />
+  <circle cx="420" cy="437" r="6" fill="#0284C7" />
+  <text x="435" y="442" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#0369A1">Adhesive Reattachment / Composite Layering</text>
+
+  <!-- Title Badge -->
+  <rect x="40" y="35" width="270" height="34" rx="8" fill="#FFFFFF" stroke="#FCD34D" stroke-width="1.5" />
+  <circle cx="58" cy="52" r="6" fill="#D97706" />
+  <text x="74" y="57" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#B45309">Emergency Broken Tooth Repair</text>
+</svg>

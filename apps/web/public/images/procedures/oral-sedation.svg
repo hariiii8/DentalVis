@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgOrl" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F8FAFC" />
+      <stop offset="50%" stop-color="#F1F5F9" />
+      <stop offset="100%" stop-color="#E2E8F0" />
+    </linearGradient>
+    <linearGradient id="monitorGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#1E293B" />
+    </linearGradient>
+    <linearGradient id="pillGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#60A5FA" />
+      <stop offset="100%" stop-color="#2563EB" />
+    </linearGradient>
+    <filter id="shadowOrl" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="3" dy="5" stdDeviation="6" flood-opacity="0.14" />
+    </filter>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#bgOrl)" rx="16" />
+
+  <!-- Oral Medication Capsule Graphic (Left Side) -->
+  <g filter="url(#shadowOrl)" transform="translate(140, 150) rotate(-25)">
+    <!-- Capsule Left Half -->
+    <path d="M 0 35 C 0 15, 15 0, 35 0 L 80 0 L 80 70 L 35 70 C 15 70, 0 55, 0 35 Z" fill="url(#pillGrad)" stroke="#1D4ED8" stroke-width="2" />
+    <!-- Capsule Right Half -->
+    <path d="M 80 0 L 125 0 C 145 0, 160 15, 160 35 C 160 55, 145 70, 125 70 L 80 70 Z" fill="#FFFFFF" stroke="#94A3B8" stroke-width="2" />
+    <!-- Divider Band -->
+    <line x1="80" y1="0" x2="80" y2="70" stroke="#CBD5E1" stroke-width="3" />
+    <text x="80" y="105" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#475569" text-anchor="middle">Prescribed Oral Sedative</text>
+  </g>
+
+  <!-- Vital Signs Monitor (Right Side) -->
+  <g filter="url(#shadowOrl)" transform="translate(380, 100)">
+    <!-- Monitor Bezel -->
+    <rect width="320" height="230" rx="16" fill="url(#monitorGrad)" stroke="#334155" stroke-width="3" />
+
+    <!-- Pulse Oximeter Trace (Green Spikes) -->
+    <text x="20" y="35" font-family="system-ui, monospace" font-size="13" font-weight="700" fill="#22C55E">SpO2: 99%</text>
+    <path d="M 20 65 L 70 65 L 78 50 L 85 85 L 92 40 L 98 70 L 105 65 L 170 65 L 178 50 L 185 85 L 192 40 L 198 70 L 205 65 L 290 65" fill="none" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round" />
+
+    <!-- Blood Pressure & Heart Rate Line (Cyan / Yellow) -->
+    <text x="20" y="120" font-family="system-ui, monospace" font-size="13" font-weight="700" fill="#38BDF8">NIBP: 118 / 74 mmHg</text>
+    <text x="20" y="150" font-family="system-ui, monospace" font-size="13" font-weight="700" fill="#FACC15">HR: 68 bpm</text>
+
+    <!-- Airway / Responsiveness Status Badge inside Screen -->
+    <rect x="20" y="175" width="280" height="34" rx="6" fill="#1E293B" stroke="#475569" stroke-width="1.5" />
+    <circle cx="36" cy="192" r="5" fill="#22C55E" />
+    <text x="50" y="196" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#E2E8F0">Conscious • Verbal Response Active</text>
+  </g>
+
+  <!-- Finger Pulse Oximeter Sensor Graphic -->
+  <g filter="url(#shadowOrl)" transform="translate(180, 290)">
+    <rect width="90" height="50" rx="10" fill="#FFFFFF" stroke="#94A3B8" stroke-width="2" />
+    <circle cx="30" cy="25" r="8" fill="#EF4444" opacity="0.8" />
+    <path d="M 30 25 L 100 25" stroke="#64748B" stroke-width="2" stroke-dasharray="3,3" />
+    <text x="45" y="68" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#64748B" text-anchor="middle">Oximeter Clip</text>
+  </g>
+
+  <!-- Informational Footers -->
+  <rect x="80" y="420" width="310" height="34" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" />
+  <circle cx="100" cy="437" r="6" fill="#2563EB" />
+  <text x="115" y="442" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#1E40AF">Preoperative Medical Triage & NPO Fasting</text>
+
+  <rect x="420" y="420" width="310" height="34" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" />
+  <circle cx="440" cy="437" r="6" fill="#16A34A" />
+  <text x="455" y="442" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#166534">Escorted Adult Discharge & Follow-up</text>
+
+  <!-- Title Badge -->
+  <rect x="40" y="35" width="290" height="34" rx="8" fill="#FFFFFF" stroke="#93C5FD" stroke-width="1.5" />
+  <circle cx="58" cy="52" r="6" fill="#2563EB" />
+  <text x="74" y="57" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#1D4ED8">Moderate Oral Sedation</text>
+</svg>

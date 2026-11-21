@@ -1193,6 +1193,286 @@ const PROCEDURE_ANATOMY_DATA: Record<string, ProcedureAnatomyConfig> = {
       },
     ],
   },
+
+  // Batch 5 Procedures
+  'porcelain-veneers': {
+    titleEn: 'Porcelain Laminate Veneer Anatomy',
+    titleTa: 'பீங்கான் வெனியர் உடற்கூறியல்',
+    subtitleEn: 'Facial Enamel Substrate, Custom Ceramic Shell, and Resin Luting Interface',
+    subtitleTa: 'எனாமல் அடுக்கு, செராமிக் கவசம் மற்றும் பிசின் பசை இணைப்பு',
+    interactive3DReady: false,
+    callouts: [
+      {
+        labelEn: 'Labial Enamel Preparation Boundary',
+        labelTa: 'முன்புற எனாமல் தயாரிப்பு எல்லை',
+        descEn: 'Conservative preparation preserves maximal enamel thickness for optimal adhesive bond strength.',
+        descTa: 'பிசின் பசை வலிமையாக ஒட்டுவதற்கு எனாமல் அடுக்கு அதிகபட்சமாகப் பாதுகாக்கப்பட்டு லேசாக செதுக்கப்படுகிறது.',
+        positionPercent: { x: 38, y: 35 },
+      },
+      {
+        labelEn: 'Custom Ceramic Veneer Facing',
+        labelTa: 'பீங்கான் வெனியர் கவசம்',
+        descEn: 'Ultra-thin aesthetic porcelain matching natural translucency, tooth shape, and shade gradients.',
+        descTa: 'இயற்கையான பல்லின் ஒளி ஊடுருவல் மற்றும் நிறத்திற்கு ஏற்ப தயாரிக்கப்படும் மெல்லிய பீங்கான் தகடு.',
+        positionPercent: { x: 65, y: 32 },
+      },
+      {
+        labelEn: 'Subgingival or Equigingival Margin Interface',
+        labelTa: 'ஈறு ஓர இணைப்புப் பகுதி',
+        descEn: 'Precisely polished margins blend smoothly with periodontal tissues, preventing plaque accumulation.',
+        descTa: 'ஈறுகளுக்கு எந்த பாதிப்பும் இன்றி, கறை படியாமல் வழவழப்பாக இணைக்கப்படும் மெல்லிய விளிம்பு.',
+        positionPercent: { x: 50, y: 68 },
+      },
+    ],
+  },
+
+  'gingival-recontouring': {
+    titleEn: 'Aesthetic Gingival Recontouring Anatomy',
+    titleTa: 'ஈறு சீரமைப்பு உடற்கூறியல்',
+    subtitleEn: 'Hyperplastic Margin, Scalled Gingival Zenith, and Supracrestal Biological Width',
+    subtitleTa: 'அதிகப்படியான ஈறு விளிம்பு, சீரான ஈறு உச்சி மற்றும் திசு இடைவெளி',
+    interactive3DReady: false,
+    callouts: [
+      {
+        labelEn: 'Reshaped Gingival Zenith & Scallop',
+        labelTa: 'சீரமைக்கப்பட்ட ஈறு உச்சி (Zenith)',
+        descEn: 'Sculpted soft-tissue curve harmonizes tooth proportions and balances smile symmetry.',
+        descTa: 'பற்கள் அழகாகவும் சமச்சீராகவும் தெரியுமாறு சீரமைக்கப்பட்ட ஈற்றின் உச்சி வளைவு.',
+        positionPercent: { x: 48, y: 30 },
+      },
+      {
+        labelEn: 'Soft-Tissue Excision Zone',
+        labelTa: 'ஈறு திசு அகற்றும் பகுதி',
+        descEn: 'Targeted laser or surgical reduction removing excess tissue obscuring anatomical crowns.',
+        descTa: 'பல்லை அதிகமாக மூடியிருக்கும் அதிகப்படியான ஈறு லேசர் மூலம் மென்மையாக நீக்கப்படும் பகுதி.',
+        positionPercent: { x: 32, y: 48 },
+      },
+      {
+        labelEn: 'Supracrestal Tissue Attachment Space',
+        labelTa: 'தாடை எலும்புக்கு மேலான திசு இடைவெளி',
+        descEn: 'Sufficient biological distance between new margin and alveolar crest prevents tissue rebound.',
+        descTa: 'ஈறு மீண்டும் வளராமல் தடுக்க தாடை எலும்பிற்கும் புதிய ஈறு விளிம்பிற்கும் இடையே விடப்படும் இடைவெளி.',
+        positionPercent: { x: 62, y: 70 },
+      },
+    ],
+  },
+
+  'knocked-out-tooth-avulsion': {
+    titleEn: 'Avulsed Permanent Tooth Emergency Anatomy',
+    titleTa: 'முழுமையாக விழுந்த நிரந்தரப் பல் அவசர உடற்கூறியல்',
+    subtitleEn: 'Intact Coronal Enamel, Periodontal Ligament (PDL) Fibers, and Alveolar Socket',
+    subtitleTa: 'பல் மகுடம், இணைப்புத் திசு நார்கள் (PDL) மற்றும் தாடை எலும்புக்குழி',
+    interactive3DReady: false,
+    callouts: [
+      {
+        labelEn: 'Crown Handling Zone (Untouched Root)',
+        labelTa: 'மகுடப் பகுதி (வேரைத் தொடக்கூடாது)',
+        descEn: 'Handle only by the coronal surface; avoid touching or scraping the vulnerable root surface.',
+        descTa: 'கழன்ற பல்லின் மகுடத்தை மட்டுமே தொட வேண்டும்; வேர்ப்பகுதியில் உள்ள செல்களை ஒருபோதும் தொடக்கூடாது.',
+        positionPercent: { x: 50, y: 25 },
+      },
+      {
+        labelEn: 'Vital Periodontal Ligament (PDL) Cells',
+        labelTa: 'உயிருள்ள இணைப்புத் திசு செல்கள் (PDL)',
+        descEn: 'Preserved in cold milk or HBSS; cellular survival is critical for successful reattachment.',
+        descTa: 'குளிர்ந்த பாலில் பாதுகாக்கப்பட்ட உயிருள்ள செல்கள்; பல் மீண்டும் தாடையில் இணைய இவை மிக அவசியம்.',
+        positionPercent: { x: 35, y: 55 },
+      },
+      {
+        labelEn: 'Alveolar Socket & Flexible Splint Line',
+        labelTa: 'எலும்புக்குழி & நிலைநிறுத்தும் கம்பி அமைப்பு',
+        descEn: 'Socket is gently irrigated and the tooth stabilized with a flexible splint for periodontal healing.',
+        descTa: 'எலும்புக்குழியில் பல் மீண்டும் வைக்கப்பட்டு, நெகிழ்வான கம்பி மூலம் பக்கத்து பற்களுடன் நிலைநிறுத்தப்படுகிறது.',
+        positionPercent: { x: 68, y: 75 },
+      },
+    ],
+  },
+
+  'emergency-broken-tooth-repair': {
+    titleEn: 'Traumatic Tooth Fracture Repair Anatomy',
+    titleTa: 'உடைந்த பல் அவசர சீரமைப்பு உடற்கூறியல்',
+    subtitleEn: 'Enamel/Dentin Fracture Edge, Pulp Chamber Status, and Composite Resin Restoration',
+    subtitleTa: 'எனாமல்/டென்டின் உடைந்த விளிம்பு, நரம்பு அறை மற்றும் காம்போசிட் மறுசீரமைப்பு',
+    interactive3DReady: false,
+    callouts: [
+      {
+        labelEn: 'Fractured Enamel & Dentin Edge',
+        labelTa: 'உடைந்த எனாமல் & டென்டின் விளிம்பு',
+        descEn: 'Beveled or smoothed to seal exposed dentinal tubules and maximize composite bonding area.',
+        descTa: 'பல் கூச்சத்தைத் தடுக்கவும் காம்போசிட் நன்றாக ஒட்டவும் உடைந்த விளிம்பு நுணுக்கமாக சீரமைக்கப்படுகிறது.',
+        positionPercent: { x: 42, y: 35 },
+      },
+      {
+        labelEn: 'Dental Pulp Chamber & Biocompatible Liner',
+        labelTa: 'பல் நரம்பு அறை & பாதுகாப்பு அடுக்கு',
+        descEn: 'Evaluated for vitality; biocompatible silicate cement protects pulp from thermal/bacterial irritation.',
+        descTa: 'நரம்பு அறை பரிசோதிக்கப்பட்டு, கிருமி மற்றும் கூச்சத்திலிருந்து பாதுகாக்க பயோமெட்டீரியல் பூசப்படுகிறது.',
+        positionPercent: { x: 52, y: 58 },
+      },
+      {
+        labelEn: 'Multi-Shade Composite Resin Restoration',
+        labelTa: 'பல வண்ண காம்போசிட் பிசின் மறுசீரமைப்பு',
+        descEn: 'Layered resin sculpted to match original incisal translucency, anatomy, and chewing dynamics.',
+        descTa: 'பல்லின் அசல் வடிவம், ஒளி ஊடுருவல் மற்றும் வண்ணத்திற்கு ஏற்ப அடுக்கடுக்காக வடிவமைக்கப்படும் ரெசின்.',
+        positionPercent: { x: 65, y: 28 },
+      },
+    ],
+  },
+
+  'recement-dislodged-crown-bridge': {
+    titleEn: 'Dislodged Crown & Abutment Assessment Anatomy',
+    titleTa: 'கழன்ற பற்காப்பு மூடி & அடித்தளப் பல் உடற்கூறியல்',
+    subtitleEn: 'Intaglio Prosthetic Surface, Cleaned Abutment Core, and Luting Cement Layer',
+    subtitleTa: 'மூடியின் உள்பகுதி, சுத்தப்படுத்தப்பட்ட பல்லின் தளம் மற்றும் சிமெண்ட் அடுக்கு',
+    interactive3DReady: false,
+    callouts: [
+      {
+        labelEn: 'Crown Internal Intaglio Surface',
+        labelTa: 'பற்காப்பு மூடியின் உள்பகுதி (Intaglio)',
+        descEn: 'Cleared of old cement debris, grit-blasted or disinfected to ensure complete passive seating.',
+        descTa: 'பழைய சிமெண்ட் நீக்கப்பட்டு, கிருமிநாசினி கொண்டு முழுமையாக சுத்தப்படுத்தப்படும் மூடியின் உட்புறம்.',
+        positionPercent: { x: 52, y: 25 },
+      },
+      {
+        labelEn: 'Sound Abutment Preparation Core',
+        labelTa: 'ஆரோக்கியமான அடித்தளப் பல்',
+        descEn: 'Inspected for recurrent decay, cracks, or margin breakdown before approving recementation.',
+        descTa: 'மூடி கழன்றதற்கான காரணத்தை அறிய சொத்தை அல்லது விரிசல் இல்லை என உறுதிசெய்யப்படும் பல்லின் தளம்.',
+        positionPercent: { x: 46, y: 55 },
+      },
+      {
+        labelEn: 'Definitive Luting Cement Layer',
+        labelTa: 'நிரந்தர டென்டல் சிமெண்ட் அடுக்கு',
+        descEn: 'Resin-modified glass ionomer or adhesive cement creates a durable marginal seal.',
+        descTa: 'மூடிக்கும் பல்லிற்கும் இடையே இடைவெளியின்றி உறுதியாக ஒட்டும் உயர்தர டென்டல் சிமெண்ட்.',
+        positionPercent: { x: 60, y: 72 },
+      },
+    ],
+  },
+
+  'nitrous-oxide-inhalation-sedation': {
+    titleEn: 'Nitrous Oxide Inhalation Sedation Delivery Anatomy',
+    titleTa: 'நைட்ரஸ் ஆக்சைடு மயக்க வாயு உடற்கூறியல்',
+    subtitleEn: 'Contoured Nasal Hood, Continuous Gas Blending, and Preserved Spontaneous Airway',
+    subtitleTa: 'மூக்கு முகமூடி, பாதுகாப்பான வாயுக்கலவை மற்றும் இயல்பான மூச்சுப்பாதை',
+    interactive3DReady: false,
+    callouts: [
+      {
+        labelEn: 'Contoured Nasal Delivery Mask',
+        labelTa: 'வசதியான மூக்கு முகமூடி (Nasal Mask)',
+        descEn: 'Lightweight scavenging nasal mask delivering controlled nitrous oxide/oxygen mixture.',
+        descTa: 'நோயாளி வசதியாக சுவாசிக்க மூக்கின் மேல் பொருத்தப்படும் நவீன முகமூடி அமைப்பு.',
+        positionPercent: { x: 50, y: 32 },
+      },
+      {
+        labelEn: 'Continuous Fail-Safe Gas Proportioning',
+        labelTa: 'தானியங்கி வாயு விகித பாதுகாப்பு அமைப்பு',
+        descEn: 'Mechanical fail-safes guarantee a minimum of 30% oxygen, preventing hypoxic mixtures.',
+        descTa: 'குறைந்தபட்சம் 30% பிராணவாயு எப்போதும் இருப்பதை உறுதிசெய்யும் தானியங்கி பாதுகாப்பு கருவி.',
+        positionPercent: { x: 68, y: 52 },
+      },
+      {
+        labelEn: 'Preserved Pharyngeal & Laryngeal Reflexes',
+        labelTa: 'பாதுகாக்கப்பட்ட இயல்பான தொண்டை அனிச்சை செயல்கள்',
+        descEn: 'Patient maintains active airway reflexes, independent breathing, and verbal responsiveness.',
+        descTa: 'நோயாளி இயல்பாக சுவாசிக்கிறார், விழுங்கும் திறன் மற்றும் சுயநினைவு முழுமையாகப் பாதுகாக்கப்படுகிறது.',
+        positionPercent: { x: 38, y: 68 },
+      },
+    ],
+  },
+
+  'oral-sedation': {
+    titleEn: 'Moderate Oral Conscious Sedation Monitoring Anatomy',
+    titleTa: 'மிதமான வாய்வழி மயக்க கண்காணிப்பு உடற்கூறியல்',
+    subtitleEn: 'Oral Anxiolytic Absorption, Continuous Pulse Oximetry, and Airway Patency',
+    subtitleTa: 'மாத்திரை உட்கிரகிப்பு, ஆக்சிஜன் மானிட்டர் மற்றும் மூச்சுப்பாதை பாதுகாப்பு',
+    interactive3DReady: false,
+    callouts: [
+      {
+        labelEn: 'Oral Pharmacological Sedative Uptake',
+        labelTa: 'வாய்வழி மயக்க மருந்து உட்கிரகிப்பு',
+        descEn: 'Pre-procedure oral sedative provides systemic relaxation while patient remains responsive to prompts.',
+        descTa: 'சிகிச்சைக்கு முன் கொடுக்கப்படும் மாத்திரை நரம்பு மண்டலத்தை அமைதிப்படுத்தி பதற்றத்தைக் குறைக்கிறது.',
+        positionPercent: { x: 36, y: 40 },
+      },
+      {
+        labelEn: 'Multi-Parameter Vital Signs Monitor',
+        labelTa: 'உடல் இயக்க கண்காணிப்பு மானிட்டர்',
+        descEn: 'Continuous tracking of pulse oximetry, blood pressure, heart rate, and respiratory status.',
+        descTa: 'ரத்த அழுத்தம், இதயத்துடிப்பு மற்றும் ஆக்சிஜன் அளவை நொடிகள் தோறும் பதிவு செய்யும் கருவி.',
+        positionPercent: { x: 66, y: 35 },
+      },
+      {
+        labelEn: 'Unobstructed Airway & Verbal Response Path',
+        labelTa: 'தடையில்லா மூச்சுப்பாதை & பதிலளிக்கும் விழிப்புணர்வு',
+        descEn: 'Airway remains patent with active protective reflexes and purposeful verbal interaction.',
+        descTa: 'சுவாசம் தடையின்றி இயங்குகிறது; மருத்துவரின் கேள்விகளுக்கு நோயாளி எளிதாக பதிலளிக்க முடிகிறது.',
+        positionPercent: { x: 50, y: 72 },
+      },
+    ],
+  },
+
+  'intravenous-dental-sedation': {
+    titleEn: 'Specialist Intravenous Sedation Monitoring Anatomy',
+    titleTa: 'நிபுணர் நரம்பு வழி மயக்க கண்காணிப்பு உடற்கூறியல்',
+    subtitleEn: 'Continuous Capnography Line, Multi-Lead ECG, and Controlled Vascular Infusion',
+    subtitleTa: 'சுவாசக் கண்காணிப்பு (Capnography), இதய மானிட்டர் (ECG) மற்றும் நரம்பு வழி செலுத்துகை',
+    interactive3DReady: false,
+    callouts: [
+      {
+        labelEn: 'Intravenous Vascular Access Line',
+        labelTa: 'நரம்பு வழி பாதை (IV Access)',
+        descEn: 'Provides smooth, titrated administration of sedative agents by credentialed anesthesia specialists.',
+        descTa: 'மயக்கவியல் நிபுணரால் மருந்துகள் துல்லியமாக செலுத்தப்படும் நரம்பு வழி ஊசிப் பாதை.',
+        positionPercent: { x: 35, y: 62 },
+      },
+      {
+        labelEn: 'Continuous End-Tidal CO2 Capnography',
+        labelTa: 'தொடர் மூச்சுக்காற்று கண்காணிப்பு (Capnography)',
+        descEn: 'Real-time breath-by-breath ventilation monitoring to immediately detect respiratory depression.',
+        descTa: 'ஒவ்வொரு மூச்சிலும் வெளியேறும் கார்பன் டை ஆக்சைடை அளந்து சுவாசத்தை உறுதிசெய்யும் அதிநவீன அமைப்பு.',
+        positionPercent: { x: 50, y: 32 },
+      },
+      {
+        labelEn: 'Continuous Multi-Lead ECG & Hemodynamic Bay',
+        labelTa: 'தொடர் இதய மின் வரைபடம் (ECG) & ரத்த அழுத்த மானிட்டர்',
+        descEn: 'Continuous cardiac rhythm and arterial pressure monitoring overseen by dedicated staff.',
+        descTa: 'இதயத் துடிப்பின் சீரான இயக்கம் மற்றும் ரத்த அழுத்தத்தை இடைவிடாது கண்காணிக்கும் மருத்துவ அமைப்பு.',
+        positionPercent: { x: 68, y: 45 },
+      },
+    ],
+  },
+
+  'recurrent-aphthous-ulcer-care': {
+    titleEn: 'Recurrent Aphthous Stomatitis Anatomy',
+    titleTa: 'தொடர் வாய் புண் உடற்கூறியல்',
+    subtitleEn: 'Pseudomembranous Fibrin Slough, Erythematous Inflammatory Halo, and Mobile Mucosa',
+    subtitleTa: 'மஞ்சள்-சாம்பல் புண் நடுப்பகுதி, சிவந்த அழற்சி வளையம் மற்றும் மென்மையான வாய் சவ்வு',
+    interactive3DReady: false,
+    callouts: [
+      {
+        labelEn: 'Necrotizing Central Fibrinous Slough',
+        labelTa: 'புண்ணின் மத்திய பகுதி (Fibrinous Slough)',
+        descEn: 'Shallow central crater covered with grayish-yellow fibrinous exudate exposing nerve endings.',
+        descTa: 'நரம்பு முனைகள் வெளிப்பட்டு வலியை உண்டாக்கும் மஞ்சள்-சாம்பல் நிறத்திலான புண்ணின் மையப்பகுதி.',
+        positionPercent: { x: 50, y: 42 },
+      },
+      {
+        labelEn: 'Erythematous Peripheral Inflammatory Halo',
+        labelTa: 'சுற்றியுள்ள சிவந்த அழற்சி வளையம் (Erythematous Halo)',
+        descEn: 'Prominent hyperemic border reflecting acute localized cell-mediated immune activation.',
+        descTa: 'திசுக்களின் நோய் எதிர்ப்பு அழற்சியைக் குறிக்கும் புண்ணைச் சுற்றியுள்ள அடர் சிவப்பு வளையம்.',
+        positionPercent: { x: 36, y: 55 },
+      },
+      {
+        labelEn: 'Protective Bioadhesive Barrier Coating Zone',
+        labelTa: 'பாதுகாப்புப் பசை பூசப்படும் பரப்பு',
+        descEn: 'Topical paste adheres to non-keratinized mucosa, shielding lesion from acidic foods and saliva.',
+        descTa: 'கார உணவுகள் மற்றும் உமிழ்நீரால் வலி ஏற்படாமல் தடுக்க ஒட்டும் பாதுகாப்புப் பசை பூசப்படும் பகுதி.',
+        positionPercent: { x: 65, y: 65 },
+      },
+    ],
+  },
 };
 
 interface ProcedureAnatomyViewerProps {

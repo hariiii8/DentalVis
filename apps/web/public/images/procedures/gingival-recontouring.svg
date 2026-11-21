@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGng" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF1F2" />
+      <stop offset="50%" stop-color="#FFE4E6" />
+      <stop offset="100%" stop-color="#FECDD3" />
+    </linearGradient>
+    <linearGradient id="toothGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="80%" stop-color="#F8FAFC" />
+      <stop offset="100%" stop-color="#E2E8F0" />
+    </linearGradient>
+    <linearGradient id="gumBefore" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FB7185" />
+      <stop offset="100%" stop-color="#E11D48" />
+    </linearGradient>
+    <filter id="shadowGng" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="2" dy="4" stdDeviation="5" flood-opacity="0.12" />
+    </filter>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#bgGng)" rx="16" />
+
+  <!-- Four Anterior Teeth (Crowns Extending Under Gingiva) -->
+  <g filter="url(#shadowGng)">
+    <!-- Central Left -->
+    <path d="M 330 180 C 330 250, 335 340, 345 370 C 352 385, 388 385, 395 370 C 405 340, 410 250, 410 180 Z" fill="url(#toothGrad2)" stroke="#CBD5E1" stroke-width="2" />
+    <!-- Central Right -->
+    <path d="M 415 180 C 415 250, 420 340, 430 370 C 438 385, 472 385, 480 370 C 490 340, 495 250, 495 180 Z" fill="url(#toothGrad2)" stroke="#CBD5E1" stroke-width="2" />
+    <!-- Lateral Left -->
+    <path d="M 260 190 C 260 250, 265 330, 275 355 C 280 368, 312 368, 318 355 C 325 330, 328 250, 328 190 Z" fill="url(#toothGrad2)" stroke="#CBD5E1" stroke-width="2" />
+    <!-- Lateral Right -->
+    <path d="M 498 190 C 498 250, 501 330, 508 355 C 514 368, 545 368, 550 355 C 558 330, 562 250, 562 190 Z" fill="url(#toothGrad2)" stroke="#CBD5E1" stroke-width="2" />
+  </g>
+
+  <!-- Excessive / Asymmetrical Gingival Baseline (Pre-Op Overlay) -->
+  <path d="M 200 90 L 620 90 L 620 255 C 590 260, 562 255, 530 250 C 498 245, 470 270, 455 270 C 440 270, 412 248, 370 248 C 328 248, 295 265, 260 260 C 230 255, 210 255, 200 255 Z" fill="url(#gumBefore)" opacity="0.9" />
+
+  <!-- Planned Recontouring Line / Laser Incision Arc -->
+  <path d="M 220 225 C 240 220, 275 200, 294 200 C 313 200, 328 225, 335 225 C 342 225, 360 190, 370 190 C 380 190, 405 225, 412 225 C 420 225, 445 190, 455 190 C 465 190, 490 225, 498 225 C 505 225, 520 205, 535 205 C 550 205, 575 225, 600 225" fill="none" stroke="#059669" stroke-width="3" stroke-dasharray="6,4" />
+
+  <!-- Laser / Resection Beam Indicator -->
+  <line x1="370" y1="120" x2="370" y2="188" stroke="#EF4444" stroke-width="2.5" />
+  <circle cx="370" cy="190" r="5" fill="#EF4444" />
+  <polygon points="365,130 375,130 370,120" fill="#EF4444" />
+  <text x="370" y="110" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#B91C1C" text-anchor="middle">Laser Sculpting</text>
+
+  <!-- Explanatory Badges -->
+  <rect x="180" y="420" width="200" height="32" rx="8" fill="#FFFFFF" stroke="#FECDD3" stroke-width="1.5" />
+  <circle cx="196" cy="436" r="5" fill="#E11D48" />
+  <text x="210" y="441" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#475569">Hyperplastic Gingival Zone</text>
+
+  <rect x="420" y="420" width="210" height="32" rx="8" fill="#FFFFFF" stroke="#A7F3D0" stroke-width="1.5" />
+  <circle cx="436" cy="436" r="5" fill="#059669" />
+  <text x="450" y="441" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#065F46">Harmonized Gingival Zenith</text>
+
+  <!-- Title Badge -->
+  <rect x="40" y="35" width="245" height="34" rx="8" fill="#FFFFFF" stroke="#FDA4AF" stroke-width="1.5" />
+  <circle cx="58" cy="52" r="6" fill="#E11D48" />
+  <text x="74" y="57" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#9F1239">Gingival Recontouring</text>
+</svg>
