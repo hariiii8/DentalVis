@@ -391,10 +391,10 @@ const PROCEDURE_ANATOMY_DATA: Record<string, ProcedureAnatomyConfig> = {
     interactive3DReady: false,
     callouts: [
       {
-        labelEn: 'Dual-Laminate Guard Body',
+        labelEn: 'Resilient Splint Polymer Barrier',
         labelTa: 'பாதுகாப்பு அட்டையின் உடல் பகுதி',
-        descEn: 'Resilient medical polymer dispersing grinding load.',
-        descTa: 'பல் கடிக்கும் அழுத்தத்தை உறிஞ்சி பரவலாக்கும் சிறப்பு பொருள்.',
+        descEn: 'Durable barrier cushioning tooth enamel from wear and micro-fractures.',
+        descTa: 'பல் எனாமல் தேய்மானம் மற்றும் உடைவதைத் தடுக்கும் சிறப்பு பாலிமர் பரப்பு.',
         positionPercent: { x: 50, y: 24 },
       },
       {
@@ -578,10 +578,10 @@ const PROCEDURE_ANATOMY_DATA: Record<string, ProcedureAnatomyConfig> = {
         positionPercent: { x: 50, y: 24 },
       },
       {
-        labelEn: 'Resected Root Margin (90-Degree Bevel)',
+        labelEn: 'Resected Root Apex (~3mm)',
         labelTa: 'வெட்டப்பட்ட வேர் விளிம்பு',
-        descEn: 'Smoothly planed root surface free of infected delta canals.',
-        descTa: 'தொற்று நீக்கப்பட்ட சீரான வேர் பகுதி.',
+        descEn: 'Targeted root resection eliminating apical ramification delta.',
+        descTa: 'நுண் கிளை தொற்று பகுதிகளை நீக்க வெட்டப்பட்ட வேர் முனை.',
         positionPercent: { x: 40, y: 48 },
       },
       {
@@ -608,10 +608,10 @@ const PROCEDURE_ANATOMY_DATA: Record<string, ProcedureAnatomyConfig> = {
         positionPercent: { x: 50, y: 22 },
       },
       {
-        labelEn: 'Cervical Glass Ionomer Barrier',
+        labelEn: 'Cervical Glass Ionomer Barrier (~2mm)',
         labelTa: 'கழுத்து பகுதி பாதுகாப்பு தடுப்பு',
-        descEn: '2mm hermetic seal preventing whitening agent leaking into root canals.',
-        descTa: 'மருந்து வேர் பகுதிக்கு பரவாமல் தடுக்கும் 2 மிமீ பாதுகாப்பு சிமெண்ட்.',
+        descEn: 'Mechanical barrier at the CEJ preventing radicular leakage and cervical resorption.',
+        descTa: 'வேர் பகுதிக்கு மருந்து கசிந்து வெளி வேர் அரிப்பு ஏற்படுவதைத் தடுக்கும் பாதுகாப்பு சிமெண்ட்.',
         positionPercent: { x: 42, y: 46 },
       },
       {
