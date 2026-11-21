@@ -37,8 +37,9 @@ No imaginary DOI numbers, synthetic citations, or non-peer-reviewed blog posts a
 - **Supported Clinical Claims:**
   - Complete removable dentures rest directly on the mucosa-covered residual alveolar ridge.
   - Retention, stability, and support depend on tissue adaptation, peripheral seal, atmospheric pressure, salivary film capillary action, and neuromuscular control.
-  - Masticatory efficiency of complete dentures is approximately 20% to 30% of natural dentition.
-  - Recommended hygiene: non-abrasive denture cleansers, daily soaking, never boiling or exposing to hot water (which warps acrylic), and removing dentures overnight to prevent denture stomatitis (*Candida albicans* infection) and reduce residual ridge resorption.
+  - Masticatory efficiency of complete dentures is generally reduced compared to natural dentition (often estimated in clinical literature at approximately 20% to 30% of natural dentate performance, varying significantly with individual neuromuscular adaptation and residual ridge height).
+  - Recommended hygiene: non-abrasive denture cleansers, daily soaking, never boiling or exposing to hot water (which warps acrylic).
+  - Removing dentures overnight is generally recommended by prosthodontic guidelines to allow mucosal rest, reduce the risk of denture-related stomatitis (*Candida albicans* colonisation), and support soft-tissue recovery; however, residual ridge resorption is multifactorial (influenced by systemic bone metabolism, individual biomechanics, prolonged ridge loading, and prosthetic fit), and night-time removal alone does not independently prevent progressive bone resorption. Longitudinal follow-up, periodic relining, and tissue maintenance remain essential.
 
 ---
 
@@ -64,6 +65,7 @@ No imaginary DOI numbers, synthetic citations, or non-peer-reviewed blog posts a
 ### 3. Full-Mouth Rehabilitation (`full-mouth-rehabilitation`)
 - **Canonical ID:** `33333333-3333-4333-a333-333333333333`
 - **Primary Department:** `PROS` | **Secondary Departments:** `TMJD`, `IMPL` | **Tier:** 3 | **Status:** `DRAFT`
+- **Clinical Governance Warning:** **Tier 3 Complex Multidisciplinary Procedure.** Formal specialist assessment by a prosthodontist or restorative specialist is strongly indicated. Requires comprehensive diagnostic work-up, articulated study casts, and personalized treatment sequencing.
 - **Primary Verified Reference:**
   - **Authors:** The Academy of Prosthodontics.
   - **Title:** *The Glossary of Prosthodontic Terms: Ninth Edition (GPT-9).*
@@ -79,9 +81,9 @@ No imaginary DOI numbers, synthetic citations, or non-peer-reviewed blog posts a
   - **Title:** *Functional Occlusion: From TMJ to Smile Design.*
   - **Publisher:** Mosby, St. Louis, 2007. ISBN: 978-0-323-03371-8.
 - **Supported Clinical Claims:**
-  - Full-mouth rehabilitation comprehensively reconstructs maxillary and mandibular occlusal surfaces to re-establish harmonious functional occlusion, correct vertical dimension of occlusion (VDO), and stabilize temporomandibular joint relationships.
-  - Indicated for severe tooth wear (attrition, erosion, abfraction), loss of posterior support, trauma, or amelogenesis/dentinogenesis imperfecta.
-  - Multi-phased treatment: mounted diagnostic casts in centric relation, diagnostic wax-up, provisionalization trial phase (testing altered VDO for 6–12 weeks for phonetic, masticatory, and neuromuscular tolerance), followed by definitive restorations.
+  - Full-mouth rehabilitation comprehensively reconstructs maxillary and mandibular occlusal surfaces to re-establish functional occlusion, address pathological loss of vertical dimension of occlusion (VDO) when indicated, and harmonize tooth contacts with the musculoskeletal position of the temporomandibular joints (Centric Relation / Musculoskeletally Stable position).
+  - Indicated for severe tooth wear (attrition, erosion, abfraction), loss of posterior support, severe trauma, or developmental enamel/dentin defects (e.g., amelogenesis/dentinogenesis imperfecta).
+  - Treatment sequencing and duration are highly individualized clinical decisions: mounted diagnostic casts in centric relation, diagnostic wax-ups, and an interim provisionalization trial phase (often evaluated for several weeks to months to verify phonetic, aesthetic, masticatory, and neuromuscular tolerance) are commonly employed prior to delivering definitive bonded ceramic or zirconia restorations. Occlusal reorganization is guided by individual patient adaptation and diagnostic findings rather than a rigid universal formula.
 
 ---
 
@@ -117,9 +119,9 @@ No imaginary DOI numbers, synthetic citations, or non-peer-reviewed blog posts a
   - **Title:** *Consumer Alert: Considerations for Orthodontic Treatment and Direct-to-Consumer Aligners.*
   - **Journal / Source:** AAO Clinical Advisory, 2019. Source URL: [`https://aaoinfo.org`](https://aaoinfo.org)
 - **Supported Clinical Claims:**
-  - Clear aligners are computer-engineered, vacuum-formed thermoformed plastic trays worn in a sequential series (typically changed every 7–14 days).
-  - Highly effective for mild-to-moderate crowding, alignment, and spacing; complex movements (severe rotations, bodily root translation, and severe skeletal discrepancies) often require composite resin attachments and interproximal reduction (IPR).
-  - Patient adherence is critical: aligners must be worn 20–22 hours daily, removed only for meals, hot liquids, and brushing.
+  - Clear aligners are computer-engineered, vacuum-formed thermoformed plastic trays prescribed in a sequential series (commonly changed every 7–14 days as directed by the treating clinician).
+  - Effective for mild-to-moderate crowding, alignment, and spacing; complex movements (e.g., severe rotations, significant bodily root translation, and severe skeletal discrepancies) frequently require bonded composite resin attachments and/or interproximal reduction (IPR) where clinically indicated, rather than being applied universally.
+  - Prescribed wear time (typically 20–22 hours daily, removing trays only for eating, hot beverages, and oral hygiene) represents critical clinical treatment guidance; outcomes are not guaranteed and remain subject to biological variation and rigorous patient adherence.
 
 ---
 
@@ -137,9 +139,9 @@ No imaginary DOI numbers, synthetic citations, or non-peer-reviewed blog posts a
   - **Journal / Source:** *American Journal of Orthodontics and Dentofacial Orthopedics*, 2008; 133(2): 290–302.
   - **DOI:** [`10.1016/j.ajodo.2007.09.006`](https://doi.org/10.1016/j.ajodo.2007.09.006)
 - **Supported Clinical Claims:**
-  - Rapid maxillary expansion (RME) widens a narrow maxillary arch and corrects posterior crossbites by separating the midpalatal suture before its complete interdigitation/fusion.
-  - Optimal timing is during late mixed or early permanent dentition (pre-pubertal / early pubertal growth spurt); skeletal response diminishes after suture maturation (often requiring surgically assisted RPE or MARPE in skeletally mature post-adolescents).
-  - Typical activation protocol: turns of the jackscrew once or twice daily for 2–3 weeks, followed by 3–6 months of passive retention to permit bone mineralization in the widened suture. Midline diastema routinely appears during active expansion and spontaneously closes as transeptal fibers pull central incisors together.
+  - Maxillary expansion widens a narrow maxillary arch and corrects posterior crossbites by opening the midpalatal suture.
+  - Skeletal response is heavily dependent on biological and skeletal maturity: rapid maxillary expansion (RME/RPE) achieves predominantly skeletal separation in pre-pubertal or early adolescent patients prior to complete suture interdigitation. With advancing maturity and suture fusion, dental tipping increases, and older adolescent or adult patients typically require alternative or surgically assisted approaches (such as micro-implant assisted [MARPE] or surgically assisted RPE [SARPE]).
+  - Typical activation protocol: turns of the jackscrew once or twice daily for several weeks as determined by the clinician, followed by a passive retention period (commonly 3–6 months) to permit bone remodeling and mineralization in the widened suture. Midline diastema routinely appears during active expansion and spontaneously narrows as transeptal fibers draw central incisors together.
 
 ---
 
@@ -157,9 +159,9 @@ No imaginary DOI numbers, synthetic citations, or non-peer-reviewed blog posts a
   - **Journal / Source:** *Cochrane Database of Systematic Reviews*, 2016; 2016(1): CD002283.
   - **DOI:** [`10.1002/14651858.CD002283.pub4`](https://doi.org/10.1002/14651858.CD002283.pub4)
 - **Supported Clinical Claims:**
-  - Retention is essential to maintain post-orthodontic tooth alignment because periodontal and gingival supra-alveolar fibers require months to reorganize, and normal physiologic craniofacial aging continues throughout life.
-  - Modalities include removable retainers (vacuum-formed clear thermoplastic retainers [Essix] or acrylic-and-wire Hawley retainers) and fixed bonded retainers (multistrand stainless steel wire bonded lingually/palatally).
-  - Without retention, relapse occurs unpredictably across all patients.
+  - Retention is indicated following orthodontic treatment because periodontal and gingival supra-alveolar fibers require time to reorganize, and normal physiologic craniofacial changes continue over time.
+  - Modalities include removable retainers (vacuum-formed clear thermoplastic retainers or acrylic-and-wire Hawley retainers) and fixed bonded retainers (multistrand wire bonded lingually/palatally).
+  - Retention regimens must be individualized: while ongoing retention is widely recommended to minimize relapse tendency, protocols are tailored to the initial malocclusion, compliance, and oral health, and no appliance offers an absolute guarantee against minor long-term positional shifts.
 
 ---
 
@@ -167,19 +169,21 @@ No imaginary DOI numbers, synthetic citations, or non-peer-reviewed blog posts a
 - **Canonical ID:** `33333333-3333-4333-a333-333333333337`
 - **Primary Department:** `PEDO` | **Secondary Department:** `ENDO` | **Tier:** 2 | **Status:** `DRAFT`
 - **Primary Verified Reference:**
-  - **Authors:** American Academy of Pediatric Dentistry (AAPD).
-  - **Title:** *Pulp therapy for primary and immature permanent teeth.*
-  - **Journal / Source:** *The Reference Manual of Pediatric Dentistry*, Chicago, Ill.: American Academy of Pediatric Dentistry; 2022: 399–407.
-  - **Official Policy URL:** [`https://www.aapd.org/research/oral-health-policies--recommendations/pulp-therapy-for-primary-and-immature-permanent-teeth/`](https://www.aapd.org/research/oral-health-policies--recommendations/pulp-therapy-for-primary-and-immature-permanent-teeth/)
+  - **Authors:** Coll JA, Dhar V, Chen CY, et al.
+  - **Title:** *Use of Vital Pulp Therapies in Primary Teeth 2024.*
+  - **Journal / Source:** *Pediatric Dentistry*, 2024; 46(1): 13–26.
+  - **Official Policy URL:** [`https://www.aapd.org/research/oral-health-policies--recommendations/vital_pulp_therapies_in_primary_teeth_with_deep_caries_lesions/`](https://www.aapd.org/research/oral-health-policies--recommendations/vital_pulp_therapies_in_primary_teeth_with_deep_caries_lesions/)
 - **Secondary Verified Reference:**
   - **Authors:** Smaïl-Faugeron V, Glenny AM, Courson F, Durieux P, Muller-Bolla M, Fron Chabouis H.
   - **Title:** *Pulp treatment for extensive decay in primary teeth.*
   - **Journal / Source:** *Cochrane Database of Systematic Reviews*, 2018; 2018(5): CD003220.
   - **DOI:** [`10.1002/14651858.CD003220.pub3`](https://doi.org/10.1002/14651858.CD003220.pub3)
 - **Supported Clinical Claims:**
-  - Indicated in a vital primary tooth with deep caries and reversible coronal pulpitis where coronal pulp amputation leaves healthy, uninflamed radicular pulp tissue.
-  - Hemostasis of radicular pulp stumps is achieved within 3–5 minutes with cotton pellets moistened with saline or water; medicaments include mineral trioxide aggregate (MTA), ferric sulfate, or calcium silicate cements.
-  - Following coronal pulp capping, the tooth requires a full-coverage coronal seal (preformed stainless steel crown) to prevent microleakage and secondary failure.
+  - Vital pulp therapy (VPT) in primary teeth aims to treat reversible pulpal injury and preserve radicular pulp vitality; it is strictly distinguished from non-vital pulp therapies (such as pulpectomy or extraction), which are indicated when irreversible pulpitis or necrosis occurs.
+  - Comprehensive clinical diagnosis and case selection are fundamental: VPT is indicated only in teeth with normal pulp or reversible pulpitis without spontaneous pain, swelling, excessive mobility, or furcation/periapical radiolucency. Depending on depth and remaining dentin, options include indirect pulp treatment (IPT) or pulpotomy. Not every primary tooth with deep decay is a candidate for pulpotomy.
+  - In pulpotomy, coronal pulp is amputated; physiological radicular hemostasis must be achieved with a moistened pellet, but hemostasis time varies with clinical technique and medicament, and 3–5 minutes is not an absolute or universal prerequisite.
+  - Therapeutic capping medicaments preferentially emphasize bioactive calcium-silicate cements (such as mineral trioxide aggregate [MTA] or biodentine) over formocresol.
+  - Following vital pulp therapy, a durable, hermetic coronal seal is critical to prevent bacterial microleakage. While preformed stainless steel crowns (SSCs) are widely recommended for multi-surface primary molars, selection of the definitive coronal restoration is tailored to individual tooth structure, remaining dentin, and tooth exfoliation timing.
 
 ---
 
@@ -197,9 +201,9 @@ No imaginary DOI numbers, synthetic citations, or non-peer-reviewed blog posts a
   - **Journal / Source:** *Cochrane Database of Systematic Reviews*, 2015; 2015(12): CD005512.
   - **DOI:** [`10.1002/14651858.CD005512.pub3`](https://doi.org/10.1002/14651858.CD005512.pub3)
 - **Supported Clinical Claims:**
-  - Preformed metal / stainless steel crowns (SSCs) are the gold-standard restorative treatment for primary molars with multi-surface caries, developmental enamel defects (e.g., amelogenesis imperfecta), or following pulp therapy (pulpotomy/pulpectomy).
-  - Far superior long-term survival, reduced need for retreatment, and lower secondary caries rate compared to multi-surface amalgam or composite restorations in primary molars.
-  - May be placed via conventional tooth preparation (occlusal reduction and interproximal slicing) or the Hall Technique (cementation without local anesthesia or caries removal in specific non-symptomatic indicated cases).
+  - Preformed metal / stainless steel crowns (SSCs) are an established restorative therapy for primary molars with extensive multi-surface caries, developmental enamel defects (e.g., amelogenesis imperfecta), high caries risk, or following pulp therapy (pulpotomy/pulpectomy).
+  - Superior clinical longevity and lower retreatment risk compared to multi-surface intracoronal amalgam or composite restorations in primary molars.
+  - Placement methods include conventional preparation (conservative occlusal and interproximal reduction) or the Hall Technique (cementation without local anesthesia or caries removal in specifically indicated non-symptomatic cases).
 
 ---
 
@@ -208,8 +212,8 @@ No imaginary DOI numbers, synthetic citations, or non-peer-reviewed blog posts a
 - **Primary Department:** `PEDO` | **Secondary Department:** `ORTH` | **Tier:** 1 | **Status:** `DRAFT`
 - **Primary Verified Reference:**
   - **Authors:** American Academy of Pediatric Dentistry (AAPD).
-  - **Title:** *Management of the developing dentition and occlusion in pediatric dentistry.*
-  - **Journal / Source:** *The Reference Manual of Pediatric Dentistry*, Chicago, Ill.: American Academy of Pediatric Dentistry; 2022: 446–460.
+  - **Title:** *Management of the Developing Dentition and Occlusion in Pediatric Dentistry.*
+  - **Journal / Source:** *The Reference Manual of Pediatric Dentistry*, Chicago, Ill.: American Academy of Pediatric Dentistry; Revised 2024: 457–473.
   - **Official Policy URL:** [`https://www.aapd.org/research/oral-health-policies--recommendations/management-of-the-developing-dentition-and-occlusion-in-pediatric-dentistry/`](https://www.aapd.org/research/oral-health-policies--recommendations/management-of-the-developing-dentition-and-occlusion-in-pediatric-dentistry/)
 - **Secondary Verified Reference:**
   - **Authors:** Lin YT, Lin WH, Lin YT.
@@ -217,6 +221,6 @@ No imaginary DOI numbers, synthetic citations, or non-peer-reviewed blog posts a
   - **Journal / Source:** *Journal of Dental Sciences*, 2011; 6(4): 205–209.
   - **DOI:** [`10.1016/j.jds.2011.09.006`](https://doi.org/10.1016/j.jds.2011.09.006)
 - **Supported Clinical Claims:**
-  - Indicated following premature loss of primary molars to prevent mesial drift of permanent molars, lingual tipping of anterior teeth, and loss of arch length, which causes impaction or ectopic eruption of succedaneous permanent premolars.
-  - Appliance types: unilateral fixed (band-and-loop, crown-and-loop), bilateral mandibular fixed (lingual holding arch), bilateral maxillary fixed (Nance appliance or transpalatal arch), or distal shoe (for premature loss of primary second molar prior to permanent first molar eruption).
-  - Regular clinical and radiographic follow-up is mandatory until the succedaneous tooth is actively erupting, at which point the appliance is removed.
+  - Not every premature loss of a primary tooth requires space maintenance; space loss is variable. Indications depend on dental developmental stage, specific primary tooth lost, radiographic stage of root development of the succedaneous permanent successor, available arch space, and existing occlusion.
+  - Space maintainer appliances (unilateral band-and-loop, lingual holding arch, Nance appliance, or distal shoe) serve to passively preserve arch dimensions when clinically warranted, though clinical evidence demonstrates both benefits and limitations.
+  - Regular clinical and radiographic follow-up is mandatory: potential complications include plaque accumulation, caries on abutment teeth, soft-tissue impingement, cement wash-out, appliance breakage, unwanted tooth tipping, and physical obstruction of erupting successors if not removed in a timely manner.
