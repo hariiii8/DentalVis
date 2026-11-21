@@ -327,7 +327,7 @@ export const CANONICAL_DEPARTMENTS: DepartmentDto[] = [
 ];
 
 // ----------------------------------------------------------------------
-// CANONICAL PROCEDURES: 10 PROCEDURES (4 EXISTING + 6 BATCH 1 NEW)
+// CANONICAL PROCEDURES: 20 PROCEDURES (4 EXISTING + 6 BATCH 1 + 10 BATCH 2 NEW)
 // ----------------------------------------------------------------------
 
 export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
@@ -570,6 +570,246 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     contentStatus: 'DRAFT',
     overviewHtmlEn: '<p>Professional teeth whitening uses hydrogen or carbamide peroxide formulations buffered to neutral pH. Guided oxygen molecules penetrate microscopic enamel prisms to break apart chromophore stain bonds from tea, coffee, or aging while gingival gums remain shielded.</p>',
     overviewHtmlTa: '<p>மருத்துவ மேற்பார்வையில் ஈறுகளை பாதுகாப்பான ஜெல் கொண்டு மூடிவிட்டு, பற்களின் எனாமல் அடுக்கில் உள்ள ஆழ்ந்த கறைகளை ஆக்ஸிஜன் மூலக்கூறுகள் மூலம் நீக்கும் பாதுகாப்பான அழகு சிகிச்சை இதுவாகும்.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 3
+  },
+
+  // --------------------------------------------------------------------
+  // 11. BATCH 2 NEW: Dental Sealants (PREV) - Tier 1
+  // --------------------------------------------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333311',
+    slug: 'dental-sealants',
+    code: 'PREV-SLT-01',
+    titleEn: 'Dental Sealants',
+    titleTa: 'பல் சீலண்ட் பாதுகாப்பு பூச்சு (Dental Sealants)',
+    summaryEn: 'A clear or tooth-colored protective resin shield painted onto the deep grooves of molars to seal out cavity-causing bacteria and food particles.',
+    summaryTa: 'பற்களின் ஆழமான இடுக்குகளில் உணவு மற்றும் கிருமிகள் தங்கி சொத்தை உண்டாகாமல் தடுக்கும் மெல்லிய பாதுகாப்பு பூச்சு.',
+    durationMinutes: 25,
+    anesthesiaType: 'Non-Invasive / Completely Painless',
+    primaryDepartmentName: 'Preventive Dental Treatments',
+    primaryDepartmentCode: 'PREV',
+    exploreCategorySlugs: ["pain-and-sensitivity"],
+    governanceTier: 'TIER_1',
+    contentStatus: 'DRAFT',
+    overviewHtmlEn: '<p>Dental sealants are thin, biocompatible protective coatings applied to the chewing surfaces of permanent back teeth (molars and premolars). These teeth naturally feature deep pits and fissures that toothbrush bristles cannot effectively clean. By flowing into and sealing these microscopic grooves, sealants form a physical barrier against acid, plaque bacteria, and food accumulation.</p>',
+    overviewHtmlTa: '<p>பல் சீலண்ட் என்பது பின்புற மெல்லும் பற்களின் ஆழமான வரிப்பள்ளங்களில் பூசப்படும் மெல்லிய பாதுகாப்பு பூச்சாகும். இந்த பள்ளங்களில் பல்துலக்கும் பிரஷின் முடிகள் சென்று அடைய முடியாததால் எளிதில் சொத்தை உருவாகிறது. சீலண்ட் பூச்சு இந்த இடுக்குகளை மூடி பாக்டீரியா அமிலங்களால் பல் சொத்தை ஏற்படுவதை தடுக்கிறது.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 3
+  },
+
+  // --------------------------------------------------------------------
+  // 12. BATCH 2 NEW: Topical Fluoride Treatment (PREV) - Tier 1
+  // --------------------------------------------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333312',
+    slug: 'topical-fluoride-treatment',
+    code: 'PREV-FLU-01',
+    titleEn: 'Topical Fluoride Treatment',
+    titleTa: 'மேற்பரப்பு ஃப்ளூரைடு சிகிச்சை (Topical Fluoride)',
+    summaryEn: 'High-concentration professional mineral varnish or gel applied to enamel surfaces to accelerate remineralization and protect against acid wear.',
+    summaryTa: 'பற்களின் எனாமல் அடுக்கை பலப்படுத்தி, அமில அரிப்பிலிருந்து காக்க உதவும் தொழில்முறை கனிம வார்னிஷ் சிகிச்சை.',
+    durationMinutes: 20,
+    anesthesiaType: 'Non-Invasive / Topical Application',
+    primaryDepartmentName: 'Preventive Dental Treatments',
+    primaryDepartmentCode: 'PREV',
+    exploreCategorySlugs: ["pain-and-sensitivity"],
+    governanceTier: 'TIER_1',
+    contentStatus: 'DRAFT',
+    overviewHtmlEn: '<p>Professional topical fluoride therapy delivers concentrated mineral ions directly to tooth enamel. As fluoride bonds with enamel hydroxyapatite crystals, it converts them into fluorapatite, a compound significantly more resistant to bacterial acid demineralization and everyday erosion.</p>',
+    overviewHtmlTa: '<p>தொழில்முறை ஃப்ளூரைடு சிகிச்சை என்பது பல்லின் எனாமல் மீது நேரடியாக கனிம தாதுக்களை சேர்க்கும் ஒரு தடுப்பு முறையாகும். இது பல்லின் கனிம கட்டமைப்பை அமில அரிப்புகளுக்கு எதிராக அதிக வலிமை கொண்டதாக மாற்றுகிறது.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 3
+  },
+
+  // --------------------------------------------------------------------
+  // 13. BATCH 2 NEW: Custom Night Guard for Bruxism (PREV) - Tier 1
+  // --------------------------------------------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333313',
+    slug: 'custom-night-guard-bruxism',
+    code: 'PREV-BRX-01',
+    titleEn: 'Custom Night Guard for Bruxism',
+    titleTa: 'இரவு நேர பல் பாதுகாப்பு அட்டை (Night Guard)',
+    summaryEn: 'Precision-molded transparent dental orthotic worn during sleep to cushion chewing forces, prevent enamel attrition, and relieve jaw muscle strain.',
+    summaryTa: 'தூக்கத்தில் பல் கடிக்கும் பழக்கத்தால் ஏற்படும் எனாமல் தேய்மானம் மற்றும் தாடை வலியைத் தடுக்கும் பிரத்யேக கண்ணாடி போன்ற பாதுகாப்பு அட்டை.',
+    durationMinutes: 30,
+    anesthesiaType: 'Non-Invasive / Impression Based',
+    primaryDepartmentName: 'Preventive Dental Treatments',
+    primaryDepartmentCode: 'PREV',
+    exploreCategorySlugs: ["broken-or-chipped-teeth","pain-and-sensitivity"],
+    governanceTier: 'TIER_1',
+    contentStatus: 'DRAFT',
+    overviewHtmlEn: '<p>A custom night guard (occlusal splint) is an individually fabricated dental appliance designed to absorb and redistribute excessive clenching and grinding forces during nocturnal bruxism. Engineered from medical-grade dual-laminate or hard acrylic, it prevents severe tooth wear, chipped margins, and temporomandibular joint (TMJ) strain.</p>',
+    overviewHtmlTa: '<p>இரவு நேர பல் பாதுகாப்பு அட்டை என்பது தூக்கத்தில் அறியாமல் பல் கடிப்பவர்களுக்கு பற்களின் தேய்மானத்தை தடுத்து தாடை மூட்டுகளுக்கு ஓய்வளிக்க பிரத்யேகமாக வடிவமைக்கப்படும் மருத்துவ சாதனமாகும்.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 3
+  },
+
+  // --------------------------------------------------------------------
+  // 14. BATCH 2 NEW: Custom Sports Mouthguard (PREV) - Tier 1
+  // --------------------------------------------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333314',
+    slug: 'sports-mouthguard-trauma-prevention',
+    code: 'PREV-SPT-01',
+    titleEn: 'Custom Sports Mouthguard',
+    titleTa: 'விளையாட்டு வீரர்களுக்கான பல் பாதுகாப்பு கவசம் (Sports Mouthguard)',
+    summaryEn: 'Multi-laminated athletic oral shield custom-fitted to cushion blunt impact, protect teeth from fractures and avulsions, and safeguard lips and tongue.',
+    summaryTa: 'விளையாட்டுகளின் போது அடிபடுவதால் பற்கள் உடைவதையோ அல்லது விழுவதையோ தடுக்கும் தனிப்பயன் பாதுகாப்பு கவசம்.',
+    durationMinutes: 30,
+    anesthesiaType: 'Non-Invasive / Comfortable Impression',
+    primaryDepartmentName: 'Preventive Dental Treatments',
+    primaryDepartmentCode: 'PREV',
+    exploreCategorySlugs: ["broken-or-chipped-teeth"],
+    governanceTier: 'TIER_1',
+    contentStatus: 'DRAFT',
+    overviewHtmlEn: '<p>A custom-fabricated athletic mouthguard provides superior shock absorption compared to over-the-counter boil-and-bite alternatives. Built from vacuum-formed layers of ethyl vinyl acetate (EVA), it provides uniform thickness over vulnerable anterior teeth while maintaining clear airways and natural speech during sports.</p>',
+    overviewHtmlTa: '<p>விளையாட்டு வீரர்களுக்கான பிரத்யேக மௌத்கார்ட் என்பது விளையாடும் போது முகத்தில் ஏற்படும் தாக்கங்களை உறிஞ்சி பற்கள் உடைவதைத் தடுக்கும் மிக முக்கியமான பாதுகாப்பு உபகரணமாகும்.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 3
+  },
+
+  // --------------------------------------------------------------------
+  // 15. BATCH 2 NEW: Inlays & Onlays (REST) - Tier 2
+  // --------------------------------------------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333315',
+    slug: 'inlays-and-onlays',
+    code: 'REST-INO-01',
+    titleEn: 'Inlays & Onlays',
+    titleTa: 'பீங்கான் இன்லே மற்றும் ஆன்லே அடைப்புகள் (Inlays & Onlays)',
+    summaryEn: 'Custom laboratory-milled ceramic or composite indirect restorations that restore moderate-to-large tooth damage while conserving healthy natural tooth structure.',
+    summaryTa: 'பல் தொப்பி தேவையில்லாத பெரிய சொத்தைகளை பல்லின் பெரும்பகுதியை சேதப்படுத்தாமல் சீரமைக்கும் பீங்கான் துல்லிய அடைப்பு.',
+    durationMinutes: 45,
+    anesthesiaType: 'Profound Local Anesthesia',
+    primaryDepartmentName: 'Restorative Dentistry',
+    primaryDepartmentCode: 'REST',
+    exploreCategorySlugs: ["broken-or-chipped-teeth","pain-and-sensitivity"],
+    governanceTier: 'TIER_2',
+    contentStatus: 'DRAFT',
+    overviewHtmlEn: '<p>Inlays and onlays are indirect restorations used when decayed or fractured tooth structure is too extensive for a standard filling but sufficient healthy enamel remains to avoid a full-coverage crown. An inlay fits within the tooth cusps, while an onlay extends over one or more damaged cusps to reinforce chewing integrity.</p>',
+    overviewHtmlTa: '<p>இன்லே மற்றும் ஆன்லே என்பது பெரிய அளவில் சேதமடைந்த பற்களுக்கு முழு தொப்பி போடாமல் பல்லின் ஆரோக்கியமான பகுதிகளை பாதுகாத்து பீங்கான் மூலம் துல்லியமாக வடிவமைக்கப்படும் நவீன அடைப்பு முறையாகும்.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 4
+  },
+
+  // --------------------------------------------------------------------
+  // 16. BATCH 2 NEW: Direct Composite Bonding (REST) - Tier 1
+  // --------------------------------------------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333316',
+    slug: 'direct-composite-bonding',
+    code: 'REST-BND-01',
+    titleEn: 'Direct Composite Bonding',
+    titleTa: 'பல் நிற காம்போசிட் பிணைப்பு சீரமைப்பு (Composite Bonding)',
+    summaryEn: 'Artistic sculpting of tooth-colored composite resin directly onto chipped, spaced, or discolored teeth to enhance smile harmony in a single visit.',
+    summaryTa: 'உடைந்த அல்லது இடைவெளி உள்ள பற்களை ஒரே நாளில் பல்லின் நிறத்திலேயே சீரமைக்கும் அழகியல் சிகிச்சை.',
+    durationMinutes: 45,
+    anesthesiaType: 'Non-Invasive / Rare Numbing Required',
+    primaryDepartmentName: 'Restorative Dentistry',
+    primaryDepartmentCode: 'REST',
+    exploreCategorySlugs: ["broken-or-chipped-teeth","dental-appearance"],
+    governanceTier: 'TIER_1',
+    contentStatus: 'DRAFT',
+    overviewHtmlEn: '<p>Direct composite bonding is a conservative aesthetic and restorative technique where pliable dental resin is sculpted directly onto enamel surfaces. Without requiring significant tooth reduction, it restores chipped incisal edges, closes small interdental gaps (diastemas), and covers stubborn localized discolorations in a single comfortable appointment.</p>',
+    overviewHtmlTa: '<p>காம்போசிட் பிணைப்பு என்பது பல்லின் இயற்கையான எனாமலை தேய்க்காமல், உடைந்த பகுதிகள் மற்றும் பற்களுக்கு இடையே உள்ள இடைவெளிகளை பல்லின் நிறத்திலேயே இருக்கும் பிசின் கொண்டு ஒரே நாளில் அழகாக மாற்றும் சிகிச்சை முறையாகும்.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 3
+  },
+
+  // --------------------------------------------------------------------
+  // 17. BATCH 2 NEW: Direct & Indirect Pulp Capping (REST) - Tier 2
+  // --------------------------------------------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333317',
+    slug: 'pulp-capping',
+    code: 'REST-PCP-01',
+    titleEn: 'Direct & Indirect Pulp Capping',
+    titleTa: 'நரம்பு பாதுகாப்பு சிகிச்சை (Direct & Indirect Pulp Capping)',
+    summaryEn: 'Application of bioactive medicaments over near or pinpoint pulp exposures to stimulate reparative dentin bridge formation and save the tooth from root canal therapy.',
+    summaryTa: 'ஆழமான சொத்தையில் நரம்பு வெளிப்படும் சூழலில், சிறப்பு மருந்து வைத்து நரம்பை பாதுகாத்து வேர் கால்வாய் சிகிச்சையை தவிர்க்கும் முறை.',
+    durationMinutes: 40,
+    anesthesiaType: 'Profound Local Anesthesia',
+    primaryDepartmentName: 'Restorative Dentistry',
+    primaryDepartmentCode: 'REST',
+    exploreCategorySlugs: ["pain-and-sensitivity"],
+    governanceTier: 'TIER_2',
+    contentStatus: 'DRAFT',
+    overviewHtmlEn: '<p>Pulp capping is a vital pulp therapy designed to prevent dental pulp death when deep caries or accidental mechanical exposure threatens the inner tooth nerve. By applying biocompatible mineralizing agents (such as MTA or calcium silicate bioceramics), the procedure encourages pulp cells to lay down a protective calcified dentin bridge, preserving tooth vitality and avoiding endodontic intervention.</p>',
+    overviewHtmlTa: '<p>பல்ப் கேப்பிங் என்பது பல்லின் நரம்பை காப்பாற்ற செய்யப்படும் மிக முக்கியமான சிகிச்சை முறையாகும். ஆழமான சொத்தையை சுத்தம் செய்யும் போது நரம்பு தெரிய நேர்ந்தால், அதன் மேல் சிறப்பு தாது மருந்துகளை வைத்து புதிய பல் எலும்பு அடுக்கு உருவாக தூண்டப்படுகிறது.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 3
+  },
+
+  // --------------------------------------------------------------------
+  // 18. BATCH 2 NEW: Endodontic Retreatment (ENDO) - Tier 2
+  // --------------------------------------------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333318',
+    slug: 'endodontic-retreatment',
+    code: 'ENDO-RET-01',
+    titleEn: 'Endodontic Retreatment',
+    titleTa: 'மறு வேர் கால்வாய் சிகிச்சை (Root Canal Retreatment)',
+    summaryEn: 'Careful removal of prior root canal filling material, microscopic exploration for hidden canals, and re-disinfection to resolve persistent apical infection.',
+    summaryTa: 'முன்பு செய்த வேர் கால்வாய் சிகிச்சையில் மீண்டும் தொற்று ஏற்பட்டால், பழைய அடைப்பை நீக்கி மீண்டும் சுத்தம் செய்து சீல் செய்யும் முறை.',
+    durationMinutes: 75,
+    anesthesiaType: 'Profound Local Anesthesia',
+    primaryDepartmentName: 'Endodontics – Root Canal Treatments',
+    primaryDepartmentCode: 'ENDO',
+    exploreCategorySlugs: ["pain-and-sensitivity"],
+    governanceTier: 'TIER_2',
+    contentStatus: 'DRAFT',
+    overviewHtmlEn: '<p>Endodontic retreatment is performed when a previously root-treated tooth fails to heal or develops persistent pain due to complicated anatomy, missed extra canals, or delayed crown leakage. The specialist removes the existing gutta-percha filling, searches with microscopic illumination for uncleaned anatomy, thoroughly disinfects, and reseals the canals.</p>',
+    overviewHtmlTa: '<p>மறு வேர் கால்வாய் சிகிச்சை என்பது ஏற்கனவே சிகிச்சை செய்யப்பட்ட பல்லில் நுண் கால்வாய்கள் விடுபட்டதாலோ அல்லது மீண்டும் தொற்று ஏற்பட்டதாலோ செய்யப்படும் இரண்டாம் கட்ட சிகிச்சையாகும். பழைய அடைப்புகள் அகற்றப்பட்டு நவீன மைக்ரோஸ்கோப் மூலம் ஆழமாக சுத்தம் செய்யப்படுகிறது.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 4
+  },
+
+  // --------------------------------------------------------------------
+  // 19. BATCH 2 NEW: Apicoectomy (Root-End Microsurgery) (ENDO) - Tier 2
+  // --------------------------------------------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333319',
+    slug: 'apicoectomy',
+    code: 'ENDO-API-01',
+    titleEn: 'Apicoectomy (Root-End Microsurgery)',
+    titleTa: 'வேர் முனை நுண் அறுவை சிகிச்சை (Apicoectomy)',
+    summaryEn: 'Surgical excision of the infected root tip and placement of a biocompatible retrograde root-end filling to save a tooth when conventional root canal therapy cannot resolve apical infection.',
+    summaryTa: 'சாதாரண வேர் கால்வாய் சிகிச்சையால் குணப்படுத்த முடியாத வேர் முனை தொற்றை சிறிய அறுவை சிகிச்சை மூலம் அகற்றி சீல் செய்யும் முறை.',
+    durationMinutes: 60,
+    anesthesiaType: 'Profound Local Anesthesia with Vasoconstrictor',
+    primaryDepartmentName: 'Endodontics – Root Canal Treatments',
+    primaryDepartmentCode: 'ENDO',
+    exploreCategorySlugs: ["pain-and-sensitivity"],
+    governanceTier: 'TIER_2',
+    contentStatus: 'DRAFT',
+    overviewHtmlEn: '<p>An apicoectomy (root-end resection) is a minor microsurgical procedure used to save a natural tooth when persistent infection in the surrounding jawbone cannot be cured through conventional root canal therapy. The specialist gently reflects a small gum window, removes the inflamed tip (last 3mm) of the root, cleans the root canal retrograde with ultrasonics, and seals it with a biocompatible filling.</p>',
+    overviewHtmlTa: '<p>அபிகோக்டமி என்பது பல்லின் வேர் முனையில் உள்ள தீவிர தொற்றை ஈறுகளின் வழியாக சிறிய துவாரம் மூலம் அகற்றி பற்களை பிடுங்காமல் காக்கும் நுண் அறுவை சிகிச்சையாகும். வேரின் கடைசி 3 மிமீ வெட்டப்பட்டு கிருமி புகாத வண்ணம் சீல் செய்யப்படுகிறது.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 4
+  },
+
+  // --------------------------------------------------------------------
+  // 20. BATCH 2 NEW: Internal Tooth Bleaching (ENDO) - Tier 1
+  // --------------------------------------------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333320',
+    slug: 'internal-tooth-bleaching',
+    code: 'ENDO-IBL-01',
+    titleEn: 'Internal Tooth Bleaching',
+    titleTa: 'உட்புற பல் வெளுப்பாக்குதல் (Internal Bleaching)',
+    summaryEn: 'Application of professional oxidizing whitening agents directly inside the pulp chamber of a non-vital, root-treated discolored tooth to restore natural translucency.',
+    summaryTa: 'வேர் சிகிச்சை செய்யப்பட்ட பற்களில் காலப்போக்கில் ஏற்படும் கறுமை அல்லது நிறமாற்றத்தை பல்லின் உள்ளே மருந்து வைத்து போக்கும் சிகிச்சை.',
+    durationMinutes: 30,
+    anesthesiaType: 'Non-Invasive / Pain-Free (Non-Vital Tooth)',
+    primaryDepartmentName: 'Endodontics – Root Canal Treatments',
+    primaryDepartmentCode: 'ENDO',
+    exploreCategorySlugs: ["dental-appearance"],
+    governanceTier: 'TIER_1',
+    contentStatus: 'DRAFT',
+    overviewHtmlEn: '<p>Internal tooth bleaching (walking bleach technique) is a safe aesthetic procedure specifically for endodontically treated teeth that have darkened due to internal blood breakdown products or restorative materials. The dentist places a sealed oxidizing whitening compound directly inside the coronal chamber for a few days, safely lightening the tooth from within to match neighboring teeth.</p>',
+    overviewHtmlTa: '<p>உட்புற பல் வெளுப்பாக்குதல் என்பது வேர் சிகிச்சை செய்யப்பட்ட பற்கள் கறுப்பாக நிறம் மாறுவதை உள்ளிருந்து போக்கும் ஒரு சிறந்த அழகியல் சிகிச்சையாகும். பல்லின் உள்பகுதியில் ஆக்சிஜனேற்ற மருந்து சில நாட்கள் வைக்கப்பட்டு இயற்கை நிறம் மீட்டெடுக்கப்படுகிறது.</p>',
     has3DModel: false,
     interactiveStepsCount: 3
   }

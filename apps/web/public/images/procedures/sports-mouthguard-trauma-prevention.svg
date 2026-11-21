@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgSpt" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F5FAF9" />
+      <stop offset="50%" stop-color="#FEF2F2" />
+      <stop offset="100%" stop-color="#FEE2E2" />
+    </linearGradient>
+    <linearGradient id="evaShield" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EF4444" stop-opacity="0.9" />
+      <stop offset="50%" stop-color="#DC2626" stop-opacity="0.95" />
+      <stop offset="100%" stop-color="#991B1B" stop-opacity="0.95" />
+    </linearGradient>
+    <filter id="dropSpt" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#DC2626" flood-opacity="0.2" />
+    </filter>
+  </defs>
+
+  <rect width="100%" height="100%" fill="url(#bgSpt)" rx="24" />
+
+  <!-- Heavy Duty EVA Sports Mouthguard on Arch -->
+  <g filter="url(#dropSpt)">
+    <!-- Maxillary Teeth Outline Behind Shield -->
+    <path d="M 250 310 
+             C 250 180, 320 130, 400 130 
+             C 480 130, 550 180, 550 310 
+             C 530 320, 500 310, 490 260 
+             C 470 190, 440 170, 400 170 
+             C 360 170, 330 190, 310 260 
+             C 300 310, 270 320, 250 310 Z" 
+          fill="#FFFFFF" stroke="#64748B" stroke-width="3" />
+
+    <!-- Multi-Laminate EVA Shock Guard -->
+    <path d="M 230 330 
+             C 230 160, 310 95, 400 95 
+             C 490 95, 570 160, 570 330 
+             C 530 350, 490 330, 480 260 
+             C 460 180, 435 150, 400 150 
+             C 365 150, 340 180, 320 260 
+             C 310 330, 270 350, 230 330 Z" 
+          fill="url(#evaShield)" stroke="#7F1D1D" stroke-width="5" stroke-linejoin="round" />
+
+    <!-- Front Impact Dissipation Ridge (4mm labial buffer) -->
+    <path d="M 330 120 Q 400 100 470 120 Q 400 135 330 120 Z" fill="#FCA5A5" stroke="#B91C1C" stroke-width="2" />
+  </g>
+
+  <!-- Impact Arrow and Shockwave -->
+  <path d="M 400 30 L 400 80 M 390 68 L 400 80 L 410 68" stroke="#EF4444" stroke-width="4" stroke-linecap="round" />
+  <circle cx="400" cy="95" r="24" fill="none" stroke="#EF4444" stroke-width="2" stroke-dasharray="4 4" stroke-opacity="0.6" />
+
+  <!-- Callouts -->
+  <rect x="110" y="110" width="180" height="32" rx="8" fill="#FFFFFF" stroke="#DC2626" stroke-width="1.5" />
+  <text x="200" y="131" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#991B1B" text-anchor="middle">Direct Impact Cushioning</text>
+  <line x1="290" y1="126" x2="340" y2="120" stroke="#DC2626" stroke-width="1.5" />
+
+  <rect x="510" y="110" width="180" height="32" rx="8" fill="#FFFFFF" stroke="#0D9488" stroke-width="1.5" />
+  <text x="600" y="131" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#134E4A" text-anchor="middle">Alveolar Bone Protection</text>
+  <line x1="510" y1="126" x2="460" y2="120" stroke="#0D9488" stroke-width="1.5" />
+
+  <!-- Department & Code Pill -->
+  <rect x="250" y="440" width="300" height="36" rx="18" fill="#FFFFFF" stroke="#DC2626" stroke-width="1.5" />
+  <text x="400" y="463" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#991B1B" text-anchor="middle">PREV-SPT-01 • Preventive Dentistry</text>
+</svg>

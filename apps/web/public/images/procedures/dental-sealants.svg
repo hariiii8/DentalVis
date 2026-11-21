@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F5FAF9" />
+      <stop offset="50%" stop-color="#E6F7F2" />
+      <stop offset="100%" stop-color="#CCFBF1" />
+    </linearGradient>
+    <linearGradient id="sealantFlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#20B2AA" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#0D9488" stop-opacity="0.95" />
+    </linearGradient>
+    <linearGradient id="curingLight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.55" />
+      <stop offset="100%" stop-color="#0284C7" stop-opacity="0.05" />
+    </linearGradient>
+    <filter id="drop" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0D9488" flood-opacity="0.15" />
+    </filter>
+  </defs>
+
+  <rect width="100%" height="100%" fill="url(#bg)" rx="24" />
+
+  <!-- Curing Light Cone -->
+  <polygon points="360,60 440,60 465,160 335,160" fill="url(#curingLight)" />
+  <rect x="375" y="50" width="50" height="20" rx="4" fill="#0284C7" stroke="#0369A1" stroke-width="2" />
+
+  <!-- Tooth Molar Anatomy with Flowed Sealant -->
+  <g filter="url(#drop)">
+    <!-- Enamel Body -->
+    <path d="M 280 180 
+             C 280 120, 320 110, 350 120 
+             C 365 125, 385 125, 400 120 
+             C 415 125, 435 125, 450 120
+             C 480 110, 520 120, 520 180 
+             C 520 240, 500 280, 490 330 
+             C 475 390, 460 410, 445 410 
+             C 435 410, 430 350, 420 310 
+             C 410 350, 405 410, 395 410 
+             C 385 410, 380 350, 370 310
+             C 360 350, 355 410, 345 410
+             C 330 410, 320 390, 310 330 
+             C 300 280, 280 240, 280 180 Z" 
+          fill="#FFFFFF" stroke="#0D9488" stroke-width="6" stroke-linejoin="round" />
+
+    <!-- Dentin Core -->
+    <path d="M 305 185 
+             C 305 145, 335 135, 360 145 
+             C 380 150, 420 150, 440 145 
+             C 465 135, 495 145, 495 185 
+             C 495 230, 475 270, 470 310 
+             C 455 360, 448 385, 440 390 
+             C 430 380, 425 330, 415 300 
+             C 405 330, 395 380, 385 390 
+             C 375 380, 370 330, 360 300
+             C 350 330, 345 380, 338 390
+             C 330 385, 325 360, 318 310 
+             C 310 270, 305 230, 305 185 Z" 
+          fill="#FEF9C3" stroke="#CA8A04" stroke-width="2" />
+
+    <!-- Vital Pulp Chamber -->
+    <path d="M 370 230 C 370 200, 430 200, 430 230 C 430 270, 425 320, 420 360 L 380 360 Z" 
+          fill="#FDA4AF" stroke="#E11D48" stroke-width="1.5" />
+
+    <!-- Deep Occlusal Fissures Filled with Sealant Resin -->
+    <path d="M 340 120 
+             Q 370 145 400 135 
+             Q 430 145 460 120
+             Q 440 155 400 150
+             Q 360 155 340 120 Z" 
+          fill="url(#sealantFlow)" stroke="#0F766E" stroke-width="2.5" />
+  </g>
+
+  <!-- Explanatory Callouts -->
+  <rect x="130" y="125" width="165" height="32" rx="8" fill="#FFFFFF" stroke="#0D9488" stroke-width="1.5" />
+  <text x="212" y="146" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#134E4A" text-anchor="middle">Flowed Sealant Resin</text>
+  <line x1="295" y1="141" x2="350" y2="135" stroke="#0D9488" stroke-width="1.5" />
+
+  <rect x="505" y="125" width="165" height="32" rx="8" fill="#FFFFFF" stroke="#0284C7" stroke-width="1.5" />
+  <text x="587" y="146" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#0369A1" text-anchor="middle">Fissure Acid Barrier</text>
+  <line x1="505" y1="141" x2="450" y2="135" stroke="#0284C7" stroke-width="1.5" />
+
+  <!-- Department & Code Pill -->
+  <rect x="250" y="440" width="300" height="36" rx="18" fill="#FFFFFF" stroke="#0D9488" stroke-width="1.5" />
+  <text x="400" y="463" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#145B59" text-anchor="middle">PREV-SLT-01 • Preventive Dentistry</text>
+</svg>

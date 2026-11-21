@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgBrx" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F5FAF9" />
+      <stop offset="50%" stop-color="#E2E8F0" />
+      <stop offset="100%" stop-color="#CBD5E1" />
+    </linearGradient>
+    <linearGradient id="guardGlass" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.9" />
+      <stop offset="50%" stop-color="#E0F2FE" stop-opacity="0.65" />
+      <stop offset="100%" stop-color="#38BDF8" stop-opacity="0.4" />
+    </linearGradient>
+    <filter id="dropBrx" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0284C7" flood-opacity="0.2" />
+    </filter>
+  </defs>
+
+  <rect width="100%" height="100%" fill="url(#bgBrx)" rx="24" />
+
+  <!-- Upper Dental Arch With Transparent Night Guard -->
+  <g filter="url(#dropBrx)">
+    <!-- Maxillary Dental Arch Contours -->
+    <path d="M 240 320 
+             C 240 180, 320 120, 400 120 
+             C 480 120, 560 180, 560 320 
+             C 540 330, 510 320, 500 270 
+             C 480 190, 440 170, 400 170 
+             C 360 170, 320 190, 300 270 
+             C 290 320, 260 330, 240 320 Z" 
+          fill="#FFFFFF" stroke="#0D9488" stroke-width="4" />
+
+    <!-- Individual Teeth Segments in Arch -->
+    <path d="M 370 122 L 370 170 M 400 120 L 400 170 M 430 122 L 430 170 M 470 135 L 455 180 M 330 135 L 345 180" 
+          stroke="#94A3B8" stroke-width="2" stroke-dasharray="2 3" />
+
+    <!-- Custom Formed Transparent Night Guard Appliance -->
+    <path d="M 230 335 
+             C 230 165, 315 105, 400 105 
+             C 485 105, 570 165, 570 335 
+             C 535 350, 500 335, 490 275 
+             C 475 185, 435 155, 400 155 
+             C 365 155, 325 185, 310 275 
+             C 300 335, 265 350, 230 335 Z" 
+          fill="url(#guardGlass)" stroke="#0284C7" stroke-width="4" stroke-linejoin="round" />
+  </g>
+
+  <!-- Force Dispersion Arrows -->
+  <path d="M 310 370 L 310 340 M 305 348 L 310 340 L 315 348" stroke="#0284C7" stroke-width="2.5" stroke-linecap="round" />
+  <path d="M 400 370 L 400 340 M 395 348 L 400 340 L 405 348" stroke="#0284C7" stroke-width="2.5" stroke-linecap="round" />
+  <path d="M 490 370 L 490 340 M 485 348 L 490 340 L 495 348" stroke="#0284C7" stroke-width="2.5" stroke-linecap="round" />
+
+  <!-- Callouts -->
+  <rect x="120" y="80" width="180" height="32" rx="8" fill="#FFFFFF" stroke="#0284C7" stroke-width="1.5" />
+  <text x="210" y="101" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#0369A1" text-anchor="middle">Dual-Laminate Polymer</text>
+  <line x1="295" y1="105" x2="350" y2="120" stroke="#0284C7" stroke-width="1.5" />
+
+  <rect x="500" y="80" width="180" height="32" rx="8" fill="#FFFFFF" stroke="#0D9488" stroke-width="1.5" />
+  <text x="590" y="101" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#134E4A" text-anchor="middle">Enamel Wear Prevention</text>
+  <line x1="505" y1="105" x2="450" y2="120" stroke="#0D9488" stroke-width="1.5" />
+
+  <!-- Department & Code Pill -->
+  <rect x="250" y="440" width="300" height="36" rx="18" fill="#FFFFFF" stroke="#0D9488" stroke-width="1.5" />
+  <text x="400" y="463" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#145B59" text-anchor="middle">PREV-BRX-01 • Preventive Dentistry</text>
+</svg>

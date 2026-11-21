@@ -323,6 +323,306 @@ const PROCEDURE_ANATOMY_DATA: Record<string, ProcedureAnatomyConfig> = {
       },
     ],
   },
+  'dental-sealants': {
+    titleEn: 'Molar Occlusal Pit & Fissure Sealant Anatomy',
+    titleTa: 'மோலார் மெல்லும் பரப்பு பள்ளங்கள் & சீலண்ட் அமைப்பு',
+    subtitleEn: 'Deep Developmental Fissures, Enamel Grooves, and Protective Resin Barrier',
+    subtitleTa: 'ஆழமான பள்ளங்கள், எனாமல் வரிப்பள்ளங்கள் மற்றும் பாதுகாப்பு பூச்சு அடுக்கு',
+    interactive3DReady: false,
+    callouts: [
+      {
+        labelEn: 'Protective Sealant Layer',
+        labelTa: 'பாதுகாப்பு சீலண்ட் அடுக்கு',
+        descEn: 'Biocompatible resin shielding natural developmental pits.',
+        descTa: 'பல் சொத்தை ஏற்படாமல் தடுக்கும் மெல்லிய பாதுகாப்பு பிசின் அடுக்கு.',
+        positionPercent: { x: 50, y: 25 },
+      },
+      {
+        labelEn: 'Deep Occlusal Fissures',
+        labelTa: 'ஆழமான மெல்லும் பள்ளங்கள்',
+        descEn: 'Microscopic crevices susceptible to bacterial plaque accumulation.',
+        descTa: 'உணவு துகள்கள் மற்றும் கிருமிகள் சேர வாய்ப்புள்ள ஆழமான இடுக்குகள்.',
+        positionPercent: { x: 42, y: 48 },
+      },
+      {
+        labelEn: 'Healthy Intact Enamel',
+        labelTa: 'ஆரோக்கியமான எனாமல் அடுக்கு',
+        descEn: 'Preserved natural tooth structure protected against demineralization.',
+        descTa: 'அமிலங்களால் அரிக்கப்படாமல் பாதுகாக்கப்படும் பல்லின் வெளிப்புற எனாமல்.',
+        positionPercent: { x: 55, y: 68 },
+      }
+    ],
+  },
+  'topical-fluoride-treatment': {
+    titleEn: 'Enamel Micro-Prism Remineralization Anatomy',
+    titleTa: 'எனாமல் நுண் கனிம மறுசீரமைப்பு கட்டமைப்பு',
+    subtitleEn: 'Hydroxyapatite Crystals, Fluorapatite Surface Shield, and Dentinal Tubules',
+    subtitleTa: 'ஹைட்ராக்ஸிஅபடைட் படிகங்கள், ஃப்ளூராபடைட் கவசம் மற்றும் டென்டின் குழாய்கள்',
+    interactive3DReady: false,
+    callouts: [
+      {
+        labelEn: 'Fluorapatite Shield',
+        labelTa: 'ஃப்ளூராபடைட் பாதுகாப்பு கவசம்',
+        descEn: 'Acid-resistant mineralized enamel barrier.',
+        descTa: 'அமில அரிப்பைத் தடுக்கும் வலிமையான கனிம அடுக்கு.',
+        positionPercent: { x: 50, y: 22 },
+      },
+      {
+        labelEn: 'Enamel Hydroxyapatite Prisms',
+        labelTa: 'எனாமல் கனிம படிகங்கள்',
+        descEn: 'Densely packed calcium and phosphate prism structure.',
+        descTa: 'கால்சியம் மற்றும் பாஸ்பேட் நிறைந்த பல்லின் கட்டமைப்பு.',
+        positionPercent: { x: 42, y: 46 },
+      },
+      {
+        labelEn: 'Dentinal Tubule Openings',
+        labelTa: 'டென்டின் நுண்குழாய்கள்',
+        descEn: 'Desensitized tubules protected from temperature discomfort.',
+        descTa: 'கூச்சத்தை குறைக்கும் வகையில் மூடப்படும் நுண்குழாய்கள்.',
+        positionPercent: { x: 56, y: 65 },
+      }
+    ],
+  },
+  'custom-night-guard-bruxism': {
+    titleEn: 'Occlusal Splint & Dental Arch Cushioning Anatomy',
+    titleTa: 'பல் பாதுகாப்பு அட்டை & தாடை சமநிலை உடற்கூறியல்',
+    subtitleEn: 'Dual-Laminate Polymer, Contact Guidance Surface, and Incisal Buffer',
+    subtitleTa: 'இரட்டை அடுக்கு பாலிமர், தொடர்பு பரப்பு மற்றும் முன் பல் பாதுகாப்பு அடுக்கு',
+    interactive3DReady: false,
+    callouts: [
+      {
+        labelEn: 'Dual-Laminate Guard Body',
+        labelTa: 'பாதுகாப்பு அட்டையின் உடல் பகுதி',
+        descEn: 'Resilient medical polymer dispersing grinding load.',
+        descTa: 'பல் கடிக்கும் அழுத்தத்தை உறிஞ்சி பரவலாக்கும் சிறப்பு பொருள்.',
+        positionPercent: { x: 50, y: 24 },
+      },
+      {
+        labelEn: 'Smooth Occlusal Contact Surface',
+        labelTa: 'சமநிலையான கடிக்கும் பரப்பு',
+        descEn: 'Prevents interlocking of cusps during involuntary sleep clenching.',
+        descTa: 'தூக்கத்தில் பற்கள் ஒன்றோடு ஒன்று உரசாமல் வழுக்கிச்செல்ல உதவும் பரப்பு.',
+        positionPercent: { x: 38, y: 48 },
+      },
+      {
+        labelEn: 'Protected Natural Crown Enamel',
+        labelTa: 'பாதுகாக்கப்பட்ட இயற்கை எனாமல்',
+        descEn: 'Shielded against fractures, abfraction, and attrition.',
+        descTa: 'தேய்மானம் மற்றும் விரிசல்களில் இருந்து பாதுகாக்கப்படும் பற்கள்.',
+        positionPercent: { x: 58, y: 68 },
+      }
+    ],
+  },
+  'sports-mouthguard-trauma-prevention': {
+    titleEn: 'Impact-Absorbing Sports Shield Anatomy',
+    titleTa: 'தாக்கம் உறிஞ்சும் விளையாட்டு கவச உடற்கூறியல்',
+    subtitleEn: 'Multi-Laminate EVA Core, Labial Shock Buffer, and Palatal Retentive Border',
+    subtitleTa: 'பல அடுக்கு EVA அமைப்பு, முன் தாடை அதிர்வு உறிஞ்சி மற்றும் அண்ண விளிம்பு',
+    interactive3DReady: false,
+    callouts: [
+      {
+        labelEn: 'Shock-Absorbing Front Buffer',
+        labelTa: 'முன்பக்க அதிர்வு உறிஞ்சி',
+        descEn: 'Reinforced 4mm labial layer dispersing direct blunt force.',
+        descTa: 'நேரடி அடிகளை தாங்கி பற்களைக் காக்கும் தடிமனான முன்பக்க அடுக்கு.',
+        positionPercent: { x: 50, y: 24 },
+      },
+      {
+        labelEn: 'Cushioned Occlusal Table',
+        labelTa: 'மெல்லும் பரப்பு மெத்தை அமைப்பு',
+        descEn: 'Separates maxillary and mandibular arches against concussive jaw impact.',
+        descTa: 'கீழ் தாடை மேல் தாடையோடு பலமாக மோதுவதைத் தடுக்கும் மெத்தை அமைப்பு.',
+        positionPercent: { x: 40, y: 50 },
+      },
+      {
+        labelEn: 'Anterior Incisor Anatomy',
+        labelTa: 'முன் பற்கள் கட்டமைப்பு',
+        descEn: 'Vital front teeth safeguarded against traumatic luxation and avulsion.',
+        descTa: 'விளையாட்டின் போது அடிபட்டு விழுவதிலிருந்து பாதுகாக்கப்படும் முன் பற்கள்.',
+        positionPercent: { x: 56, y: 70 },
+      }
+    ],
+  },
+  'inlays-and-onlays': {
+    titleEn: 'Cusp-Preserving Indirect Restoration Anatomy',
+    titleTa: 'பல் உச்சி காக்கும் இன்லே/ஆன்லே உடற்கூறியல்',
+    subtitleEn: 'Ceramic Inlay Margin, Preserved Cusp Wall, and Adhesive Resin Interface',
+    subtitleTa: 'பீங்கான் அடைப்பு விளிம்பு, பாதுகாக்கப்பட்ட பல் உச்சி மற்றும் பசையமைப்பு',
+    interactive3DReady: false,
+    callouts: [
+      {
+        labelEn: 'Custom Ceramic Onlay Body',
+        labelTa: 'பீங்கான் ஆன்லே அடைப்பு',
+        descEn: 'Milled ceramic replacing missing occlusal cusps.',
+        descTa: 'உடைந்த மெல்லும் பல் உச்சியை சீரமைக்கும் பீங்கான் துண்டு.',
+        positionPercent: { x: 50, y: 22 },
+      },
+      {
+        labelEn: 'Preserved Natural Cusp Enamel',
+        labelTa: 'பாதுகாக்கப்பட்ட இயற்கை பல் உச்சி',
+        descEn: 'Healthy tooth wall retained without unnecessary reduction.',
+        descTa: 'அகற்றப்படாமல் பாதுகாக்கப்படும் ஆரோக்கியமான இயற்கை பல் பகுதி.',
+        positionPercent: { x: 38, y: 46 },
+      },
+      {
+        labelEn: 'Biocompatible Adhesive Bond Line',
+        labelTa: 'நுண் ஒட்டுதல் பிசின் அடுக்கு',
+        descEn: 'Micro-mechanical seal preventing recurrent margin decay.',
+        descTa: 'கிருமிகள் நுழையாமல் பல்லோடு அடைப்பை இறுக்கமாக பிணைக்கும் அடுக்கு.',
+        positionPercent: { x: 56, y: 66 },
+      }
+    ],
+  },
+  'direct-composite-bonding': {
+    titleEn: 'Anterior Incisal Composite Bonding Anatomy',
+    titleTa: 'முன் பல் காம்போசிட் பிணைப்பு உடற்கூறியல்',
+    subtitleEn: 'Sculpted Resin Edge, Enamel Micro-Bevel, and Seamless Aesthetic Transition',
+    subtitleTa: 'செதுக்கப்பட்ட பிசின் விளிம்பு, எனாமல் நுண் விளிம்பு மற்றும் இயற்கை இணைப்பு',
+    interactive3DReady: false,
+    callouts: [
+      {
+        labelEn: 'Sculpted Composite Resin Edge',
+        labelTa: 'வடிவமைக்கப்பட்ட காம்போசிட் பிசின்',
+        descEn: 'Multi-layer composite restoring fractured incisal edge.',
+        descTa: 'உடைந்த முன் பல் விளிம்பை மீட்டெடுக்கும் பல அடுக்கு பிசின்.',
+        positionPercent: { x: 50, y: 22 },
+      },
+      {
+        labelEn: 'Conservative Enamel Bevel',
+        labelTa: 'மெல்லிய எனாமல் சாய்வு விளிம்பு',
+        descEn: 'Feathered boundary blending natural tooth enamel and restoration.',
+        descTa: 'செயற்கை அடைப்புக்கும் இயற்கை பல்லுக்கும் வேறுபாடு தெரியாமல் இணைக்கும் விளிம்பு.',
+        positionPercent: { x: 42, y: 46 },
+      },
+      {
+        labelEn: 'Vital Sound Tooth Structure',
+        labelTa: 'ஆரோக்கியமான இயற்கை பல்',
+        descEn: 'Completely preserved natural tooth body without drilling.',
+        descTa: 'தேய்க்கப்படாமல் முழுமையாக பாதுகாக்கப்படும் ஆரோக்கியமான இயற்கை பல்.',
+        positionPercent: { x: 58, y: 68 },
+      }
+    ],
+  },
+  'pulp-capping': {
+    titleEn: 'Vital Pulp Chamber & Bioactive Bridge Anatomy',
+    titleTa: 'உயிருள்ள நரம்பு அறை & பயோ ஆக்டிவ் பாலம் உடற்கூறியல்',
+    subtitleEn: 'Reparative Dentin Bridge, Bioactive Capping Liner, and Living Pulp Fibers',
+    subtitleTa: 'புதிய டென்டின் பாலம், பாதுகாப்பு மருந்து அடுக்கு மற்றும் வாழும் நரம்பு திசு',
+    interactive3DReady: false,
+    callouts: [
+      {
+        labelEn: 'Bioactive Pulp Cap (MTA)',
+        labelTa: 'பயோ ஆக்டிவ் மருந்து அடுக்கு',
+        descEn: 'Calcium silicate stimulating tertiary dentinogenesis.',
+        descTa: 'புதிய எலும்பு அடுக்கு உருவாக உதவும் பயோ-செராமிக் மருந்து.',
+        positionPercent: { x: 50, y: 24 },
+      },
+      {
+        labelEn: 'Reparative Dentin Bridge',
+        labelTa: 'புதிய பாதுகாப்பு டென்டின் பாலம்',
+        descEn: 'Natural calcified barrier protecting the pulp chamber.',
+        descTa: 'நரம்பை சுற்றி புதிதாக உருவாகும் இயற்கை எலும்பு கவசம்.',
+        positionPercent: { x: 40, y: 46 },
+      },
+      {
+        labelEn: 'Living Vital Dental Pulp',
+        labelTa: 'உயிருள்ள பல் நரம்பு திசு',
+        descEn: 'Preserved nerve and blood vessels keeping tooth naturally vital.',
+        descTa: 'பல்லிற்கு உயிர் கொடுக்கும் நரம்புகள் மற்றும் இரத்த நாளங்கள்.',
+        positionPercent: { x: 56, y: 68 },
+      }
+    ],
+  },
+  'endodontic-retreatment': {
+    titleEn: 'Complex Root Canal System Retreatment Anatomy',
+    titleTa: 'சிக்கலான வேர் கால்வாய் மறுசீரமைப்பு உடற்கூறியல்',
+    subtitleEn: 'Missed Accessory Canals, Dissolved Gutta-Percha, and Apical Lesion Healing',
+    subtitleTa: 'விடுபட்ட நுண் கால்வாய்கள், பழைய அடைப்பு நீக்கம் மற்றும் வேர் முனை தொற்று குணமாகுதல்',
+    interactive3DReady: false,
+    callouts: [
+      {
+        labelEn: 'Cleaned Primary Canal',
+        labelTa: 'சுத்தம் செய்யப்பட்ட முக்கிய கால்வாய்',
+        descEn: 'Unobstructed root canal debrided of old filling material.',
+        descTa: 'பழைய அடைப்பு நீக்கப்பட்டு சுத்தப்படுத்தப்பட்ட வேர் கால்வாய்.',
+        positionPercent: { x: 50, y: 22 },
+      },
+      {
+        labelEn: 'Accessory / Lateral Canal',
+        labelTa: 'பக்கவாட்டு நுண் கால்வாய்',
+        descEn: 'Microscopic branch newly disinfected during retreatment.',
+        descTa: 'மறுசிகிச்சையின் போது கண்டறியப்பட்டு சுத்தப்படுத்தப்படும் பக்கவாட்டு கால்வாய்.',
+        positionPercent: { x: 38, y: 48 },
+      },
+      {
+        labelEn: 'Healing Periapical Bone Defect',
+        labelTa: 'குணமாகும் வேர் முனை எலும்பு பகுதி',
+        descEn: 'Bone regeneration occurring after bacterial clearance.',
+        descTa: 'தொற்று நீக்கப்பட்ட பின் தாடை எலும்பு மீண்டும் ஆரோக்கியமாக மாறும் பகுதி.',
+        positionPercent: { x: 58, y: 70 },
+      }
+    ],
+  },
+  'apicoectomy': {
+    titleEn: 'Root-End Microsurgery & Retro-Seal Anatomy',
+    titleTa: 'வேர் முனை நுண் அறுவை சிகிச்சை & சீலிங் உடற்கூறியல்',
+    subtitleEn: 'Resected Root Apex, Retrograde Bioceramic Plug, and Alveolar Crypt',
+    subtitleTa: 'வெட்டப்பட்ட வேர் முனை, பயோ-செராமிக் அடைப்பு மற்றும் தாடை எலும்பு குழி',
+    interactive3DReady: false,
+    callouts: [
+      {
+        labelEn: 'Retrograde Bioceramic Seal (MTA)',
+        labelTa: 'வேர் முனை பயோ-செராமிக் அடைப்பு',
+        descEn: 'Biocompatible plug sealing root canal from the apical end.',
+        descTa: 'வேர் முனையை கிருமிகள் அண்டாமல் முழுமையாக அடைக்கும் சிறப்பு சீல்.',
+        positionPercent: { x: 50, y: 24 },
+      },
+      {
+        labelEn: 'Resected Root Margin (90-Degree Bevel)',
+        labelTa: 'வெட்டப்பட்ட வேர் விளிம்பு',
+        descEn: 'Smoothly planed root surface free of infected delta canals.',
+        descTa: 'தொற்று நீக்கப்பட்ட சீரான வேர் பகுதி.',
+        positionPercent: { x: 40, y: 48 },
+      },
+      {
+        labelEn: 'Periapical Bone Socket Cavity',
+        labelTa: 'தாடை எலும்பு குழி',
+        descEn: 'Surgical site regenerating with healthy trabecular bone.',
+        descTa: 'சிகிச்சைக்குப் பின் புதிய எலும்பு உருவாகி குணமாகும் பகுதி.',
+        positionPercent: { x: 58, y: 70 },
+      }
+    ],
+  },
+  'internal-tooth-bleaching': {
+    titleEn: 'Internal Coronal Bleaching & Cervical Seal Anatomy',
+    titleTa: 'உட்புற வெளுப்பாக்குதல் & பாதுகாப்பு சீலிங் உடற்கூறியல்',
+    subtitleEn: 'Intracoronal Bleach Pellet, Glass Ionomer Cervical Barrier, and Gutta-Percha Root Seal',
+    subtitleTa: 'உட்புற மருந்து உருண்டை, கண்ணாடி ஐயோனோமர் தடுப்பு மற்றும் வேர் சீலிங்',
+    interactive3DReady: false,
+    callouts: [
+      {
+        labelEn: 'Intracoronal Bleaching Pellet',
+        labelTa: 'உட்புற வெளுப்பாக்கும் மருந்து',
+        descEn: 'Active oxidizing agent releasing stain-clearing oxygen radicals.',
+        descTa: 'பல்லின் உட்புற கறைகளை உடைத்து அகற்றும் ஆக்ஸிஜன் மருந்து.',
+        positionPercent: { x: 50, y: 22 },
+      },
+      {
+        labelEn: 'Cervical Glass Ionomer Barrier',
+        labelTa: 'கழுத்து பகுதி பாதுகாப்பு தடுப்பு',
+        descEn: '2mm hermetic seal preventing whitening agent leaking into root canals.',
+        descTa: 'மருந்து வேர் பகுதிக்கு பரவாமல் தடுக்கும் 2 மிமீ பாதுகாப்பு சிமெண்ட்.',
+        positionPercent: { x: 42, y: 46 },
+      },
+      {
+        labelEn: 'Obturated Root Canal (Gutta-Percha)',
+        labelTa: 'சீல் செய்யப்பட்ட வேர் கால்வாய்',
+        descEn: 'Intact endodontic filling preserved securely beneath barrier.',
+        descTa: 'தடுப்பின் கீழே பாதுகாப்பாக இருக்கும் வேர் கால்வாய் அடைப்பு.',
+        positionPercent: { x: 56, y: 68 },
+      }
+    ],
+  }
 };
 
 interface ProcedureAnatomyViewerProps {

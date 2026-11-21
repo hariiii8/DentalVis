@@ -37,6 +37,16 @@ export default function ProcedureDetailClientView({
     'wisdom-tooth-extraction',
     'fixed-orthodontic-braces',
     'professional-teeth-whitening',
+    'dental-sealants',
+    'topical-fluoride-treatment',
+    'custom-night-guard-bruxism',
+    'sports-mouthguard-trauma-prevention',
+    'inlays-and-onlays',
+    'direct-composite-bonding',
+    'pulp-capping',
+    'endodontic-retreatment',
+    'apicoectomy',
+    'internal-tooth-bleaching',
   ]);
   const coverImageSrc = KNOWN_PROCEDURE_IMAGES.has(procedure.slug)
     ? `/images/procedures/${procedure.slug}.svg`
@@ -334,6 +344,277 @@ export default function ProcedureDetailClientView({
             titleTa: 'வெளுப்பாக்கும் ஜெல் இடுதல் & பளபளப்பு',
             descEn: 'Buffered active oxygen gel is applied across the teeth in controlled 15-minute intervals to dissolve intrinsic chromophore stains.',
             descTa: 'பற்களின் எனாமலை பாதிக்காமல் உட்புறக் கறைகளை உடைக்கக்கூடிய மருத்துவ ஜெல் தடவப்பட்டு பற்கள் பளபளப்பாக்கப்படுகின்றன.',
+          },
+        ];
+
+      case 'dental-sealants':
+        return [
+          {
+            num: 1,
+            titleEn: 'Gentle Surface Cleaning & Polishing',
+            titleTa: 'மேற்பரப்பு தூய்மைப்படுத்தல்',
+            descEn: 'The tooth surface is thoroughly cleaned with pumice paste and dried to eliminate any microscopic bacterial biofilm.',
+            descTa: 'பல்லின் மேல் உள்ள அழுக்குகள் மற்றும் நுண்கிருமிகள் முழுமையாக சுத்தம் செய்யப்பட்டு உலர்த்தப்படுகிறது.',
+          },
+          {
+            num: 2,
+            titleEn: 'Micro-Conditioning & Adhesive Application',
+            titleTa: 'நுண் கண்டிஷனிங் & திரவ பூச்சு',
+            descEn: 'A gentle conditioning gel micro-roughens the enamel grooves, followed by flowing liquid sealant resin into every fissure.',
+            descTa: 'பூச்சு பல்லோடு உறுதியாக ஒட்ட உதவும் வகையில் பல்லின் மேற்பரப்பு தயாரிக்கப்பட்டு திரவ சீலண்ட் பள்ளங்களில் நிரப்பப்படுகிறது.',
+          },
+          {
+            num: 3,
+            titleEn: 'Blue Light Curing & Bite Check',
+            titleTa: 'நீல ஒளி மூலம் கெட்டியாக்குதல் & பரிசோதனை',
+            descEn: 'A focused blue curing light hardens the resin in seconds, creating a smooth protective shield tested for natural bite harmony.',
+            descTa: 'சிறப்பு நீல ஒளி மூலம் சீலண்ட் சில வினாடிகளில் கெட்டியாக்கப்பட்டு, மெல்லும் போது சரியான இடைவெளி உள்ளதா என பரிசோதிக்கப்படுகிறது.',
+          },
+        ];
+
+      case 'topical-fluoride-treatment':
+        return [
+          {
+            num: 1,
+            titleEn: 'Plaque Clearance & Enamel Drying',
+            titleTa: 'பல் சுத்தம் & உலர்த்துதல்',
+            descEn: 'Teeth are gently cleaned of surface biofilm and moisture-controlled with soft cotton rolls to maximize mineral absorption.',
+            descTa: 'பற்களின் மேற்பரப்பு சுத்தம் செய்யப்பட்டு உமிழ்நீர் இன்றி உலர்த்தப்படுகிறது.',
+          },
+          {
+            num: 2,
+            titleEn: 'Precision Varnish Painting',
+            titleTa: 'ஃப்ளூரைடு வார்னிஷ் பூசுதல்',
+            descEn: 'A thin, pleasant-tasting fluoride varnish is applied with a micro-brush directly across all enamel surfaces and margins.',
+            descTa: 'சிறிய பிரஷ் கொண்டு ஃப்ளூரைடு வார்னிஷ் பற்களின் அனைத்து மேற்பரப்புகளிலும் சீராக பூசப்படுகிறது.',
+          },
+          {
+            num: 3,
+            titleEn: 'Rapid Setting & Mineral Absorption',
+            titleTa: 'வார்னிஷ் கெட்டியாதல் & கனிம உட்கிரகிப்பு',
+            descEn: 'The varnish sets instantly upon contact with saliva, gradually releasing protective calcium and fluoride ions into the enamel crystals.',
+            descTa: 'உமிழ்நீர் பட்டவுடன் வார்னிஷ் உடனே படிந்து, எனாமல் மீது படிப்படியாக கனிமங்களை செலுத்துகிறது.',
+          },
+        ];
+
+      case 'custom-night-guard-bruxism':
+        return [
+          {
+            num: 1,
+            titleEn: 'Digital Arch Scanning & Bite Registration',
+            titleTa: 'டிஜிட்டல் ஸ்கேன் & கடிப்பு அளவீடு',
+            descEn: 'A high-precision 3D intraoral scan captures your upper and lower teeth relationship in resting bite position.',
+            descTa: 'பற்களின் அமைப்பு மற்றும் மேல்-கீழ் தாடை பொருத்தம் நவீன 3D ஸ்கேனர் மூலம் துல்லியமாக அளவிடப்படுகிறது.',
+          },
+          {
+            num: 2,
+            titleEn: 'Custom Laboratory Thermo-Molding',
+            titleTa: 'ஆய்வகத்தில் பிரத்யேக தயாரிப்பு',
+            descEn: 'A dual-layer splint with a soft internal cushion and durable outer surface is precisely milled or thermoformed.',
+            descTa: 'உட்புறம் மென்மையாகவும் வெளிப்புறம் உறுதியாகவும் இருக்கும் வகையில் பிரத்யேக அட்டை ஆய்வகத்தில் தயாரிக்கப்படுகிறது.',
+          },
+          {
+            num: 3,
+            titleEn: 'Clinical Delivery & Occlusal Calibration',
+            titleTa: 'பொருத்திப் பார்த்தல் & சரிசெய்தல்',
+            descEn: 'The dentist checks insertion, retention, and adjusts contact balance with articulation paper for effortless nocturnal breathing.',
+            descTa: 'வாய் பகுதியில் அட்டை சரியாக அமர்கிறதா என சோதித்து மெல்லும் சமநிலை துல்லியமாக சரிசெய்யப்படுகிறது.',
+          },
+        ];
+
+      case 'sports-mouthguard-trauma-prevention':
+        return [
+          {
+            num: 1,
+            titleEn: 'Intraoral Arch Morphology Mapping',
+            titleTa: 'தாடை அமைப்பு அளவீடு',
+            descEn: 'A high-definition 3D digital model maps the maxillary teeth, alveolar ridge, and gingival vestibule.',
+            descTa: 'மேல் தாடை பற்கள் மற்றும் ஈறுகளின் அமைப்பு நவீன ஸ்கேனர் மூலம் பதிவு செய்யப்படுகிறது.',
+          },
+          {
+            num: 2,
+            titleEn: 'Pressure-Laminated EVA Thermo-Forming',
+            titleTa: 'பல அடுக்கு பாதுகாப்பு அட்டை உருவாக்கம்',
+            descEn: 'Multiple layers of energy-absorbing polymer are vacuum-formed under high pressure for uniform labial thickness.',
+            descTa: 'அதிர்வை தாங்கும் பல அடுக்கு பாலிமர் கொண்டு ஆய்வகத்தில் கவசம் துல்லியமாக வடிவமைக்கப்படுகிறது.',
+          },
+          {
+            num: 3,
+            titleEn: 'Fit Verification & Airway Clearance',
+            titleTa: 'பொருத்தம் சரிபார்த்தல் & மூச்சு வசதி உறுதி',
+            descEn: 'The guard is verified in the mouth for comfortable retention, soft-tissue comfort, and unobstructed breathing.',
+            descTa: 'கவசம் வாயில் நழுவாமல் இருப்பதும், விளையாடும் போது சீராக மூச்சுவிட முடிவதும் உறுதி செய்யப்படுகிறது.',
+          },
+        ];
+
+      case 'inlays-and-onlays':
+        return [
+          {
+            num: 1,
+            titleEn: 'Decay Removal & Conservative Cavity Preparation',
+            titleTa: 'சொத்தை நீக்கம் & பல்லின் தயாரிப்பு',
+            descEn: 'Decayed enamel is carefully cleared, sculpting divergent cavity walls with smooth internal line angles.',
+            descTa: 'சொத்தை அகற்றப்பட்டு, பல்லின் ஆரோக்கியமான பகுதிகள் சேதமடையாமல் அடைப்பு பொருந்துமாறு வடிவமைக்கப்படுகிறது.',
+          },
+          {
+            num: 2,
+            titleEn: 'High-Resolution 3D Optical Scan',
+            titleTa: 'துல்லிய 3D டிஜிட்டல் ஸ்கேன்',
+            descEn: 'An intraoral scanner captures the exact submillimeter preparation boundaries and opposing bite dynamics.',
+            descTa: 'தயாரிக்கப்பட்ட பல்லின் நுணுக்கமான அளவுகள் டிஜிட்டல் கேமரா மூலம் ஸ்கேன் செய்யப்படுகிறது.',
+          },
+          {
+            num: 3,
+            titleEn: 'CAD/CAM Precision Ceramic Milling',
+            titleTa: 'கணினி மூலம் பீங்கான் அடைப்பு உருவாக்கம்',
+            descEn: 'A monolithic block of biocompatible lithium disilicate or zirconia ceramic is milled to micro-metric precision.',
+            descTa: 'கணினி கட்டுப்பாட்டில் இயங்கும் இயந்திரம் மூலம் பீங்கான் அடைப்பு பல்லின் நிறத்திலேயே செதுக்கப்படுகிறது.',
+          },
+          {
+            num: 4,
+            titleEn: 'Adhesive Resin Cementation & Polish',
+            titleTa: 'பசை கொண்டு பொருத்துதல் & மெருகூட்டல்',
+            descEn: 'The restoration is bonded with dual-cure composite resin cement, checked with bite film, and polished glass-smooth.',
+            descTa: 'பீங்கான் அடைப்பு பல்லோடு உறுதியாக ஒட்டப்பட்டு பல்லின் இயற்கையான தோற்றத்திற்கு ஏற்ப மெருகூட்டப்படுகிறது.',
+          },
+        ];
+
+      case 'direct-composite-bonding':
+        return [
+          {
+            num: 1,
+            titleEn: 'Shade Matching & Gentle Enamel Etching',
+            titleTa: 'பல் நிற தேர்வு & மேற்பரப்பு தயாரிப்பு',
+            descEn: 'The doctor selects matching multi-chromatic composite shades under natural light and lightly etches the enamel surface.',
+            descTa: 'பல்லின் நிறத்திற்கு ஏற்ப துல்லியமாக பிசின் நிறம் தேர்ந்தெடுக்கப்பட்டு பல்லின் மேற்பரப்பு லேசாக சுத்தம் செய்யப்படுகிறது.',
+          },
+          {
+            num: 2,
+            titleEn: 'Layered Resin Sculpting & Blue Light Curing',
+            titleTa: 'அடுக்கு பிசின் வடிவமைப்பு & கெட்டியாக்குதல்',
+            descEn: 'Dentist sculpts dentin and enamel-mimicking composite layers, curing each stratum with focused blue light.',
+            descTa: 'பல்லின் இயற்கை வடிவத்திற்கு ஏற்ப பிசின் மென்மையாக செதுக்கப்பட்டு நீல ஒளிக் கதிர் மூலம் உறுதியாக்கப்படுகிறது.',
+          },
+          {
+            num: 3,
+            titleEn: 'Anatomical Contouring & Diamond Glaze Polish',
+            titleTa: 'வடிவமைப்பு & பளபளப்பான மெருகூட்டல்',
+            descEn: 'Fine carbide finishing burs contour natural developmental grooves, followed by multi-step polishing discs for a mirror gloss.',
+            descTa: 'பற்கள் இயற்கை பற்களைப் போலவே கண்ணாடி போல பளபளப்பாக இருக்க பிரத்யேக மெருகூட்டும் கருவிகள் மூலம் சீரமைக்கப்படுகிறது.',
+          },
+        ];
+
+      case 'pulp-capping':
+        return [
+          {
+            num: 1,
+            titleEn: 'Microscopic Caries Debridement & Pulp Exposure Assessment',
+            titleTa: 'சொத்தை நீக்கம் & நரம்பு நிலை பரிசோதனை',
+            descEn: 'The doctor gently removes deep infected dentin under magnification, assessing pulp vascularity and bleeding control.',
+            descTa: 'நரம்புப் பகுதிக்கு அருகில் உள்ள சொத்தை கவனமாக அகற்றப்பட்டு நரம்பின் இரத்த ஓட்டம் மற்றும் ஆரோக்கியம் பரிசோதிக்கப்படுகிறது.',
+          },
+          {
+            num: 2,
+            titleEn: 'Bioactive Calcium Silicate (MTA) Placement',
+            titleTa: 'பயோ ஆக்டிவ் தாது மருந்து வைத்தல்',
+            descEn: 'A mineral trioxide aggregate (MTA) or calcium hydroxide dressing is gently placed directly over the vulnerable pulp tissue.',
+            descTa: 'நரம்பு திசுவின் மேல் புதிய எலும்பு அடுக்கு உருவாக தூண்டும் சிறப்பு பயோ-செராமிக் மருந்து மென்மையாக வைக்கப்படுகிறது.',
+          },
+          {
+            num: 3,
+            titleEn: 'Hermetic Glass Ionomer Base & Coronal Seal',
+            titleTa: 'இறுக்கமான அடைப்பு & பாதுகாப்பு பூச்சு',
+            descEn: 'A glass ionomer protective liner seals the medicament hermetically against bacteria, followed by an aesthetic composite restoration.',
+            descTa: 'மருந்தின் மேல் பாக்டீரியா புகாத வண்ணம் சிறப்பு சிமெண்ட் மற்றும் காம்போசிட் அடைப்பு இடப்பட்டு சீல் செய்யப்படுகிறது.',
+          },
+        ];
+
+      case 'endodontic-retreatment':
+        return [
+          {
+            num: 1,
+            titleEn: 'Coronal Access & Removal of Old Restorative Core',
+            titleTa: 'உட்புகுதல் & பழைய அடைப்பை அகற்றுதல்',
+            descEn: 'The doctor creates access through the crown and safely dissolves previous gutta-percha filling materials.',
+            descTa: 'பல்லின் மேல் பகுதி வழியாக கால்வாய்களை அடைந்ததும் பழைய சீலிங் பொருட்கள் முழுமையாக அகற்றப்படுகின்றன.',
+          },
+          {
+            num: 2,
+            titleEn: 'Microscopic Exploration for Hidden Canals',
+            titleTa: 'நுண் கால்வாய்களை கண்டறிதல்',
+            descEn: 'Operating microscope illumination visualizes complex canal branchings, calcifications, or previously untreated canals.',
+            descTa: 'மைக்ரோஸ்கோப் வெளிச்சத்தில் பல்லின் மறைக்கப்பட்ட நுண்ணிய கால்வாய்கள் துல்லியமாக தேடிக் கண்டுபிடிக்கப்படுகின்றன.',
+          },
+          {
+            num: 3,
+            titleEn: 'Advanced Ultrasonic Irrigation & Disinfection',
+            titleTa: 'அல்ட்ராசோனிக் கிருமிநாசினி சுத்தம்',
+            descEn: 'Acoustic micro-streaming irrigants reach deep into microscopic canal webs to eradicate persistent resistant bacteria.',
+            descTa: 'அதிநவீன அல்ட்ராசோனிக் கருவிகள் மூலம் கால்வாய்களின் அனைத்து மூலைகளிலும் உள்ள கிருமிகள் அழிக்கப்படுகின்றன.',
+          },
+          {
+            num: 4,
+            titleEn: 'Three-Dimensional Bioceramic Obturation',
+            titleTa: 'முப்பரிமாண பயோ-செராமிக் சீலிங்',
+            descEn: 'Canals are hermetically refilled with warm biocompatible gutta-percha and sealer, topped with a protective core.',
+            descTa: 'கிருமி நீக்கம் செய்யப்பட்ட கால்வாய்கள் மீண்டும் தொற்று ஏற்படாத வண்ணம் பயோ-செராமிக் கொண்டு முழுமையாக சீல் செய்யப்படுகிறது.',
+          },
+        ];
+
+      case 'apicoectomy':
+        return [
+          {
+            num: 1,
+            titleEn: 'Micro-Surgical Flap & Bone Window Opening',
+            titleTa: 'ஈறு திறப்பு & சிறிய எலும்பு சாளரம் அமைத்தல்',
+            descEn: 'A tiny incision in the gum tissue reveals the underlying bone, creating a small access window directly to the infected root apex.',
+            descTa: 'ஈறில் சிறிய கீறல் மூலம் தொற்று உள்ள வேர் முனைப் பகுதியை நேரடியாக சென்றடையும் வழி அமைக்கப்படுகிறது.',
+          },
+          {
+            num: 2,
+            titleEn: 'Root Tip Resection (3mm Apical Removal)',
+            titleTa: 'வேர் முனை வெட்டுதல் (3 மிமீ)',
+            descEn: 'The doctor precisely resects the terminal 3mm of the infected root tip containing complex microscopic ramifications.',
+            descTa: 'தொற்று மறைந்திருக்க வாய்ப்புள்ள வேரின் கடைசி 3 மிமீ முனை பகுதி துல்லியமாக வெட்டி அகற்றப்படுகிறது.',
+          },
+          {
+            num: 3,
+            titleEn: 'Ultrasonic Retrograde Canal Preparation',
+            titleTa: 'அல்ட்ராசோனிக் மூலம் பின்னோக்கி சுத்தம் செய்தல்',
+            descEn: 'A micro-angled ultrasonic tip cleans a 3mm depth cavity within the remaining root canal from the bottom upward.',
+            descTa: 'சிறிய அல்ட்ராசோனிக் கருவி மூலம் வேரின் உள் பகுதி பின்னோக்கி ஆழமாக சுத்தப்படுத்தப்படுகிறது.',
+          },
+          {
+            num: 4,
+            titleEn: 'Bioceramic Retro-Fill & Micro-Suturing',
+            titleTa: 'பயோ-செராமிக் சீலிங் & தையல் போடுதல்',
+            descEn: 'A biocompatible mineral trioxide aggregate (MTA) retrograde filling seals the root end, followed by delicate micro-sutures.',
+            descTa: 'வேர் முனை பயோ-செராமிக் கொண்டு நிரந்தரமாக மூடப்பட்டு ஈறுகள் மெல்லிய தையல்கள் மூலம் மீண்டும் இணைக்கப்படுகின்றன.',
+          },
+        ];
+
+      case 'internal-tooth-bleaching':
+        return [
+          {
+            num: 1,
+            titleEn: 'Lingual Access & Protective Cervical Barrier Seal',
+            titleTa: 'பல்லின் பின்புற திறப்பு & பாதுகாப்பு தடுப்பு',
+            descEn: 'A tiny access is made on the back of the tooth, placing a glass ionomer barrier over the root canal gutta-percha to protect the roots.',
+            descTa: 'பல்லின் பின்புறம் வழியாக சிறிய வழி ஏற்படுத்தப்பட்டு வேருக்குள் மருந்து இறங்காதவாறு பாதுகாப்பு தடுப்பு அமைக்கப்படுகிறது.',
+          },
+          {
+            num: 2,
+            titleEn: 'Bioactive Whitening Paste Placement',
+            titleTa: 'உட்புற வெளுப்பாக்கும் மருந்து வைத்தல்',
+            descEn: 'A mixture of sodium perborate and saline/peroxide is gently packed inside the dentin chamber, releasing active stain-clearing oxygen.',
+            descTa: 'பல்லின் உள்பகுதியில் கறைகளை நீக்கும் சிறப்பு மருந்து வைக்கப்பட்டு தற்காலிகமாக மூடப்படுகிறது.',
+          },
+          {
+            num: 3,
+            titleEn: 'Color Evaluation & Aesthetic Composite Seal',
+            titleTa: 'நிறம் சரிபார்த்தல் & நிரந்தர அடைப்பு',
+            descEn: 'After 3 to 7 days, the bleaching agent is gently flushed away, and the chamber is permanently sealed with tooth-colored composite resin.',
+            descTa: 'பல் பக்கத்து பற்களின் நிறத்திற்கு வெண்மையானதும், மருந்து நீக்கப்பட்டு நிரந்தர பல்லின் நிற அடைப்பு இடப்படுகிறது.',
           },
         ];
 

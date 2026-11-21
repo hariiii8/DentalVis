@@ -31,6 +31,17 @@ const SECONDARY_DEPARTMENT_CODES: Record<string, string[]> = {
   'wisdom-tooth-extraction': [],
   'fixed-orthodontic-braces': ['PEDO'],
   'professional-teeth-whitening': [],
+  // Batch 2 procedures
+  'dental-sealants': ['PEDO'],
+  'topical-fluoride-treatment': ['PEDO'],
+  'custom-night-guard-bruxism': ['TMJD', 'REST'],
+  'sports-mouthguard-trauma-prevention': ['EMRG', 'PEDO'],
+  'inlays-and-onlays': ['PROS'],
+  'direct-composite-bonding': ['COSM'],
+  'pulp-capping': ['ENDO'],
+  'endodontic-retreatment': [],
+  'apicoectomy': ['OMFS'],
+  'internal-tooth-bleaching': ['COSM'],
 };
 
 // Department code lookup helper
@@ -45,6 +56,17 @@ const PROCEDURE_PRIMARY_DEPT_CODE: Record<string, string> = {
   'wisdom-tooth-extraction': 'OMFS',
   'fixed-orthodontic-braces': 'ORTH',
   'professional-teeth-whitening': 'COSM',
+  // Batch 2 procedures
+  'dental-sealants': 'PREV',
+  'topical-fluoride-treatment': 'PREV',
+  'custom-night-guard-bruxism': 'PREV',
+  'sports-mouthguard-trauma-prevention': 'PREV',
+  'inlays-and-onlays': 'REST',
+  'direct-composite-bonding': 'REST',
+  'pulp-capping': 'REST',
+  'endodontic-retreatment': 'ENDO',
+  'apicoectomy': 'ENDO',
+  'internal-tooth-bleaching': 'ENDO',
 };
 
 async function main() {
