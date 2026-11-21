@@ -1269,10 +1269,10 @@ export default function ProcedureDetailClientView({
           },
           {
             num: 4,
-            titleEn: 'Adhesive Cementation, Occlusal Refinement & Nightguard Review',
-            titleTa: 'பிசின் ஒட்டுதல் & கடிக்கும் விசை பரிசோதனை',
-            descEn: 'Enamel conditioning and resin bonding definitively seal the veneers, followed by precise occlusal adjustment and protective guard evaluation.',
-            descTa: 'ரெசின் சிமெண்ட் கொண்டு வெனியர்கள் உறுதியாக ஒட்டப்படுகின்றன; கடிக்கும் விசை சரிசெய்யப்பட்டு, இரவில் பற்களைப் பாதுகாக்க நைட் கார்டு பரிசீலிக்கப்படுகிறது.',
+            titleEn: 'Adhesive Cementation, Occlusal Refinement & Lifelong Maintenance',
+            titleTa: 'பிசின் ஒட்டுதல் & வாழ்நாள் பராமரிப்புத் திட்டம்',
+            descEn: 'Enamel conditioning and resin bonding seal the veneers, followed by occlusal adjustment, tailored nightguard evaluation, and lifelong recall planning.',
+            descTa: 'ரெசின் சிமெண்ட் கொண்டு வெனியர்கள் உறுதியாக ஒட்டப்படுகின்றன; கடிக்கும் விசை சரிசெய்யப்பட்டு, பற்காப்பு (Nightguard) மற்றும் எதிர்கால பராமரிப்பு முறைகள் திட்டமிடப்படுகின்றன.',
           },
         ];
 
@@ -1305,10 +1305,10 @@ export default function ProcedureDetailClientView({
         return [
           {
             num: 1,
-            titleEn: 'Immediate First Aid, Handling & Transport',
-            titleTa: 'அவசர முதலுதவி, பல்லினைப் பாதுகாத்தல் & கொண்டுவருதல்',
-            descEn: 'Permanent tooth is handled strictly by the crown, briefly rinsed with cold saline/water if soiled, and transported in cold milk, HBSS, or saliva.',
-            descTa: 'விழுந்த நிரந்தரப் பல்லின் மகுடத்தை மட்டுமே தொட வேண்டும்; வேரைத் தொடாமல் குளிர்ந்த பால் அல்லது ஹாங்க்ஸ் கரைசலில் வைத்து உடனடியாக மருத்துவமனைக்குக் கொண்டுவர வேண்டும்.',
+            titleEn: 'Permanent Tooth First Aid (Never Replant Baby Teeth)',
+            titleTa: 'நிரந்தரப் பல் முதலுதவி (பால் பற்களை மீண்டும் பொருத்தக் கூடாது)',
+            descEn: 'Deciduous teeth must NEVER be replanted. Permanent teeth are handled solely by the crown, rinsed briefly in cold saline if soiled, and kept in cold milk or HBSS.',
+            descTa: 'பால் பற்களை ஒருபோதும் மீண்டும் பொருத்தக் கூடாது! நிரந்தரப் பல்லின் மகுடத்தை மட்டுமே தொட்டு, குளிர்ந்த பால் அல்லது ஹாங்க்ஸ் கரைசலில் வைத்து அவசரமாகக் கொண்டுவர வேண்டும்.',
           },
           {
             num: 2,
@@ -1326,10 +1326,10 @@ export default function ProcedureDetailClientView({
           },
           {
             num: 4,
-            titleEn: 'Tetanus Status, Antibiotic Review & Scheduled Endodontics',
-            titleTa: 'தடுப்பூசி ஆய்வு & திட்டமிடப்பட்ட வேர்க்கால் சிகிச்சை',
-            descEn: 'Systemic tetanus coverage and individualized medication are assessed, scheduling endodontic management within 7 to 14 days for mature teeth.',
-            descTa: 'டெட்டனஸ் தடுப்பூசி நிலை ஆய்வு செய்யப்பட்டு, முழுமையாக வளர்ந்த பற்களுக்கு 7 முதல் 14 நாட்களுக்குள் வேர்க்கால் சிகிச்சை திட்டமிடப்படுகிறது.',
+            titleEn: 'Tetanus Review & Tailored Endodontic Management',
+            titleTa: 'தடுப்பூசி ஆய்வு & தனிப்பயனாக்கப்பட்ட வேர்க்கால் சிகிச்சை',
+            descEn: 'Tetanus status is assessed; mature teeth with closed apices generally require endodontics within 7–14 days, while immature open-apex teeth are monitored for revascularization.',
+            descTa: 'டெட்டனஸ் தடுப்பூசி சரிபார்க்கப்படுகிறது; வேர் மூடிய முதிர்ந்த பற்களுக்கு 7-14 நாட்களுக்குள் வேர்க்கால் சிகிச்சையும், இளம் பற்களுக்கு நரம்பு மீட்சி கண்காணிப்பும் மேற்கொள்ளப்படுகிறது.',
           },
         ];
 
@@ -1344,17 +1344,17 @@ export default function ProcedureDetailClientView({
           },
           {
             num: 2,
-            titleEn: 'Pulp Protection or Vital Pulp Therapy (as Indicated)',
-            titleTa: 'நரம்புப் பாதுகாப்பு அல்லது உயிருள்ள நரம்பு சிகிச்சை',
-            descEn: 'Exposed dentin is sealed with biocompatible liners; if pulp is exposed, individualized pulp capping or partial pulpotomy is performed to preserve vitality.',
-            descTa: 'வெளிப்பட்ட டென்டின் அடுக்கு பாதுகாக்கப்படுகிறது; நரம்பு வெளிப்பட்டிருந்தால், பல்லின் உயிரோட்டத்தைத் தக்கவைக்க நவீன பயோமெட்டீரியல் மூலம் பாதுகாப்பு அளிக்கப்படுகிறது.',
+            titleEn: 'Dentin Sealing or Individualized Vital Pulp Therapy',
+            titleTa: 'டென்டின் பாதுகாப்பு அல்லது தனிப்பயனாக்கப்பட்ட நரம்பு சிகிச்சை',
+            descEn: 'Exposed dentin is sealed; for complicated fractures with vital pulp exposure, pulp capping or partial Cvek pulpotomy is tailored to exposure size and contamination.',
+            descTa: 'வெளிப்பட்ட டென்டின் மூடப்படுகிறது; நரம்பு வெளிப்பட்டிருந்தால், பல்லின் உயிரோட்டத்தைப் பாதுகாக்க துளையின் அளவு மற்றும் நேரத்திற்கேற்ப உயிருள்ள நரம்பு சிகிச்சை செய்யப்படுகிறது.',
           },
           {
             num: 3,
-            titleEn: 'Adhesive Fragment Reattachment or Direct Composite Restoration',
-            titleTa: 'உடைந்த துண்டை மீண்டும் ஒட்டுதல் அல்லது காம்போசிட் அடைப்பு',
-            descEn: 'The hydrated tooth fragment is adhesively reattached, or multi-layered aesthetic composite resin is sculpted to restore natural form and function.',
-            descTa: 'பத்திரமாக எடுத்துவரப்பட்ட பல்லின் துண்டு மீண்டும் ஒட்டப்படுகிறது, அல்லது அடுக்குக் காம்போசிட் பிசின் கொண்டு பல்லின் பழைய வடிவம் முழுமையாக மீட்டமைக்கப்படுகிறது.',
+            titleEn: 'Hydrated Fragment Reattachment or Direct Composite Restoration',
+            titleTa: 'ஈரப்பதமான துண்டை மீண்டும் ஒட்டுதல் அல்லது காம்போசிட் சீரமைப்பு',
+            descEn: 'If an intact fragment was kept continuously hydrated in saline or milk, reattachment is assessed; otherwise, direct multi-layer composite resin restores natural anatomy.',
+            descTa: 'சலைன் அல்லது பாலில் பத்திரமாக எடுத்துவரப்பட்ட துண்டு பொருத்தமாக இருந்தால் மீண்டும் ஒட்டப்படுகிறது; இயலாவிட்டால் அடுக்குக் காம்போசிட் அடைப்பு மூலம் சீரமைக்கப்படுகிறது.',
           },
         ];
 
@@ -1387,10 +1387,10 @@ export default function ProcedureDetailClientView({
         return [
           {
             num: 1,
-            titleEn: 'Preoperative Medical Screening & Mask Positioning',
+            titleEn: 'Preoperative Screening & Mask Positioning',
             titleTa: 'மருத்துவ வரலாறு பரிசோதனை & மூக்கு முகமூடி பொருத்துதல்',
-            descEn: 'Patient medical history and airway patency are reviewed, followed by comfortable placement of a contoured scented nasal mask delivering pure oxygen.',
-            descTa: 'உடல்நிலை மற்றும் மூச்சுப்பாதை பரிசோதிக்கப்பட்டு, நோயாளிக்கு வசதியான நறுமண மூக்கு முகமூடி பொருத்தப்பட்டு தூய பிராணவாயு வழங்கப்படுகிறது.',
+            descEn: 'Medical history, contraindications (e.g. bleomycin, closed gas spaces), and airway patency are evaluated, placing a comfortable nasal delivery mask.',
+            descTa: 'உடல்நிலை, மருத்துவ முரண்பாடுகள் (பிளியோமைசின் சிகிச்சை, காது பாதிப்புகள்) பரிசோதிக்கப்பட்டு, நோயாளிக்கு வசதியான மூக்கு முகமூடி பொருத்தப்படுகிறது.',
           },
           {
             num: 2,
@@ -1401,10 +1401,10 @@ export default function ProcedureDetailClientView({
           },
           {
             num: 3,
-            titleEn: 'Post-Procedure 100% Oxygen Flush & Recovery Verification',
-            titleTa: 'சிகிச்சைக்குப் பின் 100% ஆக்சிஜன் வழங்குதல் & முழு விழிப்புணர்வு',
-            descEn: '100% oxygen is administered for at least 5 minutes to eliminate residual nitrous oxide from the lungs and prevent diffusion hypoxia prior to discharge.',
-            descTa: 'சிகிச்சை முடிந்ததும் நுரையீரலில் உள்ள வாயுவை முழுமையாக வெளியேற்றி தலைச்சுற்றலைத் தடுக்க 5 நிமிடங்களுக்கு 100% தூய ஆக்சிஜன் வழங்கப்பட்டு இயல்புநிலைக்குக் கொண்டுவரப்படுகிறது.',
+            titleEn: 'Post-Procedure Oxygen Flush & Clinical Recovery Confirmation',
+            titleTa: 'சிகிச்சைக்குப் பின் ஆக்சிஜன் வழங்குதல் & நேரடி மருத்துவ மீட்பு உறுதி',
+            descEn: '100% oxygen is given for at least 5 minutes to clear lungs and prevent diffusion hypoxia, requiring clinical confirmation of baseline psychomotor recovery before discharge.',
+            descTa: 'தலைச்சுற்றலைத் தடுக்க குறைந்தபட்சம் 5 நிமிடங்களுக்கு 100% ஆக்சிஜன் வழங்கப்படுகிறது; நோயாளி முழு இயல்புநிலையை அடைந்ததை மருத்துவர் நேரடியாக உறுதிசெய்த பிறகே வழியனுப்பப்படுவார்.',
           },
         ];
 
@@ -1433,10 +1433,10 @@ export default function ProcedureDetailClientView({
           },
           {
             num: 4,
-            titleEn: 'Recovery Assessment & Supervised Discharge',
-            titleTa: 'விழிப்புணர்வு மீட்பு ஆய்வு & பாதுகாப்பான வழியனுப்புதல்',
-            descEn: 'Recovery criteria are verified, releasing the patient into the care of an adult escort with specific postoperative safety instructions.',
-            descTa: 'நோயாளி இயல்புநிலைக்குத் திரும்பியதை மருத்துவர் உறுதிசெய்து, பாதுகாப்பு அறிவுரைகளுடன் பொறுப்பான துணையுடன் வீட்டிற்கு அனுப்பி வைக்கப்படுகிறார்.',
+            titleEn: 'Clinical Recovery Scoring, Escort Discharge & Safety Restrictions',
+            titleTa: 'மீட்பு மதிப்பீடு, துணையுடன் வழியனுப்புதல் & பாதுகாப்பு எச்சரிக்கைகள்',
+            descEn: 'Objective recovery criteria are verified before release to an adult escort, mandating 24-hour avoidance of driving, machinery, alcohol, and sedatives.',
+            descTa: 'நோயாளி முழு விழிப்புணர்வை அடைந்ததை உறுதிசெய்து துணையிடம் ஒப்படைக்கப்படுகிறார்; அடுத்த 24 மணி நேரத்திற்கு வாகனம் ஓட்டுதல், இயந்திரங்கள் இயக்குதல் மற்றும் மது அருந்துதல் முற்றிலும் தடைசெய்யப்படுகிறது.',
           },
         ];
 
@@ -1476,10 +1476,10 @@ export default function ProcedureDetailClientView({
         return [
           {
             num: 1,
-            titleEn: 'Clinical Examination & Differential Diagnosis',
-            titleTa: 'மருத்துவப் பரிசோதனை & புண் வகையைக் கண்டறிதல்',
-            descEn: 'The oral medicine clinician inspects ulcer size, duration, morphology, and mucosal location to rule out malignancy, traumatic lesions, or viral infections.',
-            descTa: 'வாய் புண்ணின் அளவு, காலம் மற்றும் வடிவம் பரிசோதிக்கப்பட்டு, புற்றுநோய் அல்லது வைரஸ் தொற்று இல்லை என்பதை உறுதிசெய்ய துல்லியமாக ஆராயப்படுகிறது.',
+            titleEn: 'Clinical Examination & Expert Biopsy Evaluation',
+            titleTa: 'மருத்துவப் பரிசோதனை & திசு ஆய்வு மதிப்பீடு',
+            descEn: 'Ulcer size, induration, duration, and borders are inspected; persistent (>2–3 weeks), atypical, or indurated ulcers are evaluated for prompt biopsy.',
+            descTa: 'புண்ணின் கடினத்தன்மை, அளவு மற்றும் காலம் பரிசோதிக்கப்படுகிறது; 2-3 வாரங்களுக்கு மேல் ஆறாத, கடினமான புண்கள் புற்றுநோய் இல்லை என்பதை உறுதிசெய்ய திசுப் பரிசோதனைக்கு (Biopsy) உட்படுத்தப்படுகின்றன.',
           },
           {
             num: 2,
