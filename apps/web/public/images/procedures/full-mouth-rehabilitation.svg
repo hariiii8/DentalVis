@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="fmrBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A" />
+      <stop offset="50%" stop-color="#1E293B" />
+      <stop offset="100%" stop-color="#334155" />
+    </linearGradient>
+    <linearGradient id="ceramicZirconia" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="40%" stop-color="#F8FAFC" />
+      <stop offset="80%" stop-color="#E2E8F0" />
+      <stop offset="100%" stop-color="#CBD5E1" />
+    </linearGradient>
+    <linearGradient id="goldCrown" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FEF08A" />
+      <stop offset="50%" stop-color="#EAB308" />
+      <stop offset="100%" stop-color="#A16207" />
+    </linearGradient>
+    <filter id="fmrGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#38BDF8" flood-opacity="0.3" />
+    </filter>
+  </defs>
+
+  <rect width="100%" height="100%" fill="url(#fmrBg)" rx="24" />
+
+  <!-- Occlusal Plane & Biomechanical Axis Grid Lines -->
+  <line x1="120" y1="250" x2="680" y2="250" stroke="#38BDF8" stroke-width="2" stroke-dasharray="8 6" opacity="0.6" />
+  <text x="700" y="254" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#38BDF8">VDO Plane</text>
+
+  <!-- Maxillary Arch (Top) -->
+  <g filter="url(#fmrGlow)">
+    <!-- Maxillary Gum Tissue -->
+    <path d="M 160 170 Q 400 130 640 170 L 640 130 Q 400 90 160 130 Z" fill="#E11D48" opacity="0.8" />
+
+    <!-- Reconstructed Upper Crowns (Molars, Premolars, Canines, Incisors) -->
+    <!-- Left Posterior -->
+    <rect x="180" y="160" width="45" height="75" rx="6" fill="url(#ceramicZirconia)" stroke="#38BDF8" stroke-width="1.5" />
+    <rect x="230" y="155" width="45" height="82" rx="6" fill="url(#ceramicZirconia)" stroke="#38BDF8" stroke-width="1.5" />
+    <rect x="280" y="150" width="40" height="90" rx="6" fill="url(#ceramicZirconia)" stroke="#38BDF8" stroke-width="1.5" />
+    <!-- Canine Left -->
+    <path d="M 325 150 L 325 242 Q 342 248 360 242 L 360 150 Z" fill="url(#ceramicZirconia)" stroke="#38BDF8" stroke-width="1.5" />
+    <!-- Upper Anterior Centrals & Laterals -->
+    <rect x="365" y="145" width="32" height="98" rx="5" fill="url(#ceramicZirconia)" stroke="#38BDF8" stroke-width="2" />
+    <rect x="403" y="145" width="32" height="98" rx="5" fill="url(#ceramicZirconia)" stroke="#38BDF8" stroke-width="2" />
+    <!-- Canine Right -->
+    <path d="M 440 150 L 440 242 Q 458 248 475 242 L 475 150 Z" fill="url(#ceramicZirconia)" stroke="#38BDF8" stroke-width="1.5" />
+    <!-- Right Posterior -->
+    <rect x="480" y="150" width="40" height="90" rx="6" fill="url(#ceramicZirconia)" stroke="#38BDF8" stroke-width="1.5" />
+    <rect x="525" y="155" width="45" height="82" rx="6" fill="url(#ceramicZirconia)" stroke="#38BDF8" stroke-width="1.5" />
+    <rect x="575" y="160" width="45" height="75" rx="6" fill="url(#ceramicZirconia)" stroke="#38BDF8" stroke-width="1.5" />
+  </g>
+
+  <!-- Mandibular Arch (Bottom) -->
+  <g filter="url(#fmrGlow)">
+    <!-- Mandibular Gum Tissue -->
+    <path d="M 160 330 Q 400 370 640 330 L 640 370 Q 400 410 160 370 Z" fill="#E11D48" opacity="0.8" />
+
+    <!-- Reconstructed Lower Crowns Interlocking in Harmonious Centric Relation -->
+    <!-- Left Posterior -->
+    <rect x="180" y="260" width="45" height="75" rx="6" fill="url(#ceramicZirconia)" stroke="#38BDF8" stroke-width="1.5" />
+    <rect x="230" y="258" width="45" height="80" rx="6" fill="url(#ceramicZirconia)" stroke="#38BDF8" stroke-width="1.5" />
+    <rect x="280" y="255" width="40" height="85" rx="6" fill="url(#ceramicZirconia)" stroke="#38BDF8" stroke-width="1.5" />
+    <!-- Canine Left -->
+    <path d="M 325 340 L 325 254 Q 342 248 360 254 L 360 340 Z" fill="url(#ceramicZirconia)" stroke="#38BDF8" stroke-width="1.5" />
+    <!-- Lower Anterior Centrals & Laterals -->
+    <rect x="365" y="252" width="32" height="90" rx="5" fill="url(#ceramicZirconia)" stroke="#38BDF8" stroke-width="2" />
+    <rect x="403" y="252" width="32" height="90" rx="5" fill="url(#ceramicZirconia)" stroke="#38BDF8" stroke-width="2" />
+    <!-- Canine Right -->
+    <path d="M 440 340 L 440 254 Q 458 248 475 254 L 475 340 Z" fill="url(#ceramicZirconia)" stroke="#38BDF8" stroke-width="1.5" />
+    <!-- Right Posterior -->
+    <rect x="480" y="255" width="40" height="85" rx="6" fill="url(#ceramicZirconia)" stroke="#38BDF8" stroke-width="1.5" />
+    <rect x="525" y="258" width="45" height="80" rx="6" fill="url(#ceramicZirconia)" stroke="#38BDF8" stroke-width="1.5" />
+    <rect x="575" y="260" width="45" height="75" rx="6" fill="url(#ceramicZirconia)" stroke="#38BDF8" stroke-width="1.5" />
+  </g>
+
+  <!-- Title Badge -->
+  <g transform="translate(230, 30)">
+    <rect width="340" height="42" rx="10" fill="#1E293B" stroke="#38BDF8" stroke-width="1.5" />
+    <circle cx="24" cy="21" r="10" fill="#0284C7" />
+    <path d="M 19 21 L 23 25 L 29 17" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" />
+    <text x="46" y="26" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#F8FAFC">
+      Full-Mouth Rehabilitation (VDO Restoration)
+    </text>
+  </g>
+</svg>

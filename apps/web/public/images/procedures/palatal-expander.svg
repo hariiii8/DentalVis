@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="expBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EFF6FF" />
+      <stop offset="50%" stop-color="#F5F3FF" />
+      <stop offset="100%" stop-color="#EDE9FE" />
+    </linearGradient>
+    <linearGradient id="expSteel" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="35%" stop-color="#CBD5E1" />
+      <stop offset="70%" stop-color="#64748B" />
+      <stop offset="100%" stop-color="#334155" />
+    </linearGradient>
+    <linearGradient id="palatePink" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FDA4AF" />
+      <stop offset="50%" stop-color="#FB7185" />
+      <stop offset="100%" stop-color="#E11D48" />
+    </linearGradient>
+    <filter id="expShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#4F46E5" flood-opacity="0.2" />
+    </filter>
+  </defs>
+
+  <rect width="100%" height="100%" fill="url(#expBg)" rx="24" />
+
+  <!-- Palatal Vault Background (Maxillary Arch Looking from Occlusal View) -->
+  <path d="M 180 140 C 220 320, 580 320, 620 140 C 540 80, 260 80, 180 140 Z" 
+        fill="url(#palatePink)" stroke="#BE123C" stroke-width="2" opacity="0.8" />
+
+  <!-- Midpalatal Suture Line (Splitting in center under orthopedic expansion) -->
+  <line x1="400" y1="90" x2="400" y2="300" stroke="#FFFFFF" stroke-width="3" stroke-dasharray="6 4" />
+  
+  <!-- Expansion Directional Arrows -->
+  <g stroke="#6366F1" stroke-width="3" fill="none">
+    <path d="M 330 220 L 270 220 M 285 210 L 270 220 L 285 230" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M 470 220 L 530 220 M 515 210 L 530 220 L 515 230" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+  <text x="400" y="335" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#4338CA">
+    Lateral Orthopedic Force (Suture Opening)
+  </text>
+
+  <!-- Maxillary Molar Anchorage Teeth (Left & Right) -->
+  <g>
+    <!-- Left First Molar -->
+    <rect x="160" y="190" width="60" height="70" rx="12" fill="#FFFFFF" stroke="#475569" stroke-width="2.5" />
+    <path d="M 180 200 L 200 250 M 200 200 L 180 250" stroke="#E2E8F0" stroke-width="2" />
+    
+    <!-- Right First Molar -->
+    <rect x="580" y="190" width="60" height="70" rx="12" fill="#FFFFFF" stroke="#475569" stroke-width="2.5" />
+    <path d="M 600 200 L 620 250 M 620 200 L 600 250" stroke="#E2E8F0" stroke-width="2" />
+  </g>
+
+  <!-- Rapid Maxillary Expansion (RPE) Appliance Assembly -->
+  <g filter="url(#expShadow)">
+    <!-- Molar Bands (Stainless Steel) -->
+    <rect x="155" y="195" width="70" height="60" rx="8" fill="none" stroke="url(#expSteel)" stroke-width="6" />
+    <rect x="575" y="195" width="70" height="60" rx="8" fill="none" stroke="url(#expSteel)" stroke-width="6" />
+
+    <!-- Rigid Transverse Heavy Stainless Steel Arms (Connecting bands to jackscrew) -->
+    <!-- Left Arms -->
+    <path d="M 225 210 L 350 210 M 225 240 L 350 240" stroke="url(#expSteel)" stroke-width="6" stroke-linecap="round" />
+    <!-- Right Arms -->
+    <path d="M 575 210 L 450 210 M 575 240 L 450 240" stroke="url(#expSteel)" stroke-width="6" stroke-linecap="round" />
+
+    <!-- Central Hyrax Jackscrew Mechanism Body -->
+    <rect x="350" y="190" width="100" height="70" rx="8" fill="url(#expSteel)" stroke="#1E293B" stroke-width="2" />
+    <!-- Threaded Spindle Core -->
+    <rect x="365" y="210" width="70" height="30" rx="4" fill="#0F172A" />
+    <!-- Activation Keyhole Aperture -->
+    <circle cx="400" cy="225" r="5" fill="#F8FAFC" stroke="#6366F1" stroke-width="2" />
+    <line x1="400" y1="210" x2="400" y2="240" stroke="#6366F1" stroke-width="2" />
+  </g>
+
+  <!-- Explanatory Badge -->
+  <g transform="translate(240, 45)">
+    <rect width="320" height="42" rx="10" fill="#FFFFFF" fill-opacity="0.95" stroke="#6366F1" stroke-width="1.5" />
+    <circle cx="24" cy="21" r="10" fill="#4F46E5" />
+    <path d="M 19 21 L 23 25 L 29 17" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" />
+    <text x="46" y="26" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#312E81">
+      Rapid Palatal Expander (RPE)
+    </text>
+  </g>
+</svg>

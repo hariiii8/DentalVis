@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="rpdBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F8FAFC" />
+      <stop offset="50%" stop-color="#F1F5F9" />
+      <stop offset="100%" stop-color="#E2E8F0" />
+    </linearGradient>
+    <linearGradient id="cobaltChrome" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F1F5F9" />
+      <stop offset="30%" stop-color="#94A3B8" />
+      <stop offset="70%" stop-color="#64748B" />
+      <stop offset="100%" stop-color="#334155" />
+    </linearGradient>
+    <linearGradient id="pinkSaddle" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FDA4AF" />
+      <stop offset="60%" stop-color="#F43F5E" />
+      <stop offset="100%" stop-color="#E11D48" />
+    </linearGradient>
+    <linearGradient id="naturalTooth" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="70%" stop-color="#F8FAFC" />
+      <stop offset="100%" stop-color="#E2E8F0" />
+    </linearGradient>
+    <linearGradient id="prostheticTooth" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="70%" stop-color="#FEF08A" />
+      <stop offset="100%" stop-color="#FDE047" />
+    </linearGradient>
+    <filter id="rpdShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#334155" flood-opacity="0.18" />
+    </filter>
+  </defs>
+
+  <rect width="100%" height="100%" fill="url(#rpdBg)" rx="24" />
+
+  <!-- Natural Ridge & Remaining Abutment Dentition -->
+  <path d="M 140 370 Q 400 340 660 370 C 670 410, 650 440, 600 450 Q 400 420 200 450 C 150 440, 130 410, 140 370 Z" 
+        fill="#FFE4E6" stroke="#FDA4AF" stroke-width="2" opacity="0.7" />
+
+  <!-- Natural Abutment Teeth -->
+  <!-- Left Natural Molar (Abutment) -->
+  <g>
+    <rect x="180" y="210" width="55" height="90" rx="10" fill="url(#naturalTooth)" stroke="#475569" stroke-width="2.5" />
+    <path d="M 195 210 L 195 240 Q 208 245 220 240 L 220 210" fill="none" stroke="#CBD5E1" stroke-width="2" />
+    <text x="207" y="325" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#475569">Abutment</text>
+  </g>
+  
+  <!-- Right Natural Premolar & Canine (Abutments) -->
+  <g>
+    <rect x="520" y="210" width="45" height="90" rx="8" fill="url(#naturalTooth)" stroke="#475569" stroke-width="2.5" />
+    <text x="542" y="325" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#475569">Abutment</text>
+  </g>
+  <g>
+    <path d="M 575 300 L 575 200 Q 595 180 615 200 L 615 300 Z" fill="url(#naturalTooth)" stroke="#475569" stroke-width="2.5" />
+    <text x="595" y="325" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#475569">Canine</text>
+  </g>
+
+  <!-- Removable Partial Denture Unit (Edentulous Span: x=245 to x=510) -->
+  <g filter="url(#rpdShadow)">
+    <!-- Major Connector (Cast Cobalt-Chromium Palatal/Lingual Bar) -->
+    <path d="M 230 280 C 270 330, 480 330, 525 280 L 525 295 C 475 350, 275 350, 230 295 Z" 
+          fill="url(#cobaltChrome)" stroke="#1E293B" stroke-width="2" />
+
+    <!-- Acrylic Resin Saddle Base over Edentulous Space -->
+    <path d="M 245 270 Q 380 255 515 270 L 515 355 Q 380 340 245 355 Z" 
+          fill="url(#pinkSaddle)" stroke="#BE123C" stroke-width="2.5" />
+
+    <!-- Replacement Prosthetic Teeth (Premolars and Molars) -->
+    <rect x="255" y="200" width="45" height="75" rx="8" fill="url(#naturalTooth)" stroke="#1E293B" stroke-width="2" />
+    <rect x="305" y="195" width="45" height="80" rx="8" fill="url(#naturalTooth)" stroke="#1E293B" stroke-width="2" />
+    <rect x="355" y="190" width="48" height="85" rx="8" fill="url(#naturalTooth)" stroke="#1E293B" stroke-width="2" />
+    <rect x="408" y="195" width="48" height="80" rx="8" fill="url(#naturalTooth)" stroke="#1E293B" stroke-width="2" />
+    <rect x="461" y="200" width="46" height="75" rx="8" fill="url(#naturalTooth)" stroke="#1E293B" stroke-width="2" />
+
+    <!-- Cast Cobalt-Chromium Direct Retainers (Akers Clasp Arms & Occlusal Rests) -->
+    <!-- Left Clasp wrapping abutment 180-235 -->
+    <path d="M 245 260 C 235 240, 220 220, 205 220 L 195 220 C 185 225, 175 245, 185 260" 
+          fill="none" stroke="url(#cobaltChrome)" stroke-width="5" stroke-linecap="round" />
+    <circle cx="210" cy="215" r="5" fill="#334155" /> <!-- Occlusal Rest -->
+
+    <!-- Right Clasp wrapping abutment 520-565 -->
+    <path d="M 515 260 C 525 240, 540 220, 555 220 L 565 220 C 575 225, 580 245, 570 260" 
+          fill="none" stroke="url(#cobaltChrome)" stroke-width="5" stroke-linecap="round" />
+    <circle cx="538" cy="215" r="5" fill="#334155" /> <!-- Occlusal Rest -->
+  </g>
+
+  <!-- Explanatory Badge -->
+  <g transform="translate(235, 45)">
+    <rect width="330" height="42" rx="10" fill="#FFFFFF" fill-opacity="0.95" stroke="#64748B" stroke-width="1.5" />
+    <circle cx="24" cy="21" r="10" fill="#475569" />
+    <path d="M 19 21 L 23 25 L 29 17" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" />
+    <text x="46" y="26" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#1E293B">
+      Removable Partial Denture (RPD)
+    </text>
+  </g>
+</svg>

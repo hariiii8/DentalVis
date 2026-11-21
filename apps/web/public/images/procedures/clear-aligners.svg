@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="alnBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F0FDF4" />
+      <stop offset="50%" stop-color="#E0F2FE" />
+      <stop offset="100%" stop-color="#F8FAFC" />
+    </linearGradient>
+    <linearGradient id="clearTrayGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.85" />
+      <stop offset="50%" stop-color="#BAE6FD" stop-opacity="0.45" />
+      <stop offset="100%" stop-color="#38BDF8" stop-opacity="0.65" />
+    </linearGradient>
+    <linearGradient id="toothNatural" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="60%" stop-color="#F8FAFC" />
+      <stop offset="100%" stop-color="#E2E8F0" />
+    </linearGradient>
+    <filter id="trayGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#0284C7" flood-opacity="0.25" />
+    </filter>
+  </defs>
+
+  <rect width="100%" height="100%" fill="url(#alnBg)" rx="24" />
+
+  <!-- Digital Orthodontic Tracking Grid Lines -->
+  <path d="M 160 300 Q 400 240 640 300" fill="none" stroke="#0284C7" stroke-width="1.5" stroke-dasharray="6 6" opacity="0.3" />
+  
+  <!-- Alveolar Gum Margin -->
+  <path d="M 180 300 Q 400 250 620 300 L 620 360 Q 400 320 180 360 Z" fill="#FB7185" opacity="0.75" />
+
+  <!-- Underlying Teeth Row -->
+  <g>
+    <!-- Premolar Left -->
+    <rect x="210" y="210" width="45" height="90" rx="8" fill="url(#toothNatural)" stroke="#64748B" stroke-width="2" />
+    <!-- Canine Left -->
+    <path d="M 265 300 L 265 200 Q 285 180 305 200 L 305 300 Z" fill="url(#toothNatural)" stroke="#64748B" stroke-width="2" />
+    <!-- Lateral Incisor Left -->
+    <rect x="315" y="180" width="38" height="115" rx="6" fill="url(#toothNatural)" stroke="#64748B" stroke-width="2" />
+    <!-- Central Incisor Left -->
+    <rect x="360" y="165" width="38" height="130" rx="6" fill="url(#toothNatural)" stroke="#64748B" stroke-width="2" />
+    <!-- Central Incisor Right -->
+    <rect x="402" y="165" width="38" height="130" rx="6" fill="url(#toothNatural)" stroke="#64748B" stroke-width="2" />
+    <!-- Lateral Incisor Right -->
+    <rect x="445" y="180" width="38" height="115" rx="6" fill="url(#toothNatural)" stroke="#64748B" stroke-width="2" />
+    <!-- Canine Right -->
+    <path d="M 490 300 L 490 200 Q 510 180 530 200 L 530 300 Z" fill="url(#toothNatural)" stroke="#64748B" stroke-width="2" />
+    <!-- Premolar Right -->
+    <rect x="540" y="210" width="45" height="90" rx="8" fill="url(#toothNatural)" stroke="#64748B" stroke-width="2" />
+
+    <!-- Tooth-Colored Composite Attachments on Select Teeth -->
+    <rect x="278" y="235" width="12" height="16" rx="3" fill="#FDE047" stroke="#CA8A04" stroke-width="1.5" />
+    <polygon points="458,230 470,240 458,250" fill="#FDE047" stroke="#CA8A04" stroke-width="1.5" />
+    <text x="284" y="270" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#CA8A04">Attachment</text>
+  </g>
+
+  <!-- Transparent Removable Aligner Tray Seated over Teeth (Floating slightly upwards for visual clarity) -->
+  <g filter="url(#trayGlow)">
+    <path d="M 200 305 Q 400 245 600 305 L 590 195 Q 400 135 210 195 Z" 
+          fill="url(#clearTrayGrad)" stroke="#0284C7" stroke-width="2.5" />
+    <!-- Laser-Trimmed Scalloped Gingival Margin Line -->
+    <path d="M 205 295 Q 230 280 255 295 Q 285 280 310 295 Q 355 270 400 295 Q 445 270 490 295 Q 520 280 550 295 Q 575 280 595 295" 
+          fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" />
+    
+    <!-- Transparent Tray Internal Reflection Highlights -->
+    <path d="M 365 175 L 395 175 L 395 240 L 365 240 Z" fill="#FFFFFF" fill-opacity="0.3" rx="4" />
+    <path d="M 407 175 L 437 175 L 437 240 L 407 240 Z" fill="#FFFFFF" fill-opacity="0.3" rx="4" />
+  </g>
+
+  <!-- Explanatory Badge -->
+  <g transform="translate(250, 45)">
+    <rect width="300" height="42" rx="10" fill="#FFFFFF" fill-opacity="0.95" stroke="#0284C7" stroke-width="1.5" />
+    <circle cx="24" cy="21" r="10" fill="#0284C7" />
+    <path d="M 19 21 L 23 25 L 29 17" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" />
+    <text x="46" y="26" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#0369A1">
+      Transparent Clear Aligners
+    </text>
+  </g>
+</svg>

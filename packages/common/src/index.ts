@@ -527,7 +527,7 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
   },
 
   // --------------------------------------------------------------------
-  // 9. BATCH 1 NEW: Fixed Metal & Ceramic Braces (ORTH) - Tier 2
+  // 9. BATCH 1 ENRICHED: Fixed Metal & Ceramic Braces (ORTH) - Tier 2
   // --------------------------------------------------------------------
   {
     id: '33333333-3333-4333-a333-333333333309',
@@ -544,8 +544,8 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     exploreCategorySlugs: ['tooth-alignment'],
     governanceTier: 'TIER_2',
     contentStatus: 'DRAFT',
-    overviewHtmlEn: '<p>Fixed orthodontic brackets bonded securely to the tooth surfaces connect via high-tech nickel-titanium shape-memory archwires. Over time, gentle biological forces encourage alveolar bone remodeling, guiding teeth smoothly into ideal alignment.</p>',
-    overviewHtmlTa: '<p>பற்களின் மீது பொருத்தப்படும் பிராக்கெட்டுகள் மற்றும் மெல்லிய கம்பிகள் மூலம் மென்மையான தொடர் அழுத்தம் செலுத்தப்பட்டு, பற்கள் எலும்புக்குள் மெதுவாக நகர்ந்து சரியான வரிசைக்கு கொண்டு வரப்படுகின்றன.</p>',
+    overviewHtmlEn: '<p>Fixed orthodontic appliances comprise precision brackets (stainless steel or tooth-colored polycrystalline ceramic) bonded directly to the facial enamel surfaces, interconnected by sequential shape-memory archwires (nickel-titanium and beta-titanium). These appliances deliver continuous, controlled physiological forces across the periodontal ligament, inducing coupled bone remodeling (osteoclastic resorption on the pressure side and osteoblastic apposition on the tension side) to gradually translate, rotate, and level teeth into ideal arch form and balanced occlusion. Clinical management involves periodic adjustments every 4 to 8 weeks, meticulous plaque control to prevent enamel demineralization (white spot lesions), and long-term retention planning to maintain post-treatment stability.</p>',
+    overviewHtmlTa: '<p>பல் கிளிப் சிகிச்சை (Fixed Braces) என்பது பற்களின் சீரற்ற வரிசை, அதிக இடைவெளி, அல்லது தவறான கடி அமைப்பை சரிசெய்ய உதவும் நவீன மருத்துவ முறையாகும். பற்களின் மேற்பரப்பில் பிராக்கெட்டுகள் பொருத்தப்பட்டு, மெல்லிய நிக்கல்-டைட்டானியம் அல்லது பீட்டா-டைட்டானியம் கம்பிகள் இணைக்கப்படுகின்றன. இக்கம்பிகள் பற்களின் வேர்ப்பகுதியைச் சுற்றியுள்ள எலும்பில் மென்மையான உயிரியல் அழுத்தத்தை ஏற்படுத்தி, பற்களை படிப்படியாக சரியான இடத்திற்கு நகர்த்துகின்றன. 4 முதல் 8 வாரங்களுக்கு ஒருமுறை கம்பிகள் சரிசெய்யப்படுகின்றன. சிகிச்சையின் போது பற்களைச் சுற்றி கறைகள் சேராமல் தூய்மையாகப் பராமரிப்பதும், சிகிச்சை முடிந்த பின் பற்கள் மீண்டும் நகராமல் இருக்க ரீடெய்னர் அணிவதும் மிக முக்கியமாகும்.</p>',
     has3DModel: false,
     interactiveStepsCount: 4
   },
@@ -1052,6 +1052,222 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     overviewHtmlTa: '<p>முழு தாடை இம்பிளான்ட் சீரமைப்பு (Full-Arch Implant Restoration) என்பது ஒரு தாடையில் உள்ள அனைத்து பற்களையும் இழந்தவர்களுக்கு நவீன முறையில் புதிய பற்கள் அமைக்கும் முழுமையான சிகிச்சையாகும். 3D டிஜிட்டல் திட்டமிடல் மூலம் தாடையில் 4 அல்லது 6 இம்பிளான்ட்டுகள் பொருத்தப்படுகின்றன. எலும்பு குறைவாக உள்ள இடங்களிலும் கூட சாய்வாக வைத்து உறுதியாக்க முடியும். இதன் மீது நிரந்தரமான மகுடப் பற்கள் கொண்ட முழு பாலம் திருகுகள் மூலம் அசைவின்றி பொருத்தப்படுகிறது. இது கழற்றி மாட்ட வேண்டிய அவசியமின்றி இயற்கையான பற்களைப் போன்றே மெல்லும் ஆற்றலை அளிக்கிறது.</p>',
     has3DModel: false,
     interactiveStepsCount: 4
+  },
+
+  // --------------------------------------------------------------------
+  // 31. BATCH 4 NEW: Complete Removable Dentures (PROS) - Tier 1
+  // --------------------------------------------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333331',
+    slug: 'complete-removable-dentures',
+    code: 'PROS-CRD-01',
+    titleEn: 'Complete Removable Dentures',
+    titleTa: 'முழுமையான செயற்கைப் பல் வரிசை (Complete Dentures)',
+    summaryEn: 'Custom acrylic dental prostheses designed to replace an entire arch of missing teeth, restoring facial profile, speech, and mastication.',
+    summaryTa: 'ஒரு தாடையில் உள்ள அனைத்து பற்களையும் இழந்தவர்களுக்கு தோற்றம், பேச்சு மற்றும் மெல்லும் திறனை மீட்டெடுக்கும் கழற்றி மாட்டும் முழு செயற்கைப் பல் வரிசை.',
+    durationMinutes: 45,
+    anesthesiaType: 'Non-Invasive / Impression Based',
+    primaryDepartmentName: 'Prosthodontics – Dental Prosthetics',
+    primaryDepartmentCode: 'PROS',
+    exploreCategorySlugs: ['missing-teeth'],
+    governanceTier: 'TIER_1',
+    contentStatus: 'DRAFT',
+    overviewHtmlEn: '<p>Complete removable dentures are custom prostheses indicated for the rehabilitation of an edentulous maxillary or mandibular arch. Fabricated from biocompatible polymethyl methacrylate (PMMA) acrylic resin base and lifelike denture teeth, the prosthesis derives its support, stability, and retention directly from intimate adaptation to the underlying residual alveolar ridges and palate, complemented by a peripheral mucosal seal, atmospheric pressure, and neuromuscular adaptation. Clinical construction proceeds through anatomical primary impressions, border-molded secondary master impressions, maxillomandibular relation records, and aesthetic try-in before processing and final clinical equilibration.</p>',
+    overviewHtmlTa: '<p>முழுமையான செயற்கைப் பல் வரிசை (Complete Removable Dentures) என்பது மேல் அல்லது கீழ் தாடையில் உள்ள அனைத்துப் பற்களையும் இழந்தவர்களுக்கு மீண்டும் பற்களை அமைக்கும் ஒரு பாரம்பரிய மருத்துவ முறையாகும். பயோகம்பேட்டிபிள் அக்ரிலிக் பிசினால் செய்யப்படும் இந்த செயற்கை பற்கள் தாடை எலும்பு மற்றும் ஈறுகளின் மீது கச்சிதமாகப் பொருந்தி, முக அமைப்பை மேம்படுத்துவதுடன் உணவு உட்கொள்ளவும் பேசவும் உதவுகின்றன. அளவீடுகள், தாடை இயக்கம் பதிவு செய்தல், மாதிரி பற்கள் பரிசோதனை என பல கட்டங்களாக இவை துல்லியமாக உருவாக்கப்பட்டு நோயாளிகளுக்கு வழங்கப்படுகின்றன.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 4
+  },
+
+  // --------------------------------------------------------------------
+  // 32. BATCH 4 NEW: Removable Partial Dentures (PROS) - Tier 1
+  // --------------------------------------------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333332',
+    slug: 'removable-partial-dentures',
+    code: 'PROS-RPD-01',
+    titleEn: 'Removable Partial Dentures',
+    titleTa: 'பகுதி செயற்கைப் பல் வரிசை (Removable Partial Dentures)',
+    summaryEn: 'Precision removable dental appliances combining a cast metal or flexible resin framework with clasps to restore one or multiple missing teeth.',
+    summaryTa: 'சில பற்களை மட்டும் இழந்தவர்களுக்கு மீதமுள்ள இயற்கை பற்களின் ஆதரவுடன் கழற்றி மாட்டக்கூடிய வகையில் வடிவமைக்கப்படும் பகுதி செயற்கைப் பல் வரிசை.',
+    durationMinutes: 45,
+    anesthesiaType: 'Non-Invasive / Tooth Preparation',
+    primaryDepartmentName: 'Prosthodontics – Dental Prosthetics',
+    primaryDepartmentCode: 'PROS',
+    exploreCategorySlugs: ['missing-teeth'],
+    governanceTier: 'TIER_1',
+    contentStatus: 'DRAFT',
+    overviewHtmlEn: '<p>Removable partial dentures (RPDs) replace one or more missing teeth in partially edentulous dental arches while preserving remaining natural teeth and oral structures. A conventional cast metal framework (cobalt-chromium alloy) incorporates major and minor connectors, direct retainers (clasps), and occlusal/cingulum rests that direct masticatory loads axially down the periodontal ligaments of sound abutment teeth. Acrylic saddles hold realistic prosthetic teeth over edentulous ridges. Careful surveyed design and abutment rest preparations distribute functional loads equitably between dentition and mucosal tissues while minimizing plaque trap niches.</p>',
+    overviewHtmlTa: '<p>பகுதி செயற்கைப் பல் வரிசை (Removable Partial Dentures) என்பது ஒன்று அல்லது அதற்கு மேற்பட்ட பற்களை இழந்தவர்களுக்கு ஏற்ற எளிய தீர்வு ஆகும். உறுதியான கோபால்ட்-குரோமியம் உலோக சட்டம் அல்லது நெகிழ்வான பிசின் கொண்டு உருவாக்கப்படும் இந்த சாதனம், எஞ்சியிருக்கும் நல்ல பற்களின் மீது கிளிப்புகள் (clasps) மற்றும் ரெஸ்ட்கள் மூலம் தாங்கப்பட்டு நிலைநிறுத்தப்படுகிறது. இதன் மூலம் எஞ்சிய பற்கள் நகராமல் தடுக்கப்பட்டு மெல்லும் ஆற்றலும் முக அழகும் மீட்டெடுக்கப்படுகின்றன.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 4
+  },
+
+  // --------------------------------------------------------------------
+  // 33. BATCH 4 NEW: Full-Mouth Rehabilitation (PROS) - Tier 3
+  // --------------------------------------------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333333',
+    slug: 'full-mouth-rehabilitation',
+    code: 'PROS-FMR-01',
+    titleEn: 'Full-Mouth Rehabilitation',
+    titleTa: 'முழு வாய் மறுசீரமைப்பு (Full-Mouth Rehabilitation)',
+    summaryEn: 'Comprehensive multidisciplinary reconstruction of both dental arches to re-establish vertical dimension, balanced occlusion, and TMJ harmony.',
+    summaryTa: 'கடுமையாக தேய்ந்த அல்லது சிதைந்த பற்களைக் கொண்டவர்களுக்கு தாடை எலும்பு மற்றும் மூட்டு இயக்கத்தை சீரமைத்து அனைத்து பற்களையும் மீளமைக்கும் முழுமையான சிகிச்சை.',
+    durationMinutes: 120,
+    anesthesiaType: 'Local Anesthesia as Required',
+    primaryDepartmentName: 'Prosthodontics – Dental Prosthetics',
+    primaryDepartmentCode: 'PROS',
+    exploreCategorySlugs: ['missing-teeth', 'dental-appearance'],
+    governanceTier: 'TIER_3',
+    contentStatus: 'DRAFT',
+    overviewHtmlEn: '<p>Full-mouth rehabilitation (full-mouth reconstruction) is an advanced prosthodontic discipline indicated for severe generalized dental destruction caused by advanced attrition, acid erosion, bruxism, trauma, or congenital anomalies. The clinical objective is to reconstruct the maxillary and mandibular occlusal planes, restore lost vertical dimension of occlusion (VDO), and harmonize tooth contacts with the musculoskeletal position of the temporomandibular joints (Centric Relation). Treatment incorporates mounted diagnostic articulators, comprehensive diagnostic wax-ups, a multi-month trial period in fixed provisional restorations to confirm speech and joint adaptation, and definitive full-arch ceramic or zirconia crowns, onlays, and bridges.</p>',
+    overviewHtmlTa: '<p>முழு வாய் மறுசீரமைப்பு (Full-Mouth Rehabilitation) என்பது பற்கள் அதீதமாக தேய்ந்துவிட்டாலோ, உடைந்துவிட்டாலோ, அல்லது அமில அரிப்பால் சிதைந்துவிட்டாலோ ஒட்டுமொத்த பற்களையும் தாடை மூட்டுகளையும் (TMJ) ஒருங்கிணைத்து சீரமைக்கும் மிக உயர்தர சிகிச்சையாகும். தாடை எலும்பின் இயக்கம், முக உயரம் மற்றும் மெல்லும் விசை ஆகியவை கணினி வழியே துல்லியமாக அளவிடப்படுகின்றன. தற்காலிக மகுடங்கள் மூலம் சில வாரங்கள் பரிசோதிக்கப்பட்ட பின்னர், உறுதியான ஸிர்கோனியா அல்லது பீங்கான் மகுடங்கள் (Crowns) மூலம் அனைத்து பற்களும் நிரந்தரமாகப் புதுப்பிக்கப்படுகின்றன.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 5
+  },
+
+  // --------------------------------------------------------------------
+  // 34. BATCH 4 NEW: Clear Aligners (ORTH) - Tier 2
+  // --------------------------------------------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333334',
+    slug: 'clear-aligners',
+    code: 'ORTH-ALN-01',
+    titleEn: 'Clear Aligners',
+    titleTa: 'கண்ணுக்குத் தெரியாத பல் கிளிப்புகள் (Clear Aligners)',
+    summaryEn: 'Removable, transparent thermoformed polyurethane trays engineered with CAD/CAM precision to gradually shift teeth without metal brackets.',
+    summaryTa: 'மெட்டல் பிராக்கெட்டுகள் இன்றி பற்களை நேராக்க உதவும் கழற்றி மாட்டக்கூடிய நவீன ஒளிபுகும் பிளாஸ்டிக் அலைனர்கள்.',
+    durationMinutes: 30,
+    anesthesiaType: 'Non-Invasive / Digital Scanning',
+    primaryDepartmentName: 'Orthodontics – Braces & Teeth Alignment',
+    primaryDepartmentCode: 'ORTH',
+    exploreCategorySlugs: ['tooth-alignment', 'dental-appearance'],
+    governanceTier: 'TIER_2',
+    contentStatus: 'DRAFT',
+    overviewHtmlEn: '<p>Clear aligners are custom-manufactured, transparent medical-grade thermoplastic trays that incrementally reposition teeth through a computer-planned biomechanical sequence. Based on high-resolution 3D intraoral scans and virtual treatment simulations, teeth receive calibrated orthodontic displacement forces with each consecutive tray worn for 1 to 2 weeks. Tooth-colored composite attachments bonded to select enamel surfaces facilitate complex rotational and bodily movements. Aligners are completely removable for eating, drinking non-water beverages, and performing optimal oral hygiene, requiring strict patient compliance of 20 to 22 hours of daily wear.</p>',
+    overviewHtmlTa: '<p>கண்ணுக்குத் தெரியாத கிளியர் அலைனர்கள் (Clear Aligners) என்பது பற்களை நேராக்குவதற்கான நவீன டிஜிட்டல் தொழில்நுட்பமாகும். 3D ஸ்கேன் அடிப்படையில் கணினியில் திட்டமிடப்பட்டு உருவாக்கப்படும் ஒளிபுகும் பிளாஸ்டிக் தட்டுகள் ஒவ்வொரு பல்லையும் படிப்படியாக நகர்த்துகின்றன. வழக்கமான உலோகக் கம்பிகள் போலல்லாமல், இவற்றை சாப்பிடும்போதும் பல் துலக்கும்போதும் எளிதாகக் கழற்றி மாட்ட முடியும். சிறந்த பலனைப் பெற தினமும் 20 முதல் 22 மணி நேரம் தொடர்ந்து அணிய வேண்டும்.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 4
+  },
+
+  // --------------------------------------------------------------------
+  // 35. BATCH 4 NEW: Palatal Expander (ORTH) - Tier 2
+  // --------------------------------------------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333335',
+    slug: 'palatal-expander',
+    code: 'ORTH-EXP-01',
+    titleEn: 'Rapid Palatal Expander',
+    titleTa: 'மேல்தாடை விரிவாக்கும் சாதனம் (Palatal Expander)',
+    summaryEn: 'Orthodontic skeletal appliance anchored to maxillary molars that widens the narrow upper arch and corrects posterior crossbites in growing patients.',
+    summaryTa: 'வளரும் குழந்தைகளுக்கு குறுகிய மேல் தாடையை விரிவுபடுத்தி பற்கள் வரிசையாக முளைக்க இடம் தரும் எலும்பு விரிவாக்க சாதனம்.',
+    durationMinutes: 45,
+    anesthesiaType: 'Non-Invasive / Band Fitting',
+    primaryDepartmentName: 'Orthodontics – Braces & Teeth Alignment',
+    primaryDepartmentCode: 'ORTH',
+    exploreCategorySlugs: ['tooth-alignment'],
+    governanceTier: 'TIER_2',
+    contentStatus: 'DRAFT',
+    overviewHtmlEn: '<p>A rapid maxillary expander (RME/RPE) is a fixed dentofacial orthopedic appliance designed to correct transverse maxillary deficiency and posterior crossbites. Anchored to maxillary first molars and premolars via orthodontic bands or acrylic cap splints, the central expansion jackscrew delivers calibrated lateral orthopedic forces that open the intermaxillary midpalatal suture before complete skeletal interdigitation. Routine expansion protocols involve turn-activations over 2 to 3 weeks, producing a characteristic transient midline diastema, followed by 3 to 6 months of passive retention to permit bone deposition and mineralization in the widened midpalatal gap.</p>',
+    overviewHtmlTa: '<p>மேல்தாடை விரிவாக்கும் சாதனம் (Rapid Palatal Expander) என்பது குறுகலான மேல் தாடை எலும்பை விரிவுபடுத்தும் ஒரு சிறப்பு ஆர்த்தோடான்டிக் சாதனமாகும். மேல் தாடை கடவாய்ப் பற்களின் மீது பொருத்தப்படும் இந்த சாதனத்தில் உள்ள சிறிய திருகை தினசரி திருப்புவதன் மூலம் மேல் தாடையின் நடு எலும்புப் பிளவு மென்மையாக விரிக்கப்படுகிறது. இது பற்கள் நெரிசலின்றி முளைக்க இடமளிப்பதுடன், நாசிப் பாதையை விரிவுபடுத்தி குழந்தைகள் சீராக சுவாசிக்கவும் உதவுகிறது.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 4
+  },
+
+  // --------------------------------------------------------------------
+  // 36. BATCH 4 NEW: Orthodontic Retainers (ORTH) - Tier 1
+  // --------------------------------------------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333336',
+    slug: 'orthodontic-retainers',
+    code: 'ORTH-RET-01',
+    titleEn: 'Orthodontic Retainers',
+    titleTa: 'பல் சீரமைப்பு தக்கவைக்கும் சாதனம் (Orthodontic Retainers)',
+    summaryEn: 'Custom removable or bonded fixed retention appliances that stabilize teeth in their corrected positions while periodontal fibers and bone remodel.',
+    summaryTa: 'கிளிப் சிகிச்சை முடிவடைந்த பின் பற்கள் மீண்டும் பழைய நிலைக்குத் திரும்புவதைத் தடுத்து வரிசையை நிலைநிறுத்தும் ரீடெய்னர் சாதனம்.',
+    durationMinutes: 30,
+    anesthesiaType: 'Non-Invasive / Fitting or Bonding',
+    primaryDepartmentName: 'Orthodontics – Braces & Teeth Alignment',
+    primaryDepartmentCode: 'ORTH',
+    exploreCategorySlugs: ['tooth-alignment'],
+    governanceTier: 'TIER_1',
+    contentStatus: 'DRAFT',
+    overviewHtmlEn: '<p>Orthodontic retainers are custom-fabricated dental appliances essential for post-treatment stability following active orthodontic correction. Tooth movement stretches gingival and periodontal collagen fibers, which exhibit viscoelastic memory and require 8 to 12 months or longer to reorganize; concurrently, continuous craniofacial maturation exerts natural physiologic relapse forces throughout adult life. Retainers are categorized as removable (clear vacuum-formed thermoplastic aligner-style trays or acrylic-and-wire Hawley retainers) or fixed bonded appliances (braided stainless steel wire bonded lingually along the anterior teeth). Lifelong retention protocols are clinically recommended to prevent dental relapse.</p>',
+    overviewHtmlTa: '<p>பல் சீரமைப்பு தக்கவைக்கும் சாதனம் (Orthodontic Retainers) என்பது கிளிப் சிகிச்சை முடிந்த பிறகு பற்கள் மீண்டும் பழைய நிலைக்குத் திரும்புவதைத் (Relapse) தடுக்கும் இன்றியமையாத சாதனமாகும். பற்களைச் சுற்றியுள்ள தசை நார்கள் புதிய நிலையில் நிலைபெற சில மாதங்கள் ஆகும். ஒளிபுகும் கழற்றி மாட்டக்கூடிய அக்ரிலிக் ரீடெய்னர்கள் அல்லது பற்களின் உட்புறம் ஒட்டப்படும் மெல்லிய கம்பிகள் (Fixed Retainers) மூலம் பற்கள் துல்லியமாக அதே வரிசையில் பாதுகாக்கப்படுகின்றன.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 3
+  },
+
+  // --------------------------------------------------------------------
+  // 37. BATCH 4 NEW: Pediatric Pulpotomy (PEDO) - Tier 2
+  // --------------------------------------------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333337',
+    slug: 'pediatric-pulpotomy',
+    code: 'PEDO-PUL-01',
+    titleEn: 'Pediatric Pulpotomy',
+    titleTa: 'குழந்தைகளுக்கான பால் பல் நரம்பு சிகிச்சை (Pediatric Pulpotomy)',
+    summaryEn: 'Coronal pulp amputation in a decayed vital primary tooth to remove inflamed pulp tissue while preserving healthy root vitality and tooth longevity.',
+    summaryTa: 'ஆழமான சொத்தை உள்ள பால் பல்லின் மேற்பகுதி நரம்பை மட்டும் அகற்றி, வேர்ப் பகுதியை ஆரோக்கியமாகப் பாதுகாக்கும் சிறார் பல் சிகிச்சை.',
+    durationMinutes: 45,
+    anesthesiaType: 'Local Anesthesia',
+    primaryDepartmentName: 'Pediatric Dentistry – Milk Teeth & Children',
+    primaryDepartmentCode: 'PEDO',
+    exploreCategorySlugs: ['tooth-pain', 'cavities-decay'],
+    governanceTier: 'TIER_2',
+    contentStatus: 'DRAFT',
+    overviewHtmlEn: '<p>A pediatric pulpotomy is a vital pulp therapy procedure indicated in primary teeth with extensive dental caries exhibiting coronal pulpitis, where the inflammation has not extended into the radicular root canals. Under local anesthesia and isolation, the diseased coronal pulp chamber is excavated. True physiologic radicular health is confirmed by achieving rapid, physiological hemostasis at the canal orifices within 3 to 5 minutes using sterile saline or water pellets. Biocompatible medicaments (such as mineral trioxide aggregate [MTA], biodentine, or ferric sulfate) are placed over the root stumps, followed by a durable intermediate base and immediate coronal restoration with a preformed stainless steel crown to prevent microleakage.</p>',
+    overviewHtmlTa: '<p>குழந்தைகளுக்கான பால் பல் நரம்பு சிகிச்சை (Pulpotomy) என்பது ஆழ்ந்த சொத்தையால் பாதிக்கப்பட்ட பால் பற்களைப் பாதுகாக்கும் முறை ஆகும். பல்லின் மேற்பகுதியில் உள்ள பாதிக்கப்பட்ட நரம்பு மட்டும் அகற்றப்பட்டு, வேரின் உள்பகுதியில் உள்ள நரம்பு உயிருடன் பாதுகாக்கப்படும். நரம்புப் பகுதி கிருமிநாசினி மருந்துகள் மற்றும் பயோசெராமிக் பூச்சு கொண்டு மூடப்பட்டு, அதன் மேல் துருப்பிடிக்காத எஃகு மகுடம் (Crown) பொருத்தப்படுகிறது. இதனால் நிரந்தரப் பல் முளைக்கும் வரை பால் பல் பாதுகாப்பாக இருக்கும்.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 4
+  },
+
+  // --------------------------------------------------------------------
+  // 38. BATCH 4 NEW: Pediatric Stainless Steel Crowns (PEDO) - Tier 1
+  // --------------------------------------------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333338',
+    slug: 'pediatric-stainless-steel-crowns',
+    code: 'PEDO-SSC-01',
+    titleEn: 'Pediatric Stainless Steel Crowns',
+    titleTa: 'குழந்தைகளுக்கான எஃகு மகுடம் (Stainless Steel Crowns)',
+    summaryEn: 'Durable preformed metal crowns providing 360-degree coronal protection for heavily decayed or pulp-treated primary molar teeth.',
+    summaryTa: 'கடுமையாக சொத்தையான அல்லது நரம்பு சிகிச்சை செய்யப்பட்ட பால் பற்களை முழுமையாக மூடிப் பாதுகாக்கும் எஃகு மகுடம்.',
+    durationMinutes: 40,
+    anesthesiaType: 'Local Anesthesia as Required',
+    primaryDepartmentName: 'Pediatric Dentistry – Milk Teeth & Children',
+    primaryDepartmentCode: 'PEDO',
+    exploreCategorySlugs: ['cavities-decay'],
+    governanceTier: 'TIER_1',
+    contentStatus: 'DRAFT',
+    overviewHtmlEn: '<p>Pediatric stainless steel crowns (preformed metal crowns) represent the gold-standard restorative therapy for primary molars affected by extensive multi-surface carious lesions, enamel hypoplasia, or following pulp therapy (pulpotomy or pulpectomy). Fabricated from ductile medical-grade austenitic stainless steel alloys, these preformed crowns require minimal, conservative tooth preparation—chiefly occlusal reduction and slice preparation of tight interproximal contacts—or can be cemented directly via the Hall Technique in selected non-cavitated or asymptomatic cases. The crown is crimped, contoured along the cervical margin, and cemented with bioactive glass ionomer cement, completely isolating the tooth from oral fluids and secondary bacterial decay until natural exfoliation.</p>',
+    overviewHtmlTa: '<p>குழந்தைகளுக்கான எஃகு மகுடம் (Pediatric Stainless Steel Crowns) என்பது பல பரப்புகளில் சொத்தை உள்ள அல்லது நரம்பு சிகிச்சை செய்யப்பட்ட பால் பற்களுக்கு வழங்கப்படும் மிகச் சிறந்த பாதுகாப்பு கவசமாகும். மருத்துவத் தர எஃகினால் செய்யப்படும் இந்த மகுடங்கள், பல்லின் மேல் முழுமையாகப் பொருத்தப்பட்டு கிளாஸ் அயோனோமர் சிமெண்ட் மூலம் ஒட்டப்படுகின்றன. இது பற்கள் மீண்டும் சொத்தையாவதைத் தடுத்து, இயற்கையாக பால் பற்கள் விழும் காலம் வரை உணவை நன்றாக மெல்ல உதவுகிறது.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 4
+  },
+
+  // --------------------------------------------------------------------
+  // 39. BATCH 4 NEW: Pediatric Space Maintainers (PEDO) - Tier 1
+  // --------------------------------------------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333339',
+    slug: 'pediatric-space-maintainers',
+    code: 'PEDO-SPM-01',
+    titleEn: 'Pediatric Space Maintainers',
+    titleTa: 'இடைவெளி பாதுகாக்கும் சாதனம் (Pediatric Space Maintainers)',
+    summaryEn: 'Custom fixed or removable dental appliances that preserve the arch space of prematurely lost primary teeth so permanent teeth erupt without impaction.',
+    summaryTa: 'பால் பல் முன்கூட்டியே விழுந்துவிட்டால் நிரந்தரப் பல் முளைக்கும் வரை அந்த இடைவெளியை அப்படியே தக்கவைக்கும் சிறார் பல் சாதனம்.',
+    durationMinutes: 35,
+    anesthesiaType: 'Non-Invasive / Band Fitting',
+    primaryDepartmentName: 'Pediatric Dentistry – Milk Teeth & Children',
+    primaryDepartmentCode: 'PEDO',
+    exploreCategorySlugs: ['tooth-alignment'],
+    governanceTier: 'TIER_1',
+    contentStatus: 'DRAFT',
+    overviewHtmlEn: '<p>Pediatric space maintainers are fixed or removable orthopedic appliances placed following the premature loss or extraction of primary teeth. Primary molars preserve the physiological perimeter and arch length required for the unhindered eruption of permanent succedaneous premolars. If lost early, adjacent permanent molars naturally drift and tip mesially, causing arch collapse, dental crowding, and eventual impaction. Custom appliances—such as the unilateral band-and-loop, bilateral mandibular lingual holding arch, or maxillary Nance appliance—are custom-soldered to molar bands and cemented to passively bridge the gap until the successor tooth begins active eruption.</p>',
+    overviewHtmlTa: '<p>இடைவெளி பாதுகாக்கும் சாதனம் (Pediatric Space Maintainers) என்பது பால் பற்கள் முன்கூட்டியே விழ நேரிட்டால் அல்லது எடுக்கப்பட்டால் பொருத்தப்படும் சாதனமாகும். பால் கடவாய்ப் பற்கள் விழுந்தால், அருகில் உள்ள பற்கள் முன்னோக்கி நகர்ந்து நிரந்தரப் பற்கள் முளைக்க வேண்டிய இடத்தை அடைத்துக் கொள்ளும் அபாயம் உள்ளது. இதைத் தடுக்க, ஒரு வளையம் மற்றும் சிறிய கம்பி மூலம் அந்த இடம் காலியாகவே பாதுகாக்கப்பட்டு, புதிய நிரந்தரப் பல் எளிதாக வெளிவர உதவுகிறது.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 3
   }
 ];
 

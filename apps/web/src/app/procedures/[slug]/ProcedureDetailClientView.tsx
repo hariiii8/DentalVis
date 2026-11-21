@@ -47,6 +47,27 @@ export default function ProcedureDetailClientView({
     'endodontic-retreatment',
     'apicoectomy',
     'internal-tooth-bleaching',
+    // Batch 3 procedures
+    'gingival-flap-surgery',
+    'gum-grafting',
+    'crown-lengthening',
+    'frenectomy',
+    'socket-preservation-bone-graft',
+    'alveolar-ridge-augmentation',
+    'sinus-lift',
+    'dental-abscess-management',
+    'implant-supported-bridge',
+    'full-arch-implant-restoration',
+    // Batch 4 procedures
+    'complete-removable-dentures',
+    'removable-partial-dentures',
+    'full-mouth-rehabilitation',
+    'clear-aligners',
+    'palatal-expander',
+    'orthodontic-retainers',
+    'pediatric-pulpotomy',
+    'pediatric-stainless-steel-crowns',
+    'pediatric-space-maintainers',
   ]);
   const coverImageSrc = KNOWN_PROCEDURE_IMAGES.has(procedure.slug)
     ? `/images/procedures/${procedure.slug}.svg`
@@ -928,6 +949,287 @@ export default function ProcedureDetailClientView({
             titleTa: 'நிரந்தர ஜிர்கோனியா முழு பாலம் பொருத்துதல்',
             descEn: 'After 3 to 6 months of bone integration, the definitive custom-milled monolithic zirconia prosthesis is torqued into place.',
             descTa: 'எலும்பு முழுமையாக ஆறிய பின், அழகிய மற்றும் அதிக ஆயுள் கொண்ட நிரந்தர முழு தாடை பற்கள் பாலம் பொருத்தப்படுகிறது.',
+          },
+        ];
+
+      case 'complete-removable-dentures':
+        return [
+          {
+            num: 1,
+            titleEn: 'Preliminary & Border-Molded Secondary Impressions',
+            titleTa: 'துல்லியமான ஆரம்ப மற்றும் இறுதி அளவீடுகள்',
+            descEn: 'Custom impression trays and border molding capture dynamic muscular movements and the peripheral seal of the edentulous ridge.',
+            descTa: 'தாடையின் விளிம்புகள் மற்றும் மென்மையான தசை அசைவுகளை மிகத்துல்லியமாகப் பதிவு செய்ய அளவீடுகள் எடுக்கப்படுகின்றன.',
+          },
+          {
+            num: 2,
+            titleEn: 'Jaw Relation & Vertical Dimension Registration',
+            titleTa: 'தாடை இயக்கம் & முக உயரத்தை பதிவு செய்தல்',
+            descEn: 'Wax bite blocks record your precise rest position, vertical face height, and harmonious jaw relation (centric relation).',
+            descTa: 'இயற்கையான முக உயரம் மற்றும் தாடை மூட்டின் சரியான நிலை (Centric Relation) மெழுகு மாதிரிகள் கொண்டு பதிவு செய்யப்படுகிறது.',
+          },
+          {
+            num: 3,
+            titleEn: 'Aesthetic Wax Try-In Verification',
+            titleTa: 'மாதிரி பற்கள் பொருத்திப் பார்த்தல் (Try-In)',
+            descEn: 'Artificial teeth set in wax are tried in your mouth to verify perfect smile appearance, speech phonetics, and chewing bite.',
+            descTa: 'மெழுகில் அமைக்கப்பட்ட செயற்கைப் பற்கள் வாயில் வைத்து பரிசோதிக்கப்பட்டு சிரிப்பு, அழகு மற்றும் உச்சரிப்பு உறுதி செய்யப்படுகிறது.',
+          },
+          {
+            num: 4,
+            titleEn: 'Definitive Acrylic Delivery & Occlusal Equilibration',
+            titleTa: 'நிரந்தர பற்கள் வழங்குதல் & கடி அமைப்பை சரிசெய்தல்',
+            descEn: 'The finalized high-impact acrylic denture is delivered, polished, and fine-tuned for even chewing pressure and tissue comfort.',
+            descTa: 'முழுமையாக பாலீஷ் செய்யப்பட்ட அக்ரிலிக் பற்கள் பொருத்தப்பட்டு, ஈறுகளில் அழுத்தம் இன்றி சீராக உணவு மெல்லும்படி சரிசெய்யப்படுகிறது.',
+          },
+        ];
+
+      case 'removable-partial-dentures':
+        return [
+          {
+            num: 1,
+            titleEn: 'Diagnostic Surveying & Abutment Tooth Preparation',
+            titleTa: 'ஆய்வு செய்தல் & தாங்கும் பற்கள் தயாரிப்பு',
+            descEn: 'Natural anchor teeth receive subtle rest seats and guide planes so the appliance seats smoothly along a planned path.',
+            descTa: 'செயற்கை பல் வரிசையைத் தாங்கும் இயற்கை பற்களில் சிறிய வழிகாட்டி பள்ளங்கள் மென்மையாக உருவாக்கப்படுகின்றன.',
+          },
+          {
+            num: 2,
+            titleEn: 'High-Precision Master Impression',
+            titleTa: 'உயர் துல்லிய இறுதி அளவீடு எடுத்தல்',
+            descEn: 'An elastomeric impression captures minute contours of remaining teeth and soft-tissue edentulous spans.',
+            descTa: 'எஞ்சிய பற்கள் மற்றும் பல் இல்லாத ஈறு பகுதியின் துல்லியமான மாதிரி எடுக்கப்படுகிறது.',
+          },
+          {
+            num: 3,
+            titleEn: 'Metal Framework Fitting & Occlusal Rim Try-In',
+            titleTa: 'உலோக சட்டம் பொருத்தம் பார்த்தல்',
+            descEn: 'The custom cobalt-chromium cast framework is checked for passive, friction-free adaptation and secure clasping.',
+            descTa: 'உறுதியான கோபால்ட்-குரோமியம் உலோக சட்டம் பற்களின் மீது கச்சிதமாக அமர்வது உறுதி செய்யப்படுகிறது.',
+          },
+          {
+            num: 4,
+            titleEn: 'Prosthetic Delivery, Retention Tuning & Care Guidance',
+            titleTa: 'வழங்குதல், பிடிப்பை சரிசெய்தல் & பராமரிப்பு வழிகாட்டல்',
+            descEn: 'The completed partial denture is fitted, retentive clasps adjusted for security and ease of removal, and hygiene steps reviewed.',
+            descTa: 'முழு பகுதி செயற்கைப் பல் வரிசை பொருத்தப்பட்டு, கழற்றி மாட்டும் பிடிப்புகள் சரிசெய்யப்பட்டு பராமரிப்பு ஆலோசனைகள் வழங்கப்படுகின்றன.',
+          },
+        ];
+
+      case 'full-mouth-rehabilitation':
+        return [
+          {
+            num: 1,
+            titleEn: 'Comprehensive Diagnostic Occlusal & TMJ Analysis',
+            titleTa: 'முழுமையான கடி அமைப்பு & TMJ மூட்டு பரிசோதனை',
+            descEn: 'Digital facebow records, articulated study casts, and 3D imaging map current jaw biomechanics, muscle function, and tooth wear.',
+            descTa: 'தாடை மூட்டுகளின் இயக்கம், தசை செயல்பாடு மற்றும் பற்கள் தேய்மானம் ஆகியவை 3D டிஜிட்டல் முறையில் விரிவாக ஆய்வு செய்யப்படுகின்றன.',
+          },
+          {
+            num: 2,
+            titleEn: '3D Aesthetic & Functional Diagnostic Wax-Up',
+            titleTa: '3D முழு வாய் மாதிரி திட்டமிடல் (Diagnostic Wax-Up)',
+            descEn: 'A full-arch blueprint reconstructs your youthful smile line, proper tooth anatomy, and ideal vertical face height (VDO).',
+            descTa: 'இயற்கையான பல் வடிவம் மற்றும் சரியான முக உயரத்தை மீட்டெடுக்கும் முழுமையான மாதிரி முப்பரிமாண வடிவில் செதுக்கப்படுகிறது.',
+          },
+          {
+            num: 3,
+            titleEn: 'Full-Arch Fixed Provisional Trial Phase',
+            titleTa: 'தற்காலிக பற்கள் பொருத்திப் பரிசோதிக்கும் காலம்',
+            descEn: 'Precision temporary crowns are worn for 6 to 12 weeks to confirm painless joint adaptation, comfortable chewing, and natural speech.',
+            descTa: 'புதிய கடி அமைப்பில் தாடை மூட்டுகள் பழகும் வகையில் 6 முதல் 12 வாரங்கள் உயர்தர தற்காலிக பற்கள் பொருத்தப்பட்டு பரிசோதிக்கப்படுகிறது.',
+          },
+          {
+            num: 4,
+            titleEn: 'Stepwise Segmental Tooth Preparation & Digital Scanning',
+            titleTa: 'பற்கள் நுண் தயாரிப்பு & டிஜிட்டல் ஸ்கேன்',
+            descEn: 'Teeth are conservatively refined to receive restorations while maintaining verified bite relationships under high-res digital scans.',
+            descTa: 'பற்கள் கவனமாகத் தயார் செய்யப்பட்டு, உறுதி செய்யப்பட்ட கடி அமைப்பு மாறாமல் டிஜிட்டல் ஸ்கேன் மூலம் ஆய்வகத்திற்கு அனுப்பப்படுகிறது.',
+          },
+          {
+            num: 5,
+            titleEn: 'Definitive Full-Arch Ceramic Bonding & Equilibrium',
+            titleTa: 'நிரந்தர பீங்கான் மகுடங்கள் பொருத்துதல் & சமநிலைப்படுத்துதல்',
+            descEn: 'Custom monolithic zirconia or ceramic crowns and onlays are bonded with microscope precision for lifetime functional harmony.',
+            descTa: 'அழகிய மற்றும் அதீத வலிமை கொண்ட ஜிர்கோனியா அல்லது பீங்கான் பற்கள் நிரந்தரமாக ஒட்டப்பட்டு சரியான சமநிலையில் முடிக்கப்படுகிறது.',
+          },
+        ];
+
+      case 'clear-aligners':
+        return [
+          {
+            num: 1,
+            titleEn: '3D Intraoral Digital Scan & Virtual Simulation',
+            titleTa: '3D டிஜிட்டல் ஸ்கேன் & மெய்நிகர் திட்டமிடல்',
+            descEn: 'A high-speed optical scanner maps your arches, generating a 3D digital simulation of how each tooth will shift week by week.',
+            descTa: 'பற்கள் முப்பரிமாண ஸ்கேன் செய்யப்பட்டு, பற்கள் எவ்வாறு நகர்ந்து நேராகும் என்பது கணினியில் முன்கூட்டியே காட்டப்படுகிறது.',
+          },
+          {
+            num: 2,
+            titleEn: 'Composite Attachments & Aligner Fitting',
+            titleTa: 'சிறிய அட்டாச்மென்ட் ஒட்டுதல் & முதல் அலைனர் பொருத்துதல்',
+            descEn: 'Tiny, tooth-colored composite grips are bonded to select teeth to give the transparent aligners mechanical leverage.',
+            descTa: 'அலைனர்கள் பற்களை சரியாகப் பிடித்து நகர்த்த பல்லின் நிறத்திலேயே சிறிய தாங்கிகள் (Attachments) ஒட்டப்பட்டு முதல் அலைனர் வழங்கப்படுகிறது.',
+          },
+          {
+            num: 3,
+            titleEn: 'Sequential Tray Changes & Monitoring',
+            titleTa: 'தொடர்ச்சியான தட்டு மாற்றங்கள் & கண்காணிப்பு',
+            descEn: 'You advance to a new custom tray every 7 to 14 days, wearing them 20 to 22 hours daily as teeth smoothly shift.',
+            descTa: 'ஒவ்வொரு 1 முதல் 2 வாரங்களுக்கும் புதிய தட்டுக்கு மாறி, தினமும் 20 முதல் 22 மணி நேரம் தொடர்ந்து அணிய வேண்டும்.',
+          },
+          {
+            num: 4,
+            titleEn: 'Final Alignment Refinement & Retention',
+            titleTa: 'இறுதி வரிசை சரிபார்ப்பு & ரீடெய்னர் வழங்குதல்',
+            descEn: 'Minor finishing refinements are completed, attachments are polished away, and clear retainers safeguard your new smile.',
+            descTa: 'பற்கள் சரியான வரிசைக்கு வந்ததும் தாங்கிகள் நீக்கப்பட்டு, பற்கள் நகராமல் இருக்க ஒளிபுகும் ரீடெய்னர்கள் வழங்கப்படுகின்றன.',
+          },
+        ];
+
+      case 'palatal-expander':
+        return [
+          {
+            num: 1,
+            titleEn: 'Diagnostic Arch Assessment & Band Fitting',
+            titleTa: 'தாடை அகலம் கணிப்பு & வளையங்கள் பொருத்துதல்',
+            descEn: 'Orthodontic bands are fitted to upper first molars and a 3D scan or model customizes the central jackscrew appliance.',
+            descTa: 'மேல் தாடை கடவாய்ப் பற்களுக்கு மெல்லிய உலோக வளையங்கள் பொருத்தப்பட்டு விரிவாக்க சாதனம் பிரத்யேகமாக வடிவமைக்கப்படுகிறது.',
+          },
+          {
+            num: 2,
+            titleEn: 'Appliance Cementation & Patient Training',
+            titleTa: 'சாதனம் பொருத்துதல் & திருகும் பயிற்சி',
+            descEn: 'The expander is firmly cemented to the upper molars, and parents/patients are trained on the gentle key-turning activation protocol.',
+            descTa: 'சாதனம் பற்களில் உறுதியாக சிமெண்ட் கொண்டு ஒட்டப்பட்டு, சாவியைக் கொண்டு தினசரி எவ்வாறு திருப்புவது என்பது கற்றுத்தரப்படுகிறது.',
+          },
+          {
+            num: 3,
+            titleEn: 'Active Expansion Phase (2–3 Weeks)',
+            titleTa: 'செயலில் உள்ள விரிவாக்கக் காலம் (2–3 வாரங்கள்)',
+            descEn: 'Scheduled daily turns gently separate the midpalatal suture, widening the upper jaw and often opening a temporary central gap.',
+            descTa: 'தினசரி சிறிய திருப்புதல் மூலம் மேல் தாடை எலும்பு மென்மையாக விரிக்கப்படுகிறது; பற்களுக்கு இடையே தற்காலிக இடைவெளி தோன்றும்.',
+          },
+          {
+            num: 4,
+            titleEn: 'Passive Retention & Suture Bone Mineralization',
+            titleTa: 'நிலைநிறுத்தும் காலம் & புதிய எலும்பு உருவாக்கம்',
+            descEn: 'The expander is locked passively in place for 3 to 6 months to let healthy new bone deposit and solidify across the widened suture.',
+            descTa: 'விரிவாக்கப்பட்ட எலும்பு இடைவெளியில் புதிய எலும்பு உருவாகி உறுதியாகும் வரை சாதனம் 3 முதல் 6 மாதங்கள் அப்படியே வைக்கப்படுகிறது.',
+          },
+        ];
+
+      case 'orthodontic-retainers':
+        return [
+          {
+            num: 1,
+            titleEn: 'Debonding, Polish & High-Accuracy Impression',
+            titleTa: 'பல் சுத்தம், பாலீஷ் & துல்லியமான மாதிரி எடுத்தல்',
+            descEn: 'Braces or aligner attachments are polished away cleanly, and an intraoral scan captures your perfected tooth alignment.',
+            descTa: 'பற்களில் உள்ள பிராக்கெட்டுகள் நீக்கப்பட்டு பற்கள் பாலீஷ் செய்யப்படுகின்றன; பின்னர் ரீடெய்னர் செய்ய துல்லியமான ஸ்கேன் எடுக்கப்படுகிறது.',
+          },
+          {
+            num: 2,
+            titleEn: 'Custom Fabrication (Clear, Hawley, or Bonded Wire)',
+            titleTa: 'பிரத்யேக ரீடெய்னர் தயாரிப்பு (Clear / Wire)',
+            descEn: 'Your selected retainer—durable clear vacuum-formed tray, classic acrylic Hawley, or discreet lingual bonded wire—is crafted.',
+            descTa: 'நோயாளிக்கு உகந்த வகையில் ஒளிபுகும் அக்ரிலிக் தட்டுகள் அல்லது பற்களின் பின்னால் ஒட்டப்படும் மெல்லிய கம்பிகள் உருவாக்கப்படுகின்றன.',
+          },
+          {
+            num: 3,
+            titleEn: 'Seating Verification, Bite Tuning & Wear Protocol',
+            titleTa: 'பொருத்தம் சரிபார்த்தல் & அணியும் விதிமுறைகள்',
+            descEn: 'Your dentist verifies snug, passive fit, ensures teeth interlock naturally, and provides an individualized night-wear regimen.',
+            descTa: 'ரீடெய்னர் பற்களில் கச்சிதமாக பொருந்துவது உறுதி செய்யப்பட்டு, இரவில் தவறாமல் அணியும் பழக்கவழக்கங்கள் அறிவுறுத்தப்படுகின்றன.',
+          },
+        ];
+
+      case 'pediatric-pulpotomy':
+        return [
+          {
+            num: 1,
+            titleEn: 'Gentle Pediatric Numbing & Tooth Isolation',
+            titleTa: 'குழந்தைகளுக்கான மென்மையான மரத்துப்போகச் செய்தல் & பாதுகாப்பு',
+            descEn: 'A child-friendly local numbing technique is applied and the tooth is isolated with a rubber dam to keep it completely dry and clean.',
+            descTa: 'குழந்தைகளுக்கு பயமின்றி மென்மையான மயக்க மருந்து இடப்பட்டு, எச்சில் படாமல் இருக்க ரப்பர் டேம் கொண்டு பல் தனிமைப்படுத்தப்படுகிறது.',
+          },
+          {
+            num: 2,
+            titleEn: 'Caries Excavation & Coronal Pulp Amputation',
+            titleTa: 'சொத்தை அகற்றுதல் & மேற்பகுதி நரம்பு நீக்கம்',
+            descEn: 'The doctor gently removes the tooth decay and excavates the inflamed coronal nerve chamber, leaving healthy root pulp intact.',
+            descTa: 'பல்லின் சொத்தை மற்றும் மேல் பகுதியில் வீக்கமடைந்த நரம்பு அகற்றப்பட்டு, வேரின் அடிப்பகுதியில் உள்ள ஆரோக்கியமான நரம்பு பாதுகாக்கப்படுகிறது.',
+          },
+          {
+            num: 3,
+            titleEn: 'Physiological Hemostasis & Bioceramic MTA Medicament',
+            titleTa: 'இரத்தக் கசிவை நிறுத்துதல் & பயோசெராமிக் மருந்து வைத்தல்',
+            descEn: 'Sterile cotton controls bleeding within minutes, followed by placement of mineral trioxide aggregate (MTA) over the root pulp stumps.',
+            descTa: 'இரத்தக் கசிவு உடனடியாக நிறுத்தப்பட்டு, வேர் நரம்பை உயிருடன் பாதுகாக்க எம்.டி.ஏ (MTA) போன்ற பயோசெராமிக் மருந்து பூசப்படுகிறது.',
+          },
+          {
+            num: 4,
+            titleEn: 'Sedative Base & Preformed Crown Placement',
+            titleTa: 'பாதுகாப்பு பூச்சு & எஃகு மகுடம் (Crown) பொருத்துதல்',
+            descEn: 'A biocompatible base seals the chamber, followed by an immediate stainless steel crown to prevent bacteria and restore chewing.',
+            descTa: 'மருந்துக்கு மேல் சிமெண்ட் வைக்கப்பட்டு, மீண்டும் சொத்தை வராமல் தடுக்க துருப்பிடிக்காத எஃகு மகுடம் உடனடியாகப் பொருத்தப்படுகிறது.',
+          },
+        ];
+
+      case 'pediatric-stainless-steel-crowns':
+        return [
+          {
+            num: 1,
+            titleEn: 'Gentle Comfort Care & Conservative Tooth Reduction',
+            titleTa: 'வலி நிவாரணம் & மென்மையான பல் சீரமைப்பு',
+            descEn: 'The tooth is made comfortable, decay is eliminated, and minimal enamel is smoothed between teeth to allow crown placement.',
+            descTa: 'பல் மரத்துப்போக செய்யப்பட்டு சொத்தை நீக்கப்படுகிறது; மகுடம் கச்சிதமாகப் பொருந்த பற்களுக்கு இடையே லேசாக இடைவெளி உருவாக்கப்படுகிறது.',
+          },
+          {
+            num: 2,
+            titleEn: 'Crown Sizing & Anatomical Contour Trimming',
+            titleTa: 'சரியான மகுட அளவு தேர்வு & விளிம்பு சரிசெய்தல்',
+            descEn: 'The pediatric dentist selects the exact crown size from a graded kit and crimps the cervical edges for a snug gingival snap-fit.',
+            descTa: 'குழந்தையின் பல்லுக்குப் பொருந்தும் சரியான அளவிலான எஃகு மகுடம் தேர்ந்தெடுக்கப்பட்டு, ஈறுகளை அழுத்தாதவாறு விளிம்புகள் மடக்கப்படுகின்றன.',
+          },
+          {
+            num: 3,
+            titleEn: 'Bioactive Glass Ionomer Cementation',
+            titleTa: 'பயோ-ஆக்டிவ் சிமெண்ட் கொண்டு ஒட்டுதல்',
+            descEn: 'The preformed crown is filled with fluoride-releasing glass ionomer cement and pressed firmly over the tooth to achieve a permanent seal.',
+            descTa: 'புளோரைடு வெளியிடும் கிளாஸ் அயோனோமர் சிமெண்ட் மூலம் மகுடம் பல்லின் மீது அழுத்தமாக ஒட்டப்பட்டு நிரந்தரமாக சீல் செய்யப்படுகிறது.',
+          },
+          {
+            num: 4,
+            titleEn: 'Bite Check, Excess Cement Removal & Polish',
+            titleTa: 'கடி அமைப்பை சரிபார்த்தல் & உபரி சிமெண்ட் நீக்குதல்',
+            descEn: 'Excess cement is cleared thoroughly, the child’s natural chewing contact is confirmed, and the smooth metal surface is polished.',
+            descTa: 'வெளிவந்த உபரி சிமெண்ட் அகற்றப்பட்டு, குழந்தை இயல்பாக மெல்ல முடிகிறதா என சோதிக்கப்பட்டு பளபளப்பாக்கப்படுகிறது.',
+          },
+        ];
+
+      case 'pediatric-space-maintainers':
+        return [
+          {
+            num: 1,
+            titleEn: 'Clinical Assessment & Radiographic Space Analysis',
+            titleTa: 'மருத்துவ பரிசோதனை & எக்ஸ்-ரே இடைவெளி ஆய்வு',
+            descEn: 'The pediatric dentist takes an X-ray to evaluate the developing permanent tooth bud beneath the prematurely lost milk tooth space.',
+            descTa: 'விழுந்த பால் பல்லுக்கு அடியில் வளரும் நிரந்தரப் பல்லின் ஆழத்தை எக்ஸ்-ரே மூலம் கணித்து இடைவெளி அளவு கணக்கிடப்படுகிறது.',
+          },
+          {
+            num: 2,
+            titleEn: 'Molar Band Fitting & Impression / Digital Scan',
+            titleTa: 'கடவாய்ப் பல் வளையம் பொருத்துதல் & மாதிரி எடுத்தல்',
+            descEn: 'A polished metal band is custom-fitted to the adjacent anchor tooth and an impression captures the space for the dental laboratory.',
+            descTa: 'பக்கத்து பல்லுக்கு ஒரு சிறிய வளையம் பொருத்தப்பட்டு, ஆய்வகத்தில் கம்பி வளையம் செய்ய துல்லியமான மாதிரி எடுக்கப்படுகிறது.',
+          },
+          {
+            num: 3,
+            titleEn: 'Custom Wire Loop Cementation & Active Protection',
+            titleTa: 'இடைவெளி கம்பி வளையம் பொருத்துதல் & பாதுகாப்பு',
+            descEn: 'The soldered band-and-loop is cemented securely, passively holding adjacent teeth in place until the adult tooth is ready to emerge.',
+            descTa: 'தயாரிக்கப்பட்ட இடைவெளி சாதனம் சிமெண்ட் கொண்டு ஒட்டப்படுகிறது; இது நிரந்தரப் பல் முளைக்கும் வரை பக்கத்து பற்கள் சரியாமல் பாதுகாக்கும்.',
           },
         ];
 

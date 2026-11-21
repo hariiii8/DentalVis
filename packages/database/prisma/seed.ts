@@ -53,6 +53,16 @@ const SECONDARY_DEPARTMENT_CODES: Record<string, string[]> = {
   'dental-abscess-management': ['EMRG', 'ENDO'],
   'implant-supported-bridge': ['PROS'],
   'full-arch-implant-restoration': ['PROS', 'OMFS'],
+  // Batch 4 procedures
+  'complete-removable-dentures': [],
+  'removable-partial-dentures': [],
+  'full-mouth-rehabilitation': ['TMJD', 'IMPL'],
+  'clear-aligners': ['COSM'],
+  'palatal-expander': ['PEDO'],
+  'orthodontic-retainers': [],
+  'pediatric-pulpotomy': ['ENDO'],
+  'pediatric-stainless-steel-crowns': ['REST'],
+  'pediatric-space-maintainers': ['ORTH'],
 };
 
 // Department code lookup helper
@@ -89,6 +99,16 @@ const PROCEDURE_PRIMARY_DEPT_CODE: Record<string, string> = {
   'dental-abscess-management': 'OMFS',
   'implant-supported-bridge': 'IMPL',
   'full-arch-implant-restoration': 'IMPL',
+  // Batch 4 procedures
+  'complete-removable-dentures': 'PROS',
+  'removable-partial-dentures': 'PROS',
+  'full-mouth-rehabilitation': 'PROS',
+  'clear-aligners': 'ORTH',
+  'palatal-expander': 'ORTH',
+  'orthodontic-retainers': 'ORTH',
+  'pediatric-pulpotomy': 'PEDO',
+  'pediatric-stainless-steel-crowns': 'PEDO',
+  'pediatric-space-maintainers': 'PEDO',
 };
 
 async function main() {

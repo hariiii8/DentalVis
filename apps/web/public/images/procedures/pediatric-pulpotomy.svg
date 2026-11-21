@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="pulBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FEF3C7" />
+      <stop offset="50%" stop-color="#FFFBEB" />
+      <stop offset="100%" stop-color="#FEF9C3" />
+    </linearGradient>
+    <linearGradient id="pulpPink" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F43F5E" />
+      <stop offset="100%" stop-color="#BE123C" />
+    </linearGradient>
+    <linearGradient id="mtaBioceramic" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#A7F3D0" />
+      <stop offset="50%" stop-color="#34D399" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+    <linearGradient id="sscCap" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F1F5F9" />
+      <stop offset="40%" stop-color="#CBD5E1" />
+      <stop offset="100%" stop-color="#64748B" />
+    </linearGradient>
+    <filter id="pulShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#D97706" flood-opacity="0.18" />
+    </filter>
+  </defs>
+
+  <rect width="100%" height="100%" fill="url(#pulBg)" rx="24" />
+
+  <!-- Surrounding Alveolar Bone & Pediatric Primary Gum Tissue -->
+  <path d="M 180 320 Q 400 300 620 320 L 620 460 L 180 460 Z" fill="#FDE68A" opacity="0.6" />
+  <path d="M 180 270 Q 400 250 620 270 L 620 330 Q 400 310 180 330 Z" fill="#FDA4AF" opacity="0.8" />
+
+  <!-- Primary Molar Cross-Section Structure -->
+  <g filter="url(#pulShadow)">
+    <!-- Primary Molar Crown & Roots (Wide, Flaring Roots of Deciduous Molar) -->
+    <!-- Left Root -->
+    <path d="M 280 280 C 270 340, 230 400, 220 430 C 240 430, 275 390, 310 320 Z" 
+          fill="#FFFFFF" stroke="#475569" stroke-width="2.5" />
+    <!-- Right Root -->
+    <path d="M 520 280 C 530 340, 570 400, 580 430 C 560 430, 525 390, 490 320 Z" 
+          fill="#FFFFFF" stroke="#475569" stroke-width="2.5" />
+    
+    <!-- Coronal Dentin Core Structure -->
+    <path d="M 280 280 L 280 170 Q 400 150 520 170 L 520 280 Q 400 300 280 280 Z" 
+          fill="#FEF08A" stroke="#475569" stroke-width="2.5" />
+
+    <!-- Vital Root Canals (Radicular Pulp - Preserved Healthy) -->
+    <!-- Left Canal -->
+    <path d="M 292 285 C 285 340, 250 395, 235 425 C 245 425, 275 390, 300 320 Z" fill="url(#pulpPink)" />
+    <!-- Right Canal -->
+    <path d="M 508 285 C 515 340, 550 395, 565 425 C 555 425, 525 390, 500 320 Z" fill="url(#pulpPink)" />
+
+    <!-- Amputated Coronal Chamber - MTA Bioceramic Medicament Dressing -->
+    <rect x="330" y="240" width="140" height="45" rx="6" fill="url(#mtaBioceramic)" stroke="#047857" stroke-width="2" />
+    <text x="400" y="268" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">
+      MTA Bioceramic Seal
+    </text>
+
+    <!-- Preformed Protective Stainless Steel Crown Placed Over Coronal Chamber -->
+    <path d="M 270 285 L 270 155 Q 400 135 530 155 L 530 285 C 510 275, 490 285, 400 280 C 310 285, 290 275, 270 285 Z" 
+          fill="url(#sscCap)" stroke="#334155" stroke-width="3" opacity="0.85" />
+    <path d="M 330 148 Q 400 140 470 148" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" />
+  </g>
+
+  <!-- Vital Radicular Nerve Label -->
+  <g transform="translate(150, 410)">
+    <text x="0" y="0" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#BE123C">
+      Vital Radicular Pulp Preserved
+    </text>
+  </g>
+
+  <!-- Title Badge -->
+  <g transform="translate(250, 45)">
+    <rect width="300" height="42" rx="10" fill="#FFFFFF" fill-opacity="0.95" stroke="#D97706" stroke-width="1.5" />
+    <circle cx="24" cy="21" r="10" fill="#D97706" />
+    <path d="M 19 21 L 23 25 L 29 17" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" />
+    <text x="46" y="26" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#78350F">
+      Pediatric Vital Pulpotomy
+    </text>
+  </g>
+</svg>
