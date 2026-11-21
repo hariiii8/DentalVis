@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg7" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDF4FF" />
+      <stop offset="100%" stop-color="#F3E8FF" />
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#bg7)" />
+
+  <!-- Maxillary Sinus Air Cavity (Pneumatized Hollow) -->
+  <path d="M 220 140 Q 400 120 580 140 C 580 240 560 300 500 300 C 440 300 360 300 300 300 C 240 300 220 240 220 140 Z" fill="#E0F2FE" stroke="#0284C7" stroke-width="2" />
+
+  <!-- Maxillary Bony Ridge (Lower Boundary) -->
+  <path d="M 180 340 L 180 440 L 620 440 L 620 340 L 500 340 C 460 340 340 340 300 340 Z" fill="#FEF3C7" stroke="#D97706" stroke-width="2" />
+
+  <!-- Elevated Schneiderian Sinus Membrane (Pushed upward) -->
+  <path d="M 290 340 C 310 220 490 220 510 340" fill="#FDA4AF" stroke="#E11D48" stroke-width="2.5" />
+
+  <!-- Bone Graft Packed into Created Subantral Compartment -->
+  <g fill="#B45309" stroke="#78350F" stroke-width="1">
+    <circle cx="360" cy="290" r="5" /><circle cx="390" cy="270" r="5" /><circle cx="420" cy="280" r="4.5" />
+    <circle cx="450" cy="300" r="5" /><circle cx="340" cy="320" r="4.5" /><circle cx="380" cy="315" r="5" />
+    <circle cx="410" cy="325" r="4.5" /><circle cx="440" cy="330" r="4" /><circle cx="470" cy="320" r="5" />
+  </g>
+
+  <!-- Lateral Bony Window Osteotomy Margin -->
+  <ellipse cx="400" cy="335" rx="75" ry="15" fill="none" stroke="#2563EB" stroke-width="2" stroke-dasharray="4,2" />
+
+  <!-- Callouts -->
+  <rect x="110" y="210" width="195" height="32" rx="8" fill="#FFFFFF" stroke="#E11D48" stroke-width="1.5" />
+  <text x="207" y="231" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#BE123C" text-anchor="middle">Elevated Sinus Membrane</text>
+  <line x1="305" y1="226" x2="380" y2="240" stroke="#E11D48" stroke-width="1.5" />
+
+  <rect x="495" y="210" width="195" height="32" rx="8" fill="#FFFFFF" stroke="#B45309" stroke-width="1.5" />
+  <text x="592" y="231" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#B45309" text-anchor="middle">Subantral Bone Graft</text>
+  <line x1="495" y1="226" x2="435" y2="275" stroke="#B45309" stroke-width="1.5" />
+
+  <!-- Department & Code Pill -->
+  <rect x="270" y="445" width="260" height="26" rx="13" fill="#F3E8FF" stroke="#A855F7" stroke-width="1" />
+  <text x="400" y="462" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#7E22CE" text-anchor="middle">OMFS-SNS-01 • Specialist Tier 3</text>
+</svg>

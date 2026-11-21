@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF1F2" />
+      <stop offset="100%" stop-color="#FFE4E6" />
+    </linearGradient>
+    <linearGradient id="toothGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F8FAFC" />
+      <stop offset="50%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#E2E8F0" />
+    </linearGradient>
+    <linearGradient id="graftGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDA4AF" />
+      <stop offset="100%" stop-color="#F43F5E" />
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#bg2)" />
+
+  <!-- Receded Gum Level -->
+  <path d="M 160 380 Q 280 380 320 380 Q 360 410 400 410 Q 440 410 480 380 Q 520 380 640 380 L 640 450 L 160 450 Z" fill="#FB7185" stroke="#E11D48" stroke-width="2" />
+
+  <!-- Central Incisor Tooth with Exposed Root -->
+  <path d="M 350 90 C 360 75 440 75 450 90 C 465 130 460 210 450 280 C 440 330 425 410 410 435 C 390 435 375 330 360 280 C 350 210 340 130 350 90 Z" fill="url(#toothGrad2)" stroke="#94A3B8" stroke-width="2.5" />
+
+  <!-- Cementoenamel Junction (CEJ) Line -->
+  <path d="M 355 240 Q 400 255 445 240" stroke="#CBD5E1" stroke-width="2" fill="none" />
+
+  <!-- Connective Tissue Graft Matrix Sutured over Exposed Root -->
+  <rect x="365" y="270" width="70" height="80" rx="8" fill="url(#graftGrad)" stroke="#BE123C" stroke-width="2" stroke-dasharray="4,2" />
+  
+  <!-- Microsurgical Cross Sutures -->
+  <line x1="365" y1="275" x2="435" y2="345" stroke="#0284C7" stroke-width="2" />
+  <line x1="435" y1="275" x2="365" y2="345" stroke="#0284C7" stroke-width="2" />
+  <circle cx="365" cy="310" r="3.5" fill="#0284C7" />
+  <circle cx="435" cy="310" r="3.5" fill="#0284C7" />
+
+  <!-- Callouts -->
+  <rect x="110" y="270" width="195" height="32" rx="8" fill="#FFFFFF" stroke="#BE123C" stroke-width="1.5" />
+  <text x="207" y="291" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#9F1239" text-anchor="middle">SCTG Donor Tissue Graft</text>
+  <line x1="305" y1="286" x2="365" y2="295" stroke="#BE123C" stroke-width="1.5" />
+
+  <rect x="495" y="270" width="195" height="32" rx="8" fill="#FFFFFF" stroke="#0284C7" stroke-width="1.5" />
+  <text x="592" y="291" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#0369A1" text-anchor="middle">Microsurgical Stabilization</text>
+  <line x1="495" y1="286" x2="435" y2="295" stroke="#0284C7" stroke-width="1.5" />
+
+  <!-- Department & Code Pill -->
+  <rect x="290" y="445" width="220" height="26" rx="13" fill="#FFE4E6" stroke="#F43F5E" stroke-width="1" />
+  <text x="400" y="462" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#BE123C" text-anchor="middle">PERIO-GFT-01 • Periodontics</text>
+</svg>

@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg8" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FEF2F2" />
+      <stop offset="100%" stop-color="#FEE2E2" />
+    </linearGradient>
+    <linearGradient id="toothGrad8" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F8FAFC" />
+      <stop offset="50%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#E2E8F0" />
+    </linearGradient>
+    <radialGradient id="abscessGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FACC15" />
+      <stop offset="70%" stop-color="#EA580C" />
+      <stop offset="100%" stop-color="#DC2626" />
+    </radialGradient>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#bg8)" />
+
+  <!-- Alveolar Bone Base -->
+  <path d="M 180 300 L 180 440 L 620 440 L 620 300 Z" fill="#FEF3C7" stroke="#D97706" stroke-width="2" />
+
+  <!-- Tooth with Deep Decay & Necrotic Pulp -->
+  <path d="M 360 80 C 370 70 430 70 440 80 C 455 120 455 200 445 250 C 435 290 420 370 405 390 C 395 390 380 370 365 290 C 355 240 345 120 360 80 Z" fill="url(#toothGrad8)" stroke="#94A3B8" stroke-width="2.5" />
+  <!-- Carious Cavity -->
+  <path d="M 390 75 Q 410 95 425 80 Z" fill="#451A03" />
+  <!-- Necrotic Pulp Line -->
+  <path d="M 400 130 L 400 375" stroke="#7F1D1D" stroke-width="3" stroke-linecap="round" />
+
+  <!-- Periapical Abscess Cavity in Bone -->
+  <circle cx="400" cy="405" r="32" fill="url(#abscessGlow)" stroke="#B91C1C" stroke-width="2" opacity="0.9" />
+
+  <!-- Surgical Micro-Incision & Decompression Channel -->
+  <line x1="390" y1="440" x2="410" y2="440" stroke="#991B1B" stroke-width="3" stroke-linecap="round" />
+  <!-- Rubber Drain Tube Indicator -->
+  <rect x="397" y="415" width="6" height="30" rx="3" fill="#F87171" stroke="#B91C1C" stroke-width="1" />
+
+  <!-- Annotations -->
+  <rect x="110" y="380" width="195" height="32" rx="8" fill="#FFFFFF" stroke="#DC2626" stroke-width="1.5" />
+  <text x="207" y="401" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#B91C1C" text-anchor="middle">Purulent Abscess Pocket</text>
+  <line x1="305" y1="396" x2="368" y2="405" stroke="#DC2626" stroke-width="1.5" />
+
+  <rect x="495" y="380" width="195" height="32" rx="8" fill="#FFFFFF" stroke="#D97706" stroke-width="1.5" />
+  <text x="592" y="401" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#B45309" text-anchor="middle">Incision &amp; Drainage Path</text>
+  <line x1="495" y1="396" x2="435" y2="415" stroke="#D97706" stroke-width="1.5" />
+
+  <!-- Department & Code Pill -->
+  <rect x="270" y="445" width="260" height="26" rx="13" fill="#FEE2E2" stroke="#EF4444" stroke-width="1" />
+  <text x="400" y="462" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#B91C1C" text-anchor="middle">OMFS-ABS-01 • Emergency Tier 3</text>
+</svg>

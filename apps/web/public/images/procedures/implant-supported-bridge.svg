@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg9" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EFF6FF" />
+      <stop offset="100%" stop-color="#DBEAFE" />
+    </linearGradient>
+    <linearGradient id="tiGrad9" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#94A3B8" />
+      <stop offset="50%" stop-color="#CBD5E1" />
+      <stop offset="100%" stop-color="#64748B" />
+    </linearGradient>
+    <linearGradient id="zirconiaBridge" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F8FAFC" />
+      <stop offset="50%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#E2E8F0" />
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#bg9)" />
+
+  <!-- Alveolar Bone Base -->
+  <path d="M 160 300 L 160 440 L 640 440 L 640 300 Z" fill="#FEF3C7" stroke="#D97706" stroke-width="2" />
+
+  <!-- Two Osseointegrated Implants (Left and Right pillars) -->
+  <!-- Left Implant -->
+  <path d="M 270 290 L 310 290 L 305 400 L 275 400 Z" fill="url(#tiGrad9)" stroke="#475569" stroke-width="2" />
+  <line x1="270" y1="315" x2="310" y2="315" stroke="#334155" stroke-width="1.5" />
+  <line x1="272" y1="340" x2="308" y2="340" stroke="#334155" stroke-width="1.5" />
+  <line x1="274" y1="365" x2="306" y2="365" stroke="#334155" stroke-width="1.5" />
+
+  <!-- Right Implant -->
+  <path d="M 490 290 L 530 290 L 525 400 L 495 400 Z" fill="url(#tiGrad9)" stroke="#475569" stroke-width="2" />
+  <line x1="490" y1="315" x2="530" y2="315" stroke="#334155" stroke-width="1.5" />
+  <line x1="492" y1="340" x2="528" y2="340" stroke="#334155" stroke-width="1.5" />
+  <line x1="494" y1="365" x2="526" y2="365" stroke="#334155" stroke-width="1.5" />
+
+  <!-- Titanium Abutments -->
+  <polygon points="275,290 305,290 300,240 280,240" fill="url(#tiGrad9)" stroke="#475569" stroke-width="1.5" />
+  <polygon points="495,290 525,290 520,240 500,240" fill="url(#tiGrad9)" stroke="#475569" stroke-width="1.5" />
+
+  <!-- 3-Unit Monolithic Zirconia Fixed Bridge (Crown - Pontic - Crown) -->
+  <path d="M 260 160 C 270 145 320 145 330 160 C 340 145 460 145 470 160 C 480 145 530 145 540 160 C 550 210 545 250 535 250 C 510 250 490 250 470 250 C 450 255 350 255 330 250 C 310 250 290 250 265 250 C 255 250 250 210 260 160 Z" fill="url(#zirconiaBridge)" stroke="#94A3B8" stroke-width="2.5" />
+
+  <!-- Separation lines defining the 3 teeth -->
+  <line x1="345" y1="160" x2="345" y2="245" stroke="#CBD5E1" stroke-width="1.5" />
+  <line x1="455" y1="160" x2="455" y2="245" stroke="#CBD5E1" stroke-width="1.5" />
+
+  <!-- Callouts -->
+  <rect x="110" y="210" width="195" height="32" rx="8" fill="#FFFFFF" stroke="#0284C7" stroke-width="1.5" />
+  <text x="207" y="231" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#0369A1" text-anchor="middle">Monolithic Zirconia Bridge</text>
+  <line x1="305" y1="226" x2="350" y2="210" stroke="#0284C7" stroke-width="1.5" />
+
+  <rect x="495" y="320" width="195" height="32" rx="8" fill="#FFFFFF" stroke="#475569" stroke-width="1.5" />
+  <text x="592" y="341" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">Osseointegrated Implants</text>
+  <line x1="495" y1="336" x2="525" y2="345" stroke="#475569" stroke-width="1.5" />
+
+  <!-- Department & Code Pill -->
+  <rect x="280" y="445" width="240" height="26" rx="13" fill="#DBEAFE" stroke="#3B82F6" stroke-width="1" />
+  <text x="400" y="462" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#1D4ED8" text-anchor="middle">IMPL-BRG-01 • Dental Implantology</text>
+</svg>

@@ -813,6 +813,246 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     has3DModel: false,
     interactiveStepsCount: 3
   }
+,
+  // --------------------------------------------------------------------
+  // 21. BATCH 3 NEW: Gingival Flap Surgery (PERIO) - Tier 2
+  // --------------------------------------------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333321',
+    slug: 'gingival-flap-surgery',
+    code: 'PERIO-FLP-01',
+    titleEn: 'Gingival Flap Surgery',
+    titleTa: 'ஈறு மடல் அறுவை சிகிச்சை (Flap Surgery)',
+    summaryEn: 'Surgical elevation of the gum tissue to allow direct visualization and thorough debridement of deep bacterial pockets and diseased root surfaces.',
+    summaryTa: 'ஆழமான ஈறு பாக்கெட்டுகளில் உள்ள பாக்டீரியா தொற்று மற்றும் படிவுகளை நேரடியாக நீக்க ஈறு திசுவை மென்மையாக விலக்கி செய்யப்படும் அறுவை சிகிச்சை.',
+    durationMinutes: 60,
+    anesthesiaType: 'Local Anesthesia',
+    primaryDepartmentName: 'Periodontics – Gum Treatments',
+    primaryDepartmentCode: 'PERIO',
+    exploreCategorySlugs: ["gums-and-bleeding","pain-and-sensitivity"],
+    governanceTier: 'TIER_2',
+    contentStatus: 'DRAFT',
+    overviewHtmlEn: '<p>Gingival flap surgery is an advanced periodontal procedure indicated when chronic gum disease has created deep pockets (typically 6 mm or greater) that cannot be adequately reached or cleaned by non-surgical scaling and root planing alone. The periodontist gently separates and folds back a section of gum tissue, providing direct optical access to the root surfaces and alveolar bone. After meticulously cleaning away persistent subgingival calculus, diseased granulation tissue, and microbial toxins, the bone may be reshaped and the gums are repositioned and sutured tightly around the teeth, creating a biological environment that is much easier to maintain through daily oral hygiene.</p>',
+    overviewHtmlTa: '<p>ஈறு மடல் அறுவை சிகிச்சை (Gingival Flap Surgery) என்பது தீவிர ஈறு நோயினால் (Periodontitis) பற்களைச் சுற்றி ஏற்படும் ஆழமான ஈறு பாக்கெட்டுகளை சுத்தம் செய்ய உதவும் சிகிச்சையாகும். சாதாரண பற்கூச்சம் மற்றும் சுத்தம் செய்தல் மூலம் எட்ட முடியாத ஆழமான பகுதிகளை, ஈறு திசுக்களை மென்மையாகப் பிரித்து மருத்துவர் நேரடியாகப் பார்வையிட்டு சுத்தம் செய்கிறார். வேர் பரப்புகளில் படிந்துள்ள கடினமான காரைகள் மற்றும் பாதிக்கப்பட்ட திசுக்கள் முழுமையாக அகற்றப்பட்ட பின், ஈறுகள் மீண்டும் நேர்த்தியாக தைக்கப்படுகின்றன.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 4
+  },
+
+  // --------------------------------------------------------------------
+  // 22. BATCH 3 NEW: Gum Grafting (PERIO) - Tier 2
+  // --------------------------------------------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333322',
+    slug: 'gum-grafting',
+    code: 'PERIO-GFT-01',
+    titleEn: 'Gum Grafting (Soft Tissue Augmentation)',
+    titleTa: 'ஈறு ஒட்டு சிகிச்சை (Gum Grafting)',
+    summaryEn: 'Micro-surgical transfer of donor soft tissue or biologic matrix to cover exposed tooth roots, arrest receding gum margins, and relieve severe sensitivity.',
+    summaryTa: 'கீழிறங்கிய ஈறுகளால் வெளிப்படும் வேர் பகுதியை மூடி, பல் கூச்சத்தைப் போக்கி மேலும் தேய்மானம் அடையாமல் காக்கும் ஈறு ஒட்டு சிகிச்சை.',
+    durationMinutes: 75,
+    anesthesiaType: 'Local Anesthesia',
+    primaryDepartmentName: 'Periodontics – Gum Treatments',
+    primaryDepartmentCode: 'PERIO',
+    exploreCategorySlugs: ["gums-and-bleeding","pain-and-sensitivity","dental-appearance"],
+    governanceTier: 'TIER_2',
+    contentStatus: 'DRAFT',
+    overviewHtmlEn: '<p>Gum grafting (soft tissue augmentation) is a microsurgical procedure designed to treat gingival recession, where gum tissue has pulled away from the tooth, exposing the sensitive root surface to decay, abrasion, and thermal sensitivity. The periodontist gently obtains a thin layer of healthy connective tissue (most commonly from the patient\'s palate or utilizing an acellular dermal matrix) and carefully sutures it over the recessed area. This procedure restores protective keratinized tissue, halts progressive bone and gum loss, significantly diminishes root sensitivity, and restores a balanced, natural smile line.</p>',
+    overviewHtmlTa: '<p>ஈறு ஒட்டு சிகிச்சை (Gum Grafting) என்பது ஈறுகள் சுருங்கி அல்லது தேய்ந்து பல்லின் வேர் பகுதி வெளியே தெரியும் நிலையை சரிசெய்யும் ஒரு நுண் அறுவை சிகிச்சையாகும். அண்ணத்தின் உள்பகுதியில் இருந்து எடுக்கப்படும் மெல்லிய திசு அல்லது மருத்துவ ஒட்டு பொருள், வேர் வெளிப்பட்ட பகுதியில் கவனமாக தைக்கப்படுகிறது. இது பற்கூச்சத்தை உடனடியாகக் குறைத்து, வேர் சொத்தையாவதைத் தடுத்து, ஈறுகளின் இயல்பான அழகிய அமைப்பை மீட்டெடுக்கிறது.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 4
+  },
+
+  // --------------------------------------------------------------------
+  // 23. BATCH 3 NEW: Crown Lengthening (PERIO) - Tier 2
+  // --------------------------------------------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333323',
+    slug: 'crown-lengthening',
+    code: 'PERIO-CRW-01',
+    titleEn: 'Crown Lengthening',
+    titleTa: 'பல் நீட்டிப்பு சிகிச்சை (Crown Lengthening)',
+    summaryEn: 'Surgical reshaping of gum and bone contours to expose sufficient sound tooth structure for crown restoration or to correct an uneven gummy smile.',
+    summaryTa: 'பல்லில் கேப் (crown) பொருத்துவதற்கு போதிய பல் பகுதியை வெளிப்படுத்த அல்லது ஈறு சிரிப்பை சரிசெய்ய ஈறு மற்றும் எலும்பை சீரமைக்கும் சிகிச்சை.',
+    durationMinutes: 60,
+    anesthesiaType: 'Local Anesthesia',
+    primaryDepartmentName: 'Periodontics – Gum Treatments',
+    primaryDepartmentCode: 'PERIO',
+    exploreCategorySlugs: ["broken-or-chipped-teeth","dental-appearance"],
+    governanceTier: 'TIER_2',
+    contentStatus: 'DRAFT',
+    overviewHtmlEn: '<p>Crown lengthening is a specialized surgical procedure that adjusts the level of the gum tissue and underlying alveolar bone around one or more teeth. It is primarily indicated when a tooth is severely decayed or broken beneath the gumline, requiring more visible sound tooth structure to securely place a crown without violating the delicate supracrestal biological attachment (biologic width). It is also performed for aesthetic purposes to correct an excessive gingival display ("gummy smile"), creating harmonious, symmetrical tooth proportions.</p>',
+    overviewHtmlTa: '<p>பல் நீட்டிப்பு சிகிச்சை (Crown Lengthening) என்பது பல்லின் மகுட பகுதியை அதிகப்படுத்த ஈறு மற்றும் எலும்பை மறுவடிவமைக்கும் ஒரு மருத்துவ முறையாகும். ஈறுக்கு கீழே உடைந்த அல்லது சொத்தையான பற்களுக்கு கேப் பொருத்துவதற்கு போதுமான இயற்கை பல் பகுதி தேவைப்படும் போது இது செய்யப்படுகிறது. மேலும், சிரிக்கும் போது ஈறுகள் அதிகமாகத் தெரியும் குறைபாட்டை அழகியல் ரீதியாக சரிசெய்யவும் இச்சிகிச்சை பயன்படுகிறது.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 4
+  },
+
+  // --------------------------------------------------------------------
+  // 24. BATCH 3 NEW: Frenectomy (PERIO) - Tier 2
+  // --------------------------------------------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333324',
+    slug: 'frenectomy',
+    code: 'PERIO-FRN-01',
+    titleEn: 'Frenectomy (Labial & Lingual)',
+    titleTa: 'ஃபிரனெக்டமி (ஈறு/நாக்கு இணைப்பு திசு நீக்கம்)',
+    summaryEn: 'A minor surgical release or excision of a restrictive mucosal tissue fold to alleviate tongue-tie, prevent gum recession, or resolve tooth spacing.',
+    summaryTa: 'நாக்கு அல்லது உதட்டுப் பகுதியில் உள்ள இறுக்கமான இணைப்பு திசுவை அகற்றி, பேச்சு குறைபாடு, பல் இடைவெளி மற்றும் ஈறு தேய்மானத்தை சரிசெய்யும் சிகிச்சை.',
+    durationMinutes: 30,
+    anesthesiaType: 'Local Anesthesia or Topical Numbing',
+    primaryDepartmentName: 'Periodontics – Gum Treatments',
+    primaryDepartmentCode: 'PERIO',
+    exploreCategorySlugs: ["tooth-alignment","gums-and-bleeding"],
+    governanceTier: 'TIER_2',
+    contentStatus: 'DRAFT',
+    overviewHtmlEn: '<p>A frenectomy is a quick, minimally invasive procedure to release or modify an abnormally tight, thick, or short frenum—the small fold of tissue connecting the lip to the gums (labial frenum) or the tongue to the floor of the mouth (lingual frenum). In infants and children, releasing a restrictive lingual frenum resolves ankyloglossia ("tongue-tie"), facilitating normal breastfeeding, swallowing, and speech articulation. In adolescents and adults, releasing a prominent maxillary labial frenum prevents orthodontic midline diastemas (gaps) from reopening and stops chronic tension that pulls the gum margin away from the teeth.</p>',
+    overviewHtmlTa: '<p>ஃபிரனெக்டமி (Frenectomy) என்பது உதடு அல்லது நாக்கை இணைக்கும் மெல்லிய தசை மடிப்பை (frenum) தளர்த்தும் அல்லது அகற்றும் ஒரு எளிய அறுவை சிகிச்சையாகும். நாக்கின் அடிப்பகுதியில் உள்ள இறுக்கமான இணைப்பு நீக்கப்படுவதன் மூலம் குழந்தைகளுக்கு தாய்ப்பால் அருந்துதல் மற்றும் பேச்சு உச்சரிப்பு எளிதாகிறது. உதட்டுப் பகுதியில் உள்ள தசை தளர்த்தப்படுவதன் மூலம் முன் பற்களுக்கு இடையே உள்ள இடைவெளி மூடுவதோடு, ஈறுகள் இழுபட்டு கீழே இறங்குவது தடுக்கப்படுகிறது.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 3
+  },
+
+  // --------------------------------------------------------------------
+  // 25. BATCH 3 NEW: Socket Preservation & Bone Grafting (OMFS) - Tier 2
+  // --------------------------------------------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333325',
+    slug: 'socket-preservation-bone-graft',
+    code: 'OMFS-SCK-01',
+    titleEn: 'Socket Preservation & Bone Grafting',
+    titleTa: 'பல் எடுத்த பின் எலும்பு பாதுகாப்பு ஒட்டு (Socket Preservation)',
+    summaryEn: 'Placement of biocompatible bone grafting material immediately after tooth extraction to counteract natural ridge collapse and prepare for future implants.',
+    summaryTa: 'பல் பிடுங்கப்பட்ட உடனேயே அந்த எலும்பு குழியில் சிறப்பு ஒட்டு பொருளை வைத்து, எலும்பு தேய்ந்து சுருங்குவதைத் தடுத்து வருங்கால இம்பிளான்ட்டுக்கு தயார்படுத்தும் சிகிச்சை.',
+    durationMinutes: 45,
+    anesthesiaType: 'Local Anesthesia',
+    primaryDepartmentName: 'Oral & Maxillofacial Surgery',
+    primaryDepartmentCode: 'OMFS',
+    exploreCategorySlugs: ["missing-teeth"],
+    governanceTier: 'TIER_2',
+    contentStatus: 'DRAFT',
+    overviewHtmlEn: '<p>Socket preservation (alveolar ridge preservation) is a proactive bone grafting procedure performed immediately following a tooth extraction. When a tooth is removed, the surrounding socket bone naturally resorbs and shrinks rapidly over the initial 3 to 6 months. By gently cleaning the fresh socket, packing it with sterile osteoconductive bone graft granules, and sealing the entrance with a protective collagen matrix or membrane, the natural anatomical height and width of the jawbone ridge are preserved. This provides a robust, stable osseous foundation for future dental implant placement or aesthetic bridgework.</p>',
+    overviewHtmlTa: '<p>சாக்கெட் பாதுகாப்பு (Socket Preservation) என்பது பல் பிடுங்கப்பட்ட உடனேயே அக்குழியில் எலும்பு ஒட்டுப் பொருள் வைக்கப்படும் நவீன முறையாகும். பல் எடுக்கப்பட்ட பிறகு தாடை எலும்பு வேகமாக சுருங்கி தேய்ந்து போவது இயற்கை. இதனைத் தவிர்க்க, பிரத்யேக எலும்பு துகள்கள் அக்குழியில் நிரப்பப்பட்டு ஒரு பாதுகாப்பு மென்படலத்தால் மூடப்படுகிறது. இது தாடை எலும்பின் உயரம் மற்றும் அகலத்தை அப்படியே பாதுகாத்து, பிற்காலத்தில் பல் இம்பிளான்ட் உறுதியாகப் பொருந்துவதை உறுதி செய்கிறது.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 4
+  },
+
+  // --------------------------------------------------------------------
+  // 26. BATCH 3 NEW: Alveolar Ridge Augmentation (OMFS) - Tier 3
+  // --------------------------------------------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333326',
+    slug: 'alveolar-ridge-augmentation',
+    code: 'OMFS-RDG-01',
+    titleEn: 'Alveolar Ridge Augmentation',
+    titleTa: 'தாடை எலும்பு கட்டமைப்பு மறுசீரமைப்பு (Ridge Augmentation)',
+    summaryEn: 'Advanced surgical reconstruction of deficient or resorbed jawbone dimensions using particulate or block bone grafts and barrier membranes.',
+    summaryTa: 'நீண்ட காலம் பல் இல்லாமல் சுருங்கிப்போன தாடை எலும்பின் தடிமன் மற்றும் உயரத்தை பிரத்யேக எலும்பு ஒட்டுகள் மூலம் மீளமைக்கும் உயர்நிலை அறுவை சிகிச்சை.',
+    durationMinutes: 90,
+    anesthesiaType: 'Local Anesthesia with Optional Oral/IV Sedation',
+    primaryDepartmentName: 'Oral & Maxillofacial Surgery',
+    primaryDepartmentCode: 'OMFS',
+    exploreCategorySlugs: ["missing-teeth"],
+    governanceTier: 'TIER_3',
+    contentStatus: 'DRAFT',
+    overviewHtmlEn: '<p>Alveolar ridge augmentation is an advanced reconstructive surgical procedure indicated when significant jawbone atrophy, trauma, or long-standing tooth loss has left the ridge too narrow or short to support dental implants or stable prosthetics. Utilizing guided bone regeneration (GBR) principles, the maxillofacial surgeon places specialized bone grafting particulate or block scaffolds over the deficient bone, securing them with a specialized collagen or titanium-reinforced barrier membrane. Over a dedicated healing period of 4 to 9 months, the graft integrates with host bone, rebuilding vital alveolar width and height.</p>',
+    overviewHtmlTa: '<p>தாடை எலும்பு கட்டமைப்பு மறுசீரமைப்பு (Alveolar Ridge Augmentation) என்பது சுருங்கிய அல்லது சேதமடைந்த தாடை எலும்பை மீண்டும் உருவாக்கும் ஒரு மேம்பட்ட அறுவை சிகிச்சையாகும். பல் இழந்து பல வருடங்கள் ஆவதால் தாடை எலும்பு மிகவும் மெலிந்து போயிருக்கும் நிலைகளில், இம்பிளான்ட் வைக்க போதுமான எலும்பு இருக்காது. அத்தகைய சூழலில், எலும்பு ஒட்டு துகள்கள் மற்றும் டைட்டானியம் அல்லது கொலாஜன் மென்படலங்களைப் பயன்படுத்தி தாடையின் தடிமன் மற்றும் உயரம் மீண்டும் கட்டமைக்கப்படுகிறது.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 4
+  },
+
+  // --------------------------------------------------------------------
+  // 27. BATCH 3 NEW: Sinus Lift (OMFS) - Tier 3
+  // --------------------------------------------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333327',
+    slug: 'sinus-lift',
+    code: 'OMFS-SNS-01',
+    titleEn: 'Sinus Lift (Sinus Augmentation)',
+    titleTa: 'மேல் தாடை சைனஸ் எலும்பு ஏற்ற சிகிச்சை (Sinus Lift)',
+    summaryEn: 'Surgical elevation of the Schneiderian sinus membrane and grafting of bone into the sinus cavity to create adequate vertical height for upper back implants.',
+    summaryTa: 'மேல் தாடை சைனஸ் சவ்வை மென்மையாக மேலே உயர்த்தி, கீழே எலும்பு ஒட்டு வைத்து மேல் பின் பற்களுக்கு இம்பிளான்ட் வைக்க வழி செய்யும் அறுவை சிகிச்சை.',
+    durationMinutes: 75,
+    anesthesiaType: 'Local Anesthesia with Optional Sedation',
+    primaryDepartmentName: 'Oral & Maxillofacial Surgery',
+    primaryDepartmentCode: 'OMFS',
+    exploreCategorySlugs: ["missing-teeth"],
+    governanceTier: 'TIER_3',
+    contentStatus: 'DRAFT',
+    overviewHtmlEn: '<p>A sinus lift (subantral maxillary sinus augmentation) is a sophisticated surgical procedure performed to establish adequate vertical bone height in the posterior upper jaw (maxilla). Following molar loss or due to natural sinus pneumatization, the maxillary sinus expands downward while the alveolar bone resorbs, leaving insufficient bone depth for dental implant anchoring. Through either a lateral window or transcrestal osteotome approach, the surgeon gently elevates the delicate Schneiderian sinus membrane lining and packs biocompatible bone graft material into the newly created space beneath it. This generates dense, living bone capable of securely housing posterior dental implants.</p>',
+    overviewHtmlTa: '<p>மேல் தாடை சைனஸ் ஏற்ற சிகிச்சை (Sinus Lift) என்பது மேல் கடைவாய்ப் பற்கள் உள்ள பகுதியில் எலும்பின் உயரத்தை அதிகரிக்கச் செய்யப்படும் ஒரு சிறப்பு அறுவை சிகிச்சையாகும். மேல் தாடையில் பற்கள் இழந்த பிறகு, சைனஸ் காற்றுப்பை விரிவடைந்து எலும்பின் தடிமன் குறைந்துவிடும். இதனால் இம்பிளான்ட் வைக்க போதிய எலும்பு இருப்பதில்லை. மருத்துவர் சைனஸ் சவ்வை சேதமடையாமல் லேசாக உயர்த்தி, அதன் அடியில் புதிய எலும்பு ஒட்டுப் பொருளை நிரப்புவார். இது சில மாதங்களில் உறுதியான எலும்பாக மாறி இம்பிளான்ட்டுக்கு சிறந்த அடித்தளத்தை அளிக்கிறது.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 4
+  },
+
+  // --------------------------------------------------------------------
+  // 28. BATCH 3 NEW: Dental Abscess Management (OMFS) - Tier 3
+  // --------------------------------------------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333328',
+    slug: 'dental-abscess-management',
+    code: 'OMFS-ABS-01',
+    titleEn: 'Dental Abscess Management',
+    titleTa: 'பல் சீழ்கட்டி மற்றும் அவசர தொற்று சிகிச்சை (Abscess Management)',
+    summaryEn: 'Urgent surgical incision, drainage, and source eradication to relieve severe swelling, eliminate active bacterial infection, and prevent facial spread.',
+    summaryTa: 'தீவிர பல் சீழ்கட்டியை உடனடியாக அறுவை சிகிச்சை மூலம் கீறி வடிகட்டி, தொற்று முகப்பகுதிக்கு பரவாமல் தடுக்கும் அவசர சிகிச்சை.',
+    durationMinutes: 45,
+    anesthesiaType: 'Local Anesthesia (Targeted Ring / Nerve Block)',
+    primaryDepartmentName: 'Oral & Maxillofacial Surgery',
+    primaryDepartmentCode: 'OMFS',
+    exploreCategorySlugs: ["pain-and-sensitivity","gums-and-bleeding"],
+    governanceTier: 'TIER_3',
+    contentStatus: 'DRAFT',
+    overviewHtmlEn: '<p>Dental abscess management is an urgent clinical intervention required to treat an acute collection of pus caused by bacterial infection in the pulp, root tip, or periodontal structures. Without immediate care, odontogenic infections can spread into deep fascial spaces of the head and neck, potentially obstructing the airway or entering the bloodstream. The surgeon performs a targeted incision and drainage (I&D) to evacuate trapped purulence, copiously flushes the cavity with sterile saline, and places a temporary rubber drain if necessary. Definitive elimination of the biological cause (through root canal treatment or extraction) is paired with systemic antibiotic therapy only when systemic signs such as fever or spreading cellulitis are present.</p>',
+    overviewHtmlTa: '<p>பல் சீழ்கட்டி சிகிச்சை (Dental Abscess Management) என்பது பல்லின் வேர் அல்லது ஈறுகளில் சேரும் ஆபத்தான சீழை உடனடியாக வெளியேற்றி தொற்றை அழிக்கும் அவசர சிகிச்சையாகும். இதற்கு உடனடி சிகிச்சை அளிக்காவிட்டால், தொற்று தாடை, கழுத்து மற்றும் முகத்தின் பிற பகுதிகளுக்குப் பரவி உயிருக்கே ஆபத்தாக மாறக்கூடும். மருத்துவர் சீழ்கட்டியை மென்மையாகக் கீறி சீழை முழுமையாக வெளியேற்றி, கிருமிநாசினி கொண்டு கழுவி சுத்தம் செய்கிறார். பின்னர் தொற்றின் மூல காரணமான பல்லுக்கு வேர் சிகிச்சை அல்லது அகற்றுதல் மூலம் தீர்வு காணப்படுகிறது.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 4
+  },
+
+  // --------------------------------------------------------------------
+  // 29. BATCH 3 NEW: Implant-Supported Bridge (IMPL) - Tier 2
+  // --------------------------------------------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333329',
+    slug: 'implant-supported-bridge',
+    code: 'IMPL-BRG-01',
+    titleEn: 'Implant-Supported Bridge',
+    titleTa: 'இம்பிளான்ட் தாங்கும் பல் பாலம் (Implant Bridge)',
+    summaryEn: 'A fixed multi-unit dental prosthesis anchored securely onto two or more osseointegrated dental implants to replace multiple consecutive missing teeth.',
+    summaryTa: 'அடுத்தடுத்து இல்லாத பல பற்களுக்குப் பதிலாக இரண்டு அல்லது அதற்கு மேற்பட்ட இம்பிளான்ட்டுகள் மீது உறுதியாக பொருத்தப்படும் நிரந்தர பல் பாலம்.',
+    durationMinutes: 60,
+    anesthesiaType: 'Local Anesthesia (Prosthetic Phase: Painless)',
+    primaryDepartmentName: 'Dental Implantology',
+    primaryDepartmentCode: 'IMPL',
+    exploreCategorySlugs: ["missing-teeth"],
+    governanceTier: 'TIER_2',
+    contentStatus: 'DRAFT',
+    overviewHtmlEn: '<p>An implant-supported bridge is a highly durable, permanent restoration designed to replace three or more consecutive missing teeth without needing an individual implant for every single missing tooth root. Two or more titanium dental implants are surgically placed at strategic boundary positions in the jawbone. After osseointegration occurs, a custom-milled monolithic zirconia or porcelain-fused-to-metal fixed bridge is securely affixed either via precision retaining screws or biocompatible cement. Unlike traditional tooth-supported bridges, this procedure completely spares adjacent healthy teeth from being shaved down or crowned.</p>',
+    overviewHtmlTa: '<p>இம்பிளான்ட் தாங்கும் பல் பாலம் (Implant-Supported Bridge) என்பது அடுத்தடுத்து மூன்று அல்லது அதற்கு மேற்பட்ட பற்களை இழந்தவர்களுக்கு நிரந்தர தீர்வளிக்கும் சிறந்த முறையாகும். ஒவ்வொரு பல்லுக்கும் தனித்தனி இம்பிளான்ட் வைக்கத் தேவையின்றி, இரு முனைகளிலும் இம்பிளான்ட்டுகள் பொருத்தப்பட்டு அதன் மீது இணைக்கப்பட்ட பற்கள் கொண்ட பாலம் உறுதியாக பொருத்தப்படுகிறது. சாதாரண பாலங்களைப் போல பக்கத்து நல்ல பற்களைத் தேய்க்க வேண்டிய அவசியமில்லை என்பது இதன் கூடுதல் சிறப்பாகும்.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 4
+  },
+
+  // --------------------------------------------------------------------
+  // 30. BATCH 3 NEW: Full-Arch Implant Restoration (IMPL) - Tier 3
+  // --------------------------------------------------------------------
+  {
+    id: '33333333-3333-4333-a333-333333333330',
+    slug: 'full-arch-implant-restoration',
+    code: 'IMPL-FLA-01',
+    titleEn: 'Full-Arch Implant Restoration (Fixed All-on-X)',
+    titleTa: 'முழு தாடை இம்பிளான்ட் பல் சீரமைப்பு (Full-Arch All-on-4/6)',
+    summaryEn: 'Comprehensive rehabilitation of an entirely edentulous arch with a rigid screw-retained full-arch zirconia prosthesis anchored onto 4 to 6 implants.',
+    summaryTa: 'முழு தாடையில் உள்ள அனைத்து பற்களையும் இழந்தவர்களுக்கு 4 முதல் 6 இம்பிளான்ட்டுகள் மூலம் நிரந்தர பற்கள் வரிசையை அமைக்கும் முழு தாடை சீரமைப்பு.',
+    durationMinutes: 120,
+    anesthesiaType: 'Local Anesthesia with Conscious Sedation',
+    primaryDepartmentName: 'Dental Implantology',
+    primaryDepartmentCode: 'IMPL',
+    exploreCategorySlugs: ["missing-teeth"],
+    governanceTier: 'TIER_3',
+    contentStatus: 'DRAFT',
+    overviewHtmlEn: '<p>Full-arch implant restoration (commonly known as All-on-4 or All-on-6) is a comprehensive restorative therapy for patients who have lost all teeth in an upper or lower jaw or face terminal dentition from extensive decay or periodontitis. Using precise 3D digital planning, four to six medical-grade titanium implants are strategically inserted into the jawbone, often with posterior implants tilted to maximize existing bone density and bypass anatomical nerve or sinus cavities. A rigid, monolithic zirconia or titanium-acrylic full-arch bridge is firmly screwed into place, completely restoring bite strength, facial aesthetics, and speech clarity with permanent stability that never slips.</p>',
+    overviewHtmlTa: '<p>முழு தாடை இம்பிளான்ட் சீரமைப்பு (Full-Arch Implant Restoration) என்பது ஒரு தாடையில் உள்ள அனைத்து பற்களையும் இழந்தவர்களுக்கு நவீன முறையில் புதிய பற்கள் அமைக்கும் முழுமையான சிகிச்சையாகும். 3D டிஜிட்டல் திட்டமிடல் மூலம் தாடையில் 4 அல்லது 6 இம்பிளான்ட்டுகள் பொருத்தப்படுகின்றன. எலும்பு குறைவாக உள்ள இடங்களிலும் கூட சாய்வாக வைத்து உறுதியாக்க முடியும். இதன் மீது நிரந்தரமான மகுடப் பற்கள் கொண்ட முழு பாலம் திருகுகள் மூலம் அசைவின்றி பொருத்தப்படுகிறது. இது கழற்றி மாட்ட வேண்டிய அவசியமின்றி இயற்கையான பற்களைப் போன்றே மெல்லும் ஆற்றலை அளிக்கிறது.</p>',
+    has3DModel: false,
+    interactiveStepsCount: 4
+  }
 ];
 
 export const CLINICAL_DISCLAIMER_EN = 

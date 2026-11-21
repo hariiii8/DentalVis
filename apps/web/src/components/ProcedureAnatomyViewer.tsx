@@ -622,7 +622,307 @@ const PROCEDURE_ANATOMY_DATA: Record<string, ProcedureAnatomyConfig> = {
         positionPercent: { x: 56, y: 68 },
       }
     ],
-  }
+  },
+  'gingival-flap-surgery': {
+    titleEn: 'Periodontal Flap & Deep Pocket Anatomy',
+    titleTa: 'ஈறு மடல் மற்றும் ஆழமான பாக்கெட் உடற்கூறியல்',
+    subtitleEn: 'Elevated Mucoperiosteal Flap, Subgingival Calculus, and Alveolar Bone Defect',
+    subtitleTa: 'விலக்கப்பட்ட ஈறு மடல், வேர் காரை மற்றும் தாடை எலும்பு குறைபாடு',
+    interactive3DReady: false,
+    callouts: [
+      {
+        labelEn: 'Reflected Mucoperiosteal Flap',
+        labelTa: 'விலக்கப்பட்ட ஈறு திசு மடல்',
+        descEn: 'Full-thickness flap granting direct optical visualization to root.',
+        descTa: 'வேர் பகுதியை நேரடியாகப் பார்க்க விலக்கப்பட்ட ஈறு மடல்.',
+        positionPercent: { x: 50, y: 22 },
+      },
+      {
+        labelEn: 'Subgingival Calculus & Granulation',
+        labelTa: 'வேர் காரை மற்றும் தொற்று திசு',
+        descEn: 'Diseased bacterial biofilm adhering to root cementum.',
+        descTa: 'வேர் மீது படிந்துள்ள கிருமி நச்சுக்கள் மற்றும் காரை.',
+        positionPercent: { x: 40, y: 46 },
+      },
+      {
+        labelEn: 'Infrabony Alveolar Pocket Defect',
+        labelTa: 'எலும்பு பாக்கெட் குழி',
+        descEn: 'Bone resorptive zone targeted for debridement and recontouring.',
+        descTa: 'சுத்தம் செய்யப்பட்டு சீரமைக்கப்படும் எலும்பு குறைபாடு.',
+        positionPercent: { x: 58, y: 68 },
+      }
+    ],
+  },
+  'gum-grafting': {
+    titleEn: 'Soft Tissue Root Coverage & Graft Anatomy',
+    titleTa: 'ஈறு ஒட்டு மற்றும் வேர் பாதுகாப்பு உடற்கூறியல்',
+    subtitleEn: 'Subepithelial Connective Tissue Graft, Marginal Recession, and Recipient Vascular Bed',
+    subtitleTa: 'இணைப்பு திசு ஒட்டு, இறங்கிய ஈறு விளிம்பு மற்றும் இரத்த ஓட்ட படுக்கை',
+    interactive3DReady: false,
+    callouts: [
+      {
+        labelEn: 'Subepithelial Connective Tissue Graft',
+        labelTa: 'இணைப்பு திசு ஒட்டு',
+        descEn: 'Donor tissue secured over exposed root to restore attached gingiva.',
+        descTa: 'வெளிப்பட்ட வேரை மூட பொருத்தப்படும் ஆரோக்கியமான திசு.',
+        positionPercent: { x: 50, y: 24 },
+      },
+      {
+        labelEn: 'Exposed Avascular Root Surface',
+        labelTa: 'வெளிப்பட்ட வேர் பரப்பு',
+        descEn: 'Recessed cementum conditioned for new tissue attachment.',
+        descTa: 'பற்கூச்சத்தை ஏற்படுத்தி திசு இழந்து நிற்கும் வேர் பகுதி.',
+        positionPercent: { x: 38, y: 48 },
+      },
+      {
+        labelEn: 'Vascularized Recipient Gingival Bed',
+        labelTa: 'இரத்த ஓட்டம் கொண்ட ஈறு படுக்கை',
+        descEn: 'Surrounding gum flaps providing capillary nourishment to graft.',
+        descTa: 'ஒட்டு திசுவுக்கு இரத்த ஊட்டத்தை வழங்கும் சுற்றியுள்ள ஈறுகள்.',
+        positionPercent: { x: 56, y: 66 },
+      }
+    ],
+  },
+  'crown-lengthening': {
+    titleEn: 'Supracrestal Biologic Width & Ostectomy Anatomy',
+    titleTa: 'பல் நீட்டிப்பு மற்றும் எலும்பு இடைவெளி உடற்கூறியல்',
+    subtitleEn: 'Supracrestal Tissue Attachment, Sound Ferrule Zone, and Recontoured Bone Margin',
+    subtitleTa: 'இயற்கை திசு இணைப்பு, கேப் தாங்கும் பல் பகுதி மற்றும் சீரமைக்கப்பட்ட எலும்பு',
+    interactive3DReady: false,
+    callouts: [
+      {
+        labelEn: 'Sound Supragingival Ferrule Structure',
+        labelTa: 'கேப் தாங்கும் ஆரோக்கியமான பல் பகுதி',
+        descEn: 'At least 1.5-2.0mm exposed tooth collar to retain future crown.',
+        descTa: 'புதிய கேப் உறுதியாக நிற்க வெளிப்படுத்தப்பட்ட பல் பகுதி.',
+        positionPercent: { x: 50, y: 22 },
+      },
+      {
+        labelEn: 'Preserved Supracrestal Biologic Width',
+        labelTa: 'பாதுகாக்கப்பட்ட இயற்கை திசு இடைவெளி',
+        descEn: 'Essential 2-3mm soft tissue biological attachment space.',
+        descTa: 'ஈறு வீக்கம் ஏற்படாமல் தடுக்க தேவையான ஆரோக்கிய இடைவெளி.',
+        positionPercent: { x: 42, y: 46 },
+      },
+      {
+        labelEn: 'Recontoured Crestal Alveolar Bone',
+        labelTa: 'சீரமைக்கப்பட்ட தாடை எலும்பு விளிம்பு',
+        descEn: 'Micro-sculpted bone edge providing harmonious anatomical contour.',
+        descTa: 'பல் கேப்புக்கு போதிய இடைவெளி அளிக்க சீரமைக்கப்பட்ட எலும்பு.',
+        positionPercent: { x: 58, y: 68 },
+      }
+    ],
+  },
+  'frenectomy': {
+    titleEn: 'Frenulum Attachment & Mucosal Tension Anatomy',
+    titleTa: 'இணைப்பு தசை மற்றும் ஈறு இழுவிசை உடற்கூறியல்',
+    subtitleEn: 'Restrictive Fibrous Frenum, Interdental Diastema Site, and Free Gingival Margin',
+    subtitleTa: 'இறுக்கமான தசை நார், பல் இடைவெளி பகுதி மற்றும் ஈறு விளிம்பு',
+    interactive3DReady: false,
+    callouts: [
+      {
+        labelEn: 'Restrictive Mucosal Frenum Band',
+        labelTa: 'இறுக்கமான தசை இணைப்பு',
+        descEn: 'Fibrous cord creating muscular tethering or tissue tension.',
+        descTa: 'நாக்கு அல்லது உதட்டின் அசைவை கட்டுப்படுத்தும் தசை மடிப்பு.',
+        positionPercent: { x: 50, y: 24 },
+      },
+      {
+        labelEn: 'Interdental Diastema / Tension Zone',
+        labelTa: 'பல் இடைவெளி மற்றும் இழுவிசை பகுதி',
+        descEn: 'Gingival zone prone to gap opening or tissue blanching on pull.',
+        descTa: 'தசை இழுப்பால் பற்களுக்கு இடையே இடைவெளி தோன்றும் பகுதி.',
+        positionPercent: { x: 38, y: 48 },
+      },
+      {
+        labelEn: 'Unrestricted Mucogingival Junction',
+        labelTa: 'இயல்பான ஈறு இணைப்பு பகுதி',
+        descEn: 'Healthy mucosal transition after targeted tension release.',
+        descTa: 'தசை தளர்த்தப்பட்ட பின் இயல்பாக இயங்கும் ஈறு பகுதி.',
+        positionPercent: { x: 56, y: 68 },
+      }
+    ],
+  },
+  'socket-preservation-bone-graft': {
+    titleEn: 'Extraction Socket & Osteoconductive Graft Anatomy',
+    titleTa: 'பல் குழி மற்றும் எலும்பு பாதுகாப்பு ஒட்டு உடற்கூறியல்',
+    subtitleEn: 'Particulate Bone Scaffold, Intact Alveolar Socket Walls, and Collagen Seal Matrix',
+    subtitleTa: 'எலும்பு ஒட்டு துகள்கள், சேதமடையாத எலும்பு சுவர்கள் மற்றும் கொலாஜன் மூடி',
+    interactive3DReady: false,
+    callouts: [
+      {
+        labelEn: 'Particulate Osteoconductive Graft',
+        labelTa: 'எலும்பு ஒட்டு துகள்கள்',
+        descEn: 'Mineral matrix guiding vascular invasion and new bone deposition.',
+        descTa: 'புதிய எலும்பு உருவாவதற்கு சாரமாக விளங்கும் கனிம துகள்கள்.',
+        positionPercent: { x: 50, y: 24 },
+      },
+      {
+        labelEn: 'Intact Thin Labial / Buccal Bone Wall',
+        labelTa: 'சேதமில்லா முன் எலும்பு சுவர்',
+        descEn: 'Preserved cortical plate shielded against dimensional collapse.',
+        descTa: 'சுருங்கிவிடாமல் பாதுகாக்கப்படும் மெல்லிய தாடை எலும்பு சுவர்.',
+        positionPercent: { x: 40, y: 48 },
+      },
+      {
+        labelEn: 'Resorbable Collagen Protective Seal',
+        labelTa: 'கரையக்கூடிய கொலாஜன் பாதுகாப்பு மூடி',
+        descEn: 'Biocompatible plug containing graft granules during soft-tissue healing.',
+        descTa: 'எலும்பு துகள்கள் வெளியேறாமல் பாதுகாக்கும் கொலாஜன் படலம்.',
+        positionPercent: { x: 58, y: 70 },
+      }
+    ],
+  },
+  'alveolar-ridge-augmentation': {
+    titleEn: 'Guided Bone Regeneration & Ridge Reconstruction Anatomy',
+    titleTa: 'வழிகாட்டப்பட்ட எலும்பு மீளுருவாக்கம் உடற்கூறியல்',
+    subtitleEn: 'Augmented Bone Scaffold, Titanium Barrier Membrane, and Host Cortical Perforations',
+    subtitleTa: 'எலும்பு ஒட்டு சாரம், டைட்டானியம் பாதுகாப்பு படலம் மற்றும் இரத்த நுண் துளைகள்',
+    interactive3DReady: false,
+    callouts: [
+      {
+        labelEn: 'Titanium-Reinforced Barrier Membrane',
+        labelTa: 'டைட்டானியம் பாதுகாப்பு படலம்',
+        descEn: 'Rigid space-maintaining shield blocking soft-tissue down-growth.',
+        descTa: 'ஈறு செல்கள் உள்ளே புகாமல் தடுக்கும் உறுதியான படலம்.',
+        positionPercent: { x: 50, y: 22 },
+      },
+      {
+        labelEn: 'Regenerating Particulate/Block Bone Graft',
+        labelTa: 'மீளுருவாகும் எலும்பு ஒட்டு',
+        descEn: 'Scaffold rebuilding vital horizontal width and vertical height.',
+        descTa: 'தாடையின் உயரம் மற்றும் அகலத்தை மீளமைக்கும் எலும்பு சாரம்.',
+        positionPercent: { x: 42, y: 46 },
+      },
+      {
+        labelEn: 'Perforated Host Cortical Alveolus',
+        labelTa: 'நுண் துளையிடப்பட்ட தாடை எலும்பு',
+        descEn: 'Decorticated vascular access supplying osteoblasts and blood vessels.',
+        descTa: 'இரத்த ஓட்டத்தையும் எலும்பு செல்களையும் வழங்கும் நுண் துளைகள்.',
+        positionPercent: { x: 58, y: 68 },
+      }
+    ],
+  },
+  'sinus-lift': {
+    titleEn: 'Subantral Sinus Cavity & Floor Elevation Anatomy',
+    titleTa: 'சைனஸ் அறை மற்றும் சவ்வு ஏற்ற உடற்கூறியல்',
+    subtitleEn: 'Elevated Schneiderian Membrane, Maxillary Sinus Air Space, and Subantral Bone Graft',
+    subtitleTa: 'உயர்த்தப்பட்ட சைனஸ் சவ்வு, காற்று அறை மற்றும் அடியில் உள்ள எலும்பு ஒட்டு',
+    interactive3DReady: false,
+    callouts: [
+      {
+        labelEn: 'Elevated Schneiderian Sinus Membrane',
+        labelTa: 'உயர்த்தப்பட்ட சைனஸ் சவ்வு',
+        descEn: 'Intact respiratory mucosa elevated to create grafting space.',
+        descTa: 'எலும்பு வைக்க இடம் உருவாக்க சேதமின்றி உயர்த்தப்பட்ட சைனஸ் சவ்வு.',
+        positionPercent: { x: 50, y: 22 },
+      },
+      {
+        labelEn: 'Subantral Particulate Bone Graft',
+        labelTa: 'சைனஸ் கீழ் எலும்பு ஒட்டு',
+        descEn: 'Densely packed biomaterial creating vertical depth for implants.',
+        descTa: 'இம்பிளான்ட் வைப்பதற்கு தேவையான உயரத்தை உருவாக்கும் எலும்பு துகள்கள்.',
+        positionPercent: { x: 40, y: 46 },
+      },
+      {
+        labelEn: 'Native Residual Maxillary Ridge Bone',
+        labelTa: 'மீதமுள்ள தாடை எலும்பு',
+        descEn: 'Pre-existing crestal bone providing primary implant fixation.',
+        descTa: 'இம்பிளான்ட்டை ஆரம்பத்தில் நிலைநிறுத்தும் இயல்பான தாடை எலும்பு.',
+        positionPercent: { x: 58, y: 68 },
+      }
+    ],
+  },
+  'dental-abscess-management': {
+    titleEn: 'Acute Odontogenic Abscess & Drainage Anatomy',
+    titleTa: 'தீவிர பல் சீழ்கட்டி மற்றும் வடிகால் உடற்கூறியல்',
+    subtitleEn: 'Fluctuant Purulent Pocket, Etiological Canal Source, and Periapical Bone Cavity',
+    subtitleTa: 'சீழ் நிறைந்த அறை, தொற்றின் மூல வேர் கால்வாய் மற்றும் தாடை எலும்பு குழி',
+    interactive3DReady: false,
+    callouts: [
+      {
+        labelEn: 'Fluctuant Purulent Abscess Pocket',
+        labelTa: 'சீழ் நிறைந்த கட்டி பகுதி',
+        descEn: 'Localized accumulation of purulent exudate requiring decompression.',
+        descTa: 'அழுத்தம் குறைத்து வெளியேற்றப்பட வேண்டிய சீழ் தேக்கம்.',
+        positionPercent: { x: 50, y: 24 },
+      },
+      {
+        labelEn: 'Infected Pulpal / Periodontal Origin',
+        labelTa: 'தொற்றின் மூல காரணம் (பல் வேர்)',
+        descEn: 'Necrotic root canal system harboring anaerobic bacteria.',
+        descTa: 'பாக்டீரியா தொற்றை உண்டாக்கிய பல்லின் இறந்த வேர் பகுதி.',
+        positionPercent: { x: 38, y: 48 },
+      },
+      {
+        labelEn: 'Decompressed Fascial Tissue Plane',
+        labelTa: 'அழுத்தம் விடுவிக்கப்பட்ட தசை தளம்',
+        descEn: 'Surgically drained space flushed to halt deep facial spread.',
+        descTa: 'தொற்று பரவாமல் தடுக்க கழுவி சுத்தப்படுத்தப்பட்ட பகுதி.',
+        positionPercent: { x: 56, y: 68 },
+      }
+    ],
+  },
+  'implant-supported-bridge': {
+    titleEn: 'Implant-Supported Multi-Unit Prosthetic Anatomy',
+    titleTa: 'இம்பிளான்ட் தாங்கும் பல் பாலம் உடற்கூறியல்',
+    subtitleEn: 'Fixed Monolithic Zirconia Bridge, Titanium Abutments, and Osseointegrated Implants',
+    subtitleTa: 'ஜிர்கோனியா பல் பாலம், டைட்டானியம் இணைப்புகள் மற்றும் எலும்புடன் இணைந்த இம்பிளான்ட்டுகள்',
+    interactive3DReady: false,
+    callouts: [
+      {
+        labelEn: 'Monolithic Zirconia Fixed Bridge',
+        labelTa: 'நிரந்தர ஜிர்கோனியா பல் பாலம்',
+        descEn: 'Rigid continuous prosthesis spanning missing tooth spaces.',
+        descTa: 'பற்கள் இல்லாத இடைவெளியை நிரப்பும் உறுதியான பல் பாலம்.',
+        positionPercent: { x: 50, y: 22 },
+      },
+      {
+        labelEn: 'Precision Titanium Implant Abutment',
+        labelTa: 'டைட்டானியம் இணைப்பு பகுதி',
+        descEn: 'Custom-milled intermediate collar transferring occlusal force.',
+        descTa: 'கடிக்கும் விசையை இம்பிளான்ட்டுக்கு மாற்றும் இணைப்பு சாதனம்.',
+        positionPercent: { x: 42, y: 46 },
+      },
+      {
+        labelEn: 'Osseointegrated Endosseous Implants',
+        labelTa: 'எலும்புடன் இணைந்த டைட்டானியம் இம்பிளான்ட்',
+        descEn: 'Anchored artificial roots integrated into dense alveolar bone.',
+        descTa: 'தாடை எலும்புடன் உறுதியாகப் பிணைந்துள்ள செயற்கை வேர்கள்.',
+        positionPercent: { x: 58, y: 68 },
+      }
+    ],
+  },
+  'full-arch-implant-restoration': {
+    titleEn: 'Full-Arch Fixed Prosthesis & All-on-X Anatomy',
+    titleTa: 'முழு தாடை நிரந்தர இம்பிளான்ட் சீரமைப்பு உடற்கூறியல்',
+    subtitleEn: 'Full-Arch Monolithic Prosthesis, Angled Multi-Unit Abutments, and Strategic Implants',
+    subtitleTa: 'முழு தாடை பாலம், கோண இணைப்புகள் மற்றும் திட்டமிட்டு வைக்கப்பட்ட இம்பிளான்ட்டுகள்',
+    interactive3DReady: false,
+    callouts: [
+      {
+        labelEn: 'Full-Arch Screw-Retained Prosthesis',
+        labelTa: 'முழு தாடை திருகு பாலம்',
+        descEn: 'Non-removable prosthetic arch restoring full bite and smile aesthetics.',
+        descTa: 'முழு பற்கள் வரிசையையும் அசைவின்றி நிரந்தரமாக மீளமைக்கும் பாலம்.',
+        positionPercent: { x: 50, y: 22 },
+      },
+      {
+        labelEn: 'Tilted Posterior Multi-Unit Abutment',
+        labelTa: 'சாய்வான கோண இணைப்பு பகுதி',
+        descEn: 'Angled collar aligning tilted implants to parallel draw path.',
+        descTa: 'சாய்வான இம்பிளான்ட்டுகளை நேராக இணைக்க உதவும் சிறப்பு இணைப்பு.',
+        positionPercent: { x: 40, y: 46 },
+      },
+      {
+        labelEn: 'Strategically Angled Endosseous Implants',
+        labelTa: 'திட்டமிட்டு வைக்கப்பட்ட இம்பிளான்ட்டுகள்',
+        descEn: 'Four to six implants maximizing bone contact while bypassing nerves.',
+        descTa: 'நரம்பு மற்றும் சைனஸ் பகுதிகளைத் தவிர்த்து பொருத்தப்பட்ட 4 முதல் 6 இம்பிளான்ட்டுகள்.',
+        positionPercent: { x: 58, y: 68 },
+      }
+    ],
+  },
 };
 
 interface ProcedureAnatomyViewerProps {

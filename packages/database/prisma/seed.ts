@@ -42,6 +42,17 @@ const SECONDARY_DEPARTMENT_CODES: Record<string, string[]> = {
   'endodontic-retreatment': [],
   'apicoectomy': ['OMFS'],
   'internal-tooth-bleaching': ['COSM'],
+  // Batch 3 procedures
+  'gingival-flap-surgery': ['REST'],
+  'gum-grafting': ['COSM'],
+  'crown-lengthening': ['PROS', 'REST'],
+  'frenectomy': ['PEDO', 'ORTH'],
+  'socket-preservation-bone-graft': ['IMPL', 'PERIO'],
+  'alveolar-ridge-augmentation': ['IMPL'],
+  'sinus-lift': ['IMPL'],
+  'dental-abscess-management': ['EMRG', 'ENDO'],
+  'implant-supported-bridge': ['PROS'],
+  'full-arch-implant-restoration': ['PROS', 'OMFS'],
 };
 
 // Department code lookup helper
@@ -67,6 +78,17 @@ const PROCEDURE_PRIMARY_DEPT_CODE: Record<string, string> = {
   'endodontic-retreatment': 'ENDO',
   'apicoectomy': 'ENDO',
   'internal-tooth-bleaching': 'ENDO',
+  // Batch 3 procedures
+  'gingival-flap-surgery': 'PERIO',
+  'gum-grafting': 'PERIO',
+  'crown-lengthening': 'PERIO',
+  'frenectomy': 'PERIO',
+  'socket-preservation-bone-graft': 'OMFS',
+  'alveolar-ridge-augmentation': 'OMFS',
+  'sinus-lift': 'OMFS',
+  'dental-abscess-management': 'OMFS',
+  'implant-supported-bridge': 'IMPL',
+  'full-arch-implant-restoration': 'IMPL',
 };
 
 async function main() {

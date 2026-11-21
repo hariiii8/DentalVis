@@ -618,6 +618,319 @@ export default function ProcedureDetailClientView({
           },
         ];
 
+      case 'gingival-flap-surgery':
+        return [
+          {
+            num: 1,
+            titleEn: 'Profound Local Anesthesia & Sulcular Incision',
+            titleTa: 'மரத்துப்போகும் மருந்து & மெல்லிய ஈறு கீறல்',
+            descEn: 'The area is fully numbed and a delicate sulcular incision is made along the gingival margin to initiate flap access.',
+            descTa: 'சிகிச்சை பகுதி மரத்துப்போக செய்யப்பட்டு, ஈறு விளிம்பில் மெல்லிய நுண் கீறல் போடப்படுகிறது.',
+          },
+          {
+            num: 2,
+            titleEn: 'Full-Thickness Flap Elevation',
+            titleTa: 'ஈறு திசுவை மென்மையாக விலக்குதல்',
+            descEn: 'The gum tissue is gently elevated back from the teeth, revealing subgingival calculus and alveolar bone defects.',
+            descTa: 'பற்கள் மற்றும் எலும்பு பரப்பை தெளிவாகப் பார்க்க ஈறு திசு மென்மையாக விலக்கப்படுகிறது.',
+          },
+          {
+            num: 3,
+            titleEn: 'Ultrasonic Debridement & Root Planing',
+            titleTa: 'அல்ட்ராசோனிக் மூலம் காரை மற்றும் தொற்று நீக்கம்',
+            descEn: 'Micro-ultrasonic tips and specialized curettes meticulously debride bacterial biofilm and smooth contaminated root surfaces.',
+            descTa: 'நுண் கருவிகள் கொண்டு வேர் பரப்புகளில் படிந்துள்ள கடினமான காரைகள் மற்றும் நச்சுக்கள் நீக்கப்பட்டு சமன் செய்யப்படுகிறது.',
+          },
+          {
+            num: 4,
+            titleEn: 'Flap Repositioning & Primary Micro-Suturing',
+            titleTa: 'ஈறு மீளமைத்தல் & தையல் போடுதல்',
+            descEn: 'The gum flap is repositioned snug against the teeth and secured with delicate sutures to promote rapid healing and pocket closure.',
+            descTa: 'ஈறுகள் பற்களைச் சுற்றி மீண்டும் நேர்த்தியாக பொருத்தப்பட்டு நுண்ணிய தையல்களால் மூடப்படுகிறது.',
+          },
+        ];
+
+      case 'gum-grafting':
+        return [
+          {
+            num: 1,
+            titleEn: 'Recipient Bed Preparation & Root Planing',
+            titleTa: 'ஈறு பெறும் பகுதி தயாரிப்பு & வேர் சுத்தம்',
+            descEn: 'The exposed root surface is gently planed and chemically conditioned while a tiny recipient pouch is created in the surrounding gum.',
+            descTa: 'வெளிப்பட்ட வேர் பகுதி சுத்தப்படுத்தப்பட்டு, புதிய திசுவை ஏற்பதற்குரிய சிறிய அறை ஈறுகளில் உருவாக்கப்படுகிறது.',
+          },
+          {
+            num: 2,
+            titleEn: 'Subepithelial Donor Tissue Harvesting',
+            titleTa: 'அண்ணப் பகுதியில் இருந்து மெல்லிய திசு எடுத்தல்',
+            descEn: 'A paper-thin layer of subepithelial connective tissue is gently harvested from the roof of the mouth with minimal surface disruption.',
+            descTa: 'அண்ணத்தின் உள்பகுதியில் இருந்து சிறிய அளவில் ஆரோக்கியமான இணைப்பு திசு பாதுகாப்பாக எடுக்கப்படுகிறது.',
+          },
+          {
+            num: 3,
+            titleEn: 'Graft Placement & Micro-Suturing',
+            titleTa: 'திசு ஒட்டு பொருத்துதல் & தையலிடுதல்',
+            descEn: 'The donor tissue is tucked securely into the recipient bed over the exposed root and stabilized with microscopic sling sutures.',
+            descTa: 'எடுக்கப்பட்ட திசு வெளிப்பட்ட வேரின் மேல் சரியாக பொருத்தப்பட்டு மெல்லிய தையல்கள் மூலம் நிலைநிறுத்தப்படுகிறது.',
+          },
+          {
+            num: 4,
+            titleEn: 'Vascular Integration & Keratinized Healing',
+            titleTa: 'இரத்த ஓட்ட இணைப்பு & புதிய ஈறு உருவாக்கம்',
+            descEn: 'Capillaries rapidly vascularize the graft, forming a thick, healthy band of attached keratinized gum that permanently protects the tooth.',
+            descTa: 'சில நாட்களில் புதிய இரத்த நாளங்கள் இணைந்து, வேரை மூடி உறுதியான புதிய ஈறு உருவாகிறது.',
+          },
+        ];
+
+      case 'crown-lengthening':
+        return [
+          {
+            num: 1,
+            titleEn: 'Restorative Planning & Sounding Analysis',
+            titleTa: 'மருத்துவ திட்டமிடல் & ஆழம் கணித்தல்',
+            descEn: 'The doctor evaluates the biological width requirements and plans the exact millimeter clearance needed for your future crown.',
+            descTa: 'பல் கேப் போடுவதற்கு தேவையான சரியான மில்லிமீட்டர் இடைவெளியை மருத்துவர் முன்கூட்டியே கணக்கிடுகிறார்.',
+          },
+          {
+            num: 2,
+            titleEn: 'Conservative Gingival Recontouring',
+            titleTa: 'ஈறு விளிம்பு மறுசீரமைப்பு',
+            descEn: 'Excess or uneven gum tissue is micro-surgically contoured to establish symmetrical, aesthetic gum architecture.',
+            descTa: 'அதிகமாக உள்ள அல்லது சீரற்ற ஈறு திசுக்கள் மென்மையாக நீக்கப்பட்டு அழகிய வளைவு அமைக்கப்படுகிறது.',
+          },
+          {
+            num: 3,
+            titleEn: 'Minimal Alveolar Bone Ostectomy',
+            titleTa: 'சிறிய அளவு எலும்பு சமன் செய்தல்',
+            descEn: 'A microscopic rim of bone is gently recontoured to establish a healthy 2-3mm biologic zone between the bone and restoration margin.',
+            descTa: 'கேப் மற்றும் எலும்புக்கு இடையே ஆரோக்கியமான இடைவெளி இருக்க மிகக் குறைந்த அளவு எலும்பு மறுவடிவமைக்கப்படுகிறது.',
+          },
+          {
+            num: 4,
+            titleEn: 'Flap Adaptation & Provisional Stabilization',
+            titleTa: 'ஈறு பொருத்துதல் & தற்காலிக பாதுகாப்பு',
+            descEn: 'Tissues are stabilized with fine sutures, allowing sound supragingival tooth structure to heal completely prior to crown fabrication.',
+            descTa: 'திசுக்கள் தையல்களால் மூடப்பட்டு, புதிய கேப் தயாரிப்பதற்கு முன்பாக முழுமையாக ஆற அனுமதிக்கப்படுகிறது.',
+          },
+        ];
+
+      case 'frenectomy':
+        return [
+          {
+            num: 1,
+            titleEn: 'Targeted Numbing & Tension Release',
+            titleTa: 'மரத்துப்போகச் செய்தல் & தசை தளர்த்துதல்',
+            descEn: 'A small dab of topical gel and minimal anesthetic renders the frenum completely numb before gentle release begins.',
+            descTa: 'சிறிதளவு மரத்துப்போகும் மருந்து மூலம் இணைப்பு திசு வலி ஏதுமின்றி முழுமையாக மரத்துப்போக செய்யப்படுகிறது.',
+          },
+          {
+            num: 2,
+            titleEn: 'Precision Excision / Soft-Tissue Laser Release',
+            titleTa: 'துல்லியமான இணைப்பு நீக்கம் / லேசர் சிகிச்சை',
+            descEn: 'The restrictive band of connective tissue is released with micro-surgical scissors or a gentle dental laser in seconds.',
+            descTa: 'இறுக்கமாக உள்ள தசை இணைப்பு சில விநாடிகளில் நுண் கருவி அல்லது லேசர் மூலம் எளிதாக தளர்த்தப்படுகிறது.',
+          },
+          {
+            num: 3,
+            titleEn: 'Immediate Mobility Check & Rapid Healing',
+            titleTa: 'நாக்கு/உதடு அசைவு சோதனை & விரைவு குணம்',
+            descEn: 'Full unhindered tongue or lip mobility is immediately verified, requiring only minimal self-dissolving micro-sutures or laser seal.',
+            descTa: 'உதடு அல்லது நாக்கின் இயல்பான அசைவு உடனடியாக உறுதி செய்யப்பட்டு விரைவாக குணமாக வழிகாட்டப்படுகிறது.',
+          },
+        ];
+
+      case 'socket-preservation-bone-graft':
+        return [
+          {
+            num: 1,
+            titleEn: 'Atraumatic Tooth Removal',
+            titleTa: 'சேதமில்லா மென்மையான பல் பிடுங்குதல்',
+            descEn: 'The damaged tooth is extracted with micro-luxators to preserve the delicate, thin surrounding socket bone walls intact.',
+            descTa: 'எலும்பு சுவர் உடைந்துவிடாதவாறு மென்மையான நவீன கருவிகள் கொண்டு பல் பாதுகாப்பாக எடுக்கப்படுகிறது.',
+          },
+          {
+            num: 2,
+            titleEn: 'Debridement & Granulation Curettage',
+            titleTa: 'குழி சுத்தம் & கிருமி நீக்கம்',
+            descEn: 'The extraction socket is gently curetted of residual inflammatory tissue and rinsed with sterile antibacterial irrigant.',
+            descTa: 'பல் எடுக்கப்பட்ட குழி கிருமிகள் இன்றி முழுமையாக சுரண்டப்பட்டு சுத்தப்படுத்தப்படுகிறது.',
+          },
+          {
+            num: 3,
+            titleEn: 'Osteoconductive Mineral Packing',
+            titleTa: 'எலும்பு துகள்கள் நிரப்புதல்',
+            descEn: 'Sterile, mineralized bone graft particles are gently condensed into the socket to scaffold new bone formation.',
+            descTa: 'புதிய எலும்பு உருவாவதற்கு ஆதரவாக பிரத்யேக மருத்துவ எலும்பு துகள்கள் குழியினுள் நிரப்பப்படுகின்றன.',
+          },
+          {
+            num: 4,
+            titleEn: 'Collagen Barrier Seal & Stabilization',
+            titleTa: 'கொலாஜன் படலம் வைத்தல் & தையல்',
+            descEn: 'A resorbable collagen plug or membrane covers the bone graft, secured with cross-stitch sutures to protect the site during healing.',
+            descTa: 'எலும்பு துகள்கள் வெளியேறாமல் இருக்க கொலாஜன் படலம் வைக்கப்பட்டு தையல்களால் பாதுகாப்பாக மூடப்படுகிறது.',
+          },
+        ];
+
+      case 'alveolar-ridge-augmentation':
+        return [
+          {
+            num: 1,
+            titleEn: 'Full Exposure & Cortical Perforation',
+            titleTa: 'எலும்பு வெளிப்படுத்துதல் & நுண் துளையிடல்',
+            descEn: 'The atrophic jawbone ridge is surgically exposed and tiny micro-perforations are made to stimulate angiogenic healing factors.',
+            descTa: 'தேய்ந்துபோன எலும்பு பகுதி அணுகப்பட்டு, இரத்த ஓட்டம் மற்றும் புதிய செல்களை ஈர்க்க சிறிய நுண் துளைகள் இடப்படுகின்றன.',
+          },
+          {
+            num: 2,
+            titleEn: 'Scaffold Graft Material Placement',
+            titleTa: 'எலும்பு ஒட்டு சாரம் அமைத்தல்',
+            descEn: 'A tailored blend of autogenous and mineralized biomaterials is adapted against the deficient ridge to restore natural contours.',
+            descTa: 'இழக்கப்பட்ட எலும்பு உயரத்தையும் அகலத்தையும் மீளமைக்க பிரத்யேக எலும்பு ஒட்டு கலவை வைக்கப்படுகிறது.',
+          },
+          {
+            num: 3,
+            titleEn: 'Titanium-Reinforced Barrier Membrane Fixation',
+            titleTa: 'டைட்டானியம் பாதுகாப்பு படலம் நிலைநிறுத்துதல்',
+            descEn: 'A protective barrier membrane is securely pinned with titanium micro-tacks to prevent soft-tissue cellular infiltration.',
+            descTa: 'ஈறு செல்கள் உள்ளே புகாமல் தடுக்க பாதுகாப்பு படலம் டைட்டானியம் ஊசிகளால் உறுதியாக பொருத்தப்படுகிறது.',
+          },
+          {
+            num: 4,
+            titleEn: 'Tension-Free Primary Closure',
+            titleTa: 'இழுப்பின்றி சீரான தையல் மூடல்',
+            descEn: 'The overlying gum is released and carefully sutured without tension to guarantee protected, undisturbed bone regeneration.',
+            descTa: 'ஈறுகள் எவ்வித அழுத்தமும் இன்றி தையல்கள் மூலம் இணைக்கப்பட்டு 4 முதல் 9 மாதங்கள் எலும்பு உருவாக அனுமதிக்கப்படுகிறது.',
+          },
+        ];
+
+      case 'sinus-lift':
+        return [
+          {
+            num: 1,
+            titleEn: 'Maxillary Lateral Window / Crestal Access',
+            titleTa: 'மேல் தாடை சைனஸ் அணுகல் துவாரம்',
+            descEn: 'A tiny, oval lateral window is prepared through the upper jaw bone using gentle piezoelectric ultrasonic instruments.',
+            descTa: 'அதிநவீன அல்ட்ராசோனிக் கருவி கொண்டு மேல் தாடை எலும்பில் சிறிய துவாரம் மென்மையாக அமைக்கப்படுகிறது.',
+          },
+          {
+            num: 2,
+            titleEn: 'Schneiderian Membrane Elevation',
+            titleTa: 'சைனஸ் சவ்வை சேதமின்றி உயர்த்துதல்',
+            descEn: 'The delicate sinus lining (Schneiderian membrane) is carefully elevated intact from the bony sinus floor using blunt instruments.',
+            descTa: 'சைனஸ் காற்றுப்பையின் மெல்லிய சவ்வு கிழியாதவாறு எலும்பின் தரைப்பகுதியில் இருந்து லேசாக மேலே உயர்த்தப்படுகிறது.',
+          },
+          {
+            num: 3,
+            titleEn: 'Biocompatible Bone Graft Packing',
+            titleTa: 'எலும்பு ஒட்டுப் பொருள் நிரப்புதல்',
+            descEn: 'The created compartment beneath the elevated membrane is packed with osteoconductive bone graft particulate to build vertical height.',
+            descTa: 'உயர்த்தப்பட்ட சவ்வின் கீழ் உருவான புதிய வெற்றிடத்தில் எலும்பு துகள்கள் கவனமாக நிரப்பப்படுகின்றன.',
+          },
+          {
+            num: 4,
+            titleEn: 'Window Membrane Barrier & Closure',
+            titleTa: 'துவாரத்தை மூடுதல் & தையல் போடுதல்',
+            descEn: 'A collagen barrier covers the surgical window before the gum is sutured closed, allowing 6 months for dense bone maturation.',
+            descTa: 'துவாரம் கொலாஜன் படலத்தால் மூடப்பட்டு ஈறுகள் தைக்கப்படுகின்றன; 6 மாதங்களில் புதிய எலும்பு உருவாகிறது.',
+          },
+        ];
+
+      case 'dental-abscess-management':
+        return [
+          {
+            num: 1,
+            titleEn: 'Targeted Anesthesia & Diagnostic Localization',
+            titleTa: 'மரத்துப்போகச் செய்தல் & சீழ்கட்டியை கணித்தல்',
+            descEn: 'Targeted nerve block or perimeter anesthesia is achieved without injecting directly into acidic infected abscess fluid.',
+            descTa: 'தொற்று பரவியுள்ள பகுதியில் நேரடியாக ஊசி போடாமல், சுற்றியுள்ள நரம்புகளை மருத்துவர் மரத்துப்போக செய்கிறார்.',
+          },
+          {
+            num: 2,
+            titleEn: 'Targeted Incision & Purulence Evacuation',
+            titleTa: 'கீறி சீழை உடனடியாக வெளியேற்றுதல்',
+            descEn: 'A small micro-incision at the point of greatest fluctuance allows immediate, pain-relieving decompression of built-up pus.',
+            descTa: 'சீழ்கட்டியின் மையப்பகுதியில் சிறிய கீறல் இடப்பட்டு, கடுமையான அழுத்தமும் வலியும் நீங்கும் வகையில் சீழ் வெளியேற்றப்படுகிறது.',
+          },
+          {
+            num: 3,
+            titleEn: 'Copious Saline Irrigation & Drain Placement',
+            titleTa: 'கிருமிநாசினி கழுவல் & வடிகால் குழாய் அமைத்தல்',
+            descEn: 'The infected space is thoroughly flushed with sterile saline; a small rubber drain may be placed to keep the channel open.',
+            descTa: 'அறை முழுமையாக சுத்தப்படுத்தப்பட்டு, மீதமுள்ள திரவங்கள் தொடர்ந்து வெளியேற சிறிய ரப்பர் வடிகால் வைக்கப்படுகிறது.',
+          },
+          {
+            num: 4,
+            titleEn: 'Definitive Etiological Treatment & Systemic Care',
+            titleTa: 'மூல காரணத்தை சரிசெய்தல் & மருந்துகள்',
+            descEn: 'The causative tooth undergoes emergency access or extraction, paired with antibiotic therapy when systemic spreading signs exist.',
+            descTa: 'சீழ் பிடித்த பல்லுக்கு வேர் சிகிச்சை அல்லது அகற்றுதல் செய்யப்படுகிறது; தேவைப்பட்டால் ஆன்டிபயாடிக் மருந்துகள் வழங்கப்படுகின்றன.',
+          },
+        ];
+
+      case 'implant-supported-bridge':
+        return [
+          {
+            num: 1,
+            titleEn: 'Strategic Implant Site Preparation',
+            titleTa: 'இம்பிளான்ட் வைக்கும் இடம் தயாரிப்பு',
+            descEn: 'Two or more dental implants are surgically positioned at the boundary ends of the missing tooth gap into sound bone.',
+            descTa: 'பற்கள் இல்லாத இடைவெளியின் இரு முனைகளிலும் தாடை எலும்பினுள் இம்பிளான்ட்டுகள் துல்லியமாக பொருத்தப்படுகின்றன.',
+          },
+          {
+            num: 2,
+            titleEn: 'Osseointegration & Abutment Connection',
+            titleTa: 'எலும்புடன் இணைதல் & இணைப்பு பகுதி பொருத்துதல்',
+            descEn: 'Following healing and osseointegration, precision titanium abutments are securely screwed into each implant body.',
+            descTa: 'இம்பிளான்ட் எலும்புடன் உறுதியாக இணைந்த பின், அதன் மேல் பல் பாலத்தை தாங்கும் இணைப்புகள் பொருத்தப்படுகின்றன.',
+          },
+          {
+            num: 3,
+            titleEn: 'Digital 3D Bridge Fabrication',
+            titleTa: 'டிஜிட்டல் முறையில் பல் பாலம் தயாரித்தல்',
+            descEn: 'An optical scan guides CAD/CAM milling of a monolithic zirconia bridge with natural tooth shades and functional cusps.',
+            descTa: 'டிஜிட்டல் ஸ்கேன் அடிப்படையில் மெல்லும் ஆற்றல் கொண்ட உறுதியான ஜிர்கோனியா பல் பாலம் ஆய்வகத்தில் வடிவமைக்கப்படுகிறது.',
+          },
+          {
+            num: 4,
+            titleEn: 'Passive Fit Verification & Retention Locking',
+            titleTa: 'பொருத்தம் சரிபார்த்தல் & நிரந்தர சீல்',
+            descEn: 'The doctor confirms effortless passive seated fit, equilibrates chewing forces, and firmly torques the retaining screws.',
+            descTa: 'பாலம் அசைவின்றி கச்சிதமாக அமர்வது உறுதி செய்யப்பட்டு திருகுகள் மூலம் நிரந்தரமாக பூட்டப்படுகிறது.',
+          },
+        ];
+
+      case 'full-arch-implant-restoration':
+        return [
+          {
+            num: 1,
+            titleEn: 'Guided 3D Surgical Implant Placement',
+            titleTa: 'வழிகாட்டப்பட்ட 3D இம்பிளான்ட் பொருத்துதல்',
+            descEn: 'Four to six implants are strategically inserted into dense jawbone using a stereolithographic 3D surgical guide.',
+            descTa: 'முழு தாடையிலும் 4 அல்லது 6 இம்பிளான்ட்டுகள் 3D டிஜிட்டல் வழிகாட்டி மூலம் மிகத்துல்லியமாக பொருத்தப்படுகின்றன.',
+          },
+          {
+            num: 2,
+            titleEn: 'Multi-Unit Abutment Equilibrations',
+            titleTa: 'கோண சரிசெய்ப்பு மற்றும் இணைப்புகள்',
+            descEn: 'Angled multi-unit abutments compensate for tilted posterior implants, creating a level, parallel prosthetic platform.',
+            descTa: 'சாய்வாக வைக்கப்பட்ட இம்பிளான்ட்டுகளின் கோணங்களை சரிசெய்து பாலத்தை நேராகத் தாங்கும் இணைப்புகள் பொருத்தப்படுகின்றன.',
+          },
+          {
+            num: 3,
+            titleEn: 'Same-Day Provisional Immediate Loading',
+            titleTa: 'அன்றைய தினமே தற்காலிக பற்கள் பொருத்துதல்',
+            descEn: 'When primary stability is achieved, a rigid provisional bridge is screwed into place immediately so you never leave without teeth.',
+            descTa: 'இம்பிளான்ட் உறுதியாக அமையும் பட்சத்தில், உடனடியாக தற்காலிக முழு பற்கள் பாலம் திருகப்பட்டு அன்றே மெல்ல அனுமதிக்கப்படுகிறது.',
+          },
+          {
+            num: 4,
+            titleEn: 'Definitive Zirconia Full-Arch Delivery',
+            titleTa: 'நிரந்தர ஜிர்கோனியா முழு பாலம் பொருத்துதல்',
+            descEn: 'After 3 to 6 months of bone integration, the definitive custom-milled monolithic zirconia prosthesis is torqued into place.',
+            descTa: 'எலும்பு முழுமையாக ஆறிய பின், அழகிய மற்றும் அதிக ஆயுள் கொண்ட நிரந்தர முழு தாடை பற்கள் பாலம் பொருத்தப்படுகிறது.',
+          },
+        ];
+
       default:
         return [
           {

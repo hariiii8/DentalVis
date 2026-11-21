@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F0FDF4" />
+      <stop offset="100%" stop-color="#DCFCE7" />
+    </linearGradient>
+    <linearGradient id="toothGrad3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F8FAFC" />
+      <stop offset="50%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#E2E8F0" />
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#bg3)" />
+
+  <!-- Bone Base -->
+  <path d="M 200 360 L 200 440 L 600 440 L 600 360 C 530 360 500 375 460 375 C 430 375 420 375 400 375 C 380 375 370 375 340 375 C 300 375 270 360 200 360 Z" fill="#FEF3C7" stroke="#D97706" stroke-width="2" />
+
+  <!-- Tooth with Broken Margin -->
+  <path d="M 350 90 L 450 90 L 450 200 C 450 220 445 250 440 280 C 430 340 415 410 400 425 C 385 410 370 340 360 280 C 355 250 350 220 350 200 Z" fill="url(#toothGrad3)" stroke="#94A3B8" stroke-width="2.5" />
+
+  <!-- Gums Recontoured (Lowered Margin) -->
+  <path d="M 200 310 C 270 310 300 330 340 330 C 370 330 380 330 400 330 C 420 330 430 330 460 330 C 500 330 530 310 600 310 L 600 360 C 530 360 500 375 460 375 C 430 375 420 375 400 375 C 380 375 370 375 340 375 C 300 375 270 360 200 360 Z" fill="#FB7185" stroke="#E11D48" stroke-width="1.5" />
+
+  <!-- Ferrule Height Bracket (Exposed Sound Tooth: 2mm) -->
+  <line x1="335" y1="240" x2="335" y2="330" stroke="#0284C7" stroke-width="2" />
+  <line x1="330" y1="240" x2="340" y2="240" stroke="#0284C7" stroke-width="2" />
+  <line x1="330" y1="330" x2="340" y2="330" stroke="#0284C7" stroke-width="2" />
+
+  <!-- Biologic Width Space Indicator (3mm Gum-to-Bone) -->
+  <line x1="465" y1="330" x2="465" y2="375" stroke="#16A34A" stroke-width="2" />
+  <line x1="460" y1="330" x2="470" y2="330" stroke="#16A34A" stroke-width="2" />
+  <line x1="460" y1="375" x2="470" y2="375" stroke="#16A34A" stroke-width="2" />
+
+  <!-- Annotations -->
+  <rect x="110" y="260" width="195" height="32" rx="8" fill="#FFFFFF" stroke="#0284C7" stroke-width="1.5" />
+  <text x="207" y="281" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#0369A1" text-anchor="middle">Exposed Ferrule (≥2mm)</text>
+  <line x1="305" y1="276" x2="335" y2="285" stroke="#0284C7" stroke-width="1.5" />
+
+  <rect x="495" y="340" width="195" height="32" rx="8" fill="#FFFFFF" stroke="#16A34A" stroke-width="1.5" />
+  <text x="592" y="361" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#15803D" text-anchor="middle">Biologic Width Clearance</text>
+  <line x1="495" y1="356" x2="465" y2="352" stroke="#16A34A" stroke-width="1.5" />
+
+  <!-- Department & Code Pill -->
+  <rect x="290" y="445" width="220" height="26" rx="13" fill="#DCFCE7" stroke="#16A34A" stroke-width="1" />
+  <text x="400" y="462" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#15803D" text-anchor="middle">PERIO-CRW-01 • Periodontics</text>
+</svg>

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDF4FF" />
+      <stop offset="100%" stop-color="#FAE8FF" />
+    </linearGradient>
+    <linearGradient id="toothGrad5" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F8FAFC" />
+      <stop offset="50%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#E2E8F0" />
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#bg5)" />
+
+  <!-- Alveolar Bone with Extraction Socket Profile -->
+  <path d="M 160 320 L 160 440 L 640 440 L 640 320 L 460 320 C 450 360 435 410 400 410 C 365 410 350 360 340 320 Z" fill="#FEF3C7" stroke="#D97706" stroke-width="2" />
+
+  <!-- Adjacent Teeth (Premolar & Molar) -->
+  <path d="M 230 160 C 240 150 320 150 330 160 C 340 210 335 300 325 340 C 315 380 280 400 280 400 C 280 400 250 380 240 340 C 230 300 220 210 230 160 Z" fill="url(#toothGrad5)" stroke="#94A3B8" stroke-width="2" />
+  <path d="M 470 160 C 480 150 560 150 570 160 C 580 210 575 300 565 340 C 555 380 520 400 520 400 C 520 400 490 380 480 340 C 470 300 460 210 470 160 Z" fill="url(#toothGrad5)" stroke="#94A3B8" stroke-width="2" />
+
+  <!-- Osteoconductive Bone Graft Particles Packing in Socket -->
+  <g fill="#B45309" stroke="#78350F" stroke-width="1">
+    <circle cx="380" cy="350" r="4" />
+    <circle cx="400" cy="345" r="5" />
+    <circle cx="418" cy="352" r="4.5" />
+    <circle cx="372" cy="370" r="4.5" />
+    <circle cx="395" cy="368" r="5" />
+    <circle cx="415" cy="375" r="4" />
+    <circle cx="388" cy="388" r="4.5" />
+    <circle cx="406" cy="392" r="4" />
+  </g>
+
+  <!-- Collagen Matrix Protective Plug at Crest -->
+  <rect x="345" y="312" width="110" height="16" rx="4" fill="#67E8F9" stroke="#0891B2" stroke-width="1.5" />
+  <line x1="345" y1="315" x2="455" y2="325" stroke="#0284C7" stroke-width="1.5" />
+  <line x1="345" y1="325" x2="455" y2="315" stroke="#0284C7" stroke-width="1.5" />
+
+  <!-- Annotations -->
+  <rect x="110" y="270" width="195" height="32" rx="8" fill="#FFFFFF" stroke="#0891B2" stroke-width="1.5" />
+  <text x="207" y="291" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#0E7490" text-anchor="middle">Collagen Membrane Seal</text>
+  <line x1="305" y1="286" x2="350" y2="315" stroke="#0891B2" stroke-width="1.5" />
+
+  <rect x="495" y="360" width="195" height="32" rx="8" fill="#FFFFFF" stroke="#B45309" stroke-width="1.5" />
+  <text x="592" y="381" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#B45309" text-anchor="middle">Osteoconductive Mineral Graft</text>
+  <line x1="495" y1="376" x2="430" y2="370" stroke="#B45309" stroke-width="1.5" />
+
+  <!-- Department & Code Pill -->
+  <rect x="270" y="445" width="260" height="26" rx="13" fill="#FAE8FF" stroke="#A855F7" stroke-width="1" />
+  <text x="400" y="462" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#7E22CE" text-anchor="middle">OMFS-SCK-01 • Oral &amp; Maxillofacial Surgery</text>
+</svg>
