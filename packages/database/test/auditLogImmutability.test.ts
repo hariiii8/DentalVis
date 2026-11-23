@@ -2,7 +2,11 @@
 // DentalVis 2.0 — Audit Log Immutability & Anti-Truncate Test Suite
 // Architecture Baseline v1.9.1 — Milestone M6.1.1: Database-Level Immutability
 
-import { describe, it, expect, beforeAll, afterAll } from 'vitest';
+import { describe, it, expect, beforeAll, afterAll, vi } from 'vitest';
+
+// Mock server-only for node test runner
+vi.mock('server-only', () => ({}));
+
 import { prisma, Prisma } from '../src';
 import crypto from 'crypto';
 

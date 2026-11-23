@@ -5,7 +5,7 @@
 **Target Milestone:** M6.1.2 (Second Implementation Sub-Milestone of M6.1)  
 **Parent Blueprint:** `docs/architecture/M6_1_GOVERNANCE_SERVICE_LAYER_IMPLEMENTATION_PLAN.md`  
 **Foundational Database Milestone:** M6.1.1 (Audit Log Immutability Migration — Verified Commit `e9cb956`)  
-**Status:** Planning & Architectural Specification Only (Read-Only Planning)  
+**Status:** Implementation Verified & Accepted  
 **Effective Date:** November 24, 2026  
 **Target Packages:** `packages/common` (Shared Governance DTOs & Domain Enums), `packages/database` (Server-Only Policy Engine & Type Guards)  
 
@@ -13,16 +13,14 @@
 
 ## 1. Executive Summary
 
-Phase M6.1.2 establishes the shared, strongly typed domain model and the server-only, fail-closed policy configuration adapter required by all downstream Clinical Review Board (CRB) services.
+Phase M6.1.2 implemented the shared, strongly typed domain model and the server-only, fail-closed policy configuration adapter required by all downstream Clinical Review Board (CRB) services.
 
-### Core Objectives & Deliverables
-1. **Strongly Typed Governance Domain Model:** Formalize type definitions for governance roles, permission scopes, clinical review lifecycle states, review outcomes, procedure risk tiers, reviewer eligibility, credential verification states, conflict-of-interest (COI) declarations, policy ratification registers, approval evidence, and audit event classifications.
-2. **Clear Separation of Concerns:** Strictly distinguish between technical authorization roles (`UserRole`), governance operational identities (`CRBRole`), professional clinical qualifications (BDS/DDS/DMD, Statutory Specialties), jurisdiction-specific licensing recognition, and individual clinical review decisions.
-3. **Fail-Closed Policy Adapter:** Design a server-only policy evaluation engine that loads only explicitly ratified governance policies, rigorously rejects unratified or proposed policies without synthetic defaults, preserves policy provenance and versioning, and provides deterministic, testable evaluation.
-4. **Preservation of Existing Invariants:** Maintain the frozen v1.9.1 architecture baseline, protect M6.1.1 database audit log immutability, preserve all previously ratified M4 policies, keep `DENTALVIS_PROCEDURE_PROVIDER=static` as default, and strictly prevent AI clinical sign-off or automated clinical approvals.
-
-> [!IMPORTANT]
-> **Planning and Design Only:** This document is an implementation plan and architectural specification. No application source code, shared types, Prisma schemas, database migrations, policy configurations, or reviewer accounts are created or altered during this planning phase.
+### Core Objectives & Deliverables Completed
+1. **Strongly Typed Governance Domain Model:** Formalized type definitions for governance roles, permission scopes, clinical review lifecycle states, review outcomes, procedure risk tiers, reviewer eligibility, credential verification states, conflict-of-interest (COI) declarations, policy ratification registers, approval evidence, and audit event classifications in `packages/common/src/governance.ts`.
+2. **Clear Separation of Concerns:** Strictly distinguished between technical application user roles (`UserRole`), governance operational identities (`CRBRole`), professional clinical qualifications (BDS/DDS/DMD, Statutory Specialties), jurisdiction-specific licensing recognition, and individual clinical review decisions.
+3. **Fail-Closed Policy Adapter:** Implemented `PolicyConfigurationAdapter` in `packages/database/src/governance/policyAdapter.ts` importing `'server-only'`, loading only explicitly ratified governance policies, rigorously rejecting unratified or proposed policies without synthetic defaults, preserving policy provenance and versioning, and providing deterministic, testable evaluation.
+4. **Preservation of Existing Invariants:** Maintained the frozen v1.9.1 architecture baseline, protected M6.1.1 database audit log immutability, preserved all previously ratified M4 policies, kept `DENTALVIS_PROCEDURE_PROVIDER=static` as default, and strictly prevented AI clinical sign-off or automated clinical approvals.
+5. **Comprehensive Verification:** 22/22 unit and integration tests passing in `policyAdapter.test.ts`, all 8 database test suites passing (134/134 tests), Turbo repo typecheck passing across all 6 packages, Next.js web build passing, and Vite admin build passing.
 
 ---
 
@@ -501,22 +499,27 @@ When authorization to implement M6.1.2 is granted, it will be considered accepta
 
 ---
 
-## 12. Explicit Implementation Authorization Checklist
+## 12. Implementation Verification & Sign-Off Checklist
 
-To be completed only when formal authorization to execute M6.1.2 is provided:
+Completed following explicit project owner authorization on November 24, 2026:
 
-- [ ] Project owner explicitly authorizes M6.1.2 implementation.
-- [ ] Working tree inspected and confirmed clean.
-- [ ] Shared types created under `packages/common/src/governance.ts`.
-- [ ] Policy adapter created under `packages/database/src/governance/`.
-- [ ] Test suite `policyAdapter.test.ts` created and passing 100%.
-- [ ] Full workspace typecheck and Next.js build confirmed passing.
-- [ ] Git commit and push executed cleanly.
+- [x] Project owner explicitly authorized M6.1.2 implementation.
+- [x] Pre-implementation repository audit verified working tree, types, and schema baseline.
+- [x] Shared types created under `packages/common/src/governance.ts` and re-exported in `packages/common/src/index.ts`.
+- [x] Server-only policy adapter and error definitions created under `packages/database/src/governance/`.
+- [x] Ratified policies registered in `ratifiedPolicies.ts` with explicit provenance metadata.
+- [x] Test suite `policyAdapter.test.ts` created and passing 100% (22/22 tests).
+- [x] Full database test suite passes 100% (8 test suites, 134/134 tests passing).
+- [x] Turbo workspace typecheck passes cleanly across all 6 packages.
+- [x] Next.js production web build (`pnpm --filter web build`) succeeds cleanly.
+- [x] Standalone Vite admin production build (`pnpm --filter admin build`) succeeds cleanly.
+- [x] Zero changes made to Prisma schema, migrations, or PostgreSQL database.
+- [x] Git commit and push executed cleanly.
 
 ---
 
-### Phase M6.1.2 Recommendation
+### Phase M6.1.2 Final Sign-Off
 
-**Verdict: `M6.1.2 READY FOR IMPLEMENTATION AUTHORIZATION`**
+**Final Status:** **`M6.1.2 IMPLEMENTATION ACCEPTED`**
 
-*(This document provides the complete technical execution blueprint for Phase M6.1.2. Execution remains blocked pending explicit user authorization.)*
+*(Governance Core Types and Server-Only Fail-Closed Policy Adapter are fully implemented, verified, and operational for Milestone M6.1.)*

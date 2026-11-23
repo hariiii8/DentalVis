@@ -15,6 +15,11 @@ export type ApprovalDecision = 'APPROVED' | 'REJECTED';
 
 export type GovernanceTier = 'TIER_1' | 'TIER_2' | 'TIER_3';
 
+// ----------------------------------------------------------------------
+// CLINICAL REVIEW BOARD (CRB) GOVERNANCE TAXONOMY & TYPES (M6.1.2)
+// ----------------------------------------------------------------------
+export * from './governance';
+
 export interface ExploreCategory {
   id: string;
   slug: string;
@@ -1639,5 +1644,11 @@ export function getVisibleProceduresByDepartment(
     return isPrimary || isSecondary;
   });
 }
+
+// ----------------------------------------------------------------------
+// REPOSITORY ABSTRACTION (PHASE B2)
+// ----------------------------------------------------------------------
+export * from './repository/index';
+
 
 
