@@ -37,14 +37,16 @@ A comprehensive audit of the repository, existing packages, schemas, and governa
 - **`apps/admin` (`apps/admin/src/App.tsx`):** Standalone Vite + React Single-Page Application (SPA) consuming administrative APIs cross-origin.
 
 ### 2.2 Role Model Reconciliation (5 Technical Roles vs 7 Governance Roles)
-The database enum `UserRole` in `packages/database/prisma/schema.prisma` is frozen at 5 technical values:
+The application-level enum `UserRole` in `packages/database/prisma/schema.prisma` is frozen at 5 technical values:
 1. `PATIENT_VIEWER`
 2. `CLINICAL_AUTHOR`
 3. `CLINICAL_REVIEWER`
 4. `CHIEF_EDITOR`
 5. `SYSTEM_ADMIN`
 
-The M5 Clinical Review Board Workflow defines 7 governance roles. As reconciled in M6 and M6.1, the mapping is strictly maintained:
+It is essential to maintain clear architectural separation: `UserRole` is an application-level user role represented in the Prisma data model for application RBAC. It must not be conflated with PostgreSQL database user credentials, database connection roles, or database engine privileges (such as `dentalvis_user`).
+
+The M5 Clinical Review Board Workflow defines 7 governance operational roles. As reconciled in M6 and M6.1, the mapping between application-level `UserRole` and governance identities is strictly maintained:
 
 | Governance CRB Role | Technical Role (`UserRole`) | Authorization Guard & Scope Enforcement | Read/Write Scope |
 | :--- | :--- | :--- | :--- |
@@ -68,7 +70,7 @@ To prevent dangerous conflations (such as treating a system administrator as a c
 
 ```mermaid
 graph TD
-    subgraph TechnicalAuth["1. Technical Authorization"]
+    subgraph TechnicalAuth["1. Application-Level Technical RBAC"]
         TR["UserRole (Prisma Enum)<br/>PATIENT_VIEWER | CLINICAL_AUTHOR | CLINICAL_REVIEWER | CHIEF_EDITOR | SYSTEM_ADMIN"]
         Scopes["PermissionScope<br/>crb:review:read | crb:review:submit | crb:credential:verify | crb:publish | crb:audit:read"]
     end
@@ -361,10 +363,10 @@ To maintain absolute legal and clinical integrity, the adapter categorizes all g
 
 | Policy Key | Policy Description | Classification | Ratification Status | Adapter Enforcement Behavior |
 | :--- | :--- | :---: | :---: | :--- |
-| **`governance:no_ai_signoff`** | Artificial intelligence cannot provide clinical approval or substitute for clinician judgment. | `[PREVIOUSLY RATIFIED POLICY]` | **RATIFIED (M4)** | **ENFORCED:** Active; blocks any non-human reviewer principal. |
+| **`governance:no_ai_signoff`** | Artificial intelligence cannot provide clinical approval or substitute for clinician judgment. Human identity or account existence alone does NOT establish clinical eligibility. The reviewer must be an authenticated human practitioner whose professional qualifications, applicable licenses, and required statutory permits have been verified against statutory registries for the relevant procedure scope and jurisdiction. Missing mandatory verification evidence fails closed. Automatic reviewer eligibility is strictly prohibited. | `[PREVIOUSLY RATIFIED POLICY]` | **RATIFIED (M4)** | **ENFORCED:** Active; blocks AI accounts, unverified human accounts, and clinicians lacking scope-specific and jurisdiction-verified credentials fail-closed. |
 | **`governance:author_separation`**| Content author cannot approve or review own content revision. | `[PREVIOUSLY RATIFIED POLICY]` | **RATIFIED (M4)** | **ENFORCED:** Active; blocks review assignment or approval if authorId === reviewerId. |
 | **`governance:decoupled_media`** | Clinical text approval does not authorize video or 3D asset rendering without dedicated sign-off. | `[PREVIOUSLY RATIFIED POLICY]` | **RATIFIED (M4)** | **ENFORCED:** Active; preflight checks media flags separately. |
-| **`governance:sedation_permits`** | Universal 5-year tenure rule rejected; mandates statutory sedation permits and post-grad training. | `[PREVIOUSLY RATIFIED POLICY]` | **RATIFIED (M4)** | **ENFORCED:** Active; validates statutory procedural permits. |
+| **`governance:sedation_permits`** | Universal 5-year tenure rule rejected; requirements depend strictly on jurisdiction and procedure scope. Requires verification of applicable licensing, statutory procedural permits, accredited post-grad residency training, and recognized specialty credentials. Blanket qualification rules are prohibited. | `[PREVIOUSLY RATIFIED POLICY]` | **RATIFIED (M4)** | **ENFORCED (JURISDICTION-SENSITIVE):** Active; mandates explicit jurisdictional context and procedure scope. Validates applicable statutory permits and training without universal blanket rules. |
 | **`governance:surgical_specialty`**| Standalone commercial implantology certificates rejected; mandates recognized OMFS/Periodontics specialty. | `[PREVIOUSLY RATIFIED POLICY]` | **RATIFIED (M4)** | **ENFORCED:** Active; requires statutory specialty for Tier 3 surgical. |
 | **`publication:fail_closed_filter`**| Web app only exposes procedures where `currentStatus = 'PUBLISHED'` and active unrevoked approval exists. | `[EXISTING TECHNICAL INVARIANT]` | **ACTIVE INVARIANT** | **ENFORCED:** Active; repository filter excludes drafts fail-closed. |
 | **`audit:immutability_triggers`** | `AdminAuditLog` is physically append-only via PostgreSQL triggers (`trg_admin_audit_log_immutable`). | `[EXISTING TECHNICAL INVARIANT]` | **ACTIVE INVARIANT (M6.1.1)** | **ENFORCED:** Active; database engine rejects UPDATE, DELETE, TRUNCATE. |
@@ -386,14 +388,19 @@ To maintain absolute legal and clinical integrity, the adapter categorizes all g
    - All policy resolution logic imports `'server-only'`, guaranteeing it cannot be bundled into client-side JavaScript or executed in browser contexts.
 2. **Fail-Closed Execution Guarantee:**
    - In any scenario where a policy is unratified, missing, malformed, or references an unsupported version, the adapter throws a specific typed error. It never silently returns permissive defaults (e.g., minimum quorum `0` or `1`).
-3. **No Privilege Inheritance:**
-   - Technical roles (e.g. `SYSTEM_ADMIN`) do not inherit clinical review privileges.
+3. **Reviewer Eligibility & Verification Standards:**
+   - **No AI Clinical Sign-off:** Artificial intelligence cannot provide clinical sign-off, approval, or substitute for human clinician judgment.
+   - **No Automatic Eligibility:** Having an active human account, a user profile, or a generic `CLINICAL_REVIEWER` role in the database does **NOT** automatically confer clinical review eligibility.
+   - **Mandatory Verified Credentials:** A reviewer must be authenticated and have appropriately verified professional qualifications (BDS/DDS/DMD/MBBS), active statutory licenses, and procedure-specific permits (e.g., parenteral sedation permits).
+   - **Scope and Jurisdiction Binding:** Eligibility is evaluated strictly against the specific procedure scope (Tier 1 vs Tier 2 vs Tier 3 surgical/sedation) and target jurisdiction. Missing mandatory verification evidence fails closed immediately.
+4. **No Privilege Inheritance:**
+   - Application-level user roles (e.g. `SYSTEM_ADMIN`) do not inherit clinical review privileges. Application-level RBAC is kept strictly separated from database connection credentials (`dentalvis_user`).
    - The Independent Auditor role (`INDEPENDENT_AUDITOR`) possesses strictly read-only permissions (`crb:dossier:read`, `crb:policy:read`, `crb:audit:read`). All mutation permissions (`crb:review:submit`, `crb:publish:authorize`, `crb:approval:revoke`) are denied.
-4. **Separation Between CRB Chair and Publication Administrator:**
-   - Although both may map to the technical role `CHIEF_EDITOR`, their permission scopes are isolated:
+5. **Separation Between CRB Chair and Publication Administrator:**
+   - Although both may map to the application technical role `CHIEF_EDITOR`, their permission scopes are isolated:
      - `CRB_CHAIR` owns `crb:review:assign` and `crb:approval:revoke`, but **cannot** execute `crb:publish:authorize`.
      - `PUBLICATION_ADMIN` owns `crb:publish:authorize`, but **cannot** submit clinical decisions or revoke clinical approvals.
-5. **Sanitized Error Responses:**
+6. **Sanitized Error Responses:**
    - Policy evaluation errors thrown on the server are captured and logged to `AdminAuditLog` with detailed metadata. External client API responses receive standardized, sanitized error codes (e.g. HTTP 403 Forbidden or HTTP 422 Unprocessable Entity) without leaking internal code paths or server secrets.
 
 ---
