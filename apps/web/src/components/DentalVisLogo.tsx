@@ -22,7 +22,7 @@ const sizeConfig = {
 // Change logo source here when the official logo asset is delivered.
 export const BRAND_CONFIG = {
   name: 'DentalVis',
-  version: '2.0',
+  version: '1.9.1',
   primaryColor: '#20B2AA',
   logoMarkSrc: '/brand/logo-mark.svg',
   hasImageLogo: true,
