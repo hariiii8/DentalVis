@@ -1611,11 +1611,6 @@ export default function ProcedureDetailClientView({
                   <Badge variant="outline" className="text-xs font-mono bg-[#F5FAF9]/75">
                     {procedure.code}
                   </Badge>
-                  <Badge variant="alert" className="text-xs font-semibold">
-                    {isTamil
-                      ? 'மருத்துவ பரிசோதனைக்கு உட்படாதது · பயிற்சிக் குறிப்பு மட்டுமே'
-                      : 'Not Clinically Reviewed · Educational Reference Only'}
-                  </Badge>
                 </div>
 
                 <div className="space-y-1">

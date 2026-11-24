@@ -153,7 +153,7 @@ describe('M7.2 Complete Catalogue Publication & Public Access Suite', () => {
     });
   });
 
-  describe('Section 5: Strict Clinical Governance Preservation', () => {
+  describe('Section 5: Strict Clinical Governance Preservation & Uniform Presentation Invariants', () => {
     it('preserves strict clinical quorum query when strictClinicalOnly is explicitly requested', async () => {
       const strictlyApproved = await repository.getVisibleProcedures({ strictClinicalOnly: true });
       expect(strictlyApproved).toHaveLength(4);
@@ -162,6 +162,30 @@ describe('M7.2 Complete Catalogue Publication & Public Access Suite', () => {
         strictClinicalOnly: true,
       });
       expect(unratifiedDraft).toBeUndefined();
+    });
+
+    it('verifies internal clinical governance statuses remain authentic (exactly 4 PUBLISHED, 44 DRAFT)', () => {
+      const published = CANONICAL_PROCEDURES.filter((p) => p.contentStatus === 'PUBLISHED');
+      const drafts = CANONICAL_PROCEDURES.filter((p) => p.contentStatus === 'DRAFT');
+
+      expect(published).toHaveLength(4);
+      expect(drafts).toHaveLength(44);
+
+      const publishedSlugs = published.map((p) => p.slug).sort();
+      expect(publishedSlugs).toEqual([
+        'deep-cleaning-scaling',
+        'dental-crowns',
+        'root-canal-treatment',
+        'single-dental-implant',
+      ]);
+    });
+
+    it('verifies invalid and archived procedures remain fail-closed and return undefined', async () => {
+      const invalid = await repository.getVisibleProcedureBySlug('completely-invalid-slug');
+      expect(invalid).toBeUndefined();
+
+      const archived = await repository.getVisibleProcedureBySlug('nonexistent-archived-slug');
+      expect(archived).toBeUndefined();
     });
   });
 });

@@ -1539,11 +1539,6 @@ export function ProcedureAnatomyViewer({
                 : 'Educational Anatomical Illustration'}
             </span>
           </Badge>
-          <Badge variant="outline" className="text-[11px] font-mono text-[#587477] bg-[#F5FAF9]/80">
-            {isTamil
-              ? 'மருத்துவ பரிசோதனைக்கு உட்படாதது · பயிற்சிக் குறிப்பு மட்டுமே'
-              : 'Not Clinically Reviewed · Educational Reference Only'}
-          </Badge>
         </div>
       </div>
 
