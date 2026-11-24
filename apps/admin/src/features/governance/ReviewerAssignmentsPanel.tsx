@@ -3,7 +3,7 @@
 // Architecture Baseline v1.9.1 (FROZEN) — Milestone M6.1.5-D
 
 import React, { useState, useEffect } from 'react';
-import { Card, Button, Badge } from '@dentalvis/ui';
+import { Button, Badge } from '@dentalvis/ui';
 import { UserCheck, Plus, RefreshCw, AlertCircle, CheckCircle2 } from 'lucide-react';
 import { governanceApi, ReviewerAssignmentDto } from '../../lib/governanceApi';
 
@@ -80,32 +80,40 @@ export function ReviewerAssignmentsPanel({ revisionId }: { revisionId?: string }
   };
 
   return (
-    <Card className="p-6 space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="liquid-glass-primary p-7 sm:p-9 rounded-3xl space-y-6 shadow-md border border-white/80">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <UserCheck className="w-5 h-5 text-[#0D9488]" />
-            <h3 className="font-bold text-lg text-[#134E4A]">Clinical Reviewer Assignments</h3>
+            <div className="w-8 h-8 rounded-xl liquid-glass-lens flex items-center justify-center text-[#20B2AA]">
+              <UserCheck className="w-4 h-4" />
+            </div>
+            <h3 className="font-extrabold text-xl text-[#145B59] tracking-tight">
+              Clinical Reviewer Assignments
+            </h3>
           </div>
-          <p className="text-xs text-slate-500 mt-1">
+          <p className="text-xs text-[#587477] mt-1">
             Authoritative revision reviewer pairings backed by PostgreSQL partial unique index enforcement.
           </p>
         </div>
 
         <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm" onClick={fetchAssignments} disabled={loading} className="gap-1.5 text-xs">
+          <button
+            type="button"
+            onClick={fetchAssignments}
+            disabled={loading}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl liquid-glass-secondary text-xs font-bold text-[#145B59] hover:bg-white/80 transition-all cursor-pointer"
+          >
             <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
             <span>Refresh</span>
-          </Button>
-          <Button
-            variant="primary"
-            size="sm"
+          </button>
+          <button
+            type="button"
             onClick={() => setShowCreateModal(true)}
-            className="gap-1.5 text-xs"
+            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-[#20B2AA] text-white hover:bg-[#145B59] text-xs font-bold shadow-xs transition-all cursor-pointer"
           >
             <Plus className="w-3.5 h-3.5" />
             <span>Assign Reviewer</span>
-          </Button>
+          </button>
         </div>
       </div>
 
@@ -218,40 +226,37 @@ export function ReviewerAssignmentsPanel({ revisionId }: { revisionId?: string }
               <div className="flex items-center gap-2">
                 {isAssigned && (
                   <>
-                    <Button
-                      variant="outline"
-                      size="sm"
+                    <button
+                      type="button"
                       onClick={() => handleTransition(a.id, 'ACCEPT')}
-                      className="text-xs h-7 px-2"
+                      className="px-3 py-1.5 rounded-xl text-xs font-bold bg-[#20B2AA] text-white hover:bg-[#145B59] transition-all shadow-xs cursor-pointer"
                     >
                       Accept
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="sm"
+                    </button>
+                    <button
+                      type="button"
                       onClick={() => handleTransition(a.id, 'DECLINE')}
-                      className="text-xs h-7 px-2 text-red-600 hover:bg-red-50"
+                      className="px-3 py-1.5 rounded-xl text-xs font-bold text-amber-800 bg-amber-50 hover:bg-amber-100 transition-colors cursor-pointer"
                     >
                       Decline
-                    </Button>
+                    </button>
                   </>
                 )}
 
                 {(isAssigned || isAccepted) && (
-                  <Button
-                    variant="ghost"
-                    size="sm"
+                  <button
+                    type="button"
                     onClick={() => handleTransition(a.id, 'REVOKE')}
-                    className="text-xs h-7 px-2 text-slate-500 hover:text-red-700"
+                    className="px-3 py-1.5 rounded-xl text-xs font-bold text-rose-700 bg-rose-50 hover:bg-rose-100 transition-colors cursor-pointer"
                   >
                     Revoke
-                  </Button>
+                  </button>
                 )}
               </div>
             </div>
           );
         })}
       </div>
-    </Card>
+    </div>
   );
 }
