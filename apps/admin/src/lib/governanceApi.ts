@@ -219,7 +219,6 @@ export class GovernanceApiClient {
     revisionId: string;
     decision: 'APPROVED' | 'REJECTED';
     clinicalNotes?: string;
-    rubricScore?: number;
   }) {
     return this.request<ClinicalReviewResultDto>('/reviews', {
       method: 'POST',

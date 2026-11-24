@@ -11,7 +11,6 @@ export function ClinicalReviewOversightPanel({ revisionId }: { revisionId?: stri
   const [targetRevisionId, setTargetRevisionId] = useState(revisionId || '');
   const [decision, setDecision] = useState<'APPROVED' | 'REJECTED'>('APPROVED');
   const [clinicalNotes, setClinicalNotes] = useState('');
-  const [rubricScore, setRubricScore] = useState(90);
 
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -32,7 +31,6 @@ export function ClinicalReviewOversightPanel({ revisionId }: { revisionId?: stri
       revisionId: targetRevisionId,
       decision,
       clinicalNotes: clinicalNotes || undefined,
-      rubricScore,
     });
     setSubmitting(false);
 
@@ -110,19 +108,6 @@ export function ClinicalReviewOversightPanel({ revisionId }: { revisionId?: stri
               <option value="REJECTED">REJECTED (Requires Clinical Revision)</option>
             </select>
           </div>
-        </div>
-
-        <div>
-          <label className="font-medium text-slate-700 block mb-1">Rubric Score (0 - 100)</label>
-          <input
-            type="number"
-            min="0"
-            max="100"
-            value={rubricScore}
-            onChange={(e) => setRubricScore(parseInt(e.target.value, 10))}
-            className="w-32 px-3 py-1.5 border rounded-md text-xs"
-            required
-          />
         </div>
 
         <div>
