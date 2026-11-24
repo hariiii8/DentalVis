@@ -6,3 +6,9 @@ allowBuilds:
   '@prisma/engines': true
   esbuild: true
   prisma: true
+overrides:
+  postcss: "^8.5.33"
+  effect: "^3.22.1"
+  deepmerge-ts: "^8.0.0"
+
+
