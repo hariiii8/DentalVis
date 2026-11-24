@@ -9,18 +9,12 @@ import {
   PrismaCoiRepository,
   createGovernanceErrorResponse,
   createGovernanceSuccessResponse,
+  extractGovernanceSessionCredentials,
+  extractGovernanceRequestContext,
 } from '@dentalvis/database';
 
 function extractSessionTokenHash(req: NextRequest): string | null {
-  const authHeader = req.headers.get('authorization');
-  if (authHeader && authHeader.toLowerCase().startsWith('bearer ')) {
-    return authHeader.substring(7).trim();
-  }
-  const cookie = req.cookies.get('dentalvis_session_token');
-  if (cookie && cookie.value.trim() !== '') {
-    return cookie.value.trim();
-  }
-  return null;
+  return extractGovernanceSessionCredentials(req).tokenHash;
 }
 
 /**
@@ -75,6 +69,7 @@ export async function POST(req: NextRequest) {
         sessionTokenHash: tokenHash,
       },
       requiredScope: 'crb:coi:audit',
+      requestContext: extractGovernanceRequestContext(req),
     });
 
     if (!guardRes.success) {

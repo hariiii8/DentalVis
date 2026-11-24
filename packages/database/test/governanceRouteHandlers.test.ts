@@ -85,23 +85,27 @@ export const mockSubmitReview = vi.fn();
 export const mockPrismaFindUniqueRevision = vi.fn();
 export const mockPrismaFindUniqueUser = vi.fn();
 
-vi.mock('../src/governance/apiPipeline', () => ({
-  guardGovernanceApi: (...args: any[]) => mockGuardGovernanceApi(...args),
-  createGovernanceErrorResponse: (failure: any) => ({
-    status: failure.httpStatus,
-    body: {
-      error: {
-        code: failure.errorCode,
-        message: failure.message,
-        details: failure.details,
+vi.mock('../src/governance/apiPipeline', async (importOriginal) => {
+  const actual: any = await importOriginal();
+  return {
+    ...actual,
+    guardGovernanceApi: (...args: any[]) => mockGuardGovernanceApi(...args),
+    createGovernanceErrorResponse: (failure: any) => ({
+      status: failure.httpStatus,
+      body: {
+        error: {
+          code: failure.errorCode,
+          message: failure.message,
+          details: failure.details,
+        },
       },
-    },
-  }),
-  createGovernanceSuccessResponse: (data: any, status: number = 200) => ({
-    status,
-    body: { data },
-  }),
-}));
+    }),
+    createGovernanceSuccessResponse: (data: any, status: number = 200) => ({
+      status,
+      body: { data },
+    }),
+  };
+});
 
 vi.mock('../src/governance/prismaCoiRepository', () => ({
   PrismaCoiRepository: vi.fn().mockImplementation(() => ({
@@ -654,6 +658,138 @@ describe('Phase M6.1.6-R — Direct Governance Route-Handler Integration Tests',
       expect(json.data.approvalId).toBe('appr-101');
       expect(json.data.decision).toBe('APPROVED');
       expect(mockSubmitReview).toHaveBeenCalled();
+    });
+  });
+
+  // ====================================================================
+  // 6. CSRF & ORIGIN SECURITY TESTS (SEC-C-01 HARDENING)
+  // ====================================================================
+
+  describe('CSRF & Origin Security Scenarios (SEC-C-01)', () => {
+    it('CSRF-01: Rejects cookie-authenticated mutation with missing Origin and Referer (403)', async () => {
+      mockGuardGovernanceApi.mockImplementation(async (opts) => {
+        // Evaluate actual CSRF guard logic from apiPipeline
+        const { guardGovernanceApi: realGuard } = await vi.importActual<any>('../src/governance/apiPipeline');
+        return realGuard(opts);
+      });
+
+      const req = new NextRequest('http://localhost:3000/api/governance/coi', {
+        method: 'POST',
+        cookies: { dentalvis_session_token: 'test-cookie-token' },
+        // No origin or referer header
+        body: {
+          hasFinancialInterest: false,
+          hasInstitutionalAffiliation: false,
+          hasAuthorRelationship: false,
+          hasCommercialSponsorship: false,
+          expiresAt: new Date(Date.now() + 86400000).toISOString(),
+        },
+      });
+
+      const res: any = await postCoi(req);
+      const json = await res.json();
+      expect(res.status).toBe(403);
+      expect(json.error.code).toBe('CSRF_ORIGIN_DENIED');
+      expect(json.error.message).toContain('Cross-site request forgery protection');
+    });
+
+    it('CSRF-02: Rejects cookie-authenticated mutation with untrusted cross-origin Origin (403)', async () => {
+      mockGuardGovernanceApi.mockImplementation(async (opts) => {
+        const { guardGovernanceApi: realGuard } = await vi.importActual<any>('../src/governance/apiPipeline');
+        return realGuard(opts);
+      });
+
+      const req = new NextRequest('http://localhost:3000/api/governance/coi', {
+        method: 'POST',
+        headers: {
+          origin: 'http://malicious-attacker.com',
+          host: 'localhost:3000',
+        },
+        cookies: { dentalvis_session_token: 'test-cookie-token' },
+        body: {
+          hasFinancialInterest: false,
+          hasInstitutionalAffiliation: false,
+          hasAuthorRelationship: false,
+          hasCommercialSponsorship: false,
+          expiresAt: new Date(Date.now() + 86400000).toISOString(),
+        },
+      });
+
+      const res: any = await postCoi(req);
+      const json = await res.json();
+      expect(res.status).toBe(403);
+      expect(json.error.code).toBe('CSRF_ORIGIN_DENIED');
+    });
+
+    it('CSRF-03: Allows Bearer-authenticated mutation even if Origin is missing or cross-origin (immune to ambient CSRF)', async () => {
+      mockGuardGovernanceApi.mockResolvedValueOnce({
+        success: true,
+        context: {
+          actor: { userId: 'usr-clinician-1', roles: ['CLINICAL_REVIEWER'] },
+        },
+      });
+
+      mockCreateDeclaration.mockResolvedValueOnce({
+        id: 'coi-bearer-ok',
+        userId: 'usr-clinician-1',
+        status: 'SUBMITTED',
+      });
+
+      const req = new NextRequest('http://localhost:3000/api/governance/coi', {
+        method: 'POST',
+        headers: {
+          authorization: 'Bearer valid-admin-bearer-token',
+          origin: 'http://custom-trusted-admin.internal',
+        },
+        body: {
+          hasFinancialInterest: false,
+          hasInstitutionalAffiliation: false,
+          hasAuthorRelationship: false,
+          hasCommercialSponsorship: false,
+          expiresAt: new Date(Date.now() + 86400000).toISOString(),
+        },
+      });
+
+      const res: any = await postCoi(req);
+      const json = await res.json();
+      expect(res.status).toBe(201);
+      expect(json.data.id).toBe('coi-bearer-ok');
+    });
+
+    it('CSRF-04: Allows cookie-authenticated mutation when Origin matches trusted host origin', async () => {
+      mockGuardGovernanceApi.mockResolvedValueOnce({
+        success: true,
+        context: {
+          actor: { userId: 'usr-clinician-1', roles: ['CLINICAL_REVIEWER'] },
+        },
+      });
+
+      mockCreateDeclaration.mockResolvedValueOnce({
+        id: 'coi-cookie-ok',
+        userId: 'usr-clinician-1',
+        status: 'SUBMITTED',
+      });
+
+      const req = new NextRequest('http://localhost:3000/api/governance/coi', {
+        method: 'POST',
+        headers: {
+          origin: 'http://localhost:3000',
+          host: 'localhost:3000',
+        },
+        cookies: { dentalvis_session_token: 'valid-cookie-token' },
+        body: {
+          hasFinancialInterest: false,
+          hasInstitutionalAffiliation: false,
+          hasAuthorRelationship: false,
+          hasCommercialSponsorship: false,
+          expiresAt: new Date(Date.now() + 86400000).toISOString(),
+        },
+      });
+
+      const res: any = await postCoi(req);
+      const json = await res.json();
+      expect(res.status).toBe(201);
+      expect(json.data.id).toBe('coi-cookie-ok');
     });
   });
 });

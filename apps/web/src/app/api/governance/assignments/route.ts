@@ -9,18 +9,12 @@ import {
   PrismaAssignmentRepository,
   createGovernanceErrorResponse,
   createGovernanceSuccessResponse,
+  extractGovernanceSessionCredentials,
+  extractGovernanceRequestContext,
 } from '@dentalvis/database';
 
 function extractSessionTokenHash(req: NextRequest): string | null {
-  const authHeader = req.headers.get('authorization');
-  if (authHeader && authHeader.toLowerCase().startsWith('bearer ')) {
-    return authHeader.substring(7).trim();
-  }
-  const cookie = req.cookies.get('dentalvis_session_token');
-  if (cookie && cookie.value.trim() !== '') {
-    return cookie.value.trim();
-  }
-  return null;
+  return extractGovernanceSessionCredentials(req).tokenHash;
 }
 
 /**
@@ -79,12 +73,13 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Security Guard
+    // Security Guard with CSRF context
     const guardRes = await guardGovernanceApi({
       prisma,
       identityInput: { sessionTokenHash: tokenHash },
       requiredScope: 'crb:review:assign',
       targetRevisionId: body.revisionId,
+      requestContext: extractGovernanceRequestContext(req),
     });
 
     if (!guardRes.success) {
@@ -151,6 +146,7 @@ export async function GET(req: NextRequest) {
       prisma,
       identityInput: { sessionTokenHash: tokenHash },
       requiredScope: 'crb:review:assign',
+      requestContext: extractGovernanceRequestContext(req),
     });
 
     if (!guardRes.success) {
