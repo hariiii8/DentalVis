@@ -53,7 +53,7 @@ export function YouTubeClickToLoadPlayer({
             />
 
             {/* Dark Healthcare Scrim Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#134E4A]/90 via-[#134E4A]/50 to-transparent flex flex-col justify-between p-6">
+            <div className="absolute inset-0 bg-[#134E4A]/80 backdrop-blur-[2px] flex flex-col justify-between p-6">
               <div className="flex items-center justify-between">
                 <Badge variant="mint" className="text-xs">
                   {lang === 'ta' ? 'மருத்துவக் கல்வி வீடியோ' : 'Educational Clinical Video'}

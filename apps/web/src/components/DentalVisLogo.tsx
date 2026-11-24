@@ -81,7 +81,7 @@ export function DentalVisLogo({
           <div>
             <div className="flex items-baseline gap-1.5 leading-none">
               <span className="text-xl sm:text-2xl font-extrabold tracking-tight text-[#145B59]">
-                Dental<span className="bg-gradient-to-r from-[#20B2AA] via-[#2DD4BF] to-[#BFE9E2] bg-clip-text text-transparent">Vis</span>
+                Dental<span className="bg-gradient-to-r from-[#0D9488] via-[#14B8A6] to-[#0F766E] bg-clip-text text-transparent">Vis</span>
               </span>
             </div>
             {tagline && (

@@ -1549,7 +1549,11 @@ export default function ProcedureDetailClientView({
   ];
 
   return (
-    <div className="py-10 space-y-16 relative overflow-hidden bg-[#F5FAF9]">
+    <div className="py-10 space-y-16 relative overflow-hidden">
+      {/* Dynamic Ambient Optical Glows Behind Glass */}
+      <div className="absolute top-10 left-10 w-[38rem] h-[38rem] bg-gradient-to-br from-[#BFE9E2]/50 via-[#20B2AA]/20 to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute top-1/3 -right-20 w-[34rem] h-[34rem] bg-gradient-to-bl from-[#DCEFF5]/80 via-[#20B2AA]/18 to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute bottom-10 left-1/4 w-[36rem] h-[36rem] bg-[#DDF5F1]/65 rounded-full blur-3xl pointer-events-none -z-10" />
       {/* Background Ambience for Liquid Refraction */}
       <div className="absolute top-10 left-10 w-[36rem] h-[36rem] bg-gradient-to-br from-[#BFE9E2]/50 via-[#20B2AA]/20 to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
       <div className="absolute top-1/2 -right-20 w-[34rem] h-[34rem] bg-gradient-to-bl from-[#DCEFF5]/80 to-[#20B2AA]/15 rounded-full blur-3xl pointer-events-none -z-10" />
@@ -1668,7 +1672,7 @@ export default function ProcedureDetailClientView({
         </section>
 
         {/* 2. SUPPORTING SECTIONS BELOW THE HERO IN LIQUID GLASS */}
-        <div className="space-y-16 max-w-4xl">
+        <div className="space-y-16 max-w-4xl mx-auto">
           {/* Section 1: Detailed Overview */}
           <section className="space-y-4">
             <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#20B2AA]">

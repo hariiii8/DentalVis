@@ -18,11 +18,11 @@ export default function MainHomePage() {
   const isTamil = language === 'ta';
 
   return (
-    <div className="py-8 sm:py-12 space-y-16 selection:bg-[#BFE9E2] selection:text-[#145B59] relative overflow-hidden bg-[#F5FAF9]">
+    <div className="py-8 sm:py-12 space-y-16 selection:bg-[#BFE9E2] selection:text-[#145B59] relative overflow-hidden">
       {/* Dynamic Ambient Background Glows in Powder Blue, Misty Aqua & Sea Green */}
-      <div className="absolute top-0 left-1/4 w-[38rem] h-[38rem] bg-gradient-to-br from-[#BFE9E2]/50 via-[#20B2AA]/15 to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
-      <div className="absolute top-1/2 -right-24 w-[36rem] h-[36rem] bg-gradient-to-bl from-[#DCEFF5]/80 via-[#20B2AA]/20 to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
-      <div className="absolute bottom-10 left-1/3 w-[32rem] h-[32rem] bg-[#DDF5F1]/60 rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute top-0 left-1/4 w-[38rem] h-[38rem] bg-gradient-to-br from-[#BFE9E2]/50 via-[#20B2AA]/20 to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute top-1/2 -right-24 w-[36rem] h-[36rem] bg-gradient-to-bl from-[#DCEFF5]/80 via-[#20B2AA]/25 to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute bottom-10 left-1/3 w-[32rem] h-[32rem] bg-[#DDF5F1]/70 rounded-full blur-3xl pointer-events-none -z-10" />
 
       {/* 1. HERO SECTION: Welcoming Liquid Glass Portal Introduction */}
       <section className="relative pt-2 pb-6">
@@ -101,9 +101,9 @@ export default function MainHomePage() {
               variant="secondary"
               specular
               refractiveRim
-              className="hover:liquid-glass-interactive rounded-3xl p-8 sm:p-10 flex flex-col justify-between group transition-all duration-300 isolate"
+              className="hover:liquid-glass-interactive rounded-3xl p-8 sm:p-10 flex flex-col justify-between group transition-all duration-300 isolate h-full"
             >
-              <div className="space-y-6 relative z-10">
+              <div className="space-y-6 relative z-10 flex-1 flex flex-col">
                 <div className="flex items-center justify-between">
                   <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#20B2AA] to-[#145B59] text-white flex items-center justify-center shadow-md">
                     <Compass className="w-7 h-7 text-[#DDF5F1]" />
@@ -124,7 +124,7 @@ export default function MainHomePage() {
                   </p>
                 </div>
 
-                <div className="liquid-glass-lens p-5 rounded-2xl space-y-2.5">
+                <div className="liquid-glass-lens p-5 rounded-2xl space-y-2.5 mt-auto">
                   <span className="text-xs font-bold text-[#145B59] uppercase tracking-wider block">
                     {isTamil ? 'இதில் அடங்குபவை:' : 'What you will discover:'}
                   </span>
@@ -145,7 +145,7 @@ export default function MainHomePage() {
                 </div>
               </div>
 
-              <div className="pt-8 relative z-10">
+              <div className="pt-8 relative z-10 mt-auto">
                 <Link href="/explore">
                   <Button variant="primary" className="w-full py-4 text-base font-bold shadow-sm justify-center">
                     <span>{isTamil ? 'சிகிச்சை வழிகாட்டிகளை காண்க →' : 'Open Treatment Directory →'}</span>
@@ -159,9 +159,9 @@ export default function MainHomePage() {
               variant="secondary"
               specular
               refractiveRim
-              className="hover:liquid-glass-interactive rounded-3xl p-8 sm:p-10 flex flex-col justify-between group transition-all duration-300 isolate"
+              className="hover:liquid-glass-interactive rounded-3xl p-8 sm:p-10 flex flex-col justify-between group transition-all duration-300 isolate h-full"
             >
-              <div className="space-y-6 relative z-10">
+              <div className="space-y-6 relative z-10 flex-1 flex flex-col">
                 <div className="flex items-center justify-between">
                   <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#145B59] to-[#20B2AA] text-white flex items-center justify-center shadow-md">
                     <HeartPulse className="w-7 h-7 text-[#DDF5F1]" />
@@ -182,7 +182,7 @@ export default function MainHomePage() {
                   </p>
                 </div>
 
-                <div className="liquid-glass-lens p-5 rounded-2xl space-y-2.5">
+                <div className="liquid-glass-lens p-5 rounded-2xl space-y-2.5 mt-auto">
                   <span className="text-xs font-bold text-[#145B59] uppercase tracking-wider block">
                     {isTamil ? 'இதில் அடங்குபவை:' : 'What you will discover:'}
                   </span>
@@ -203,7 +203,7 @@ export default function MainHomePage() {
                 </div>
               </div>
 
-              <div className="pt-8 relative z-10">
+              <div className="pt-8 relative z-10 mt-auto">
                 <Link href="/symptoms">
                   <Button variant="outline" className="w-full py-4 text-base font-bold liquid-glass-lens hover:liquid-glass-floating justify-center">
                     <span>{isTamil ? 'அறிகுறிகள் வழிகாட்டியை காண்க →' : 'Open Symptom Guide →'}</span>

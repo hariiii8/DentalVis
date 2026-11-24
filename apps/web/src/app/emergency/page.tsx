@@ -37,10 +37,10 @@ export default function EmergencyPage() {
   ];
 
   return (
-    <div className="py-10 space-y-12 relative overflow-hidden bg-[#F5FAF9]">
+    <div className="py-10 space-y-12 relative overflow-hidden">
       {/* Background Ambience */}
-      <div className="absolute top-10 left-10 w-[36rem] h-[36rem] bg-rose-200/30 rounded-full blur-3xl pointer-events-none -z-10" />
-      <div className="absolute bottom-10 right-10 w-[32rem] h-[32rem] bg-[#BFE9E2]/35 rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute top-10 left-10 w-[36rem] h-[36rem] bg-rose-200/35 rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute bottom-10 right-10 w-[32rem] h-[32rem] bg-[#BFE9E2]/40 rounded-full blur-3xl pointer-events-none -z-10" />
 
       <Container>
         {/* Warning Banner in Translucent Liquid Warning Glass */}
@@ -96,34 +96,53 @@ export default function EmergencyPage() {
 
         {/* Urgent Conditions Cards in Liquid Glass */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          {urgentConditions.map((cond, idx) => (
-            <LiquidGlassSurface
-              key={idx}
-              variant="secondary"
-              specular
-              refractiveRim
-              className="p-7 flex flex-col justify-between space-y-6 group transition-all duration-300 hover:liquid-glass-interactive"
-            >
-              <div className="space-y-4 relative z-10">
-                <Badge variant="alert" className="text-[11px] font-bold liquid-glass-lens">
-                  {isTamil ? cond.urgencyTa : cond.urgencyEn}
-                </Badge>
+          {urgentConditions.map((cond, idx) => {
+            const urgencyBadges: Record<number, { variant: 'alert' | 'mint' | 'default'; labelEn: string; labelTa: string }> = {
+              0: { variant: 'alert', labelEn: 'Urgent Professional Assessment', labelTa: 'அவசர மருத்துவ மதிப்பீடு' },
+              1: { variant: 'mint', labelEn: 'Same-Day Clinical Care', labelTa: 'அன்றைய தின சிகிச்சை' },
+              2: { variant: 'default', labelEn: 'Prompt Clinical Evaluation', labelTa: 'விரைவான மருத்துவ பரிசோதனை' },
+            };
+            const badge = urgencyBadges[idx] || { variant: 'alert', labelEn: cond.urgencyEn, labelTa: cond.urgencyTa };
 
-                <h3 className="text-lg font-bold text-[#145B59] group-hover:text-[#20B2AA] transition-colors">
-                  {isTamil ? cond.titleTa : cond.titleEn}
-                </h3>
+            return (
+              <LiquidGlassSurface
+                key={idx}
+                variant="secondary"
+                specular
+                refractiveRim
+                className="p-7 flex flex-col justify-between group transition-all duration-300 hover:liquid-glass-interactive h-full"
+              >
+                <div className="space-y-4 relative z-10 flex-1 flex flex-col">
+                  <div>
+                    <Badge variant={badge.variant} className="text-[11px] font-bold liquid-glass-lens">
+                      {isTamil ? badge.labelTa : badge.labelEn}
+                    </Badge>
+                  </div>
 
-                <p className="text-sm text-[#587477] leading-relaxed">
-                  {isTamil ? cond.actionTa : cond.actionEn}
-                </p>
-              </div>
+                  <h3 className="text-lg font-bold text-[#145B59] group-hover:text-[#20B2AA] transition-colors">
+                    {isTamil ? cond.titleTa : cond.titleEn}
+                  </h3>
 
-              <div className="pt-4 border-t border-[#C8E7E3]/70 text-xs font-bold text-[#20B2AA] flex items-center gap-1.5 relative z-10">
-                <PhoneCall className="w-3.5 h-3.5" />
-                <span>{isTamil ? 'உடனடி மருத்துவ ஆலோசனை தேவை' : 'Seek Immediate Professional Help'}</span>
-              </div>
-            </LiquidGlassSurface>
-          ))}
+                  <p className="text-sm text-[#587477] leading-relaxed">
+                    {isTamil ? cond.actionTa : cond.actionEn}
+                  </p>
+                </div>
+
+                <div className="pt-6 border-t border-[#C8E7E3]/70 text-xs font-bold text-[#20B2AA] flex items-center justify-between relative z-10 mt-auto">
+                  <div className="flex items-center gap-1.5">
+                    <PhoneCall className="w-3.5 h-3.5" />
+                    <span>{isTamil ? 'உடனடி மருத்துவ உதவி' : 'Urgent Care'}</span>
+                  </div>
+                  <a
+                    href="tel:112"
+                    className="px-2.5 py-1 rounded-lg bg-[#20B2AA]/15 text-[#145B59] hover:bg-[#20B2AA] hover:text-white transition-colors"
+                  >
+                    {isTamil ? 'அழைக்க (112)' : 'Call 112'}
+                  </a>
+                </div>
+              </LiquidGlassSurface>
+            );
+          })}
         </div>
 
         {/* Clinical Disclaimer Note */}
