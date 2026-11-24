@@ -81,7 +81,7 @@ export default function App() {
             variant={activeTab === 'overview' ? 'primary' : 'ghost'}
             size="sm"
             onClick={() => setActiveTab('overview')}
-            className="text-xs"
+            className={`text-xs ${activeTab === 'overview' ? 'text-white bg-[#0D9488]' : 'text-[#173F3B]'}`}
           >
             Dashboard Overview
           </Button>
@@ -89,7 +89,7 @@ export default function App() {
             variant={activeTab === 'governance' ? 'primary' : 'ghost'}
             size="sm"
             onClick={() => setActiveTab('governance')}
-            className="text-xs"
+            className={`text-xs ${activeTab === 'governance' ? 'text-white bg-[#0D9488]' : 'text-[#173F3B]'}`}
           >
             CRB Governance Workflows
           </Button>
@@ -97,7 +97,7 @@ export default function App() {
             variant={activeTab === 'procedures' ? 'primary' : 'ghost'}
             size="sm"
             onClick={() => setActiveTab('procedures')}
-            className="text-xs"
+            className={`text-xs ${activeTab === 'procedures' ? 'text-white bg-[#0D9488]' : 'text-[#173F3B]'}`}
           >
             Procedures ({CANONICAL_PROCEDURES.length})
           </Button>
@@ -105,7 +105,7 @@ export default function App() {
             variant={activeTab === 'categories' ? 'primary' : 'ghost'}
             size="sm"
             onClick={() => setActiveTab('categories')}
-            className="text-xs"
+            className={`text-xs ${activeTab === 'categories' ? 'text-white bg-[#0D9488]' : 'text-[#173F3B]'}`}
           >
             Explore Categories ({CANONICAL_EXPLORE_CATEGORIES.length})
           </Button>
