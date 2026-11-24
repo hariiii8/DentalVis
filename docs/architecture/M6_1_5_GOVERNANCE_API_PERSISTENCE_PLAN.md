@@ -1,35 +1,34 @@
-# DentalVis M6.1.5-A, B & C Architecture & Implementation Record: Governance Persistence, Security Foundation & Server-Side API Layer
+# DentalVis M6.1.5-A, B, C & D Architecture & Implementation Record: Governance Persistence, Security Foundation, Server-Side API Layer & Admin UI Integration
 
 **Status:** IMPLEMENTED, SECURITY-TESTED & VERIFIED  
 **Architecture Baseline:** v1.9.1 — FROZEN  
 **Target Milestones:**  
 - M6.1.5-A — Governance Persistence (Accepted)  
 - M6.1.5-B — Session & Security Foundation (Accepted)  
-- M6.1.5-C — Governance Server-Side API Layer (Implemented & Verified)  
+- M6.1.5-C — Governance Server-Side API Layer (Accepted)  
+- M6.1.5-D — Admin UI Governance Integration (Implemented & Verified)  
 **Date:** 2026-11-25  
 
 ---
 
 ## 1. Executive Summary
 
-Milestone **M6.1.5-C (Governance Server-Side API Layer)** connects authenticated HTTP clients directly to backend governance services, authorization logic, and persistent repositories using a fail-closed server-side API pipeline.
+Milestone **M6.1.5-D (Admin UI Governance Integration)** completes the frontend administrative integration with the secure governance server-side API layer without violating frozen architecture baseline v1.9.1.
 
 This milestone establishes:
-1. **Unified Governance API Request Pipeline (`guardGovernanceApi`):**
-   - Automatically extracts session credentials (from `Bearer` header or `dentalvis_session_token` cookie).
-   - Validates session state authoritatively against PostgreSQL (`validateAuthoritativeSession`).
-   - Resolves caller identity (`resolveRequestIdentity`) and verifies that client-asserted `userId` or `role` claims strictly match the verified session actor.
-   - Evaluates `GovernanceAuthorizationService` for the required scope and target context (`procedureId`, `revisionId`, `authorId`).
-   - Requires explicit `decision === 'ALLOW'`. Any `DENY`, `REQUIRES_VERIFICATION`, or invalid token terminates immediately with `401` or `403`.
-2. **Server-Side Next.js Route Handlers (`apps/web/src/app/api/governance/...`):**
-   - `POST /api/governance/coi`: Submits COI declarations (Scope: `crb:review:accept`).
-   - `GET /api/governance/coi`: Retrieves active COI declarations for the authenticated reviewer.
-   - `POST /api/governance/coi/assess`: Admin assessment to `VERIFIED_CLEAR` or `RECUSED` with anti-self-clearance invariant (Scope: `crb:coi:audit`).
-   - `POST /api/governance/assignments`: Admin reviewer assignment creation enforcing single-active-assignment partial unique index (Scope: `crb:review:assign`).
-   - `GET /api/governance/assignments`: Lists assignments by revision/reviewer (Scope: `crb:review:assign`).
-   - `POST /api/governance/assignments/[id]/transition`: Reviewer acceptance (`ACCEPT`), decline (`DECLINE`), or admin revocation (`REVOKE`).
-   - `POST /api/governance/reviews`: Submits clinical review via `ClinicalReviewService`, enforcing reviewer eligibility, author/reviewer separation, active accepted assignment, and automatic assignment completion transition (Scope: `crb:review:submit`).
-3. **Zero Scope Creep:** Admin UI frontend screens, static-to-database cutover, provider switches, and publication cutovers remain strictly untouched.
+1. **Centralized Admin API Client (`apps/admin/src/lib/governanceApi.ts`):**
+   - Strictly typed requests and responses (`CoiDeclarationDto`, `ReviewerAssignmentDto`, `ClinicalReviewResultDto`, `ApiErrorResponse`).
+   - Token-injected HTTP client sending `Authorization: Bearer <sessionToken>`.
+   - Client-side error mapping preserving normalized backend error messages.
+2. **Dedicated Governance Workflow UI Components (`apps/admin/src/features/governance/`):**
+   - `ReviewerAssignmentsPanel`: Lists active and historical assignments, assigns reviewers with expiration dates, and executes status transitions (`ACCEPT`, `DECLINE`, `REVOKE`).
+   - `CoiManagementPanel`: Visualizes active COI declarations, provides multi-question disclosure inputs, and renders admin verification/recusal evaluation controls.
+   - `ClinicalReviewOversightPanel`: Provides qualified reviewers with structured rubric scoring, clinical notes, and approval/rejection submission, displaying revision quorum metrics.
+3. **Admin Shell Integration (`apps/admin/src/App.tsx`):**
+   - New "CRB Governance Workflows" tab added to the administrative portal.
+   - Session authentication bar allows administrators and clinical reviewers to supply their session token for authenticated operations.
+4. **Authoritative Enforcement Preservation:**
+   - No clinical approval or governance logic is evaluated client-side; all lifecycle validation and access controls remain authoritative on the server.
 
 ---
 

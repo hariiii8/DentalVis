@@ -1,10 +1,21 @@
 import { useState } from 'react';
 import { Card, Button, Badge } from '@dentalvis/ui';
-import { ShieldCheck, BookOpen, Layers, Users, Lock } from 'lucide-react';
+import { ShieldCheck, BookOpen, Layers, Users, Lock, Key } from 'lucide-react';
 import { CANONICAL_PROCEDURES, CANONICAL_EXPLORE_CATEGORIES } from '@dentalvis/common';
+import { governanceApi } from './lib/governanceApi';
+import { ReviewerAssignmentsPanel } from './features/governance/ReviewerAssignmentsPanel';
+import { CoiManagementPanel } from './features/governance/CoiManagementPanel';
+import { ClinicalReviewOversightPanel } from './features/governance/ClinicalReviewOversightPanel';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<'overview' | 'procedures' | 'categories'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'governance' | 'procedures' | 'categories'>('overview');
+  const [sessionToken, setSessionToken] = useState(governanceApi.getToken() || '');
+  const [isTokenSet, setIsTokenSet] = useState(!!governanceApi.getToken());
+
+  const handleApplyToken = () => {
+    governanceApi.setToken(sessionToken ? sessionToken.trim() : null);
+    setIsTokenSet(!!sessionToken);
+  };
 
   return (
     <div className="min-h-screen bg-[#F8FBFA] flex flex-col text-[#173F3B]">
@@ -17,16 +28,36 @@ export default function App() {
           <div>
             <div className="flex items-center gap-2">
               <span className="font-bold text-lg text-[#134E4A]">DentalVis Editorial Portal</span>
-              <Badge variant="mint" className="text-[10px]">Phase 2.1 Preview</Badge>
+              <Badge variant="mint" className="text-[10px]">M6.1.5 Governance Enabled</Badge>
             </div>
             <p className="text-xs text-slate-500">Clinical Revision & Content Governance Administration</p>
           </div>
         </div>
 
+        {/* Session Token Context */}
         <div className="flex items-center gap-3">
-          <Badge variant="alert" className="gap-1.5 py-1">
+          <div className="flex items-center gap-2 bg-slate-50 border px-3 py-1.5 rounded-lg text-xs">
+            <Key className="w-3.5 h-3.5 text-[#0D9488]" />
+            <input
+              type="password"
+              placeholder="Session Token Hash..."
+              value={sessionToken}
+              onChange={(e) => setSessionToken(e.target.value)}
+              className="bg-transparent border-none text-xs outline-none w-36 font-mono"
+            />
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleApplyToken}
+              className="text-[10px] h-6 px-2"
+            >
+              {isTokenSet ? 'Active' : 'Set Token'}
+            </Button>
+          </div>
+
+          <Badge variant={isTokenSet ? 'mint' : 'alert'} className="gap-1.5 py-1">
             <Lock className="w-3.5 h-3.5" />
-            <span>Admin Auth Disabled (Phase 5 Anchor)</span>
+            <span>{isTokenSet ? 'Authenticated Bearer' : 'No Session Token'}</span>
           </Badge>
         </div>
       </header>
@@ -37,10 +68,10 @@ export default function App() {
         <div className="p-4 rounded-xl bg-teal-50/70 border-l-4 border-[#0D9488] text-xs text-[#134E4A] space-y-1">
           <div className="flex items-center gap-1.5 font-bold">
             <ShieldCheck className="w-4 h-4 text-[#0D9488]" />
-            <span>Governance Boundary Strict Enforcement</span>
+            <span>Server-Side Governance Enforcement (M6.1.5-D)</span>
           </div>
           <p className="text-slate-600">
-            Per Architecture Baseline v1.9.1, production authentication and clinical publishing remain disabled until Phase 5 when multi-doctor review quorums and cryptographic immutability safeguards are validated.
+            Per Architecture Baseline v1.9.1, all governance operations (Reviewer Assignments, Conflict of Interest disclosures, and Clinical Review evaluations) are executed authoritatively against PostgreSQL through server-side authorization guards.
           </p>
         </div>
 
@@ -53,6 +84,14 @@ export default function App() {
             className="text-xs"
           >
             Dashboard Overview
+          </Button>
+          <Button
+            variant={activeTab === 'governance' ? 'primary' : 'ghost'}
+            size="sm"
+            onClick={() => setActiveTab('governance')}
+            className="text-xs"
+          >
+            CRB Governance Workflows
           </Button>
           <Button
             variant={activeTab === 'procedures' ? 'primary' : 'ghost'}
@@ -113,7 +152,7 @@ export default function App() {
                 </div>
                 <div className="p-4 rounded-xl bg-teal-50 border border-teal-200">
                   <span className="font-bold text-[#0D9488] block mb-1">2. Review Quorum</span>
-                  <p className="text-slate-500">Requires $\ge 2$ certified dental clinician consensus approvals.</p>
+                  <p className="text-slate-500">Requires certified dental clinician consensus approvals via CRB.</p>
                 </div>
                 <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
                   <span className="font-bold text-slate-700 block mb-1">3. Deterministic Snapshot</span>
@@ -128,7 +167,16 @@ export default function App() {
           </div>
         )}
 
-        {/* Tab 2: Procedures */}
+        {/* Tab 2: CRB Governance Workflows (M6.1.5-D Integration) */}
+        {activeTab === 'governance' && (
+          <div className="space-y-6">
+            <ReviewerAssignmentsPanel />
+            <CoiManagementPanel />
+            <ClinicalReviewOversightPanel />
+          </div>
+        )}
+
+        {/* Tab 3: Procedures */}
         {activeTab === 'procedures' && (
           <Card className="p-6 space-y-4">
             <h3 className="font-bold text-lg text-[#134E4A]">Canonical Procedures Register</h3>
@@ -153,7 +201,7 @@ export default function App() {
           </Card>
         )}
 
-        {/* Tab 3: Explore Categories */}
+        {/* Tab 4: Explore Categories */}
         {activeTab === 'categories' && (
           <Card className="p-6 space-y-4">
             <h3 className="font-bold text-lg text-[#134E4A]">Patient Explore Taxonomy Register</h3>
