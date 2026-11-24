@@ -13,3 +13,5 @@ export * from './reviewerEligibilityService';
 export * from './governanceAuditService';
 export * from './clinicalReviewService';
 export * from './publicationPreflightService';
+export * from './prismaCoiRepository';
+export * from './prismaAssignmentRepository';

@@ -8,11 +8,14 @@ import type {
   StatutoryProceduralPermit,
   StatutorySpecialty,
 } from '@dentalvis/common';
-import type { Prisma, ApprovalDecision } from '@prisma/client';
+import type {
+  Prisma,
+  ApprovalDecision,
+  CoiDeclarationStatus,
+  AssignmentLifecycleStatus,
+} from '@prisma/client';
 
-// ----------------------------------------------------------------------
-// 1. REASON CODES & ERROR IDENTIFIERS
-// ----------------------------------------------------------------------
+export type { CoiDeclarationStatus, AssignmentLifecycleStatus };
 
 export type EligibilityDenialReason =
   | 'REVIEWER_NOT_FOUND'
@@ -83,14 +86,6 @@ export type PreflightBlockingReason =
 // 2. CONFLICT OF INTEREST (COI) CONTRACTS
 // ----------------------------------------------------------------------
 
-export type CoiDeclarationStatus =
-  | 'SUBMITTED'
-  | 'VERIFIED_CLEAR'
-  | 'CONFLICT_DECLARED'
-  | 'RECUSED'
-  | 'EXPIRED'
-  | 'SUPERSEDED';
-
 export interface AuthoritativeCoiRecord {
   id: string;
   userId: string;
@@ -123,15 +118,6 @@ export interface ICoiRepository {
 // ----------------------------------------------------------------------
 // 3. REVIEWER ASSIGNMENT CONTRACTS
 // ----------------------------------------------------------------------
-
-export type AssignmentLifecycleStatus =
-  | 'ASSIGNED'
-  | 'ACCEPTED'
-  | 'DECLINED'
-  | 'WITHDRAWN'
-  | 'REVOKED'
-  | 'EXPIRED'
-  | 'COMPLETED';
 
 export interface AuthoritativeAssignmentRecord {
   id: string;

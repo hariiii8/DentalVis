@@ -79,6 +79,25 @@ enum MediaValidationStatus {
   REJECTED
 }
 
+enum CoiDeclarationStatus {
+  SUBMITTED
+  VERIFIED_CLEAR
+  CONFLICT_DECLARED
+  RECUSED
+  EXPIRED
+  SUPERSEDED
+}
+
+enum AssignmentLifecycleStatus {
+  ASSIGNED
+  ACCEPTED
+  DECLINED
+  WITHDRAWN
+  REVOKED
+  EXPIRED
+  COMPLETED
+}
+
 enum OutboxStatus {
   PENDING
   PROCESSING
@@ -112,6 +131,12 @@ model User {
   approvalRevocations ProcedureApprovalRevocation[]
   auditLogs          AdminAuditLog[]
   revocationEventsTargeted RevocationEvent[] @relation("RevokedUserTarget")
+
+  // Milestone M6.1.5-A Governance Persistence Relations
+  coiDeclarations    ConflictOfInterestDeclaration[] @relation("UserCoiDeclarations")
+  coiAssessments     ConflictOfInterestDeclaration[] @relation("AdminCoiAssessments")
+  reviewerAssignments ReviewerAssignment[]           @relation("ReviewerAssigned")
+  createdAssignments  ReviewerAssignment[]           @relation("AdminCreatedAssignments")
 
   @@index([role, isActive])
 }
@@ -245,6 +270,7 @@ model Procedure {
   departments         ProcedureDepartment[]
   conditions          ConditionProcedure[]
   preventionGuides    PreventionGuideProcedure[]
+  coiDeclarations     ConflictOfInterestDeclaration[]
 
   @@index([isArchived])
 }
@@ -290,6 +316,8 @@ model ProcedureRevision {
   model3DMedia    MediaAsset?          @relation("RevisionModel3D", fields: [model3DMediaId], references: [id], onDelete: Restrict)
   approvals       ProcedureApproval[]
   interactiveSteps InteractiveStep[]
+  reviewerAssignments ReviewerAssignment[]
+  coiDeclarations ConflictOfInterestDeclaration[]
 
   @@unique([procedureId, language, revisionNumber])
   @@unique([procedureId, language, id])
@@ -552,3 +580,71 @@ model AdminAuditLog {
   @@index([targetType, targetId])
   @@index([createdAt])
 }
+
+// ----------------------------------------------------------------------
+// 10. CLINICAL GOVERNANCE PERSISTENCE (MILESTONE M6.1.5-A)
+// ----------------------------------------------------------------------
+
+model ConflictOfInterestDeclaration {
+  id                          String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId                      String               @db.Uuid
+  targetProcedureId           String?              @db.Uuid
+  targetRevisionId            String?              @db.Uuid
+  status                      CoiDeclarationStatus @default(SUBMITTED)
+  hasFinancialInterest        Boolean              @default(false)
+  hasInstitutionalAffiliation Boolean              @default(false)
+  hasAuthorRelationship       Boolean              @default(false)
+  hasCommercialSponsorship    Boolean              @default(false)
+  conflictDetails             String?              @db.Text
+  isRecused                   Boolean              @default(false)
+  recusalReason               String?              @db.VarChar(255)
+  declaredAt                  DateTime             @default(now()) @db.Timestamptz(6)
+  expiresAt                   DateTime             @db.Timestamptz(6)
+  supersededById              String?              @db.Uuid
+  assessedByAdminId           String?              @db.Uuid
+  assessedAt                  DateTime?            @db.Timestamptz(6)
+  assessmentNotes             String?              @db.Text
+  createdAt                   DateTime             @default(now()) @db.Timestamptz(6)
+  updatedAt                   DateTime             @default(now()) @updatedAt @db.Timestamptz(6)
+
+  user                        User                 @relation("UserCoiDeclarations", fields: [userId], references: [id], onDelete: Restrict)
+  procedure                   Procedure?           @relation(fields: [targetProcedureId], references: [id], onDelete: Restrict)
+  revision                    ProcedureRevision?   @relation(fields: [targetRevisionId], references: [id], onDelete: Restrict)
+  supersededBy                ConflictOfInterestDeclaration?  @relation("CoiSupersession", fields: [supersededById], references: [id], onDelete: Restrict)
+  supersedes                  ConflictOfInterestDeclaration[] @relation("CoiSupersession")
+  assessedByAdmin             User?                @relation("AdminCoiAssessments", fields: [assessedByAdminId], references: [id], onDelete: Restrict)
+
+  @@index([userId, status])
+  @@index([targetProcedureId, isRecused])
+  @@index([targetRevisionId, isRecused])
+  @@index([expiresAt])
+}
+
+model ReviewerAssignment {
+  id                   String                    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  revisionId           String                    @db.Uuid
+  reviewerId           String                    @db.Uuid
+  assignedByAdminId    String                    @db.Uuid
+  status               AssignmentLifecycleStatus @default(ASSIGNED)
+  assignedAt           DateTime                  @default(now()) @db.Timestamptz(6)
+  acceptedAt           DateTime?                 @db.Timestamptz(6)
+  declinedAt           DateTime?                 @db.Timestamptz(6)
+  declineReason        String?                   @db.VarChar(255)
+  completedAt          DateTime?                 @db.Timestamptz(6)
+  revokedAt            DateTime?                 @db.Timestamptz(6)
+  revocationReason     String?                   @db.VarChar(255)
+  withdrawnAt          DateTime?                 @db.Timestamptz(6)
+  withdrawalReason     String?                   @db.VarChar(255)
+  expiresAt            DateTime                  @db.Timestamptz(6)
+  createdAt            DateTime                  @default(now()) @db.Timestamptz(6)
+  updatedAt            DateTime                  @default(now()) @updatedAt @db.Timestamptz(6)
+
+  revision             ProcedureRevision         @relation(fields: [revisionId], references: [id], onDelete: Restrict)
+  reviewer             User                      @relation("ReviewerAssigned", fields: [reviewerId], references: [id], onDelete: Restrict)
+  assignedByAdmin      User                      @relation("AdminCreatedAssignments", fields: [assignedByAdminId], references: [id], onDelete: Restrict)
+
+  @@index([reviewerId, status])
+  @@index([revisionId, status])
+  @@index([expiresAt])
+}
+
