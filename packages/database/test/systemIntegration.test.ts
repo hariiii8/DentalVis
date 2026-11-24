@@ -93,35 +93,48 @@ describe('M6.8 System Integration Verification Suite', () => {
   });
 
   // --------------------------------------------------------------------------
-  // TEST GROUP C: Routing & Publication Boundaries
+  // TEST GROUP C: Routing & Publication Boundaries (M7.2 Decoupled Educational Access)
   // --------------------------------------------------------------------------
   describe('Test Group C: Routing & Access Policy Boundaries', () => {
-    it('enforces that exactly 4 procedures are publicly published under default production policy', async () => {
+    it('makes all 48 educational dental procedures publicly accessible under standard catalogue policy', async () => {
       const visiblePublicProcs = await repo.getVisibleProcedures();
-      expect(visiblePublicProcs).toHaveLength(4);
+      expect(visiblePublicProcs).toHaveLength(48);
 
-      const publishedSlugs = visiblePublicProcs.map((p) => p.slug);
+      const slugs = visiblePublicProcs.map((p) => p.slug);
+      expect(slugs).toContain('root-canal-treatment');
+      expect(slugs).toContain('dental-crowns');
+      expect(slugs).toContain('deep-cleaning-scaling');
+      expect(slugs).toContain('single-dental-implant');
+      expect(slugs).toContain('pediatric-pulpotomy');
+      expect(slugs).toContain('composite-dental-fillings');
+    });
+
+    it('enforces strict clinical quorum governance when strictClinicalOnly policy is requested', async () => {
+      const strictlyPublished = await repo.getVisibleProcedures({ strictClinicalOnly: true });
+      expect(strictlyPublished).toHaveLength(4);
+
+      const publishedSlugs = strictlyPublished.map((p) => p.slug);
       expect(publishedSlugs.sort()).toEqual([
         'deep-cleaning-scaling',
         'dental-crowns',
         'root-canal-treatment',
         'single-dental-implant',
       ]);
-    });
 
-    it('fails closed for draft procedures on public route requests', async () => {
-      const draftResult = await repo.getVisibleProcedureBySlug('pediatric-pulpotomy');
+      const draftResult = await repo.getVisibleProcedureBySlug('pediatric-pulpotomy', { strictClinicalOnly: true });
       expect(draftResult).toBeUndefined();
-
-      const draftResult2 = await repo.getVisibleProcedureBySlug('composite-dental-fillings');
-      expect(draftResult2).toBeUndefined();
     });
 
-    it('resolves published procedures on public route requests', async () => {
+    it('resolves individual procedure requests for both reference and draft educational procedures', async () => {
       const pubResult = await repo.getVisibleProcedureBySlug('root-canal-treatment');
       expect(pubResult).toBeDefined();
       expect(pubResult?.code).toBe('ENDO-RCT-01');
       expect(pubResult?.contentStatus).toBe('PUBLISHED');
+
+      const draftResult = await repo.getVisibleProcedureBySlug('pediatric-pulpotomy');
+      expect(draftResult).toBeDefined();
+      expect(draftResult?.code).toBe('PEDO-PUL-01');
+      expect(draftResult?.contentStatus).toBe('DRAFT');
     });
 
     it('handles non-existent or invalid slug lookups gracefully', async () => {

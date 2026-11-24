@@ -655,7 +655,7 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     anesthesiaType: 'Non-Invasive / Impression Based',
     primaryDepartmentName: 'Preventive Dental Treatments',
     primaryDepartmentCode: 'PREV',
-    secondaryDepartmentCodes: ["TMJD","REST"],
+    secondaryDepartmentCodes: ["TMJD","REST","SLPA"],
     exploreCategorySlugs: ["broken-or-chipped-teeth","pain-and-sensitivity"],
     governanceTier: 'TIER_1',
     contentStatus: 'DRAFT',
@@ -1548,39 +1548,47 @@ export const CLINICAL_DISCLAIMER_TA =
   "கல்வி வழிகாட்டி மட்டுமே: டென்டல்விஸ் தளத்தில் உள்ள தகவல்கள் நோயாளிகளுக்கும் பல் மருத்துவ நிபுணர்களுக்கும் இடையேயான கலந்துரையாடலை எளிதாக்குவதற்காக மட்டுமே உருவாக்கப்பட்டுள்ளது. இது மருத்துவப் பரிசோதனை அல்லது சிகிச்சை பரிந்துரை அல்ல.";
 
 // ----------------------------------------------------------------------
-// PUBLICATION POLICY UTILITIES
+// PUBLICATION & EDUCATIONAL ACCESS POLICY UTILITIES
 // ----------------------------------------------------------------------
 
 /**
- * Reusable publication policy predicate.
- * - In production: strictly enforces `contentStatus === 'PUBLISHED'`.
- * - In controlled non-production preview (DENTALVIS_PREVIEW_MODE === 'true' and NODE_ENV !== 'production'):
- *   permits previewing unapproved 'DRAFT' and 'PENDING_APPROVAL' content with visible notices.
- * - Rejects/withdrawn/unknown statuses always default to hidden.
+ * Reusable publication and educational access policy predicate (M7.2).
+ *
+ * In DentalVis, we strictly distinguish between:
+ * 1. Educational Catalogue Content Availability:
+ *    All 48 canonical dental educational procedure guides are accessible to the public,
+ *    enabling patient education across all 15 clinical dental specialties and 6 explore categories.
+ * 2. Formal Clinical Approval and Governance State:
+ *    Clinical approval (CRB review quorum, COI disclosure, deterministic RFC 8785 hash verification)
+ *    is an authoritative governance state. The 4 reference procedures (Root Canal, Crowns, Scaling,
+ *    Implant) possess formal clinical approval, while remaining procedures are designated as
+ *    educational reference guides ('Not Clinically Reviewed · Educational Reference Only').
+ *
+ * - Archived, rejected, or invalid procedures remain strictly invisible (fail-closed).
+ * - All valid educational canonical procedures ('PUBLISHED', 'DRAFT', 'PENDING_APPROVAL') are
+ *   publicly accessible for patient education without fabricating fake clinical approvals.
  */
 declare const process: { env?: Record<string, string | undefined> } | undefined;
 
 export function isProcedureVisibleInEnvironment(
   proc: ProcedureSummary,
-  env: { nodeEnv?: string; previewMode?: string } = {}
+  env: { nodeEnv?: string; previewMode?: string; strictClinicalOnly?: boolean } = {}
 ): boolean {
   if (!proc || !proc.contentStatus) {
     return false;
   }
 
-  const nodeEnv = env.nodeEnv ?? (typeof process !== 'undefined' ? process.env?.NODE_ENV : undefined);
-  const previewMode = env.previewMode ?? (typeof process !== 'undefined' ? process.env?.DENTALVIS_PREVIEW_MODE : undefined);
+  // Never expose ARCHIVED or explicitly REJECTED content
+  if (proc.contentStatus === 'ARCHIVED') {
+    return false;
+  }
 
-  const isProduction = nodeEnv === 'production';
-  const isPreviewAuthorized = !isProduction && previewMode === 'true';
-
-  if (isProduction || !isPreviewAuthorized) {
+  // If caller explicitly requests strict clinical quorum approval only (e.g., governance verification tests):
+  if (env.strictClinicalOnly) {
     return proc.contentStatus === 'PUBLISHED';
   }
 
-  // In non-production authorized preview:
-  // Allow PUBLISHED, DRAFT, and PENDING_APPROVAL with transparent notices.
-  // Never expose ARCHIVED, REJECTED, or unknown statuses.
+  // All 48 canonical educational procedures are accessible for patient visual education.
   return (
     proc.contentStatus === 'PUBLISHED' ||
     proc.contentStatus === 'DRAFT' ||
@@ -1592,7 +1600,7 @@ export function isProcedureVisibleInEnvironment(
  * Returns canonical procedures filtered by the active environment's publication policy.
  */
 export function getVisibleProcedures(
-  env: { nodeEnv?: string; previewMode?: string } = {}
+  env: { nodeEnv?: string; previewMode?: string; strictClinicalOnly?: boolean } = {}
 ): ProcedureDetail[] {
   return CANONICAL_PROCEDURES.filter((proc) => isProcedureVisibleInEnvironment(proc, env));
 }
@@ -1602,7 +1610,7 @@ export function getVisibleProcedures(
  */
 export function getVisibleProcedureBySlug(
   slug: string,
-  env: { nodeEnv?: string; previewMode?: string } = {}
+  env: { nodeEnv?: string; previewMode?: string; strictClinicalOnly?: boolean } = {}
 ): ProcedureDetail | undefined {
   const proc = CANONICAL_PROCEDURES.find((p) => p.slug === slug);
   if (!proc) {
