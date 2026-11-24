@@ -5,3 +5,6 @@
 export * from './errors';
 export * from './ratifiedPolicies';
 export * from './policyAdapter';
+export * from './types';
+export * from './sessionValidator';
+export * from './authorizationService';
