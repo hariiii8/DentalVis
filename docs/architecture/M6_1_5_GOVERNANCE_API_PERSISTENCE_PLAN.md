@@ -1,114 +1,101 @@
-# DentalVis M6.1.5-A Architecture & Implementation Record: Governance Persistence
+# DentalVis M6.1.5-A & M6.1.5-B Architecture & Implementation Record: Governance Persistence & Security Foundation
 
-**Status:** IMPLEMENTED & VERIFIED  
+**Status:** IMPLEMENTED, SECURITY-TESTED & VERIFIED  
 **Architecture Baseline:** v1.9.1 — FROZEN  
-**Target Milestone:** M6.1.5-A — Governance Persistence  
+**Target Milestones:**  
+- M6.1.5-A — Governance Persistence (Accepted)  
+- M6.1.5-B — Session & Security Foundation (Implemented & Verified)  
 **Date:** 2026-11-25  
 
 ---
 
 ## 1. Executive Summary
 
-Milestone **M6.1.5-A (Governance Persistence)** replaces mock-only persistence for the DentalVis clinical review and governance subsystem with robust, persistent PostgreSQL-backed Prisma repositories.
+Milestone **M6.1.5-B (Session & Security Foundation)** establishes the authoritative server-side session, identity resolution, and lifecycle revocation layer for the DentalVis governance platform.
 
-This milestone implements:
-1. **Prisma Schema Models & Enums:** `ConflictOfInterestDeclaration`, `ReviewerAssignment`, `CoiDeclarationStatus`, and `AssignmentLifecycleStatus`.
-2. **Additive PostgreSQL Migration:** `20261125000001_m6_1_5_a_governance_persistence` creating tables, foreign keys with `ON DELETE RESTRICT`, compound indexes, and an engine-level partial unique index.
-3. **Partial Unique Index Invariant:** `idx_unique_active_reviewer_assignment` enforces at the PostgreSQL level that no reviewer can have more than one active (`ASSIGNED` or `ACCEPTED`) assignment for the same procedure revision concurrently.
-4. **Concrete Repositories:**
-   - `PrismaCoiRepository` implementing `ICoiRepository` with hierarchical scope resolution (`REVISION` -> `PROCEDURE` -> `USER_WIDE`), expiration handling, conflict recusal, and self-assessment prevention.
-   - `PrismaAssignmentRepository` implementing `IAssignmentRepository` with strict state-machine lifecycle enforcement, reviewer identity checks, and completion verification.
-5. **Testing Verification:** Comprehensive unit and live PostgreSQL integration tests validating all constraints, partial unique indexing, lifecycle transitions, and conflict declarations.
+This milestone guarantees:
+1. **Authoritative Session Validation:** Authentication state is strictly determined by server-side PostgreSQL records (`validateAuthoritativeSession`), verifying token validity, dynamic expiration, rotated token supersession, manual/replay-attack revocation, session-family validity, and user deactivation. Client-supplied role claims or tokens are never trusted.
+2. **Request Identity Resolution Primitive (`resolveRequestIdentity`):** A server-only helper that extracts verified caller identity (`AuthorizationActor`) exclusively from validated sessions. Untrusted client headers or body assertions (`untrustedAssertedUserId`, `untrustedAssertedRole`) are strictly checked against the authoritative session; any mismatch triggers an immediate fail-closed `UNAUTHENTICATED` violation.
+3. **Session Mutation & Revocation Service (`SessionRevocationService`):** Transactionally revokes individual sessions, entire session families, or all user sessions. Seamlessly adheres to database triggers (`trg_check_session_succession_integrity`) and check constraints (`chk_revocation_target_fk_match`), creating immutable `RevocationEvent` ledger rows. Supports distributed consumer registration and idempotent event acknowledgement.
+4. **Concurrency & Race Condition Safety:** Proven through live concurrent transaction execution against PostgreSQL, guaranteeing that simultaneous revocation attempts execute safely without deadlocks, corrupted statuses, or duplicate events.
+5. **No Scope Creep:** Strictly excludes HTTP route handlers, API endpoints, Admin UI, or provider switches (reserved for M6.1.5-C and M6.1.5-D).
 
 ---
 
-## 2. Database Schema & Architecture
+## 2. B1 — Session Validation & Authenticated Identity
 
-### 2.1 Enums
+### 2.1 Authoritative Verification (`validateAuthoritativeSession`)
+- **Location:** `packages/database/src/governance/sessionValidator.ts`
+- **Fail-Closed Checklist:**
+  - Token hash missing or empty $\rightarrow$ `UNAUTHENTICATED`
+  - Session not found in PostgreSQL $\rightarrow$ `UNAUTHENTICATED`
+  - Session `expiresAt <= now` $\rightarrow$ `SESSION_EXPIRED`
+  - Session status `SUPERSEDED` (rotated token reuse) $\rightarrow$ `SESSION_SUPERSEDED`
+  - Session status `REVOKED_MANUAL` / `REVOKED_REPLAY_ATTACK` $\rightarrow$ `SESSION_REVOKED`
+  - Session family missing or `status !== 'ACTIVE'` $\rightarrow$ `SESSION_FAMILY_REVOKED`
+  - User `isActive: false` or `deactivatedAt !== null` $\rightarrow$ `USER_DEACTIVATED`
+  - Database exception $\rightarrow$ `INTERNAL_SECURITY_ERROR`
 
-```prisma
-enum CoiDeclarationStatus {
-  SUBMITTED
-  VERIFIED_CLEAR
-  CONFLICT_DECLARED
-  RECUSED
-  EXPIRED
-  SUPERSEDED
-}
-
-enum AssignmentLifecycleStatus {
-  ASSIGNED
-  ACCEPTED
-  DECLINED
-  WITHDRAWN
-  REVOKED
-  EXPIRED
-  COMPLETED
-}
-```
-
-### 2.2 Models and Relationships
-
-- **`ConflictOfInterestDeclaration`**:
-  - Bound to `User` (declarant), optional `Procedure`, and optional `ProcedureRevision`.
-  - Self-referencing relation `supersededBy` / `supersedes` for historical supersession audit trails.
-  - Linked to `User` (assessor admin) with `assessedAt` and `assessmentNotes`.
-  - Foreign keys configured with `onDelete: Restrict` to prevent cascade deletions.
-- **`ReviewerAssignment`**:
-  - Bound to `ProcedureRevision` (target revision) and `User` (assigned reviewer).
-  - Linked to `User` (assigning admin) and optional revoking admin.
-  - Tracks complete lifecycle timestamps: `assignedAt`, `acceptedAt`, `declinedAt`, `revokedAt`, `completedAt`, and `expiresAt`.
-
-### 2.3 PostgreSQL Partial Unique Index
-
-A standard unique constraint across `(revisionId, reviewerId, status)` would allow a reviewer to simultaneously hold an `ASSIGNED` record and an `ACCEPTED` record for the same revision. To strictly enforce single-active-assignment integrity, an additive migration created:
-
-```sql
-CREATE UNIQUE INDEX "idx_unique_active_reviewer_assignment"
-ON "ReviewerAssignment" ("revisionId", "reviewerId")
-WHERE "status" IN ('ASSIGNED', 'ACCEPTED');
-```
-
-Terminal statuses (`DECLINED`, `WITHDRAWN`, `REVOKED`, `EXPIRED`, `COMPLETED`) are excluded from this index, permitting legitimate reassignment after terminal outcomes.
+### 2.2 Request Identity Primitive (`resolveRequestIdentity`)
+- **Location:** `packages/database/src/governance/sessionIdentityResolver.ts`
+- **Interface:**
+  ```ts
+  export async function resolveRequestIdentity(
+    prisma: PrismaClient,
+    input: RequestIdentityInput,
+    now: Date = new Date()
+  ): Promise<IdentityResolutionResult>
+  ```
+- **Anti-Impersonation Protection:** If an untrusted caller passes asserted user IDs or roles (e.g. from request bodies or spoofed headers), they are cross-checked against the authoritative `actor`. Any discrepancy terminates the request immediately.
 
 ---
 
-## 3. Repositories Implementation
+## 3. B2 — Session Mutation & Revocation Architecture
 
-### 3.1 `PrismaCoiRepository`
-- **Path:** `packages/database/src/governance/prismaCoiRepository.ts`
-- **Scope Hierarchy:** Resolves COI declarations in strict priority order:
-  1. Revision-specific (`revisionId`)
-  2. Procedure-specific (`procedureId`, `revisionId IS NULL`)
-  3. User-wide (`procedureId IS NULL`, `revisionId IS NULL`)
-- **Self-Assessment Prevention:** Rejects clearance attempts if `assessorAdminId === userId` (`GOVERNANCE_COI_SELF_ASSESSMENT_PROHIBITED`).
-- **Supersession:** Automatically marks older active declarations for the same scope as `SUPERSEDED` when a new declaration is recorded.
-- **Fail-Closed:** Missing or unverified declarations return `hasConflict: true` or `isClear: false`.
+### 3.1 Service Implementation (`SessionRevocationService`)
+- **Location:** `packages/database/src/governance/sessionRevocationService.ts`
+- **Operations:**
+  - `revokeSession(input, tx?)`: Atomically marks session as `REVOKED_MANUAL` (or `REVOKED_REPLAY_ATTACK`) and creates a `RevocationEvent` (`targetType: 'SESSION'`).
+  - `revokeFamily(input, tx?)`: In compliance with database trigger `trg_check_session_succession_integrity`, revokes all active sibling sessions *before* transitioning the `SessionFamily` status to `REVOKED`. Emits `RevocationEvent` (`targetType: 'FAMILY'`).
+  - `revokeAllUserSessions(input, tx?)`: Revokes all sessions and families across a user account. Emits `RevocationEvent` (`targetType: 'USER'`).
+  - `registerOrHeartbeatConsumer(input, tx?)`: Upserts a consumer lease in `RevocationConsumer` with fencing generation tracking.
+  - `acknowledgeEvent(input, tx?)`: Idempotently registers an ack in `RevocationEventAck`.
 
-### 3.2 `PrismaAssignmentRepository`
-- **Path:** `packages/database/src/governance/prismaAssignmentRepository.ts`
-- **Lifecycle Invariants:**
-  - `ASSIGNED` -> `ACCEPTED` (only by the assigned reviewer)
-  - `ASSIGNED` / `ACCEPTED` -> `DECLINED` (reviewer recusal/decline)
-  - `ASSIGNED` / `ACCEPTED` -> `REVOKED` (by administrator)
-  - `ACCEPTED` -> `COMPLETED` (on review submission)
-- **Active Assignment Verification:** Rejects new assignment creation if an active assignment already exists for the given revision and reviewer.
-- **Expiration:** Validates against `expiresAt` before accepting transitions.
+### 3.2 Database Constraint & Trigger Compliance
+- **Check Constraint `chk_revocation_target_fk_match`:**
+  Enforces polymorphic foreign key exclusivity at the database level:
+  - When `targetType = 'SESSION'`: `targetSessionId = targetId`, while `targetFamilyId` and `targetUserId` must be `NULL`.
+  - When `targetType = 'FAMILY'`: `targetFamilyId = targetId`, while `targetSessionId` and `targetUserId` must be `NULL`.
+  - When `targetType = 'USER'`: `targetUserId = targetId`, while `targetSessionId` and `targetFamilyId` must be `NULL`.
+- **Trigger `trg_check_session_succession_integrity`:**
+  Enforces that no `UserSession` row can be updated if its parent `SessionFamily` is inactive. The revocation service strictly cascades child session revocations prior to invalidating the family row.
 
 ---
 
-## 4. Verification Evidence
+## 4. B3 — Verification & Regression Results
 
-### 4.1 Unit Tests
-- `packages/database/test/prismaCoiRepository.test.ts`: 7 tests passing.
-- `packages/database/test/prismaAssignmentRepository.test.ts`: 7 tests passing.
+### 4.1 Unit Test Coverage (`test/sessionSecurity.test.ts`)
+- 13/13 tests passing:
+  - 8 fail-closed session validation tests (empty tokens, missing sessions, expiry, supersession, manual revocation, family revocation, user deactivation, database error).
+  - 3 identity resolution tests (valid resolution, anti-impersonation mismatch rejection, anti-privilege-elevation role rejection).
+  - 2 revocation service unit tests (idempotency, unknown session error).
 
-### 4.2 Live PostgreSQL Integration Tests
-- `packages/database/test/governancePersistenceIntegration.test.ts`: 7 tests passing against live Docker PostgreSQL `dentalvis_dev`.
-  - Confirms engine-level partial unique index blocks duplicate active assignments (`ASSIGNED` + `ASSIGNED` and `ASSIGNED` + `ACCEPTED`).
-  - Confirms terminal status `COMPLETED` allows subsequent reassignment.
-  - Confirms full declaration, supersession, clearance, and self-assessment rejection.
+### 4.2 Live PostgreSQL Integration & Concurrency (`test/sessionRevocationIntegration.test.ts`)
+- 5/5 tests passing against live Docker PostgreSQL `dentalvis_dev`:
+  - `TEST-PG-SEC-01`: Validates live PostgreSQL session and resolves actor.
+  - `TEST-PG-SEC-02`: Single session revocation creates `RevocationEvent` and immediately denies subsequent session validation while preserving sibling session.
+  - `TEST-PG-SEC-03`: Family revocation cascades to all sibling sessions.
+  - `TEST-PG-SEC-04`: Consumer registration, unacked event polling, and idempotent acknowledgement.
+  - `TEST-PG-SEC-05`: **Live Concurrency Test** executing two simultaneous revocation transactions (`Promise.all`) racing against the same session without deadlocks or corrupted state.
 
-### 4.3 Test Suite Summary
-- **Database Test Suite:** 16 test files passed, 214 tests passed (100% pass rate).
-- **TypeScript Typecheck:** Zero errors in `@dentalvis/database` and `@dentalvis/common`.
+### 4.3 Full Test Suite Status
+- **Total Test Files:** 18 passed (100%).
+- **Total Tests:** 232 passed (100%).
+- **TypeScript Typecheck:** 0 errors across `@dentalvis/common` and `@dentalvis/database`.
+
+---
+
+## 5. Scope Compliance & Follow-Up Tracking
+
+- **M6.1.5-B Scope:** Strictly adhered to session validation, identity resolution primitives, revocation engine services, concurrency safety, and security tests. Zero API routes or UI components were created.
+- **M6.1.5-C Transition:** Future API routes in milestone C will directly consume `resolveRequestIdentity` and `SessionRevocationService`.
