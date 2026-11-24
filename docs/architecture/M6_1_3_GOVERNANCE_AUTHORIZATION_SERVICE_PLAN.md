@@ -135,7 +135,19 @@ export type AuthorizationDecision =
   | 'ALLOW'
   | 'DENY'
   | 'REQUIRES_VERIFICATION';
+```
 
+### Core Semantics of the Decision Contract
+
+1. **`ALLOW`**: All mandatory security, identity, session, role, permission scope, invariant, and clinical qualification/permit checks have passed completely. Permission is formally granted to proceed.
+2. **`DENY`**: One or more mandatory checks failed (e.g. invalid session, revoked token, incompatible role, missing scope, author self-approval attempt, or clinical ineligibility). Access is blocked fail-closed.
+3. **`REQUIRES_VERIFICATION` (Strictly Non-Authorizing)**:
+   - Indicates that a mandatory clinical verification or credential re-check step remains incomplete (e.g., license expiration check pending, unverified procedural permits, or missing active verification record).
+   - **CRITICAL INVARIANT:** `REQUIRES_VERIFICATION` is **NOT permission to proceed**. It is an explicit, non-authorizing status that downstream services, route handlers, middleware, UI components, and API callers must treat as blocked.
+   - Privileged clinical operations (such as `crb:review:submit` or `crb:publish:authorize`) **MUST REMAIN FULLY BLOCKED** until the external verification workflow is executed and authorization is re-evaluated to a clean `ALLOW`.
+   - **No Implicit Conversion:** Downstream layers are strictly forbidden from coercing `REQUIRES_VERIFICATION` into `ALLOW`.
+
+```typescript
 export type AuthorizationDenialReason =
   | 'UNAUTHENTICATED'
   | 'SESSION_EXPIRED'
@@ -151,6 +163,7 @@ export type AuthorizationDenialReason =
   | 'UNRATIFIED_MANDATORY_POLICY'
   | 'PROCEDURAL_PERMIT_REQUIRED'
   | 'SPECIALTY_MISMATCH'
+  | 'CREDENTIAL_VERIFICATION_REQUIRED'
   | 'INTERNAL_SECURITY_ERROR';
 
 export interface AuthorizationActor {
@@ -221,45 +234,64 @@ The authorization service enforces a strict, disjoint mapping between technical 
 
 ## 7. Clinical Eligibility Integration
 
-The authorization service evaluates clinical review permissions (`crb:review:assess`, `crb:review:submit`) through a three-stage clinical qualification check:
+The authorization service evaluates clinical review permissions (`crb:review:assess`, `crb:review:submit`) through a context-sensitive, non-universal qualification check.
+
+### 7.1 Elimination of Universal Hardcoding
+
+**CRITICAL ARCHITECTURAL SAFEGUARD:** The authorization service **MUST NOT** invent universal clinical qualification requirements or require every qualification from every reviewer.
+
+Clinical eligibility is evaluated strictly against:
+1. **Procedure-Specific Scope:** The specific clinical procedure being reviewed (e.g. routine preventive prophylaxis vs restorative endodontics vs complex surgical implant reconstruction vs moderate/deep sedation).
+2. **Actual Professional Role:** Whether the clinician is acting as a General Dental Reviewer, Specialist Reviewer, Sedation Reviewer, or Bilingual Language Reviewer.
+3. **Applicable Recognized Specialty:** Whether the specific procedure requires a statutory specialist (e.g. OMFS or Periodontics for surgical implant reconstruction; Dental Anesthesiology or OMFS for Deep IV Sedation).
+4. **Jurisdiction:** Statutory licensing authority rules and legal scopes of practice for the applicable country/state (e.g. State Dental Board, Dental Council of India, General Dental Council).
+5. **Verified Professional Qualifications:** Applicable clinical degree (BDS, DDS, DMD, MBBS, MD, MDS, etc.) relevant to the practitioner and jurisdiction.
+6. **Statutory Licenses & Disciplinary Standing:** Active, unrestricted license in good standing.
+7. **Procedure-Specific Permits:** Statutory procedural permits (e.g., Enteral Sedation Permit, Parenteral IV Sedation Permit, General Anesthesia Permit, Hospital Surgical Privileges) where legally mandated for that procedure scope in that jurisdiction.
+8. **Explicitly Ratified Applicable Policies:** Consumed directly from `PolicyConfigurationAdapter` (e.g. ratified M4 sedation and surgical decisions).
+
+> [!CAUTION]
+> **No Inherent Policy Authority:** M6.1.3 must consume verified eligibility evidence and applicable ratified policy results. It must **NOT** become a source of newly invented clinical policy. Credential examples remain illustrative only. Missing mandatory evidence fails closed.
 
 ```mermaid
 flowchart TD
-    Req["Request (Scope = crb:review:submit)"] --> HCheck{"1. Human Practitioner Authenticated?"}
-    HCheck -- "No / AI Agent / Unverified" --> DenyAI["DENY: CLINICALLY_INELIGIBLE"]
-    HCheck -- "Yes" --> QCheck{"2. Degree & License Active?"}
+    Req["Request (Scope = crb:review:submit)"] --> HCheck{"1. Authenticated Human Practitioner?"}
+    HCheck -- "No / AI Agent / Anonymous" --> DenyAI["DENY: CLINICALLY_INELIGIBLE"]
+    HCheck -- "Yes" --> QCheck{"2. Active Statutory License Verified?"}
     
-    QCheck -- "Unverified / Expired" --> ReqVerif["REQUIRES_VERIFICATION"]
-    QCheck -- "Verified Active" --> TCheck{"3. Procedure Risk Tier Scope"}
+    QCheck -- "Unverified / Expired" --> ReqVerif["REQUIRES_VERIFICATION (Non-Authorizing)"]
+    QCheck -- "Verified Active" --> ScopeCheck{"3. Procedure Scope & Jurisdiction Requirements"}
     
-    TCheck -- "Tier 1 (Preventive)" --> ScopeT1["General Dental Degree (BDS/DDS/DMD) -> ALLOW"]
-    TCheck -- "Tier 2 (Moderate/Sedation)" --> ScopeT2{"Procedural Permit / Competency Required?"}
-    TCheck -- "Tier 3 (High-Risk/Surgical)" --> ScopeT3{"Statutory Specialty Match (OMFS/Perio/Anesth)?"}
+    ScopeCheck -- "Requires Specific Permit (e.g. Sedation)" --> PermitCheck{"Permit Verified?"}
+    PermitCheck -- "Missing / Unverified" --> DenyPermit["DENY: PROCEDURAL_PERMIT_REQUIRED"]
+    PermitCheck -- "Permit Verified" --> Allow["ALLOW"]
     
-    ScopeT2 -- "Missing Applicable Permit" --> DenyPermit["DENY: PROCEDURAL_PERMIT_REQUIRED"]
-    ScopeT2 -- "Permit Verified" --> Allow["ALLOW"]
+    ScopeCheck -- "Requires Statutory Specialty (Tier 3 Surgical)" --> SpecCheck{"Recognized Specialty Match?"}
+    SpecCheck -- "Specialty Mismatch" --> DenySpec["DENY: SPECIALTY_MISMATCH"]
+    SpecCheck -- "Specialty Verified" --> Allow
     
-    ScopeT3 -- "Specialty Mismatch" --> DenySpec["DENY: SPECIALTY_MISMATCH"]
-    ScopeT3 -- "Specialty Verified" --> Allow
+    ScopeCheck -- "Standard Scope Matches Professional Qualifications" --> Allow
 ```
 
-### 7.1 Sedation Policy Integration (Ratified M4 Protocol)
+### 7.2 Sedation Policy Integration (Ratified M4 Protocol)
 When authorizing review actions on sedation procedures (e.g. `#48 Oral Sedation`, `#49 Deep IV Sedation`):
 - The service retrieves the ratified policy `governance:sedation_permits` via `PolicyConfigurationAdapter.getSedationPolicy(jurisdiction)`.
 - If `jurisdiction` is missing, the service immediately denies with `MISSING_JURISDICTION_CONTEXT`.
-- For Tier 3 Deep Sedation, the reviewer's credentials must contain either `DENTAL_ANESTHESIOLOGY` or `ORAL_AND_MAXILLOFACIAL_SURGERY`, plus the applicable parenteral sedation permit.
-- Arbitrary tenure thresholds (such as 5-year rules) are strictly rejected per M4.
+- Universal arbitrary tenure thresholds (such as an unverified 5-year experience rule) are **strictly rejected** per M4.
+- Evaluates applicable statutory permits, residency training, and recognized specialty qualifications according to the actual procedure sedation level and jurisdictional statute.
+- Blanket qualification requirements are strictly prohibited.
 
-### 7.2 Surgical Specialist Priority (Ratified M4 Protocol)
+### 7.3 Surgical Specialist Priority (Ratified M4 Protocol)
 When authorizing reviews on Tier 3 surgical content (Sinus Lift, Ridge Augmentation, Full Arch):
 - The service retrieves `governance:surgical_specialty`.
-- The reviewer must possess statutory specialty recognition in `ORAL_AND_MAXILLOFACIAL_SURGERY` or `PERIODONTICS`. Commercial implantology certificates are rejected as standalone qualification.
+- The reviewer must possess recognized statutory specialty qualifications (e.g. `ORAL_AND_MAXILLOFACIAL_SURGERY` or `PERIODONTICS`) appropriate to the surgical intervention.
+- Commercial certificates or informal training institutes are rejected as standalone surgical specialties.
 
 ---
 
-## 8. Session Security Dependencies & Invalidation Lifecycle
+## 8. Authoritative Session Security & Invalidation Lifecycle
 
-`GovernanceAuthorizationService` depends on synchronous database validation of session state for high-privilege governance actions:
+`GovernanceAuthorizationService` depends on authoritative, synchronous database validation of session state for high-privilege governance actions:
 
 ```mermaid
 sequenceDiagram
@@ -268,33 +300,64 @@ sequenceDiagram
     participant DB as PostgreSQL Database
     
     Route->>AuthZ: authorize(request)
-    AuthZ->>DB: Query UserSession + SessionFamily (by tokenHash)
+    AuthZ->>DB: Query UserSession + SessionFamily + User (by tokenHash)
     
-    alt Session Not Found
+    alt Missing Session Record (null)
         DB-->>AuthZ: null
         AuthZ-->>Route: DENY (UNAUTHENTICATED)
+    else Missing SessionFamily Record
+        DB-->>AuthZ: session.sessionFamily == null
+        AuthZ-->>Route: DENY (SESSION_FAMILY_REVOKED)
     else Session Expired (expiresAt < now)
         DB-->>AuthZ: expiresAt elapsed
         AuthZ-->>Route: DENY (SESSION_EXPIRED)
-    else Session Status != ACTIVE (e.g. SUPERSEDED / REVOKED)
+    else Session Status != ACTIVE (REVOKED_MANUAL / REVOKED_REPLAY_ATTACK)
         DB-->>AuthZ: status = REVOKED_MANUAL
         AuthZ-->>Route: DENY (SESSION_REVOKED)
-    else SessionFamily Status == REVOKED
+    else Session Status == SUPERSEDED (stale rotated token)
+        DB-->>AuthZ: status = SUPERSEDED
+        AuthZ-->>Route: DENY (SESSION_SUPERSEDED)
+    else SessionFamily Status != ACTIVE (REVOKED / EXPIRED)
         DB-->>AuthZ: family.status = REVOKED
         AuthZ-->>Route: DENY (SESSION_FAMILY_REVOKED)
-    else User isActive == false
+    else User isActive == false or deactivatedAt != null
         DB-->>AuthZ: user.isActive = false
         AuthZ-->>Route: DENY (USER_DEACTIVATED)
-    else Session Healthy & Active
-        AuthZ->>AuthZ: Proceed to RBAC and Invariant Evaluation
+    else Database / Lookup Error
+        DB-->>AuthZ: Connection / Query Error
+        AuthZ-->>Route: DENY (INTERNAL_SECURITY_ERROR)
+    else Authoritative State Healthy & Active
+        AuthZ->>AuthZ: Proceed to Scope, Invariant & Eligibility Evaluation
     end
 ```
 
-### Key Session Rules for M6.1.3
-1. **Direct Database Lookups for Governance Mutations:** High-privilege actions (`crb:publish:authorize`, `crb:approval:revoke`, `crb:review:submit`) must not rely solely on stateless JWT claims; they must verify `UserSession.status === 'ACTIVE'` and `SessionFamily.status === 'ACTIVE'` against the database.
-2. **Replay Detection Awareness:** If a session record is marked `SUPERSEDED`, authorization is denied with `SESSION_SUPERSEDED`, requiring immediate token rotation.
-3. **Session Fencing:** In distributed deployments, if a worker's local revocation cursor is behind `RevocationConsumer.fencingGeneration`, cached authorization leases are invalidated fail-closed.
-4. **Boundary Note:** Actual HTTP cookie parsing, JWT signature verification, and CSRF header checks belong to the API gateway layer (**M6.1.5**). M6.1.3 consumes validated session tokens and context objects.
+### 8.1 Authoritative Session Invariants for Governance Mutations
+
+For all sensitive governance operations (`crb:publish:authorize`, `crb:approval:revoke`, `crb:review:submit`, `crb:credential:verify`, `crb:review:assign`):
+
+1. **Mandatory Database Record Existence:**
+   - A missing session record results immediately in `DENY` (`UNAUTHENTICATED`).
+   - A missing session-family record results immediately in `DENY` (`SESSION_FAMILY_REVOKED`).
+2. **Explicit Active State Verification:**
+   - Any session marked `REVOKED_MANUAL` or `REVOKED_REPLAY_ATTACK` results in `DENY` (`SESSION_REVOKED`).
+   - Any session past its `expiresAt` timestamp results in `DENY` (`SESSION_EXPIRED`).
+   - Any session marked `SUPERSEDED` (an already-rotated refresh token) results in `DENY` (`SESSION_SUPERSEDED`), flagging potential token reuse.
+   - Any session associated with an inactive or deactivated user (`user.isActive === false`) results in `DENY` (`USER_DEACTIVATED`).
+3. **Database Error Fail-Closed:**
+   - Any database error, connection dropout, or schema query failure encountered during session validation strictly fails closed by returning `DENY` (`INTERNAL_SECURITY_ERROR`).
+4. **No Cached Authorization Override:**
+   - Cached authorization contexts, in-memory tokens, or client-side claims must **NEVER** override authoritative database session state. Stale authorization contexts are non-reusable.
+5. **Session Fencing Evaluation:**
+   - Where distributed revocation consumers operate, if a worker's local cursor lags behind `RevocationConsumer.fencingGeneration`, cached authorization leases are rejected fail-closed.
+6. **Proximity to Mutation:**
+   - Authorization evaluation must occur immediately adjacent to the execution of the protected database mutation to minimize the race-condition window between authorization and persistence.
+
+### 8.2 Architectural Boundary: M6.1.3 vs M6.1.5
+
+To maintain clean architectural boundaries and avoid premature claims:
+- **M6.1.3 Scope (Core Authorization Logic):** Designs and implements the server-side authorization engine (`GovernanceAuthorizationService`) and synchronous session validation rules (`sessionValidator.ts`) executing against Prisma models.
+- **M6.1.5 Scope (HTTP Gateway & Middleware):** Implements the HTTP cookie parsing (`__Host-` cookies), access JWT signature verification, synchronizer CSRF token validation (`X-CSRF-Token`), and API route wrappers.
+- **Race Condition Analysis:** M6.1.3 acknowledges that true atomic revocation requires the database transaction executing the governance mutation to re-check `UserSession.status` within the same transaction. M6.1.3 evaluates the session authoritative state; M6.1.4 and M6.1.5 wire this check directly into the transactional mutation boundaries.
 
 ---
 
@@ -356,10 +419,10 @@ The test suite for `packages/database/test/authorizationService.test.ts` will co
 | **TEST-AUTHZ-16** | Publication Scope | Publication Admin requesting `crb:approval:revoke` | `DENY` (`SCOPE_NOT_GRANTED`) |
 | **TEST-AUTHZ-17** | Author Invariant | Author reviewing own procedure (`authorId === actorId`) | `DENY` (`AUTHOR_SELF_APPROVAL_PROHIBITED`) |
 | **TEST-AUTHZ-18** | Author Invariant | Author drafting own procedure (`crb:dossier:draft`) | `ALLOW` |
-| **TEST-AUTHZ-19** | Clinical Scope | Unverified reviewer requesting `crb:review:submit` | `REQUIRES_VERIFICATION` |
-| **TEST-AUTHZ-20** | Clinical Scope | General Dentist reviewing Tier 3 OMFS surgical procedure | `DENY` (`SPECIALTY_MISMATCH`) |
-| **TEST-AUTHZ-21** | Clinical Scope | OMFS Specialist reviewing Tier 3 surgical procedure | `ALLOW` |
-| **TEST-AUTHZ-22** | Sedation Scope | Dentist without permit reviewing Tier 2 Oral Sedation | `DENY` (`PROCEDURAL_PERMIT_REQUIRED`) |
+| **TEST-AUTHZ-19** | Clinical Scope | Unverified reviewer requesting `crb:review:submit` | `REQUIRES_VERIFICATION` (Non-authorizing; mutation remains blocked) |
+| **TEST-AUTHZ-20** | Clinical Scope | Clinician lacking required statutory specialty for Tier 3 surgical content | `DENY` (`SPECIALTY_MISMATCH`) |
+| **TEST-AUTHZ-21** | Clinical Scope | Clinician with verified statutory specialty for Tier 3 surgical content | `ALLOW` |
+| **TEST-AUTHZ-22** | Sedation Scope | Clinician lacking legally mandated procedural permit for sedation procedure | `DENY` (`PROCEDURAL_PERMIT_REQUIRED`) |
 | **TEST-AUTHZ-23** | Sedation Scope | Sedation review requested without jurisdictional context | `DENY` (`MISSING_JURISDICTION_CONTEXT`) |
 | **TEST-AUTHZ-24** | Policy Gating | Action dependent on unratified policy (e.g. proposed quorum) | `DENY` (`UNRATIFIED_MANDATORY_POLICY`) |
 | **TEST-AUTHZ-25** | Robustness | Database query error during session check | `DENY` (`INTERNAL_SECURITY_ERROR`) |
