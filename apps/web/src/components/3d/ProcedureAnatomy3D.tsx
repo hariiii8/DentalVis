@@ -53,6 +53,8 @@ export function ProcedureAnatomy3D({ procedureSlug, imageSrc }: ProcedureAnatomy
 
   const [viewMode, setViewMode] = useState<'3d' | '2d'>('3d');
   const [runtimeError, setRuntimeError] = useState<string | null>(null);
+  const [hoveredHotspot, setHoveredHotspot] = useState<any>(null);
+  const [projectedPositions, setProjectedPositions] = useState<Record<string, { x: number; y: number; visible: boolean }>>({});
 
   // If no 3D configuration exists for this procedure, render the existing 2D viewer safely
   if (!config) {
@@ -153,6 +155,8 @@ export function ProcedureAnatomy3D({ procedureSlug, imageSrc }: ProcedureAnatomy
           state={state}
           lang={language}
           onError={(err) => setRuntimeError(err.message)}
+          onHoverHotspot={setHoveredHotspot}
+          onProjectedPositionsChange={setProjectedPositions}
         />
 
         {/* Liquid Glass HUD Overlay Controls */}
@@ -160,6 +164,8 @@ export function ProcedureAnatomy3D({ procedureSlug, imageSrc }: ProcedureAnatomy
           config={config}
           state={state}
           lang={language}
+          hoveredHotspot={hoveredHotspot}
+          projectedPositions={projectedPositions}
         />
 
         {/* Honest Model Preparation Banner (When GLB model is being authored) */}
@@ -173,8 +179,8 @@ export function ProcedureAnatomy3D({ procedureSlug, imageSrc }: ProcedureAnatomy
               </p>
               <p className="text-[11px] text-[#587477] mt-0.5">
                 {isTamil
-                  ? '7 அடுக்கு வேர் கால்வாய் மாதிரி (GLB) தயாரிப்பில் உள்ளது. 2D வரைபடத்தைக் காண மேலே உள்ள "2D" பொத்தானை அழுத்தவும்.'
-                  : 'Multi-layer molar GLB asset is undergoing anatomical calibration. Click "2D" above to inspect the cross-sectional illustration.'}
+                  ? 'இதற்குரிய பிரத்யேக 3D மாதிரி (GLB) மருத்துவ தயாரிப்பில் உள்ளது. உடற்கூறியல் விளக்கத்தைக் காண மேலே உள்ள "2D" பொத்தானை அழுத்தவும்.'
+                  : 'Specialty 3D anatomical asset (GLB) is undergoing clinical calibration. Click "2D" above to inspect the cross-sectional illustration.'}
               </p>
             </div>
           </div>

@@ -24,12 +24,16 @@ interface AnatomyControlsOverlayProps {
   config: Procedure3DConfig;
   state: AnatomyViewerState;
   lang?: 'en' | 'ta';
+  hoveredHotspot?: any;
+  projectedPositions?: Record<string, { x: number; y: number; visible: boolean }>;
 }
 
 export function AnatomyControlsOverlay({
   config,
   state,
   lang = 'en',
+  hoveredHotspot,
+  projectedPositions,
 }: AnatomyControlsOverlayProps) {
   const isTamil = lang === 'ta';
   const [layersMenuOpen, setLayersMenuOpen] = useState(false);
@@ -147,6 +151,21 @@ export function AnatomyControlsOverlay({
         </div>
       )}
 
+      {/* Floating 2D Tooltip for Hovered Hotspot (Rendered safely on Single Overlay Root) */}
+      {hoveredHotspot && projectedPositions?.[hoveredHotspot.id]?.visible && (
+        <div
+          className="absolute pointer-events-none transform -translate-x-1/2 -translate-y-full transition-transform duration-75 z-20"
+          style={{
+            left: `${projectedPositions[hoveredHotspot.id].x}px`,
+            top: `${projectedPositions[hoveredHotspot.id].y - 12}px`,
+          }}
+        >
+          <div className="px-2.5 py-1 rounded-lg liquid-glass-lens text-[11px] font-bold text-[#145B59] shadow-md whitespace-nowrap border border-[#20B2AA]/40 bg-white/90">
+            {isTamil ? hoveredHotspot.titleTa : hoveredHotspot.titleEn}
+          </div>
+        </div>
+      )}
+
       {/* Bottom Bar: Layer Visibility Bar */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 pointer-events-auto">
         {/* Layer Groups Popover/Bar */}
@@ -200,8 +219,8 @@ export function AnatomyControlsOverlay({
           <Crosshair className="w-3 h-3 text-[#20B2AA]" />
           <span>
             {isTamil
-              ? 'சுழற்ற இழுக்கவும் · பெரிதாக்க உருட்டவும்'
-              : 'Drag to rotate · Scroll to zoom · Click pins to inspect'}
+              ? 'சுழற்ற இழுக்கவும் · ஆய்வு செய்ய பின்களை அழுத்தவும்'
+              : 'Drag to rotate · Click aspect pills or pins to inspect'}
           </span>
         </div>
       </div>
