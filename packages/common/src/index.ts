@@ -19,6 +19,8 @@ export type GovernanceTier = 'TIER_1' | 'TIER_2' | 'TIER_3';
 // CLINICAL REVIEW BOARD (CRB) GOVERNANCE TAXONOMY & TYPES (M6.1.2)
 // ----------------------------------------------------------------------
 export * from './governance';
+export * from './editorial';
+export * from './repository';
 
 export interface ExploreCategory {
   id: string;
