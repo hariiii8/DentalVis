@@ -135,7 +135,8 @@ export default function EmergencyPage() {
                   </div>
                   <a
                     href="tel:112"
-                    className="px-2.5 py-1 rounded-lg bg-[#20B2AA]/15 text-[#145B59] hover:bg-[#20B2AA] hover:text-white transition-colors"
+                    aria-label={isTamil ? `${cond.titleTa} - அவசர உதவி எண் 112 அழைக்கவும்` : `Call 112 emergency assistance for ${cond.titleEn}`}
+                    className="px-2.5 py-1 rounded-lg bg-[#20B2AA]/15 text-[#145B59] hover:bg-[#20B2AA] hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#20B2AA]"
                   >
                     {isTamil ? 'அழைக்க (112)' : 'Call 112'}
                   </a>
