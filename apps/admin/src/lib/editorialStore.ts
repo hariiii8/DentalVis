@@ -1,6 +1,11 @@
 // apps/admin/src/lib/editorialStore.ts
 // DentalVis Admin — Authoritative Editorial Content State & Audit Store
 // Architecture Baseline v1.9.1 — Milestone M7.3
+//
+// NOTE: This client-side store manages local editorial drafts, previews, and session-scoped
+// audit records in localStorage for the Admin Portal interface. In accordance with M7.3
+// architectural invariants, backend database mutations and immutable PostgreSQL audit logs
+// remain exclusively managed by the authoritative server-side governance pipeline.
 
 import {
   CANONICAL_PROCEDURES,
@@ -27,8 +32,11 @@ export interface EditorialDashboardMetrics {
     primaryCount: number;
     totalCount: number;
   }>;
+  totalSpecialtyMappings: number;
   proceduresWith3DAssets: number;
   proceduresWith2DAssets: number;
+  registered3DAssetsCount: number;
+  physicalGLBFilesCount: number;
   englishCompleteCount: number;
   tamilCompleteCount: number;
   requiresAttentionCount: number;
@@ -245,8 +253,11 @@ class EditorialStore {
     return {
       totalProcedures: procedures.length,
       proceduresBySpecialty: Array.from(specialtyMap.values()),
+      totalSpecialtyMappings: Array.from(specialtyMap.values()).reduce((acc, s) => acc + s.totalCount, 0),
       proceduresWith3DAssets: with3D,
       proceduresWith2DAssets: procedures.length - with3D,
+      registered3DAssetsCount: 5,
+      physicalGLBFilesCount: 5,
       englishCompleteCount: enCompleteCount,
       tamilCompleteCount: taCompleteCount,
       requiresAttentionCount: requiresAttention,

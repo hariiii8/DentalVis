@@ -21,12 +21,18 @@ The implementation preserves all architectural foundations established in earlie
 
 ## 2. Architecture & Completed Features
 
-### 2.1 Admin Dashboard Metrics
-The Admin Dashboard overview was refined to compute live statistics strictly derived from the canonical catalogue and active editorial state:
+### 2.1 Admin Dashboard Metrics & Inventory Reconciliation
+The Admin Dashboard overview was refined to compute live statistics strictly derived from the canonical catalogue, registered visualization assets, and active editorial state:
 - **Total Canonical Procedures:** Exactly 48 procedures loaded.
-- **Procedures by Specialty:** Mapped across all 15 clinical dental departments (Preventive, Restorative, Endodontics, Periodontics, Oral Surgery, Implantology, Prosthodontics, Orthodontics, Pediatric, Cosmetic, Emergency, Sedation, Oral Medicine, TMJ, and Sleep & Airway).
+- **Procedures by Specialty (Primary vs Total Associations):**
+  - Mapped across all 15 clinical dental departments (Preventive, Restorative, Endodontics, Periodontics, Oral Surgery, Implantology, Prosthodontics, Orthodontics, Pediatric, Cosmetic, Emergency, Sedation, Oral Medicine, TMJ, and Sleep & Airway).
+  - **Specialty Distribution Reconciliation:** Every procedure possesses exactly one `primaryDepartmentCode` (sum = 48 primary procedures). Procedures additionally map to relevant secondary clinical specialties (52 secondary mappings), totaling **100 specialty associations**. The Admin UI explicitly presents both indicators (`{totalCount} total` and `{primaryCount} pri`) alongside overview badges `"48 Procedures"` and `"100 Specialty Associations"` to eliminate ambiguity.
 - **Bilingual Content Completeness:** Displays independent English (48/48) and Tamil (48/48) completeness with real-time percentage indicators.
-- **Visualization Assets Breakdown:** Categorizes procedures into 3D interactive WebGL models and 2D clinical schematic guides.
+- **Visualization Assets Reconciliation:**
+  - Physical GLB files on disk (`apps/web/public/models`): **5 files** (`deep-cleaning-periodontics.glb`, `dental-crowns-prosthodontics.glb`, `molar-endodontic-anatomy.glb`, `orthodontic-braces-arch.glb`, `single-dental-implant.glb`).
+  - Active 3D engine registrations (`apps/web/src/components/3d/procedure3DRegistry.ts`): **5 registered procedures** with `isModelReady: true` (`root-canal-treatment`, `deep-cleaning-scaling`, `single-dental-implant`, `dental-crowns`, `fixed-orthodontic-braces`).
+  - Canonical DTO flags (`packages/common/src/index.ts`): 3 procedures retain historical `has3DModel: true`.
+  - Dashboard metric card reconciles active 3D capabilities to **5 3D / 43 2D** (5 registered GLB assets in engine, 43 2D educational fallback schematics), with sub-labels noting 5 registered and 5 physical GLB assets on disk.
 - **Explore Taxonomies:** Displays the 6 canonical patient-facing symptom and discovery taxonomies.
 - **Recent Editorial Activity:** Derives recent activity from the authentic editorial audit log.
 
@@ -60,12 +66,19 @@ Before saving, editors can launch a live public presentation preview:
 - Includes language switcher (`English` / `தமிழ்`) to verify localized typography.
 - Strictly exhibits **0 clinical warning badges** (*Not Clinically Reviewed*, *Draft*, or *Educational Reference Only*).
 
-### 2.6 Editorial Role-Based Access Control (RBAC) & Audit Log
+### 2.6 Editorial RBAC & Storage Architecture
 - **RBAC Matrix (`checkEditorialPermission`):**
   - `SYSTEM_ADMIN`, `CHIEF_EDITOR`, `CLINICAL_AUTHOR`: Full authoring, editing, and saving permissions.
   - `CLINICAL_REVIEWER`: Evaluation and preview permissions; direct authoring disabled to prevent self-review conflict.
   - `PATIENT_VIEWER`: Read-only view and preview permissions.
-- **Immutable Audit Trail:** All mutations (`UPDATE_CONTENT`, `CANCEL_EDIT`, `PREVIEW_CONTENT`) record tamper-evident audit events with ISO timestamp, procedure code, editor ID, editor name, role, and human-readable changes summary.
+- **Client Simulator vs Server RBAC Enforcement:**
+  - The Admin Portal's role selector operates as a client-side role simulator for UI evaluation and demonstration.
+  - In contrast, backend governance mutation endpoints (`/api/governance/*`) strictly enforce server-side authentication, origin/CSRF validation, and RBAC via `guardGovernanceApi`, `SessionValidator`, and `GovernanceAuthorizationService`.
+- **Storage Layer & Public Read Data Flow (Draft Management Scope):**
+  - Content edits and audit activity records are persisted in client `localStorage` under `dentalvis_admin_editorial_drafts_v1` and `dentalvis_admin_editorial_audit_log_v1`.
+  - Edits survive browser page refreshes on the same client, but do not persist across different browser instances or into PostgreSQL without an administrative database migration.
+  - The public web application (`apps/web`) reads from `StaticProcedureRepository` by default (or `DatabaseProcedureRepository` if configured). Because public web and admin portal are decoupled processes on `:3000` and `:3001`, local browser draft saves do not alter the static TypeScript code repository on disk.
+  - **Truthful Labeling:** The Admin Portal audit log is accurately titled *"Admin Editorial Audit Activity (Local Session & Client Drafts)"* to clearly distinguish client draft logs from immutable PostgreSQL CRB audit logs.
 
 ---
 

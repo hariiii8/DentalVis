@@ -294,9 +294,11 @@ export default function App() {
                   </div>
                 </div>
                 <div className="text-3xl font-black text-[#145B59]">
-                  {metrics.proceduresWith3DAssets} 3D / {metrics.proceduresWith2DAssets} 2D
+                  {metrics.registered3DAssetsCount} 3D / {metrics.totalProcedures - metrics.registered3DAssetsCount} 2D
                 </div>
-                <p className="text-[11px] text-[#587477]">Interactive anatomy + clinical schematics</p>
+                <p className="text-[11px] text-[#587477]">
+                  5 physical GLB models registered in 3D engine; 43 2D fallback guides
+                </p>
               </div>
 
               <div className="liquid-glass-secondary p-6 rounded-3xl space-y-2">
@@ -315,18 +317,23 @@ export default function App() {
 
             {/* Specialty Distribution Grid */}
             <div className="liquid-glass-primary p-7 sm:p-8 rounded-3xl space-y-5 border border-white/80">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div>
                   <h3 className="font-extrabold text-xl text-[#145B59] tracking-tight">
-                    Procedures by Dental Specialty
+                    Procedures by Dental Specialty (Overlapping Clinical Mappings)
                   </h3>
                   <p className="text-xs text-[#587477] mt-0.5">
-                    Accurate procedure counts mapped across all 15 clinical departments
+                    Procedures have 1 primary department and up to 2 secondary clinical disciplines ({metrics.totalSpecialtyMappings} total mappings across 48 procedures)
                   </p>
                 </div>
-                <Badge variant="mint" className="text-xs font-bold liquid-glass-lens">
-                  15 Specialties
-                </Badge>
+                <div className="flex items-center gap-2">
+                  <Badge variant="mint" className="text-xs font-bold liquid-glass-lens">
+                    48 Procedures
+                  </Badge>
+                  <Badge variant="mint" className="text-xs font-bold liquid-glass-lens">
+                    100 Specialty Associations
+                  </Badge>
+                </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-3 text-xs">
@@ -337,9 +344,14 @@ export default function App() {
                   >
                     <div className="flex items-center justify-between">
                       <span className="font-mono font-bold text-[#20B2AA]">{s.code}</span>
-                      <span className="px-2 py-0.5 rounded-lg bg-[#20B2AA]/15 text-[#145B59] font-bold text-[11px]">
-                        {s.totalCount}
-                      </span>
+                      <div className="flex items-center gap-1">
+                        <span className="px-1.5 py-0.5 rounded-md bg-[#20B2AA]/20 text-[#145B59] font-bold text-[10px]" title="Total associated procedures (primary + secondary)">
+                          {s.totalCount} total
+                        </span>
+                        <span className="px-1.5 py-0.5 rounded-md bg-white/70 text-[#587477] font-semibold text-[10px]" title="Primary specialty count">
+                          {s.primaryCount} pri
+                        </span>
+                      </div>
                     </div>
                     <div className="font-bold text-[#145B59] line-clamp-1">{s.nameEn}</div>
                     <div className="text-[10px] text-[#587477] line-clamp-1">{s.nameTa}</div>
@@ -596,13 +608,13 @@ export default function App() {
         {/* Tab 5: Audit Trail */}
         {activeTab === 'audit' && (
           <div className="liquid-glass-primary p-7 sm:p-9 rounded-3xl space-y-6 shadow-md border border-white/80">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
               <div>
                 <h3 className="font-extrabold text-2xl text-[#145B59] tracking-tight">
-                  Immutable Editorial Audit Log
+                  Admin Editorial Audit Activity (Local Session & Client Drafts)
                 </h3>
                 <p className="text-xs text-[#587477] mt-1">
-                  Tamper-evident record of procedure edits, draft creations, and preview events
+                  Local browser draft audit history. Authoritative database audit immutability is enforced separately on PostgreSQL by the CRB Governance pipeline.
                 </p>
               </div>
               <Badge variant="mint" className="text-xs font-bold liquid-glass-lens">

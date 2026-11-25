@@ -56,7 +56,10 @@ export interface ContentValidationResult {
 }
 
 /**
- * Immutable Audit Record for editorial actions.
+ * Audit Record for editorial draft actions within the Admin Portal.
+ * Records local browser-scoped editorial actions (stored in client storage).
+ * Authoritative production audit logging is performed by the server-side GovernanceAuditService
+ * writing immutably to PostgreSQL AdminAuditLog table.
  */
 export interface EditorialAuditRecord {
   id: string;
