@@ -1655,10 +1655,5 @@ export function getVisibleProceduresByDepartment(
   });
 }
 
-// ----------------------------------------------------------------------
-// REPOSITORY ABSTRACTION (PHASE B2)
-// ----------------------------------------------------------------------
-export * from './repository/index';
-
 
 
