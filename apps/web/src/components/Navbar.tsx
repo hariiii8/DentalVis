@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Container, Button, LiquidGlassSurface } from '@dentalvis/ui';
-import { Globe, Menu, X, Compass, AlertTriangle, ShieldCheck, Home } from 'lucide-react';
+import { Globe, Menu, X, Compass, AlertTriangle, Home } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { DentalVisLogo } from './DentalVisLogo';
 
@@ -24,7 +24,6 @@ export function Navbar() {
     { href: '/home', labelEn: 'Home', labelTa: 'முகப்பு', icon: Home },
     { href: '/explore', labelEn: 'Explore Treatments', labelTa: 'சிகிச்சைகள்', icon: Compass },
     { href: '/symptoms', labelEn: 'Symptoms', labelTa: 'அறிகுறிகள்', icon: AlertTriangle },
-    { href: '/emergency', labelEn: 'Emergency Care', labelTa: 'அவசர சிகிச்சை', icon: ShieldCheck },
   ];
 
   return (

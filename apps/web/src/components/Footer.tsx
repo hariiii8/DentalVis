@@ -87,11 +87,6 @@ export function Footer() {
                   {isTamil ? 'அறிகுறிகள் பட்டியல்' : 'Symptom Directory'}
                 </Link>
               </li>
-              <li>
-                <Link href="/emergency" className="hover:text-[#247F83] transition-colors font-medium">
-                  {isTamil ? 'அவசர சிகிச்சை வழிகாட்டி' : 'Emergency Guidance'}
-                </Link>
-              </li>
             </ul>
           </div>
         </div>
