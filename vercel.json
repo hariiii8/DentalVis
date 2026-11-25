@@ -3,5 +3,5 @@
   "framework": "nextjs",
   "installCommand": "pnpm install",
   "buildCommand": "pnpm --filter @dentalvis/database build && pnpm --filter @dentalvis/common build && pnpm --filter @dentalvis/ui build && pnpm --filter web build",
-  "outputDirectory": "apps/web/.next"
+  "outputDirectory": ".next"
 }
