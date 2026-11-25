@@ -1555,7 +1555,8 @@ export function ProcedureAnatomyViewer({
           <button
             type="button"
             onClick={handleZoomIn}
-            className="p-1.5 rounded-lg text-[#145B59] hover:bg-[#DDF5F1] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#20B2AA]"
+            disabled={zoomLevel >= 2.0}
+            className="p-1.5 rounded-lg text-[#145B59] hover:bg-[#DDF5F1] disabled:opacity-40 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#20B2AA]"
             aria-label={isTamil ? 'பெரிதாக்கவும் (Zoom in)' : 'Zoom In'}
             title={isTamil ? 'பெரிதாக்கவும்' : 'Zoom In'}
           >
@@ -1564,7 +1565,8 @@ export function ProcedureAnatomyViewer({
           <button
             type="button"
             onClick={handleZoomOut}
-            className="p-1.5 rounded-lg text-[#145B59] hover:bg-[#DDF5F1] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#20B2AA]"
+            disabled={zoomLevel <= 0.8}
+            className="p-1.5 rounded-lg text-[#145B59] hover:bg-[#DDF5F1] disabled:opacity-40 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#20B2AA]"
             aria-label={isTamil ? 'சிறிதாக்கவும் (Zoom out)' : 'Zoom Out'}
             title={isTamil ? 'சிறிதாக்கவும்' : 'Zoom Out'}
           >
