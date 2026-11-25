@@ -1559,10 +1559,42 @@ export default function ProcedureDetailClientView({
       <div className="absolute top-1/2 -right-20 w-[34rem] h-[34rem] bg-gradient-to-bl from-[#DCEFF5]/80 to-[#20B2AA]/15 rounded-full blur-3xl pointer-events-none -z-10" />
 
       <Container>
+        {/* Breadcrumb Navigation Strip */}
+        <nav aria-label={isTamil ? 'வழிசெலுத்தல் பாதை' : 'Breadcrumb'} className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[#587477] mb-6">
+          <Link
+            href="/home"
+            className="hover:text-[#20B2AA] transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-[#20B2AA] rounded"
+          >
+            {isTamil ? 'முகப்பு' : 'Home'}
+          </Link>
+          <span aria-hidden="true" className="text-[#C8E7E3] font-bold">/</span>
+          <Link
+            href="/explore"
+            className="hover:text-[#20B2AA] transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-[#20B2AA] rounded"
+          >
+            {isTamil ? 'சிகிச்சைகள்' : 'Procedures'}
+          </Link>
+          <span aria-hidden="true" className="text-[#C8E7E3] font-bold">/</span>
+          {procedure.primaryDepartmentCode && (
+            <>
+              <Link
+                href={`/explore?dept=${procedure.primaryDepartmentCode}`}
+                className="hover:text-[#20B2AA] transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-[#20B2AA] rounded"
+              >
+                {procedure.primaryDepartmentName}
+              </Link>
+              <span aria-hidden="true" className="text-[#C8E7E3] font-bold">/</span>
+            </>
+          )}
+          <span aria-current="page" className="text-[#145B59] font-bold line-clamp-1 max-w-[200px] sm:max-w-none">
+            {title}
+          </span>
+        </nav>
+
         {/* Back Link */}
         <Link
           href="/explore"
-          className="inline-flex items-center gap-2 text-sm text-[#20B2AA] font-bold hover:underline mb-4"
+          className="inline-flex items-center gap-2 text-sm text-[#20B2AA] font-bold hover:underline mb-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#20B2AA] rounded"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>{isTamil ? 'அனைத்து சிகிச்சைகளுக்கும் திரும்பு' : 'Back to Treatment Directory'}</span>

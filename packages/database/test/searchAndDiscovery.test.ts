@@ -129,4 +129,33 @@ describe('M6.5 Search & Discovery Experience Engine', () => {
     expect(sortedDesc[0].titleEn).toBe(sortedAsc[sortedAsc.length - 1].titleEn);
     expect(sortedDesc[sortedDesc.length - 1].titleEn).toBe(sortedAsc[0].titleEn);
   });
+
+  it('matches procedures by primary or secondary department code search', () => {
+    const query = 'endo';
+    const results = CANONICAL_PROCEDURES.filter((p) => {
+      const primary = (p.primaryDepartmentCode || '').toLowerCase();
+      const secondary = (p.secondaryDepartmentCodes || []).map((c) => c.toLowerCase());
+      return primary.includes(query) || secondary.some((sc) => sc.includes(query));
+    });
+    expect(results.length).toBeGreaterThanOrEqual(4);
+    expect(results.some((p) => p.slug === 'root-canal-treatment')).toBe(true);
+  });
+
+  it('matches procedures by explore category slug search', () => {
+    const query = 'pain-and-sensitivity';
+    const results = CANONICAL_PROCEDURES.filter((p) =>
+      p.exploreCategorySlugs.some((cat) => cat.toLowerCase().includes(query))
+    );
+    expect(results.length).toBeGreaterThanOrEqual(1);
+    expect(results.some((p) => p.slug === 'root-canal-treatment')).toBe(true);
+  });
+
+  it('matches procedures by procedure clinical code', () => {
+    const query = 'endo-rct';
+    const results = CANONICAL_PROCEDURES.filter((p) =>
+      p.code.toLowerCase().includes(query)
+    );
+    expect(results.length).toBeGreaterThanOrEqual(1);
+    expect(results.some((p) => p.slug === 'root-canal-treatment')).toBe(true);
+  });
 });

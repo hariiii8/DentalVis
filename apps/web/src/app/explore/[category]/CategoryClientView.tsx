@@ -53,16 +53,37 @@ export default function DepartmentOrCategoryClientView(props: DepartmentOrCatego
   const isDepartment = props.itemType === 'department';
 
   return (
-    <div className="py-10 space-y-12 relative overflow-hidden bg-[#F5FAF9]">
+    <div className="py-10 space-y-12 relative overflow-hidden">
       {/* Background Ambience in Soft Mint & Powder Blue */}
-      <div className="absolute top-10 right-10 w-96 h-96 bg-[#BFE9E2]/50 rounded-full blur-3xl pointer-events-none -z-10" />
-      <div className="absolute bottom-10 left-10 w-[30rem] h-[30rem] bg-[#20B2AA]/15 rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute top-10 right-10 w-96 h-96 bg-[#BFE9E2]/55 rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute bottom-10 left-10 w-[30rem] h-[30rem] bg-[#20B2AA]/20 rounded-full blur-3xl pointer-events-none -z-10" />
 
       <Container>
+        {/* Breadcrumb Navigation Strip */}
+        <nav aria-label={isTamil ? 'வழிசெலுத்தல் பாதை' : 'Breadcrumb'} className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[#587477] mb-6">
+          <Link
+            href="/home"
+            className="hover:text-[#20B2AA] transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-[#20B2AA] rounded"
+          >
+            {isTamil ? 'முகப்பு' : 'Home'}
+          </Link>
+          <span aria-hidden="true" className="text-[#C8E7E3] font-bold">/</span>
+          <Link
+            href="/explore"
+            className="hover:text-[#20B2AA] transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-[#20B2AA] rounded"
+          >
+            {isTamil ? 'சிகிச்சைகள்' : 'Explore'}
+          </Link>
+          <span aria-hidden="true" className="text-[#C8E7E3] font-bold">/</span>
+          <span aria-current="page" className="text-[#145B59] font-bold line-clamp-1 max-w-[200px] sm:max-w-none">
+            {title}
+          </span>
+        </nav>
+
         {/* Back Link */}
         <Link
           href="/explore"
-          className="inline-flex items-center gap-2 text-sm text-[#20B2AA] font-bold hover:underline mb-4"
+          className="inline-flex items-center gap-2 text-sm text-[#20B2AA] font-bold hover:underline mb-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#20B2AA] rounded"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>

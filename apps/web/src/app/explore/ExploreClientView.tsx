@@ -109,7 +109,11 @@ export default function ExploreClientView({
       const summaryEn = (proc.summaryEn || '').toLowerCase();
       const summaryTa = (proc.summaryTa || '').toLowerCase();
       const deptNameEn = (proc.primaryDepartmentName || '').toLowerCase();
+      const primaryCode = (proc.primaryDepartmentCode || '').toLowerCase();
+      const secondaryCodes = (proc.secondaryDepartmentCodes || []).map((c) => c.toLowerCase());
       const slug = (proc.slug || '').toLowerCase();
+      const code = (proc.code || '').toLowerCase();
+      const exploreCategories = (proc.exploreCategorySlugs || []).map((c) => c.toLowerCase());
 
       return (
         titleEn.includes(normalizedQuery) ||
@@ -117,7 +121,11 @@ export default function ExploreClientView({
         summaryEn.includes(normalizedQuery) ||
         summaryTa.includes(normalizedQuery) ||
         deptNameEn.includes(normalizedQuery) ||
-        slug.includes(normalizedQuery)
+        primaryCode.includes(normalizedQuery) ||
+        secondaryCodes.some((sc) => sc.includes(normalizedQuery)) ||
+        slug.includes(normalizedQuery) ||
+        code.includes(normalizedQuery) ||
+        exploreCategories.some((cat) => cat.includes(normalizedQuery))
       );
     });
 
