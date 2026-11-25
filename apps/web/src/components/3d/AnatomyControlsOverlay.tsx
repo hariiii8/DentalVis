@@ -17,14 +17,14 @@ import {
   ChevronUp,
   X,
 } from 'lucide-react';
-import { Procedure3DConfig } from './types';
+import { Procedure3DConfig, SpatialHotspot } from './types';
 import { AnatomyViewerState } from './hooks/useAnatomyViewerState';
 
 interface AnatomyControlsOverlayProps {
   config: Procedure3DConfig;
   state: AnatomyViewerState;
   lang?: 'en' | 'ta';
-  hoveredHotspot?: any;
+  hoveredHotspot?: SpatialHotspot | null;
   projectedPositions?: Record<string, { x: number; y: number; visible: boolean }>;
 }
 

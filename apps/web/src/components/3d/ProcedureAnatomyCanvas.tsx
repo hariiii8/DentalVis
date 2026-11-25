@@ -9,7 +9,7 @@ import { SceneEnvironment } from './SceneEnvironment';
 import { CameraManager } from './CameraManager';
 import { AnatomyHotspots } from './AnatomyHotspots';
 import { ModelHost } from './ModelHost';
-import { Procedure3DConfig } from './types';
+import { Procedure3DConfig, SpatialHotspot } from './types';
 import { AnatomyViewerState } from './hooks/useAnatomyViewerState';
 
 interface ProcedureAnatomyCanvasProps {
@@ -17,6 +17,8 @@ interface ProcedureAnatomyCanvasProps {
   state: AnatomyViewerState;
   lang?: 'en' | 'ta';
   onError?: (err: Error) => void;
+  onHoverHotspot?: (hotspot: SpatialHotspot | null) => void;
+  onProjectedPositionsChange?: (positions: Record<string, { x: number; y: number; visible: boolean }>) => void;
 }
 
 export function ProcedureAnatomyCanvas({
@@ -24,6 +26,8 @@ export function ProcedureAnatomyCanvas({
   state,
   lang = 'en',
   onError,
+  onHoverHotspot,
+  onProjectedPositionsChange,
 }: ProcedureAnatomyCanvasProps) {
   return (
     <Canvas
@@ -66,6 +70,8 @@ export function ProcedureAnatomyCanvas({
           activeHotspotId={state.activeHotspotId}
           onSelectHotspot={state.selectHotspot}
           lang={lang}
+          onHoverHotspot={onHoverHotspot}
+          onProjectedPositionsChange={onProjectedPositionsChange}
         />
 
         {/* Model Host Slot: Mounts genuine GLB model when assetPath is ready */}

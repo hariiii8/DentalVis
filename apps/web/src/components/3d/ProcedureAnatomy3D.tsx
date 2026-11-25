@@ -11,7 +11,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import { useWebGLSupport } from './hooks/useWebGLSupport';
 import { useAnatomyViewerState } from './hooks/useAnatomyViewerState';
 import { getProcedure3DConfig } from './procedure3DRegistry';
-import { Procedure3DConfig } from './types';
+import { Procedure3DConfig, SpatialHotspot } from './types';
 import { AnatomyControlsOverlay } from './AnatomyControlsOverlay';
 import { ProcedureAnatomyViewer } from '../ProcedureAnatomyViewer';
 
@@ -53,7 +53,7 @@ export function ProcedureAnatomy3D({ procedureSlug, imageSrc }: ProcedureAnatomy
 
   const [viewMode, setViewMode] = useState<'3d' | '2d'>('3d');
   const [runtimeError, setRuntimeError] = useState<string | null>(null);
-  const [hoveredHotspot, setHoveredHotspot] = useState<any>(null);
+  const [hoveredHotspot, setHoveredHotspot] = useState<SpatialHotspot | null>(null);
   const [projectedPositions, setProjectedPositions] = useState<Record<string, { x: number; y: number; visible: boolean }>>({});
 
   // If no 3D configuration exists for this procedure, render the existing 2D viewer safely
