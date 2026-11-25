@@ -5,6 +5,7 @@
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "scripts": {
+    "build": "prisma generate",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "prisma:validate": "prisma validate",
