@@ -1610,19 +1610,80 @@ export default function ProcedureDetailClientView({
               refractiveRim
               className="p-3 sm:p-4 rounded-3xl h-full flex flex-col justify-between"
             >
-              <YouTubeClickToLoadPlayer
-                videoId="3D-DENTAL-RCT-DEMO"
-                title={title}
-                thumbnailUrl={coverImageSrc}
-                durationText={isTamil ? `~${procedure.durationMinutes} நிமிடங்கள்` : `${procedure.durationMinutes} min guide`}
-                lang={language}
-              />
+              {procedure.videoId ? (
+                <YouTubeClickToLoadPlayer
+                  videoId={procedure.videoId}
+                  title={title}
+                  thumbnailUrl={coverImageSrc}
+                  durationText={
+                    procedure.videoDurationText ||
+                    (isTamil ? `~${procedure.durationMinutes} நிமிடங்கள்` : `${procedure.durationMinutes} min guide`)
+                  }
+                  lang={language}
+                />
+              ) : (
+                <div className="rounded-2xl overflow-hidden border border-teal-100 bg-white shadow-md transition-all">
+                  <div className="relative aspect-video w-full bg-slate-900 overflow-hidden group">
+                    <img
+                      src={coverImageSrc}
+                      alt={title}
+                      className="object-cover w-full h-full opacity-80"
+                    />
+                    <div className="absolute inset-0 bg-[#134E4A]/85 backdrop-blur-[2px] flex flex-col justify-between p-6">
+                      <div className="flex items-center justify-between">
+                        <Badge variant="mint" className="text-xs">
+                          {isTamil ? 'மருத்துவக் கல்வி வீடியோ' : 'Educational Clinical Video'}
+                        </Badge>
+                        <span className="text-xs font-medium text-white/80 bg-black/40 backdrop-blur-sm px-2.5 py-1 rounded-full">
+                          {isTamil ? 'தயாரிப்பில் உள்ளது' : 'In Preparation'}
+                        </span>
+                      </div>
+
+                      <div className="flex flex-col items-center justify-center my-auto text-center px-4">
+                        <div className="w-14 h-14 rounded-full bg-white/10 border border-white/20 text-teal-200 flex items-center justify-center mb-3">
+                          <Sparkles className="w-7 h-7 text-teal-300" />
+                        </div>
+                        <p className="text-base font-bold text-white drop-shadow">
+                          {isTamil ? 'வீடியோ விளக்கம் தயாரிப்பில் உள்ளது' : 'Clinical Video in Production'}
+                        </p>
+                        <p className="text-xs text-teal-100/90 max-w-sm mt-1.5 leading-relaxed">
+                          {isTamil
+                            ? 'இச்சிகிச்சைக்கான துல்லியமான மருத்துவக் கல்வி வீடியோ மதிப்பாய்வில் உள்ளது. கீழே உள்ள 3D உடற்கூறியல் மற்றும் சிகிச்சை படிகளை ஆய்வு செய்யவும்.'
+                            : 'An authoritative, accredited clinical animation for this procedure is currently undergoing editorial review. Explore the 3D anatomical model and clinical steps below.'}
+                        </p>
+                      </div>
+
+                      <div className="flex items-center gap-2 text-white/70 text-xs">
+                        <ShieldCheck className="w-3.5 h-3.5 text-teal-200" />
+                        <span>{isTamil ? 'மருத்துவ வழிகாட்டல் மட்டுமே' : 'Evidence-based clinical guide'}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="p-3.5 bg-teal-50/70 border-t border-teal-100 flex items-center justify-between text-xs text-[#134E4A]">
+                    <div className="flex items-center gap-2 font-medium">
+                      <HelpCircle className="w-3.5 h-3.5 text-[#0D9488]" />
+                      <span>{isTamil ? 'நோயாளி கல்வி வழிகாட்டி' : 'Patient Education Guide'}</span>
+                    </div>
+                    <span className="text-slate-500 font-medium">
+                      {isTamil ? 'கீழே சிகிச்சை படிகளைக் காண்க' : 'See treatment breakdown below'}
+                    </span>
+                  </div>
+                </div>
+              )}
               <div className="mt-3 px-3 py-2.5 rounded-xl liquid-glass-secondary flex items-center justify-between text-xs text-[#145B59]">
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-[#20B2AA]" />
-                  <span className="font-semibold">{isTamil ? 'மருத்துவக் கல்வி வீடியோ' : 'Educational Procedure Guide'}</span>
+                  <span className="font-semibold">
+                    {procedure.videoId
+                      ? (isTamil ? 'மருத்துவக் கல்வி வீடியோ' : 'Educational Procedure Guide')
+                      : (isTamil ? 'மருத்துவ விவரக் கையேடு' : 'Clinical Procedure Breakdown')}
+                  </span>
                 </div>
-                <span className="text-[#587477] font-medium">{isTamil ? 'நோயாளி வழிகாட்டல்' : 'Visual Overview'}</span>
+                <span className="text-[#587477] font-medium">
+                  {procedure.videoId
+                    ? (isTamil ? 'நோயாளி வழிகாட்டல்' : 'Visual Overview')
+                    : (isTamil ? 'விளக்க உரை & உடற்கூறியல் தயார்' : 'Illustrated text & anatomy active')}
+                </span>
               </div>
             </LiquidGlassSurface>
           </div>

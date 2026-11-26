@@ -3,8 +3,9 @@
 import React from 'react';
 import Link from 'next/link';
 import { Container, Badge, LiquidGlassSurface } from '@dentalvis/ui';
-import { ArrowRight, Sparkles, HeartPulse, ShieldAlert } from 'lucide-react';
+import { ArrowRight, Sparkles, HeartPulse, ShieldAlert, Video } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
+import { YouTubeClickToLoadPlayer } from '@/components/YouTubeClickToLoadPlayer';
 
 export default function SymptomsPage() {
   const { language } = useLanguage();
@@ -59,10 +60,10 @@ export default function SymptomsPage() {
   ];
 
   return (
-    <div className="py-10 space-y-16 relative overflow-hidden bg-[#F5FAF9]">
+    <div className="py-10 space-y-16 relative overflow-hidden">
       {/* Background Optical Ambience in Powder Blue and Soft Mint */}
-      <div className="absolute top-10 left-10 w-[38rem] h-[38rem] bg-gradient-to-br from-[#BFE9E2]/50 via-[#20B2AA]/20 to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
-      <div className="absolute top-1/2 -right-20 w-[32rem] h-[32rem] bg-gradient-to-bl from-[#DCEFF5]/80 via-[#20B2AA]/15 to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute top-10 left-10 w-[38rem] h-[38rem] bg-gradient-to-br from-[#BFE9E2]/55 via-[#20B2AA]/22 to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute top-1/2 -right-20 w-[32rem] h-[32rem] bg-gradient-to-bl from-[#DCEFF5]/80 via-[#20B2AA]/20 to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
 
       <Container>
         {/* Page Header: Liquid Glass Introduction */}
@@ -89,6 +90,55 @@ export default function SymptomsPage() {
             </p>
           </div>
         </LiquidGlassSurface>
+
+        {/* Video Feature Section: Recognizing Dental Emergencies vs. Routine Discomfort */}
+        <div className="mb-12">
+          <LiquidGlassSurface
+            variant="primary"
+            specular
+            refractiveRim
+            className="p-6 sm:p-8 rounded-3xl overflow-hidden shadow-md"
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-5 space-y-4">
+                <Badge variant="mint" className="gap-1.5 text-xs font-semibold liquid-glass-lens">
+                  <Video className="w-3.5 h-3.5 text-[#20B2AA]" />
+                  <span>{isTamil ? 'அவசர சிகிச்சை வழிகாட்டி' : 'Emergency Triage Video'}</span>
+                </Badge>
+                <h2 className="text-2xl sm:text-3xl font-black text-[#145B59] tracking-tight">
+                  {isTamil ? 'பல் அவசரநிலைகள் vs சாதாரண அசௌகரியம்' : 'Recognizing Dental Emergencies vs. Routine Discomfort'}
+                </h2>
+                <p className="text-sm sm:text-base text-[#587477] leading-relaxed">
+                  {isTamil
+                    ? 'தீவிர பல் வலி, முக வீக்கம் அல்லது பல் உடைந்தால் எப்போது உடனடியாக மருத்துவமனைக்குச் செல்ல வேண்டும் என்பதையும், சாதாரண கூச்சத்தை எவ்வாறு கையாள்வது என்பதையும் விளக்கும் கல்வி வீடியோ.'
+                    : 'Learn how to identify urgent oral symptoms requiring immediate same-day attention—such as acute swelling, trauma, or severe pain—versus routine discomfort manageable through planned clinical visits.'}
+                </p>
+                <div className="p-3 rounded-xl liquid-glass-secondary text-xs text-[#145B59] flex items-center gap-2">
+                  <HeartPulse className="w-4 h-4 text-[#20B2AA] shrink-0" />
+                  <span>
+                    {isTamil
+                      ? 'அங்கீகரிக்கப்பட்ட மருத்துவ வழிகாட்டுதல் வீடியோ விளக்கம்'
+                      : 'Accredited clinical education video on dental triage'}
+                  </span>
+                </div>
+              </div>
+
+              <div className="lg:col-span-7">
+                <YouTubeClickToLoadPlayer
+                  videoId="gU8WbOqQf8Y"
+                  title={
+                    isTamil
+                      ? 'பல் அவசரநிலைகள் மற்றும் பொதுவான அறிகுறிகள்'
+                      : 'Recognizing Dental Emergencies vs. Routine Discomfort'
+                  }
+                  thumbnailUrl="/images/categories/pain-and-sensitivity.svg"
+                  durationText="3:30 min"
+                  lang={language}
+                />
+              </div>
+            </div>
+          </LiquidGlassSurface>
+        </div>
 
         {/* Symptoms Interactive Grid with Liquid Glass Secondary Surfaces */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">

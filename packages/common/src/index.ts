@@ -73,6 +73,8 @@ export interface ProcedureDetail extends ProcedureSummary {
   has3DModel: boolean;
   model3DId?: string;
   interactiveStepsCount: number;
+  videoId?: string;
+  videoDurationText?: string;
 }
 
 // ----------------------------------------------------------------------
@@ -362,7 +364,9 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     overviewHtmlTa: '<p>வேர் கால்வாய் சிகிச்சை (Root Canal Treatment / Endodontic Therapy) என்பது ஆழமான பல் சொத்தை, விரிசல் அல்லது காயம் காரணமாக பல்லின் உள் நரம்புப் பகுதி (பல்ப்) தீவிர பாதிப்பிற்குள்ளாகும் போது, இயற்கை பல்லைப் பிடுங்காமல் பாதுகாப்பதற்காக செய்யப்படும் ஒரு மருத்துவ முறையாகும்.</p><p>இச்சிகிச்சையின் போது, வலி மரத்துப்போகும் மருந்து (Local Anesthesia) இடப்பட்டு, பல்லின் உள்ளே உள்ள பாதிக்கப்பட்ட அல்லது இறந்த நரம்புத் திசுக்கள் நுணுக்கமான கருவிகள் மூலம் முழுமையாக அகற்றப்படுகின்றன. பின்னர் வேர்க் கால்வாய்கள் கிருமிநாசினி திரவங்கள் கொண்டு தூய்மைப்படுத்தப்பட்டு, பாக்டீரியா தொற்று ஏற்படாதவாறு பாதுகாப்பான இயற்கை ரப்பர் போன்ற குட்டா-பர்ச்சா (Gutta-Percha) கலவை கொண்டு நிரப்பி சீல் செய்யப்படுகிறது.</p><p>சிகிச்சை முடிந்த பின், பலவீனமடைந்த இயற்கை பல் உடைந்துவிடாமல் பாதுகாக்கவும், வழக்கம்போல் உணவை மெல்லுவதற்கும் அப்பல்லின் மீது ஒரு பல் தொப்பி (Crown) பொருத்துவது அவசியமாகும்.</p>',
     has3DModel: true,
     model3DId: 'model-molar-cross-section',
-    interactiveStepsCount: 4
+    interactiveStepsCount: 4,
+    videoId: 'Df69WKJgJ28',
+    videoDurationText: '3:12 min'
   },
 
   // --------------------------------------------------------------------
@@ -388,7 +392,9 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     overviewHtmlTa: '<p>பல் தொப்பி (Dental Crown) என்பது அதிகப்படியான சொத்தை, விரிசல், பெரிய அடைப்புகள் அல்லது வேர் கால்வாய் சிகிச்சைக்குப் பின் பலவீனமடைந்த ஒரு பல்லை முழுமையாக மூடி பாதுகாப்பதற்காக தனிப்பயனாக்கப்பட்டு தயாரிக்கப்படும் ஒரு செயற்கை உறை ஆகும்.</p><p>சிகிச்சையின் போது, பல் மருத்துவர் இயற்கை பல்லின் வெளிப்புறத்தை ஒரு குறிப்பிட்ட அளவிற்கு மெலிதாக்கி, தொப்பி சரியாகப் பொருந்துவதற்கான இடத்தை உருவாக்குகிறார். பின்னர் பல்லின் அளவுகள் நவீன டிஜிட்டல் ஸ்கேன் அல்லது பிரத்யேக அச்சுகள் மூலம் எடுக்கப்பட்டு ஆய்வகத்திற்கு (Dental Lab) அனுப்பப்படுகின்றன. நிரந்தர தொப்பி தயாராகும் வரை பல் கூச்சம் ஏற்படாமல் இருக்க தற்காலிக தொப்பி பொருத்தப்படுகிறது.</p><p>இறுதி கட்டத்தில், பீங்கான் (Ceramic), சிர்கோனியா (Zirconia) அல்லது உலோகக் கலவையால் செய்யப்பட்ட வலிமையான நிரந்தர தொப்பி, பல்லின் இயற்கை நிறம் மற்றும் கடிக்கும் சமநிலையைச் சோதித்த பின்னர் பல்லோடு உறுதியாக ஒட்டப்படுகிறது. இது மெல்லும் திறனை மீட்டெடுப்பதுடன் இயற்கை பல்லின் ஆயுளைப் பல ஆண்டுகள் நீட்டிக்கிறது.</p>',
     has3DModel: true,
     model3DId: 'model-dental-crown',
-    interactiveStepsCount: 3
+    interactiveStepsCount: 3,
+    videoId: 'YhKRo-VnZAs',
+    videoDurationText: '2:40 min'
   },
 
   // --------------------------------------------------------------------
@@ -413,7 +419,9 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     overviewHtmlEn: '<p>Deep cleaning, clinically termed scaling and root planing (SRP), is the non-surgical cornerstone of periodontal therapy indicated for the treatment and management of active periodontitis and chronic gingival inflammation with pocket depths exceeding 4 mm.</p><p>Unlike routine supragingival prophylaxis, this meticulous therapeutic procedure is performed under local or topical anesthesia. The clinician systematically employs ultrasonic magnetostrictive/piezoelectric scalers alongside sharp manual periodontal curettes (such as Gracey curettes) to debride subgingival bacterial biofilm, tenacious calculus deposits, and endotoxin-laden cementum from the root surfaces beneath the gingival margin.</p><p>Root surfaces are smoothed (planed) to eliminate rough microbial niches, suppress pathogenic subgingival microflora, and facilitate physiological reattachment of healthy periodontal junctional epithelium to the root surface, effectively reducing clinical pocket depths and halting progressive periodontal bone resorption.</p>',
     overviewHtmlTa: '<p>ஆழமான பல் மற்றும் ஈறு தூய்மைப்படுத்தல் (Scaling & Root Planing) என்பது ஈறுகளின் அடியில் உள்ள ஆழமான பைகளில் (Periodontal Pockets) பாக்டீரியா கிருமிகள் மற்றும் கடினமான காரைப் படிவுகள் சேர்வதால் ஏற்படும் தீவிர ஈறு நோயைக் (Periodontitis) கட்டுப்படுத்த செய்யப்படும் மிக முக்கியமான அறுவைசிகிச்சையற்ற மருத்துவ முறையாகும்.</p><p>வழக்கமான பிரஷிங் அல்லது மேலோட்டமான கிளீனிங் மூலம் ஈறுகளின் ஆழத்தில் உள்ள காரையை அகற்ற முடியாது. இச்சிகிச்சையின் போது, மென்மையான வலி நிவாரண மருந்து இடப்பட்டு, அல்ட்ராசோனிக் அதிர்வுக் கருவிகள் மற்றும் நுணுக்கமான கியூரெட் (Curette) கருவிகள் மூலம் ஈறுகளுக்கு அடியில் வேர்ப்பகுதியில் படிந்துள்ள நச்சுப் படிவுகள் மற்றும் பாக்டீரியாக்கள் கவனமாக அகற்றப்படுகின்றன.</p><p>அதன்பின் வேரின் மேற்பரப்பு மென்மையாக்கப்படுவதால் (Root Planing), ஈறுகள் மீண்டும் வேரோடு இயற்கையாக இறுகி ஒட்டிக்கொள்ள வழிவகுக்கிறது. இது ஈறுகளில் ரத்தம் வடிதல், வீக்கம், துர்நாற்றம் மற்றும் பல்லைத் தாங்கும் எலும்பு தேய்மானத்தை தடுத்து பற்கள் ஆடுவதைத் தவிர்க்கிறது.</p>',
     has3DModel: false,
-    interactiveStepsCount: 3
+    interactiveStepsCount: 3,
+    videoId: 'g5F_LOWJBhk',
+    videoDurationText: '3:05 min'
   },
 
   // --------------------------------------------------------------------
@@ -439,7 +447,9 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     overviewHtmlTa: '<p>தனிப்பல் இம்ப்ளான்ட் (Single Dental Implant) என்பது இழந்த பல்லுக்குப் பதிலாக அருகிலுள்ள ஆரோக்கியமான இயற்கை பற்களை தேய்க்கவோ மாற்றவோ தேவையின்றி, தாடை எலும்பில் பொருத்தப்படும் மிக நவீன மற்றும் நிரந்தர செயற்கைப் பல் சிகிச்சை முறையாகும். இதில் மூன்று முக்கிய பாகங்கள் உள்ளன: தாடை எலும்பினுள் பொருத்தப்படும் டைட்டானியம் திருகு (Fixture), நடு இணைப்பு பாகம் (Abutment) மற்றும் இயற்கை பல் போன்ற அழகான செராமிக் கிரவுன் (Crown).</p><p>முதல் கட்டத்தில், வலி மரத்துப்போகும் மருந்து இடப்பட்டு, பல் வேர் இருந்த தாடை எலும்பில் ஒரு சிறிய துவாரம் செய்யப்பட்டு, மருத்துவத் தரம் வாய்ந்த டைட்டானியம் திருகு மிகக் கவனமாகப் பொருத்தப்படுகிறது. அடுத்த 8 முதல் 12 வாரங்களில், தாடை எலும்பு செல்கள் இந்த டைட்டானியத்துடன் இயற்கையாக இணைந்து ஒன்றாக மாறும் ஆசியோஇன்டகிரேஷன் (Osseointegration) என்ற அற்புதம் நிகழ்கிறது.</p><p>எலும்புடன் முழுமையாக இணைந்த பிறகு, அதன் மேல் இணைப்பு பாகமும், அதனைத் தொடர்ந்து இயற்கை பல்லின் நிறம் மற்றும் வடிவில் உருவாக்கப்பட்ட பீங்கான் பல்லும் உறுதியாகப் பொருத்தப்படுகின்றன. இது மெல்லும் ஆற்றலை 100% மீட்டெடுப்பதுடன், அருகிலுள்ள பற்கள் சாய்வதைத் தடுத்து முக அமைப்பையும் தாடை எலும்பையும் தேய்மானத்திலிருந்து பாதுகாக்கிறது.</p>',
     has3DModel: true,
     model3DId: 'model-dental-implant',
-    interactiveStepsCount: 5
+    interactiveStepsCount: 5,
+    videoId: '2aHK40HEC1E',
+    videoDurationText: '3:30 min'
   },
 
   // --------------------------------------------------------------------
@@ -464,7 +474,9 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     overviewHtmlEn: '<p>Direct composite resin restorations provide a minimally invasive, tooth-colored approach to repairing tooth structure compromised by dental caries, minor traumatic fractures, or localized developmental enamel defects. Modern micro-hybrid and nano-filled composite materials combine synthetic dimethacrylate resins with silanized sub-micron glass and silica particles, mimicking the natural translucency, refractive index, and compressive strength of human enamel and dentin.</p><p>The clinical protocol begins with conservative removal of infected carious dentin while preserving all healthy, remineralizable tooth structure. Following mechanical cavity preparation, the enamel and dentin are conditioned using total-etch or self-etch adhesive protocols to create an optimal micro-mechanical hybrid zone. The composite resin is placed in incremental layers (typically 2 mm or less) to control polymerization shrinkage stresses, with each layer photo-polymerized using a calibrated high-intensity blue LED curing light.</p><p>Finally, the clinician articulates the occlusal anatomy with fine diamonds and polishing discs, restoring physiological chewing contacts and producing a high-luster, plaque-resistant surface that blends seamlessly with the natural dentition.</p>',
     overviewHtmlTa: '<p>காம்போசிட் அடைப்பு (Composite Dental Fillings) என்பது பல் சொத்தை, சிறிய விரிசல்கள் அல்லது உடைந்த எனாமல் பகுதிகளை பல்லின் இயற்கை நிறத்துடனேயே ஒன்றிணைந்து சரிசெய்யும் ஒரு நவீன மற்றும் பழமைவாத (Minimally Invasive) சிகிச்சை முறையாகும். பல்லின் ஆரோக்கியமான பகுதிகளை அதிகம் தேய்க்காமல், பாதிக்கப்பட்ட பகுதியை மட்டும் நீக்கிவிட்டு இந்த அடைப்பு செய்யப்படுகிறது.</p><p>சிகிச்சையின் போது, மருத்துவர் சொத்தையை முழுமையாகச் சுத்தம் செய்த பின்னர், பல்லின் மேற்பரப்பில் ஒரு நுண்ணிய பிணைப்பு ஜெல் (Etching & Bonding Primer) இடுகிறார். இதனைத் தொடர்ந்து, பல்லின் இயற்கை நிறத்திற்குப் பொருத்தமான நானோ-காம்போசிட் கலவை மெல்லிய அடுக்குகளாக பல்லின் குழியினுள் வைக்கப்படுகிறது. ஒவ்வொரு அடுக்கும் பிரத்யேக நீல நிற ஒளிக் கதிர் (Blue Curing Light) மூலம் சில வினாடிகளிலேயே உடனடியாகக் கெட்டியாக்கப்படுகிறது.</p><p>இறுதி கட்டத்தில், கடிக்கும் சமநிலை மற்றும் பல்லின் இயல்பான மேடு பள்ளங்கள் நுணுக்கமாகச் செதுக்கப்பட்டு, நாக்கால் தொடும் போது இயற்கை பல் போலவே வழுவழுப்பாக இருக்கும் வண்ணம் மெருகூட்டப்படுகிறது. இது நோயாளிகளுக்கு கண்ணுக்குத் தெரியாத வகையில் அழகான மற்றும் உறுதியான புன்னகையை வழங்குகிறது.</p>',
     has3DModel: false,
-    interactiveStepsCount: 4
+    interactiveStepsCount: 4,
+    videoId: 'hXNkI930O_4',
+    videoDurationText: '2:15 min'
   },
 
   // --------------------------------------------------------------------
@@ -489,7 +501,9 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     overviewHtmlEn: '<p>Routine dental prophylaxis, commonly referred to as professional teeth cleaning and polishing, is a fundamental preventive periodontal procedure aimed at sustaining optimal oral health and preventing the onset or progression of plaque-induced gingivitis.</p><p>Even with conscientious daily oral hygiene, soft microbial biofilm continuously precipitates salivary minerals to form tenacious supragingival calculus (tartar), particularly on the lingual surfaces of mandibular incisors and buccal aspects of maxillary molars adjacent to major salivary duct orifices. Using gentle ultrasonic scalers with cool water lavage, the clinician removes hardened calculus deposits and biofilm from enamel surfaces above the gingival margin without damaging the underlying enamel prisms.</p><p>Following scaling, the tooth surfaces are polished using a slow-speed handpiece with a soft rubber prophylaxis cup and fine-grit fluoride paste. This smooths micro-surface roughness, eradicates extrinsic dietary chromogens (such as coffee, tea, or tobacco stains), and delays subsequent bacterial adherence, leaving the oral cavity clean, refreshed, and protected.</p>',
     overviewHtmlTa: '<p>வழக்கமான பல் சுத்தம் மற்றும் மெருகூட்டல் (Routine Prophylaxis & Polishing) என்பது ஈறு வீக்கம் (Gingivitis), பல் சொத்தை மற்றும் வாய் துர்நாற்றத்தை ஆரம்ப நிலையிலேயே தடுப்பதற்காக 6 மாதங்களுக்கு ஒருமுறை செய்யப்படும் ஒரு அடிப்படை தடுப்புச் சிகிச்சை முறையாகும்.</p><p>நாம் தினமும் பல் துலக்கினாலும், உமிழ்நீரில் உள்ள தாதுக்கள் சேர்ந்து பற்களின் மேற்பரப்பில் பிரஷிங் மூலம் நீக்க முடியாத கடினமான காரையாகவும் (Tartar/Calculus), உணவு மற்றும் டீ/காபியால் ஏற்படும் கறைகளாகவும் படியக்கூடும். இச்சிகிச்சையின் போது, குளிர்ந்த நீர் தெளிக்கும் மென்மையான அல்ட்ராசோனிக் அதிர்வுக் கருவிகள் மூலம் எனாமல் கீறப்படாமல் இந்த மேலோட்டமான படிவுகள் மிக எளிதாக அகற்றப்படுகின்றன.</p><p>அதன்பின், மென்மையான ரப்பர் கப் மற்றும் புத்துணர்ச்சியூட்டும் ஃபைன்-பாலிஷிங் பேஸ்ட் கொண்டு பற்களின் மேற்பரப்பு மெருகூட்டப்படுகிறது. இது பற்களை கண்ணாடி போல் வழவழப்பாக்கி மீண்டும் கிருமிகள் எளிதில் ஒட்டாமல் பாதுகாப்பதுடன், பற்களுக்கு புத்துணர்ச்சியூட்டும் தூய்மையைத் தருகிறது.</p>',
     has3DModel: false,
-    interactiveStepsCount: 3
+    interactiveStepsCount: 3,
+    videoId: 'U-oif0uh36E',
+    videoDurationText: '2:50 min'
   },
 
   // --------------------------------------------------------------------
@@ -514,7 +528,9 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     overviewHtmlEn: '<p>Routine dental extraction entails the non-surgical exodontia of a natural tooth from its alveolar socket when the tooth is deemed non-restorable due to unrestorable subgingival caries, vertical root fractures, terminal periodontal attachment loss with excessive mobility, or severe impaction compromising neighboring structures.</p><p>The procedure is conducted under profound local infiltration or regional nerve block anesthesia, ensuring complete loss of pain sensation while preserving mild proprioceptive pressure awareness. The dental professional carefully severs the marginal periodontal ligament fibers using periotomes or straight dental luxators, applying controlled mechanical leverage along the long axis of the root. This gradually expands the elastic bony alveolar housing and facilitates delivery of the tooth using anatomically curved extraction forceps without fracturing the cortical plates.</p><p>Following extraction, the socket is thoroughly curetted to eliminate inflammatory granulation tissue, irrigated with sterile saline, and compressed with sterile gauze to foster a stable primary blood clot, setting the stage for physiologic socket healing or future prosthetic replacement.</p>',
     overviewHtmlTa: '<p>வழக்கமான பல் எடுத்தல் (Routine Tooth Extraction) என்பது ஆழமான சொத்தை, வேர் உடைவு, தீவிர ஈறு நோய் காரணமாக பல் அளவுக்கு அதிகமாக ஆடுதல் அல்லது வேர் கால்வாய் சிகிச்சை மூலம் காப்பாற்ற முடியாத பற்களை தாடை எலும்புக்கு சேதம் ஏற்படாமல் பாதுகாப்பாக அகற்றும் ஒரு அறுவைசிகிச்சையற்ற மருத்துவ முறையாகும்.</p><p>சிகிச்சைக்கு முன், பல் மற்றும் அதைச் சுற்றியுள்ள ஈறுகள் முழுமையாக மரத்துப்போகும் வகையில் பாதுகாப்பான அனஸ்தீசியா இடப்படுகிறது; இதனால் நோயாளிக்கு எவ்வித கூர்மையான வலியும் ஏற்படாது. மருத்துவர் பிரத்யேக மென்மையான கருவிகள் (Periotomes & Elevators) மூலம் பல்லைத் தாங்கும் வேர்ப்பகுதி நார் இழைகளைத் தளர்த்தி, தாடை எலும்பின் இயற்கை நெகிழ்வுத்தன்மையைப் பயன்படுத்தி பல்லை மிக மெதுவாக அகற்றி விடுகிறார்.</p><p>பல் எடுக்கப்பட்ட பின், அந்த இடம் தூய்மைப்படுத்தப்பட்டு, புதிய எலும்பு மற்றும் திசுக்கள் இயற்கையாக உருவாகும் பொருட்டு நிலையான ரத்தக்கட்டு (Blood Clot) உண்டாவதற்காக ஒரு பஞ்சு வைக்கப்படுகிறது. சில நாட்களில் காயம் ஆறி, எதிர்காலத்தில் அந்த இடத்தில் செயற்கைப் பல் அல்லது இம்ப்ளான்ட் பொருத்துவதற்கு தாடை தயாராகிறது.</p>',
     has3DModel: false,
-    interactiveStepsCount: 4
+    interactiveStepsCount: 4,
+    videoId: 'wAienNPJT8k',
+    videoDurationText: '3:00 min'
   },
 
   // --------------------------------------------------------------------
@@ -539,7 +555,9 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     overviewHtmlEn: '<p>Surgical extraction of an impacted third molar (wisdom tooth) is indicated when the tooth is prevented from erupting into functional anatomical alignment due to insufficient retromolar space, unfavorable angulation (mesioangular, horizontal, or distoangular), dense cortical bone obstruction, or aberrant root morphology. Partially erupted or impacted wisdom teeth frequently provoke localized pericoronitis, root resorption of adjacent second molars, periodontal pocketing, or dentigerous cyst formation.</p><p>The surgical intervention is carried out under profound regional nerve block anesthesia, frequently supplemented by conscious oral or intravenous sedation for patient comfort. The oral surgeon elevates a conservative mucoperiosteal flap and gently removes overlying alveolar bone using a chilled irrigation handpiece to gain direct visual access. The crown and roots are meticulously sectioned into smaller fragments using precise surgical burs, allowing conservative removal without excessive traction on the surrounding mandibular bone or risk of injury to the inferior alveolar and lingual neurovascular bundles.</p><p>After surgical debridement, the extraction socket is copiously decontaminated and reapproximated with fine resorbable sutures, promoting rapid primary wound healing and mitigating post-operative complications such as alveolar osteitis (dry socket).</p>',
     overviewHtmlTa: '<p>ஞானப்பல் அறுவை சிகிச்சை (Surgical Wisdom Tooth Extraction) என்பது தாடையின் கடைசிப் பகுதியில் போதிய இடமின்மை அல்லது சாய்வான வளர்ச்சி காரணமாக முழுமையாக முளைக்க முடியாமல் தாடை எலும்புக்குள் அல்லது ஈறுகளுக்குள் சிக்கிக்கொள்ளும் மூன்றாவது கடைவாய்ப் பற்களை அகற்றுவதற்கான அறுவை சிகிச்சை முறையாகும். இத்தகைய பற்கள் அருகிலுள்ள இரண்டாவது கடைவாய்ப் பல்லை அழுத்துவதோடு, ஈறுகளில் சீழ் பிடித்தல் (Pericoronitis), கடுமையான தாடை வலி மற்றும் தொற்றுக்கு வழிவகுக்கின்றன.</p><p>சிகிச்சையின் போது, வலி மரத்துப்போகும் மருந்து (Local Anesthesia) இடப்பட்டு, தேவைப்பட்டால் நோயாளிக்கு மன அமைதிக்கான மருந்துகளும் (Sedation) வழங்கப்படுகின்றன. தாடை எலும்பின் நரம்புகளுக்கு எவ்வித பாதிப்பும் ஏற்படாதவாறு, ஈறுகளில் ஒரு சிறிய துவாரம் செய்யப்பட்டு, சிக்கியுள்ள ஞானப்பல் நுணுக்கமான கருவிகள் மூலம் சிறு சிறு பகுதிகளாகப் பிரிக்கப்பட்டு மிகவும் பாதுகாப்பாக அகற்றப்படுகிறது.</p><p>பல் அகற்றப்பட்ட பின், கிருமிநாசினி கொண்டு தூய்மைப்படுத்தப்பட்டு, ஈறுகள் கரையக்கூடிய மெல்லிய தையல்கள் மூலம் மூடப்படுகின்றன. இது காயம் விரைவாக ஆற உதவுவதுடன், ரத்தக்கட்டு சீர்குலையாமல் (Dry Socket ஏற்படாமல்) நோயாளியை விரைவான குணமடைதலுக்கு இட்டுச் செல்கிறது.</p>',
     has3DModel: false,
-    interactiveStepsCount: 4
+    interactiveStepsCount: 4,
+    videoId: 'cfc-E8rPtIg',
+    videoDurationText: '3:20 min'
   },
 
   // --------------------------------------------------------------------
@@ -564,7 +582,9 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     overviewHtmlEn: '<p>Fixed orthodontic appliances comprise precision brackets (stainless steel or tooth-colored polycrystalline ceramic) bonded directly to the facial enamel surfaces, interconnected by sequential shape-memory archwires (nickel-titanium and beta-titanium). These appliances deliver continuous, controlled physiological forces across the periodontal ligament, inducing coupled bone remodeling (osteoclastic resorption on the pressure side and osteoblastic apposition on the tension side) to gradually translate, rotate, and level teeth into ideal arch form and balanced occlusion. Clinical management involves periodic adjustments every 4 to 8 weeks, meticulous plaque control to prevent enamel demineralization (white spot lesions), and long-term retention planning to maintain post-treatment stability.</p>',
     overviewHtmlTa: '<p>பல் கிளிப் சிகிச்சை (Fixed Braces) என்பது பற்களின் சீரற்ற வரிசை, அதிக இடைவெளி, அல்லது தவறான கடி அமைப்பை சரிசெய்ய உதவும் நவீன மருத்துவ முறையாகும். பற்களின் மேற்பரப்பில் பிராக்கெட்டுகள் பொருத்தப்பட்டு, மெல்லிய நிக்கல்-டைட்டானியம் அல்லது பீட்டா-டைட்டானியம் கம்பிகள் இணைக்கப்படுகின்றன. இக்கம்பிகள் பற்களின் வேர்ப்பகுதியைச் சுற்றியுள்ள எலும்பில் மென்மையான உயிரியல் அழுத்தத்தை ஏற்படுத்தி, பற்களை படிப்படியாக சரியான இடத்திற்கு நகர்த்துகின்றன. 4 முதல் 8 வாரங்களுக்கு ஒருமுறை கம்பிகள் சரிசெய்யப்படுகின்றன. சிகிச்சையின் போது பற்களைச் சுற்றி கறைகள் சேராமல் தூய்மையாகப் பராமரிப்பதும், சிகிச்சை முடிந்த பின் பற்கள் மீண்டும் நகராமல் இருக்க ரீடெய்னர் அணிவதும் மிக முக்கியமாகும்.</p>',
     has3DModel: false,
-    interactiveStepsCount: 4
+    interactiveStepsCount: 4,
+    videoId: 'sMjMRjE5LLM',
+    videoDurationText: '3:45 min'
   },
 
   // --------------------------------------------------------------------
@@ -1039,7 +1059,9 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     overviewHtmlEn: '<p>Dental abscess management requires structured, urgent clinical intervention to manage acute purulent collections originating from necrotic pulp, periapical pathology, or periodontal infection. Clinical recommendations from the 2019 American Dental Association (ADA) guideline stratify antibiotic use according to specific diagnostic presentation and the immediate availability of definitive conservative dental treatment (DCDT—formally defined as pulpotomy, pulpectomy, non-surgical root canal therapy, or incision and drainage): (1) When DCDT is immediately available for localized pulpal and periapical conditions in immunocompetent patients, operative treatment alone is the definitive therapy, and adjunctive systemic antibiotics are generally not recommended; (2) When DCDT is not immediately available for pulp necrosis with symptomatic apical periodontitis, the ADA suggests providing a delayed antibiotic prescription with specific instructions on when it should be filled; (3) When DCDT is not immediately available for pulp necrosis with localized acute apical abscess, the ADA conditionally recommends prescribing systemic antibiotics alongside urgent referral for definitive treatment; (4) When clinical signs indicate systemic involvement (such as fever, malaise, lymphadenopathy, or rapid progression), systemic antibiotics are indicated in conjunction with urgent definitive dental therapy. Beyond conservative tooth-preserving procedures, surgical tooth extraction represents an appropriate definitive clinical alternative when a tooth is non-restorable. Crucially, the ADA guideline addresses localized pulpal and periapical conditions; spreading odontogenic infections presenting with deep-space emergency red flags—such as difficulty swallowing (dysphagia), labored breathing (dyspnea), elevation of the floor of the mouth, severe trismus, or suspected Ludwig&#39;s angina—fall beyond standard outpatient dental protocols and mandate immediate emergency hospital escalation for specialized airway management and surgical decompression (Flynn et al.).</p>',
     overviewHtmlTa: '<p>பல் சீழ்கட்டி சிகிச்சை (Dental Abscess Management) என்பது பல்லின் வேர் அல்லது ஈறுகளில் சேரும் சீழை உடனடியாக வெளியேற்றி தொற்றை அழிக்கும் அவசர சிகிச்சையாகும். அமெரிக்க பல் மருத்துவ சங்கத்தின் (ADA 2019) வழிகாட்டுதலின்படி, உடனடி பழமைவாத பல் சிகிச்சை (DCDT—சீழ் வடிகட்டுதல், வேர் சிகிச்சை) உடனடியாகக் கிடைக்கும் போது அதுவே முதன்மை சிகிச்சையாகும்; மருந்துகள் தேவைப்படுவதில்லை. பல் நசிவுற்று வலி இருக்கும் போது உடனடி சிகிச்சை கிடைக்கவில்லை எனில், குறிப்பிட்ட நிபந்தனைகளுடன் தாமதமான ஆன்டிபயாடிக் சீட்டு பரிந்துரைக்கப்படுகிறது; உள்ளூர் கடுமையான சீழ்கட்டிக்கு உடனடி சிகிச்சை கிடைக்காத போது, உடனடி பரிந்துரையுடன் ஆன்டிபயாடிக் பரிந்துரைக்கப்படுகிறது. காய்ச்சல், நிணநீர் வீக்கம் போன்ற உடல் அளவிலான தொற்று அறிகுறிகள் இருந்தால் உடனடி பல் சிகிச்சையுடன் ஆன்டிபயாடிக் அவசியமாகும். பற்களைக் காப்பாற்ற முடியாத போது பல் அகற்றுதல் ஒரு உறுதியான சிகிச்சையாகும். அதேவேளை, விழுங்குவதில் சிரமம், மூச்சுத்திணறல், வாயின் அடிப்பகுதி வீங்குதல் (Ludwig&#39;s angina) போன்ற ஆபத்தான எச்சரிக்கை அறிகுறிகள் தென்பட்டால், உடனடியாக அவசர சிகிச்சை மருத்துவமனைக்குச் சென்று சுவாசப் பாதையைப் பாதுகாத்து அறுவை சிகிச்சை பெறுவது அவசியமாகும்.</p>',
     has3DModel: false,
-    interactiveStepsCount: 4
+    interactiveStepsCount: 4,
+    videoId: 'ElNNNlclv4A',
+    videoDurationText: '3:10 min'
   },
 
   // --------------------------------------------------------------------
@@ -1189,7 +1211,9 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     overviewHtmlEn: '<p>Clear aligners are custom-manufactured, transparent medical-grade thermoplastic trays that incrementally reposition teeth through a computer-planned biomechanical sequence. Based on high-resolution 3D intraoral scans and virtual treatment simulations, teeth receive calibrated orthodontic displacement forces with each consecutive tray worn for 1 to 2 weeks as prescribed by the orthodontist. Tooth-colored composite attachments and interproximal reduction (IPR) are utilized selectively when clinically indicated to facilitate complex rotational or root movements. Aligners are completely removable for eating, drinking non-water beverages, and oral hygiene; achieving intended outcomes relies heavily on following clinical wear guidance (typically 20 to 22 hours per day), with final alignment subject to individual biological response.</p>',
     overviewHtmlTa: '<p>கண்ணுக்குத் தெரியாத கிளியர் அலைனர்கள் (Clear Aligners) என்பது பற்களை நேராக்குவதற்கான நவீன டிஜிட்டல் தொழில்நுட்பமாகும். 3D ஸ்கேன் அடிப்படையில் கணினியில் திட்டமிடப்பட்டு உருவாக்கப்படும் ஒளிபுகும் பிளாஸ்டிக் தட்டுகள் ஒவ்வொரு பல்லையும் படிப்படியாக நகர்த்துகின்றன. சிக்கலான பல் அசைவுகளுக்கு தேவைப்படும் போது மட்டும் பல்லின் நிறத்திலேயே சிறிய தாங்கிகள் (Attachments) பொருத்தப்படுகின்றன. வழக்கமான உலோகக் கம்பிகள் போலல்லாமல், இவற்றை சாப்பிடும்போதும் பல் துலக்கும்போதும் எளிதாகக் கழற்றி மாட்ட முடியும். மருத்துவர் பரிந்துரைத்தபடி தினமும் 20 முதல் 22 மணி நேரம் அணிவது சிறந்தது என்றாலும், சிகிச்சையின் இறுதி முடிவு ஒவ்வொருவரின் உடல் மற்றும் எலும்பு இயல்புக்கு ஏற்ப மாறுபடலாம்.</p>',
     has3DModel: false,
-    interactiveStepsCount: 4
+    interactiveStepsCount: 4,
+    videoId: '7msXJdDOluY',
+    videoDurationText: '2:35 min'
   },
 
   // --------------------------------------------------------------------
@@ -1389,7 +1413,9 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     overviewHtmlEn: '<p>Dental avulsion represents the complete displacement of a tooth from its alveolar socket due to trauma. CRITICAL CONTRAINDICATION: Deciduous (baby) teeth must NEVER be replanted, as replantation can cause severe mechanical and inflammatory damage or developmental arrest to the underlying permanent tooth germ. For permanent teeth, immediate first aid directly determines prognosis: handle the tooth solely by its coronal surface—never scrape, rub, or sterilize root periodontal ligament (PDL) cells. Immediate replantation at the trauma site provides the highest periodontal ligament survival. When immediate replantation is impossible, store the tooth in a physiological medium (such as Hank’s Balanced Salt Solution, cold bovine milk, or tissue culture medium; saliva or saline may serve as interim media, whereas plain water or dry storage causes rapid osmotic cell lysis). Urgent dental assessment is essential for flexible splinting (commonly ~2 weeks for uncomplicated avulsions, adjusted if alveolar fractures coexist). Endodontic treatment timing is not universal: mature teeth with closed apices generally require endodontic intervention within 7 to 14 days post-replantation to prevent inflammatory root resorption, whereas immature open-apex teeth should be followed closely for potential spontaneous pulpal revascularization.</p>',
     overviewHtmlTa: '<p>விபத்தினால் பல் தாடை எலும்பிலிருந்து வேருடன் முழுமையாக வெளியேறுவது பல் அவுல்ஷன் (Avulsion) எனப்படும். அதிமுக்கிய எச்சரிக்கை: குழந்தைகளின் பால் பற்களை ஒருபோதும் மீண்டும் பொருத்தக் கூடாது! ஏனெனில் அது கீழே வளரும் நிரந்தரப் பல் முளையைக் கடுமையாகப் பாதிக்கலாம். நிரந்தரப் பற்களுக்கு, உடனடி முதலுதவியே அதன் ஆயுளைத் தீர்மானிக்கிறது: பல்லின் மகுடத்தை மட்டுமே பிடிக்க வேண்டும்; வேர்ப்பகுதியில் உள்ள செல்களைத் தொடுவதோ, சுரண்டுவதோ கூடாது. உடனடியாக அதே இடத்தில் மீண்டும் பொருத்துவது மிகச் சிறந்தது; இயலாவிட்டால், குளிர்ந்த பால் அல்லது ஹாங்க்ஸ் கரைசலில் (HBSS) வைத்து அவசரமாக மருத்துவரிடம் கொண்டு செல்ல வேண்டும் (சாதாரண நீரில் வைக்கக் கூடாது). மருத்துவர் பல்லினை நெகிழ்வான கம்பி மூலம் கட்டி நிலைநிறுத்துவார். வேர்க்கால் சிகிச்சை காலம் அனைத்துப் பற்களுக்கும் ஒன்றல்ல: முழுமையாக வேர் மூடிய முதிர்ந்த பற்களுக்கு எலும்பு உறிஞ்சுதலைத் (Resorption) தடுக்க 7-14 நாட்களுக்குள் வேர்க்கால் சிகிச்சை தேவைப்படலாம்; ஆனால் வேர் முழுமையடையாத இளம் பற்களில் நரம்பின் உயிரோட்டம் மீண்டும் துளிர்க்கிறதா என்பதை மருத்துவர் தொடர்ந்து கண்காணிப்பார்.</p>',
     has3DModel: false,
-    interactiveStepsCount: 4
+    interactiveStepsCount: 4,
+    videoId: 'azqHq51iRCA',
+    videoDurationText: '3:15 min'
   },
 
   // ------------------------------
@@ -1414,7 +1440,9 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     overviewHtmlEn: '<p>Emergency broken tooth repair addresses traumatic crown fractures resulting from impacts, falls, or masticatory trauma. Fractures are clinically categorized into uncomplicated (confined to enamel or enamel-dentin without pulpal exposure) and complicated (exposing the vital dental pulp). Immediate dental evaluation with radiographic imaging is essential to evaluate fracture margins, assess pulp vitality, and rule out concurrent root fracture, alveolar injury, or luxation. If an intact fractured coronal fragment is recovered, keeping it continuously hydrated in sterile saline or cold milk preserves its optical translucency and adhesive bond strength; however, fragment reattachment is not indicated for every fracture pattern and depends on clean margin adaptation and biological fit. Treatment is strictly individualized: uncomplicated fractures are managed with dentin sealing and direct composite restoration, while complicated fractures require vital pulp therapy (such as direct pulp capping or partial Cvek pulpotomy using hydraulic calcium-silicate cements) or complete endodontic therapy based on pulp exposure size, bacterial contamination, time elapsed, and apical maturity.</p>',
     overviewHtmlTa: '<p>விபத்து அல்லது கடினமான உணவைக் கடிப்பதால் பல் உடைந்து போகும்போது உடனடியாக செய்யப்படும் சிகிச்சை இதுவாகும். பல் உடைவு என்பது நரம்பு வெளிப்படாத சாதாரண உடைவு (Uncomplicated) அல்லது நரம்பு வெளிப்படும் தீவிர உடைவு (Complicated) என இருவகையாகப் பிரிக்கப்படுகிறது. எக்ஸ்-ரே மூலம் பல்லின் வேர் மற்றும் நரம்பின் நிலை பரிசோதிக்கப்படுகிறது. உடைந்த பல்லின் துண்டு கிடைத்தால், அதன் இயற்கை நிறமும் ஒட்டும் தன்மையும் மாறாமல் இருக்க உடனடியாக சலைன் அல்லது குளிர்ந்த பாலில் வைத்து எடுத்து வர வேண்டும்; எனினும், அனைத்து உடைவுகளுக்கும் துண்டை மீண்டும் ஒட்டுவது பொருத்தமாக இருக்காது; துண்டின் வடிவம் மற்றும் பொருத்துதலைப் பொறுத்தே மருத்துவர் இதைத் தீர்மானிக்கிறார். நரம்பு வெளிப்படாத பற்களுக்கு காம்போசிட் அடைப்பு செய்யப்படுகிறது; நரம்பு வெளிப்பட்டிருந்தால், பல்லின் நரம்பு துளையின் அளவு, விபத்து நிகழ்ந்த நேரம் மற்றும் வேர் வளர்ச்சியைப் பொறுத்து நரம்பைப் பாதுகாக்கும் உயிருள்ள நரம்பு சிகிச்சையோ அல்லது வேர்க்கால் சிகிச்சையோ மேற்கொள்ளப்படுகிறது.</p>',
     has3DModel: false,
-    interactiveStepsCount: 3
+    interactiveStepsCount: 3,
+    videoId: '0n4cQC3v48o',
+    videoDurationText: '2:55 min'
   },
 
   // ------------------------------

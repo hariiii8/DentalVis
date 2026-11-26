@@ -5,9 +5,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Container, Badge } from '@dentalvis/ui';
 import { DepartmentDto, ExploreCategory, ProcedureDetail } from '@dentalvis/common';
-import { ArrowLeft, Stethoscope, Compass, Info, Sparkles } from 'lucide-react';
+import { ArrowLeft, Stethoscope, Compass, Info, Sparkles, Video, AlertTriangle } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { ProcedureCard } from '@/components/ProcedureCard';
+import { YouTubeClickToLoadPlayer } from '@/components/YouTubeClickToLoadPlayer';
 
 interface DepartmentViewProps {
   itemType: 'department';
@@ -155,6 +156,54 @@ export default function DepartmentOrCategoryClientView(props: DepartmentOrCatego
             </div>
           </div>
         </div>
+
+        {/* Specialized Emergency Educational Video Banner for Dental Trauma */}
+        {((isDepartment && props.department.slug === 'dental-trauma-emergency') ||
+          (!isDepartment && props.category.slug === 'dental-trauma-emergency')) && (
+          <div className="liquid-glass-primary rounded-3xl p-6 sm:p-8 mb-12 overflow-hidden shadow-md isolate relative">
+            <div className="liquid-refractive-rim absolute inset-0 rounded-3xl pointer-events-none" />
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+              <div className="lg:col-span-5 space-y-4">
+                <Badge variant="mint" className="gap-1.5 text-xs font-semibold liquid-glass-lens">
+                  <Video className="w-3.5 h-3.5 text-[#20B2AA]" />
+                  <span>{isTamil ? 'அவசர முதலுதவி வீடியோ' : 'Emergency First Aid Video'}</span>
+                </Badge>
+                <h2 className="text-2xl sm:text-3xl font-black text-[#145B59] tracking-tight">
+                  {isTamil
+                    ? 'பல் அதிர்ச்சி முதலுதவி — எலும்பு முறிவுகள் & கழன்ற பற்கள்'
+                    : 'Dental Trauma First Aid — Fractures and Knocked-Out Teeth'}
+                </h2>
+                <p className="text-sm sm:text-base text-[#587477] leading-relaxed">
+                  {isTamil
+                    ? 'விபத்து அல்லது விளையாட்டின் போது பல் உடைந்துவிட்டால் அல்லது வேரோடு கழன்று விழுந்துவிட்டால் அடுத்த 30 நிமிடங்களுக்குள் செய்ய வேண்டிய முக்கிய முதலுதவி வழிமுறைகளைக் காட்டும் கல்வி வீடியோ.'
+                    : 'Critical first-aid protocols for acute dental trauma: handling avulsed teeth by the crown, proper liquid storage mediums (cold milk or saliva), and emergency stabilization steps.'}
+                </p>
+                <div className="p-3.5 rounded-2xl liquid-glass-secondary flex items-center gap-2 text-xs text-[#145B59]">
+                  <AlertTriangle className="w-4 h-4 text-[#20B2AA] shrink-0" />
+                  <span>
+                    {isTamil
+                      ? 'அவசர சிகிச்சையில் நேரம் மிக முக்கியமானது — உடனடியாக பல் மருத்துவரை அணுகவும்.'
+                      : 'Time is critical in avulsions: optimal reimplantation window is under 30-60 minutes.'}
+                  </span>
+                </div>
+              </div>
+
+              <div className="lg:col-span-7">
+                <YouTubeClickToLoadPlayer
+                  videoId="JvwdVAEKy6w"
+                  title={
+                    isTamil
+                      ? 'பல் அதிர்ச்சி முதலுதவி வழிகாட்டி'
+                      : 'Dental Trauma First Aid — Fractures and Knocked-Out Teeth'
+                  }
+                  thumbnailUrl="/images/departments/dental-trauma-emergency.svg"
+                  durationText="3:15 min"
+                  lang={language}
+                />
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Procedures Section */}
         <div className="space-y-6">
