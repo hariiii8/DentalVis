@@ -1615,10 +1615,7 @@ export default function ProcedureDetailClientView({
                   videoId={procedure.videoId}
                   title={title}
                   thumbnailUrl={coverImageSrc}
-                  durationText={
-                    procedure.videoDurationText ||
-                    (isTamil ? `~${procedure.durationMinutes} நிமிடங்கள்` : `${procedure.durationMinutes} min guide`)
-                  }
+                  durationText={procedure.videoDurationText}
                   lang={language}
                 />
               ) : (

@@ -366,7 +366,7 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     model3DId: 'model-molar-cross-section',
     interactiveStepsCount: 4,
     videoId: 'Df69WKJgJ28',
-    videoDurationText: '3:12 min'
+    videoDurationText: '00:32'
   },
 
   // --------------------------------------------------------------------
@@ -394,7 +394,7 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     model3DId: 'model-dental-crown',
     interactiveStepsCount: 3,
     videoId: 'YhKRo-VnZAs',
-    videoDurationText: '2:40 min'
+    videoDurationText: '00:38'
   },
 
   // --------------------------------------------------------------------
@@ -421,7 +421,7 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     has3DModel: false,
     interactiveStepsCount: 3,
     videoId: 'g5F_LOWJBhk',
-    videoDurationText: '3:05 min'
+    videoDurationText: '00:37'
   },
 
   // --------------------------------------------------------------------
@@ -449,7 +449,7 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     model3DId: 'model-dental-implant',
     interactiveStepsCount: 5,
     videoId: '2aHK40HEC1E',
-    videoDurationText: '3:30 min'
+    videoDurationText: '00:13'
   },
 
   // --------------------------------------------------------------------
@@ -476,7 +476,7 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     has3DModel: false,
     interactiveStepsCount: 4,
     videoId: 'hXNkI930O_4',
-    videoDurationText: '2:15 min'
+    videoDurationText: '01:51'
   },
 
   // --------------------------------------------------------------------
@@ -503,7 +503,7 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     has3DModel: false,
     interactiveStepsCount: 3,
     videoId: 'U-oif0uh36E',
-    videoDurationText: '2:50 min'
+    videoDurationText: '01:03'
   },
 
   // --------------------------------------------------------------------
@@ -530,7 +530,7 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     has3DModel: false,
     interactiveStepsCount: 4,
     videoId: 'wAienNPJT8k',
-    videoDurationText: '3:00 min'
+    videoDurationText: '00:10'
   },
 
   // --------------------------------------------------------------------
@@ -557,7 +557,7 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     has3DModel: false,
     interactiveStepsCount: 4,
     videoId: 'cfc-E8rPtIg',
-    videoDurationText: '3:20 min'
+    videoDurationText: '03:18'
   },
 
   // --------------------------------------------------------------------
@@ -584,7 +584,7 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     has3DModel: false,
     interactiveStepsCount: 4,
     videoId: 'sMjMRjE5LLM',
-    videoDurationText: '3:45 min'
+    videoDurationText: '00:59'
   },
 
   // --------------------------------------------------------------------
@@ -1061,7 +1061,7 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     has3DModel: false,
     interactiveStepsCount: 4,
     videoId: 'ElNNNlclv4A',
-    videoDurationText: '3:10 min'
+    videoDurationText: '03:38'
   },
 
   // --------------------------------------------------------------------
@@ -1213,7 +1213,7 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     has3DModel: false,
     interactiveStepsCount: 4,
     videoId: '7msXJdDOluY',
-    videoDurationText: '2:35 min'
+    videoDurationText: '02:51'
   },
 
   // --------------------------------------------------------------------
@@ -1415,7 +1415,7 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     has3DModel: false,
     interactiveStepsCount: 4,
     videoId: 'azqHq51iRCA',
-    videoDurationText: '3:15 min'
+    videoDurationText: '01:12'
   },
 
   // ------------------------------
@@ -1441,8 +1441,7 @@ export const CANONICAL_PROCEDURES: ProcedureDetail[] = [
     overviewHtmlTa: '<p>விபத்து அல்லது கடினமான உணவைக் கடிப்பதால் பல் உடைந்து போகும்போது உடனடியாக செய்யப்படும் சிகிச்சை இதுவாகும். பல் உடைவு என்பது நரம்பு வெளிப்படாத சாதாரண உடைவு (Uncomplicated) அல்லது நரம்பு வெளிப்படும் தீவிர உடைவு (Complicated) என இருவகையாகப் பிரிக்கப்படுகிறது. எக்ஸ்-ரே மூலம் பல்லின் வேர் மற்றும் நரம்பின் நிலை பரிசோதிக்கப்படுகிறது. உடைந்த பல்லின் துண்டு கிடைத்தால், அதன் இயற்கை நிறமும் ஒட்டும் தன்மையும் மாறாமல் இருக்க உடனடியாக சலைன் அல்லது குளிர்ந்த பாலில் வைத்து எடுத்து வர வேண்டும்; எனினும், அனைத்து உடைவுகளுக்கும் துண்டை மீண்டும் ஒட்டுவது பொருத்தமாக இருக்காது; துண்டின் வடிவம் மற்றும் பொருத்துதலைப் பொறுத்தே மருத்துவர் இதைத் தீர்மானிக்கிறார். நரம்பு வெளிப்படாத பற்களுக்கு காம்போசிட் அடைப்பு செய்யப்படுகிறது; நரம்பு வெளிப்பட்டிருந்தால், பல்லின் நரம்பு துளையின் அளவு, விபத்து நிகழ்ந்த நேரம் மற்றும் வேர் வளர்ச்சியைப் பொறுத்து நரம்பைப் பாதுகாக்கும் உயிருள்ள நரம்பு சிகிச்சையோ அல்லது வேர்க்கால் சிகிச்சையோ மேற்கொள்ளப்படுகிறது.</p>',
     has3DModel: false,
     interactiveStepsCount: 3,
-    videoId: '0n4cQC3v48o',
-    videoDurationText: '2:55 min'
+    videoId: '0n4cQC3v48o'
   },
 
   // ------------------------------

@@ -197,7 +197,7 @@ export default function DepartmentOrCategoryClientView(props: DepartmentOrCatego
                       : 'Dental Trauma First Aid — Fractures and Knocked-Out Teeth'
                   }
                   thumbnailUrl="/images/departments/dental-trauma-emergency.svg"
-                  durationText="3:15 min"
+                  durationText="02:03"
                   lang={language}
                 />
               </div>

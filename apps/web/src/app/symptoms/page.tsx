@@ -132,7 +132,7 @@ export default function SymptomsPage() {
                       : 'Recognizing Dental Emergencies vs. Routine Discomfort'
                   }
                   thumbnailUrl="/images/categories/pain-and-sensitivity.svg"
-                  durationText="3:30 min"
+                  durationText="06:33"
                   lang={language}
                 />
               </div>

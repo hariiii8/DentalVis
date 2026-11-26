@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { Play, Volume2, ShieldAlert } from 'lucide-react';
 import { Badge } from '@dentalvis/ui';
@@ -15,32 +15,157 @@ interface YouTubeClickToLoadPlayerProps {
   lang?: 'en' | 'ta';
 }
 
+declare global {
+  interface Window {
+    YT?: any;
+    onYouTubeIframeAPIReady?: () => void;
+  }
+}
+
+/**
+ * Formats a duration in seconds to standard MM:SS or H:MM:SS.
+ * Example: 32 -> "00:32", 111 -> "01:51", 393 -> "06:33", 3665 -> "1:01:05"
+ */
+function formatPlayerDuration(seconds: number): string | null {
+  if (!seconds || isNaN(seconds) || seconds <= 0) return null;
+  const totalSeconds = Math.round(seconds);
+  const hrs = Math.floor(totalSeconds / 3600);
+  const mins = Math.floor((totalSeconds % 3600) / 60);
+  const secs = totalSeconds % 60;
+
+  if (hrs > 0) {
+    return `${hrs}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  }
+  return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+}
+
 export function YouTubeClickToLoadPlayer({
   videoId,
   title,
   thumbnailUrl,
-  durationText = '2:45 min',
+  durationText,
   lang = 'en',
 }: YouTubeClickToLoadPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [liveDuration, setLiveDuration] = useState<string | null>(durationText || null);
+  const playerContainerRef = useRef<HTMLDivElement>(null);
+  const playerInstanceRef = useRef<any>(null);
 
   const handleStartPlay = () => {
     setIsPlaying(true);
   };
 
+  // Synchronize with YouTube IFrame Player API only after user gives click-to-load consent
+  useEffect(() => {
+    if (!isPlaying) return;
+
+    let isMounted = true;
+    const playerElementId = `yt-player-${videoId}`;
+
+    const initPlayer = () => {
+      if (!window.YT || !window.YT.Player) return;
+      if (playerInstanceRef.current) return;
+
+      try {
+        playerInstanceRef.current = new window.YT.Player(playerElementId, {
+          videoId,
+          playerVars: {
+            autoplay: 1,
+            rel: 0,
+            modestbranding: 1,
+            origin: typeof window !== 'undefined' ? window.location.origin : undefined,
+          },
+          events: {
+            onReady: (event: any) => {
+              if (!isMounted) return;
+              try {
+                const durationSec = event.target?.getDuration?.();
+                if (typeof durationSec === 'number' && durationSec > 0) {
+                  const formatted = formatPlayerDuration(durationSec);
+                  if (formatted) {
+                    setLiveDuration(formatted);
+                  }
+                }
+              } catch {
+                // Ignore cross-origin / private browser restrictions
+              }
+            },
+            onStateChange: (event: any) => {
+              if (!isMounted) return;
+              // Check when playing (state 1) or buffering (state 3)
+              try {
+                const durationSec = event.target?.getDuration?.();
+                if (typeof durationSec === 'number' && durationSec > 0) {
+                  const formatted = formatPlayerDuration(durationSec);
+                  if (formatted) {
+                    setLiveDuration(formatted);
+                  }
+                }
+              } catch {
+                // Ignore
+              }
+            },
+            onError: () => {
+              // Video is unavailable or restricted
+            },
+          },
+        });
+      } catch {
+        // Fallback to native iframe
+      }
+    };
+
+    if (window.YT && window.YT.Player) {
+      initPlayer();
+    } else {
+      // Load YouTube IFrame API script on-demand after user consent
+      const existingScript = document.getElementById('youtube-iframe-api');
+      if (!existingScript) {
+        const tag = document.createElement('script');
+        tag.id = 'youtube-iframe-api';
+        tag.src = 'https://www.youtube.com/iframe_api';
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag?.parentNode?.insertBefore(tag, firstScriptTag);
+      }
+
+      const prevCallback = window.onYouTubeIframeAPIReady;
+      window.onYouTubeIframeAPIReady = () => {
+        if (prevCallback) prevCallback();
+        if (isMounted) initPlayer();
+      };
+    }
+
+    return () => {
+      isMounted = false;
+      if (playerInstanceRef.current) {
+        try {
+          playerInstanceRef.current.destroy?.();
+        } catch {
+          // Ignore
+        }
+        playerInstanceRef.current = null;
+      }
+    };
+  }, [isPlaying, videoId]);
+
   return (
     <div className="rounded-2xl overflow-hidden border border-teal-100 bg-white shadow-md transition-all">
       <div className="relative aspect-video w-full bg-slate-900 overflow-hidden">
         {isPlaying ? (
-          <iframe
-            src={`https://www.youtube-nocookie.com/embed/${encodeURIComponent(
-              videoId
-            )}?autoplay=1&rel=0&modestbranding=1`}
-            title={title}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            className="w-full h-full border-0"
-          />
+          <div ref={playerContainerRef} className="w-full h-full">
+            <div id={`yt-player-${videoId}`} className="w-full h-full">
+              {/* Native fallback iframe in case YouTube API script is blocked */}
+              <iframe
+                src={`https://www.youtube-nocookie.com/embed/${encodeURIComponent(
+                  videoId
+                )}?autoplay=1&rel=0&modestbranding=1&enablejsapi=1`}
+                title={title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full border-0"
+              />
+            </div>
+          </div>
         ) : (
           <div className="relative w-full h-full group">
             {/* Thumbnail Image */}
@@ -58,9 +183,15 @@ export function YouTubeClickToLoadPlayer({
                 <Badge variant="mint" className="text-xs">
                   {lang === 'ta' ? 'மருத்துவக் கல்வி வீடியோ' : 'Educational Clinical Video'}
                 </Badge>
-                <span className="text-xs font-medium text-white/80 bg-black/40 backdrop-blur-sm px-2.5 py-1 rounded-full">
-                  {durationText}
-                </span>
+                {liveDuration ? (
+                  <span className="text-xs font-mono font-semibold text-white/90 bg-black/50 backdrop-blur-sm px-2.5 py-1 rounded-full tracking-wide">
+                    {liveDuration}
+                  </span>
+                ) : (
+                  <span className="text-xs font-medium text-white/70 bg-black/30 backdrop-blur-sm px-2.5 py-1 rounded-full">
+                    {lang === 'ta' ? 'நேரம் அறியப்படவில்லை' : 'Duration unavailable'}
+                  </span>
+                )}
               </div>
 
               {/* Play Button & Consent Trigger */}
